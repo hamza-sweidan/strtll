@@ -53,39 +53,8 @@ public sealed partial class Story
             // record that is not there. The checks have said why; the comparison says it could not be made.
             changes = [$"the answers could not be worked out with this change set laid on: {e.Message}"];
         }
-        return new WhatIfResult(draft.Actor, draft.Ops.Count, before.Head, findings, changes, Contexts(was, now));
+        return new WhatIfResult(draft.Actor, draft.Ops.Count, before.Head, findings, changes, Query.WhatIf.Contexts(was, now));
     }
 
     private static IReadOnlyList<string> WhatIf(StoryState was, StoryState now) => Query.WhatIf.Differences(was, now);
-
-    /// <summary>Each scene that can have a context, compiled before and after, with how many of its lines differ.</summary>
-    private static IReadOnlyList<ContextChange> Contexts(StoryState was, StoryState now)
-    {
-        var result = new List<ContextChange>();
-        foreach (var t in now.Telling)
-        {
-            ContextPackage? Compile(StoryState s)
-            {
-                if (!s.Model.Scenes.ContainsKey(t.Id) || !s.Model.SceneTimes.ContainsKey(t.Id))
-                    return null;
-                try
-                {
-                    return ContextCompiler.Compile(s, t.Id, int.MaxValue);
-                }
-                catch (KeyNotFoundException)
-                {
-                    return null;
-                }
-            }
-            var (a, b) = (Compile(was), Compile(now));
-            if (a is null && b is null)
-                continue;
-            var lines = a is null || b is null
-                ? (a ?? b)!.Sections.Sum(x => x.Lines.Count + 1)
-                : Freshness.Differences(a, b).Count;
-            if (lines > 0)
-                result.Add(new ContextChange(t.Id, t.Tell, lines));
-        }
-        return result;
-    }
 }

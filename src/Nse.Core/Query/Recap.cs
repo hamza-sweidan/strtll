@@ -63,7 +63,7 @@ public static class Recap
                 line += $" [{s.ClassifyAssertion(a.Id)}]";
             items.Add(new RecapItem(a.StoryKey, 1, a.Id, a.Scene, line));
         }
-        foreach (var b in s.Model.Beliefs.Where(b => b.Holder == person && Within(b.StoryKey)))
+        foreach (var b in s.Model.BeliefsOf(person).Where(b => Within(b.StoryKey)))
         {
             var how = b.Stance switch
             {

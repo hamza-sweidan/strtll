@@ -103,7 +103,8 @@ The permission rules allow every tool but `ratify`, which always asks. `scene_co
 
 ## Limits
 
-- Queries load the records that count as of a ledger head and compute in memory. Nothing has been measured on a story much longer than the example.
+- Queries load the records that count as of a ledger head and compute in memory. Measured on the example laid end to end twenty times, 240 scenes and 7,760 records, in a debug build: an answer about one scene (its context, an audit brief, a scan) comes in under a second, most of it spent reading the ledger and the manuscript; a scan of every scene takes a second or two; the state dump takes five or six seconds and is 54 MB, because it says everything about everyone at every point; a what-if takes ten to twenty seconds, because it works out that dump and every scene's context twice over. Each costs in line with the size of what it answers, and for the last two that size grows with the square of the story. Nothing longer has been measured.
+- At that length the context of a late scene runs to half a million characters, since it lists every guarded fact that each person present has no record on, and all of that is in the part that is never left out. It does not fit the default budget, and `scene-context` fails with `BUDGET_INSUFFICIENT` until the budget is raised.
 - A record's place in story time is always given outright. Inheriting it from the scene is not implemented.
 - "By the end of a scene" means up to the next scene in story time, and at most five units on.
 - A context includes all of the point-of-view character's beliefs. Cutting them to what touches the scene is not done.

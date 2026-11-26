@@ -17,7 +17,10 @@ public static class Freshness
     /// them. And whether a record is still provisional, because ratifying a record the draft relied on changes
     /// nothing the draft relied on. A record that is rejected or retired disappears, and that does show.
     /// </remarks>
-    public static IReadOnlyList<string> Differences(ContextPackage then, ContextPackage now)
+    public static IReadOnlyList<string> Differences(ContextPackage then, ContextPackage now) => Differences(then.Sections, now.Sections);
+
+    /// <summary>The same comparison, of the parts of two contexts. The text of a context plays no part in it.</summary>
+    public static IReadOnlyList<string> Differences(IReadOnlyList<ContextSection> then, IReadOnlyList<ContextSection> now)
     {
         var result = new List<string>();
         var before = Basis(then);
@@ -26,8 +29,13 @@ public static class Freshness
         {
             var was = before.GetValueOrDefault(title) ?? [];
             var isNow = after.GetValueOrDefault(title) ?? [];
-            result.AddRange(was.Except(isNow, StringComparer.Ordinal).Select(line => $"- {title}: {line}"));
-            result.AddRange(isNow.Except(was, StringComparer.Ordinal).Select(line => $"+ {title}: {line}"));
+            // Two contexts for one scene are mostly the same lines in the same order, and a part of which that
+            // is true has no difference to find. Only the others are compared line against line.
+            if (was.SequenceEqual(isNow, StringComparer.Ordinal))
+                continue;
+            var (wasPlain, isNowPlain) = (was.Select(Plain).ToList(), isNow.Select(Plain).ToList());
+            result.AddRange(wasPlain.Except(isNowPlain, StringComparer.Ordinal).Select(line => $"- {title}: {line}"));
+            result.AddRange(isNowPlain.Except(wasPlain, StringComparer.Ordinal).Select(line => $"+ {title}: {line}"));
         }
         return result;
     }
@@ -49,10 +57,11 @@ public static class Freshness
         return Convert.ToHexStringLower(System.Security.Cryptography.SHA256.HashData(System.Text.Encoding.UTF8.GetBytes(text.ToString())))[..8];
     }
 
-    private static Dictionary<string, List<string>> Basis(ContextPackage package) =>
-        package.Sections.Where(x => !x.Title.StartsWith(ContextCompiler.ProseTitle, StringComparison.Ordinal))
+    /// <summary>The lines of each part that is compared, as written, under the part's title.</summary>
+    private static Dictionary<string, List<string>> Basis(IReadOnlyList<ContextSection> sections) =>
+        sections.Where(x => !x.Title.StartsWith(ContextCompiler.ProseTitle, StringComparison.Ordinal))
             .GroupBy(x => Plain(x.Title), StringComparer.Ordinal)
-            .ToDictionary(g => g.Key, g => g.SelectMany(x => x.Lines).Select(Plain).ToList(), StringComparer.Ordinal);
+            .ToDictionary(g => g.Key, g => g.SelectMany(x => x.Lines).ToList(), StringComparer.Ordinal);
 
     private static string Plain(string line) =>
         line.Trim().Replace(ContextCompiler.ProvisionalMark, "", StringComparison.Ordinal)

@@ -1,5 +1,6 @@
 using System.Globalization;
 using System.Text;
+using System.Text.Json;
 using System.Text.Json.Nodes;
 using Nse.Text;
 using Nse.Validation;
@@ -31,22 +32,38 @@ public static class WhatIf
     {
         ArgumentNullException.ThrowIfNull(before);
         ArgumentNullException.ThrowIfNull(after);
-        var was = Flatten(StateDump.Build(before));
-        var now = Flatten(StateDump.Build(after));
-        var keys = was.Keys.Union(now.Keys).Where(k => k != "head").Where(k => was.GetValueOrDefault(k) != now.GetValueOrDefault(k)).ToList();
+        List<(string Key, string? Was, string? Now)> changed;
+        try
+        {
+            changed = Changed(before, after);
+        }
+        catch (KeyNotFoundException)
+        {
+            // A state that names a record that is not there cannot be dumped, and the caller reports which record.
+            // That must not turn on the order the two documents happened to be compared in: it is the first one
+            // met working out the document before, all of it, and then the document after.
+            foreach (var state in new[] { before, after })
+            {
+                StateDump.AcrossTheStory(state);
+                foreach (var (_, key, tell) in StateDump.Points(state))
+                    StateDump.Point(state, key, tell);
+            }
+            throw;
+        }
         // The points in the order they are told in the state after, then the end; within a point, people, the
         // reader, the world and what is so, each in id order.
-        var telling = after.Telling.Select(t => t.Id).Concat(before.Telling.Select(t => t.Id)).Distinct().ToList();
+        var telling = after.Telling.Select(t => t.Id).Concat(before.Telling.Select(t => t.Id)).Distinct()
+            .Select((id, rank) => (id, rank)).ToDictionary(x => x.id, x => x.rank, StringComparer.Ordinal);
         int Rank(string key)
         {
             var parts = key.Split('/');
             if (parts[0] != "points")
                 return -1;
-            return parts[1] == "end" ? int.MaxValue : telling.IndexOf(parts[1]);
+            return parts[1] == "end" ? int.MaxValue : telling.GetValueOrDefault(parts[1], -1);
         }
         var lines = new List<string>();
         string? heading = null;
-        foreach (var key in keys.OrderBy(Rank).ThenBy(k => k, StringComparer.Ordinal))
+        foreach (var (key, was, now) in changed.OrderBy(c => Rank(c.Key)).ThenBy(c => c.Key, StringComparer.Ordinal))
         {
             var parts = key.Split('/');
             var head = parts[0] switch
@@ -60,9 +77,43 @@ public static class WhatIf
                 lines.Add(head);
                 heading = head;
             }
-            lines.Add("  " + Plain.OneLine(Describe(before, after, parts, was.GetValueOrDefault(key), now.GetValueOrDefault(key))));
+            lines.Add("  " + Plain.OneLine(Describe(before, after, parts, was, now)));
         }
         return lines;
+    }
+
+    /// <summary>Each scene that can have a context, compiled before and after, with how many of its lines differ.</summary>
+    public static IReadOnlyList<ContextChange> Contexts(StoryState before, StoryState after)
+    {
+        ArgumentNullException.ThrowIfNull(before);
+        ArgumentNullException.ThrowIfNull(after);
+        var result = new List<ContextChange>();
+        foreach (var t in after.Telling)
+        {
+            // The parts are all that two contexts are compared by, so no text is put together for either.
+            IReadOnlyList<ContextSection>? Compile(StoryState s)
+            {
+                if (!s.Model.Scenes.ContainsKey(t.Id) || !s.Model.SceneTimes.ContainsKey(t.Id))
+                    return null;
+                try
+                {
+                    return ContextCompiler.Sections(s, t.Id);
+                }
+                catch (KeyNotFoundException)
+                {
+                    return null;
+                }
+            }
+            var (a, b) = (Compile(before), Compile(after));
+            if (a is null && b is null)
+                continue;
+            var lines = a is null || b is null
+                ? (a ?? b)!.Sum(x => x.Lines.Count + 1)
+                : Freshness.Differences(a, b).Count;
+            if (lines > 0)
+                result.Add(new ContextChange(t.Id, t.Tell, lines));
+        }
+        return result;
     }
 
     private static string Scene(StoryState after, StoryState before, string id) =>
@@ -139,27 +190,165 @@ public static class WhatIf
     };
 
     /// <summary>
-    /// The dump as paths to leaves. A belief, a reader's view and a location are leaves whole: what changes is the
-    /// answer, and an answer is all of its fields together.
+    /// The leaves that differ between the dumps of two states, by path, each with what it was and what it is as
+    /// JSON, or null on the side that has no such leaf. A belief, a reader's view and a location are leaves whole:
+    /// what changes is the answer, and an answer is all of its fields together. The ledger head is left out: it
+    /// differs by design.
     /// </summary>
-    private static Dictionary<string, string> Flatten(JsonNode root)
+    /// <remarks>
+    /// The two documents are compared a point at a time, and neither is ever held whole. A dump says everything
+    /// about everyone at every point, so for a long story it is tens of megabytes, nearly all of it the same in
+    /// both states; a point is built for each state, compared, and let go.
+    /// </remarks>
+    private static List<(string Key, string? Was, string? Now)> Changed(StoryState before, StoryState after)
     {
-        var flat = new Dictionary<string, string>(StringComparer.Ordinal);
-        void Walk(JsonNode? node, string path, int depth)
+        var comparison = new Comparison();
+        var (was, now) = (StateDump.Points(before).ToList(), StateDump.Points(after).ToList());
+        // A point is known by its name alone only if no two share one, and the document's rule for what is a leaf
+        // turns on the name "id". A story with a scene called "end" or "id" is compared as two whole documents.
+        static bool ByName(List<(string Id, double Key, int Tell)> points) =>
+            points.All(p => p.Id != "id") && points.Select(p => p.Id).Distinct(StringComparer.Ordinal).Count() == points.Count;
+        if (!ByName(was) || !ByName(now))
         {
-            var leaf = node is not JsonObject o
-                       || o.ContainsKey("id")
-                       || (path.StartsWith("points/", StringComparison.Ordinal) && depth >= 5);
-            if (leaf)
+            comparison.Both(StateDump.Build(before), StateDump.Build(after), 0);
+            return comparison.Changed;
+        }
+        comparison.Both(StateDump.AcrossTheStory(before), StateDump.AcrossTheStory(after), 0);
+        var inNow = now.ToDictionary(p => p.Id, StringComparer.Ordinal);
+        var inWas = was.Select(p => p.Id).ToHashSet(StringComparer.Ordinal);
+        comparison.Under("points", () =>
+        {
+            foreach (var p in was)
+                comparison.Under(p.Id, () =>
+                {
+                    var point = StateDump.Point(before, p.Key, p.Tell);
+                    if (inNow.TryGetValue(p.Id, out var q))
+                        comparison.Both(point, StateDump.Point(after, q.Key, q.Tell), 2);
+                    else
+                        comparison.Alone(point, 2, isWas: true);
+                });
+            foreach (var q in now.Where(q => !inWas.Contains(q.Id)))
+                comparison.Under(q.Id, () => comparison.Alone(StateDump.Point(after, q.Key, q.Tell), 2, isWas: false));
+        });
+        return comparison.Changed;
+    }
+
+    /// <summary>Two documents, or two parts of them, walked side by side, and the leaves found to differ.</summary>
+    private sealed class Comparison
+    {
+        private readonly List<string> _path = [];
+
+        public List<(string Key, string? Was, string? Now)> Changed { get; } = [];
+
+        /// <summary>Compare what lies under one more name in both documents.</summary>
+        public void Under(string name, Action compare)
+        {
+            _path.Add(name);
+            compare();
+            _path.RemoveAt(_path.Count - 1);
+        }
+
+        private bool Leaf(JsonNode? node, int depth) =>
+            node is not JsonObject o || (depth >= 5 && _path[0] == "points") || o.ContainsKey("id");
+
+        private static string Json(JsonNode? node) => node?.ToJsonString() ?? "null";
+
+        private void Differs(string? was, string? now)
+        {
+            if (_path is not ["head"])
+                Changed.Add((string.Join("/", _path), was, now));
+        }
+
+        /// <summary>One side of a place in the document where the other has nothing, or has something of another shape.</summary>
+        public void Alone(JsonNode? node, int depth, bool isWas)
+        {
+            if (Leaf(node, depth))
             {
-                flat[path] = node?.ToJsonString() ?? "null";
+                Differs(isWas ? Json(node) : null, isWas ? null : Json(node));
                 return;
             }
             foreach (var (name, value) in (JsonObject)node!)
-                Walk(value, path.Length == 0 ? name : path + "/" + name, depth + 1);
+                Under(name, () => Alone(value, depth + 1, isWas));
         }
-        Walk(root, "", 0);
-        return flat;
+
+        /// <param name="depth">How many names deep the two nodes sit in the document.</param>
+        public void Both(JsonNode? a, JsonNode? b, int depth)
+        {
+            var (leafA, leafB) = (Leaf(a, depth), Leaf(b, depth));
+            if (leafA && leafB)
+            {
+                if (!Same(a, b))
+                    Differs(Json(a), Json(b));
+                return;
+            }
+            if (leafA || leafB)
+            {
+                Alone(a, depth, isWas: true);
+                Alone(b, depth, isWas: false);
+                return;
+            }
+            // Two states mostly hold the same names in the same order, and are then read off side by side. From the
+            // first name that does not line up, each name is looked for in the other document instead.
+            var (x, y) = ((JsonObject)a!, (JsonObject)b!);
+            using var others = y.GetEnumerator();
+            var aligned = true;
+            foreach (var (name, value) in x)
+            {
+                _path.Add(name);
+                if (aligned && others.MoveNext() && others.Current.Key == name)
+                    Both(value, others.Current.Value, depth + 1);
+                else
+                {
+                    aligned = false;
+                    if (y.TryGetPropertyValue(name, out var other))
+                        Both(value, other, depth + 1);
+                    else
+                        Alone(value, depth + 1, isWas: true);
+                }
+                _path.RemoveAt(_path.Count - 1);
+            }
+            if (aligned && !others.MoveNext())
+                return;
+            foreach (var (name, value) in y)
+                if (!x.ContainsKey(name))
+                    Under(name, () => Alone(value, depth + 1, isWas: false));
+        }
+    }
+
+    /// <summary>Whether two leaves are written as the same JSON: the same values under the same names in the same order.</summary>
+    private static bool Same(JsonNode? a, JsonNode? b)
+    {
+        switch (a, b)
+        {
+            case (null, null):
+                return true;
+            case (JsonObject x, JsonObject y):
+                if (x.Count != y.Count)
+                    return false;
+                using (var others = y.GetEnumerator())
+                    foreach (var (name, value) in x)
+                        if (!others.MoveNext() || name != others.Current.Key || !Same(value, others.Current.Value))
+                            return false;
+                return true;
+            case (JsonArray x, JsonArray y):
+                if (x.Count != y.Count)
+                    return false;
+                for (var i = 0; i < x.Count; i++)
+                    if (!Same(x[i], y[i]))
+                        return false;
+                return true;
+            case (JsonValue x, JsonValue y):
+                var kind = x.GetValueKind();
+                if (kind != y.GetValueKind())
+                    return false;
+                if (kind is JsonValueKind.True or JsonValueKind.False or JsonValueKind.Null)
+                    return true;
+                return kind == JsonValueKind.String && x.TryGetValue<string>(out var s) && y.TryGetValue<string>(out var t)
+                    ? s == t
+                    : x.ToJsonString() == y.ToJsonString();
+            default:
+                return false;
+        }
     }
 
     /// <summary>The result in words, as both front ends print it.</summary>

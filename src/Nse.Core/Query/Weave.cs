@@ -296,6 +296,27 @@ public sealed class Weave
     /// <summary>The strongest arrival at every node the disturbance reaches, by a path of any length.</summary>
     private Dictionary<string, Arrival> Strongest(string seed, double floor)
     {
+        var best = Spread(seed, floor);
+        var arrivals = new Dictionary<string, Arrival>(StringComparer.Ordinal);
+        foreach (var (id, (strength, via)) in best)
+        {
+            if (via is null)
+                continue;
+            var path = new List<WeaveEdge>();
+            for (var e = via; e is not null; e = best[e.From].Via)
+                path.Add(e);
+            path.Reverse();
+            arrivals[id] = new Arrival(strength, path);
+        }
+        return arrivals;
+    }
+
+    /// <summary>
+    /// How strongly a disturbance arrives at every node it reaches, the seed included at full strength, and the
+    /// strand each strongest arrival came by. The path to a node is read back along those strands.
+    /// </summary>
+    private Dictionary<string, (double Strength, WeaveEdge? Via)> Spread(string seed, double floor)
+    {
         var best = new Dictionary<string, (double Strength, WeaveEdge? Via)>(StringComparer.Ordinal) { [seed] = (1.0, null) };
         var queue = new SortedSet<(double Neg, string Id)>(Comparer<(double Neg, string Id)>.Create((a, b) =>
         {
@@ -325,18 +346,7 @@ public sealed class Weave
                 }
             }
         }
-        var arrivals = new Dictionary<string, Arrival>(StringComparer.Ordinal);
-        foreach (var (id, (strength, via)) in best)
-        {
-            if (via is null)
-                continue;
-            var path = new List<WeaveEdge>();
-            for (var e = via; e is not null; e = best[e.From].Via)
-                path.Add(e);
-            path.Reverse();
-            arrivals[id] = new Arrival(strength, path);
-        }
-        return arrivals;
+        return best;
     }
 
     /// <summary>
@@ -380,7 +390,22 @@ public sealed class Weave
     }
 
     /// <summary>How much of the story a change to a record would reach: the sum of the strengths of everything its ripple reaches.</summary>
-    public double Reach(string seed) => Ripple(seed).Sum(h => h.Strength);
+    /// <remarks>
+    /// Only the strengths are worked out, not the paths or the sides each node is fed from: the keystones ask this
+    /// of every record. They are added up strongest first and then by id, the order a ripple lists them in, because
+    /// a sum of fractions depends on its order in the last digits and this one is printed and compared.
+    /// </remarks>
+    public double Reach(string seed)
+    {
+        if (!Nodes.ContainsKey(seed))
+            throw new KeyNotFoundException($"No live record {seed} to start a ripple from.");
+        var reach = 0.0;
+        foreach (var (_, strength) in Spread(seed, Floor).Where(arrival => arrival.Value.Via is not null)
+                     .Select(arrival => (arrival.Key, arrival.Value.Strength))
+                     .OrderByDescending(arrival => arrival.Strength).ThenBy(arrival => arrival.Key, StringComparer.Ordinal))
+            reach += strength;
+        return reach;
+    }
 
     /// <summary>
     /// The records whose change would move the most, by reach, among the kinds an author changes: facts and what

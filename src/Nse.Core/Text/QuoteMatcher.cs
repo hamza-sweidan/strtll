@@ -58,12 +58,23 @@ public static partial class QuoteMatcher
     public static string Readable(string text) =>
         Normalize(Emphasis().Replace(LineMarkup().Replace(text.Replace("\r\n", "\n").Replace('\r', '\n'), ""), ""));
 
-    public static QuoteMatch Match(IEnumerable<string> paragraphs, string quote)
+    public static QuoteMatch Match(IEnumerable<string> paragraphs, string quote) => MatchIn(ReadableParagraphs(paragraphs), quote);
+
+    /// <summary>
+    /// The paragraphs of a scene as a reader sees them, leaving out any that are markup and nothing else. Reading
+    /// a paragraph this way costs far more than looking for a quote in it, so when many quotes cite one scene its
+    /// paragraphs are read once, and each quote is matched with <see cref="MatchIn"/>.
+    /// </summary>
+    public static IReadOnlyList<string> ReadableParagraphs(IEnumerable<string> paragraphs) =>
+        paragraphs.Select(Readable).Where(t => t.Length > 0).ToList();
+
+    /// <summary>How a quote stands against paragraphs that <see cref="ReadableParagraphs"/> has already read.</summary>
+    public static QuoteMatch MatchIn(IReadOnlyList<string> texts, string quote)
     {
+        ArgumentNullException.ThrowIfNull(texts);
         var q = Readable(quote);
         if (q.Length == 0)
             return QuoteMatch.NotFound;
-        var texts = paragraphs.Select(Readable).Where(t => t.Length > 0).ToList();
         var (tooShort, insideWord) = (false, false);
         foreach (var text in texts)
             foreach (var at in Occurrences(text, q))

@@ -44,7 +44,7 @@ public static class Diagrams
         if (s.Model.Entity(person) is not { Type: EntityKind.Character } who)
             throw new KeyNotFoundException($"{holder} is not a person in the ledger.");
         var scenes = Timed(s);
-        var props = s.Model.Propositions.Where(p => s.Guarded(p.Id) || s.Model.Beliefs.Any(b => b.Holder == person && b.Prop == p.Id)).Select(p => p.Id).ToList();
+        var props = s.Model.Propositions.Where(p => s.Guarded(p.Id) || s.Model.BeliefsOf(person, p.Id).Count > 0).Select(p => p.Id).ToList();
         var sb = new StringBuilder(Header(s, $"What {Cell(who.Name)} knows, scene by scene"));
         sb.Append("On entry to each scene, in the order the scenes are told. ")
           .Append("K knows; k right, but less than certain; F false belief; O outdated belief; U unaware; D undecided; ? not settled; · nothing recorded either way, which is not the same as unaware.\n\n");
@@ -56,7 +56,7 @@ public static class Diagrams
             foreach (var t in scenes)
             {
                 var key = s.Key(t.Id);
-                var label = s.Classify(s.BeliefsBefore(person, key).GetValueOrDefault(prop), key);
+                var label = s.Classify(s.BeliefBefore(person, prop, key), key);
                 sb.Append(' ').Append(Code(label)).Append(" |");
             }
             sb.Append('\n');
@@ -97,7 +97,7 @@ public static class Diagrams
                 $"| {prop}{(canon == "false" ? " (not so)" : "")} | {(double.IsNaN(so) ? "-" : Num(so))} | {(reveal is null ? "-" : $"{s.Tell(reveal)}, {reveal}")} |");
             foreach (var person in people)
             {
-                var first = s.Model.Beliefs.Where(b => b.Holder == person && b.Prop == prop)
+                var first = s.Model.BeliefsOf(person, prop)
                     .OrderBy(b => b.StoryKey).ThenBy(b => b.Id, StringComparer.Ordinal)
                     .FirstOrDefault(b => s.IsRight(new BeliefView(b.Id, b.Holder, b.Prop, b.Stance, b.Strength, b.StoryKey, b.Scene, b.Channel, b.Via)) == true);
                 sb.Append(' ').Append(first is null ? "-" : Num(first.StoryKey) + (first.Scene is null ? " off page" : $" {first.Scene}")).Append(" |");
@@ -119,7 +119,7 @@ public static class Diagrams
             return sb.Append("No object is tracked.\n").ToString();
         foreach (var obj in s.TrackedObjects)
         {
-            var moves = s.Model.Placements.Where(p => p.Object == obj).OrderBy(p => p.StoryKey).ThenBy(p => p.Id, StringComparer.Ordinal).ToList();
+            var moves = s.Model.PlacementsOf(obj).OrderBy(p => p.StoryKey).ThenBy(p => p.Id, StringComparer.Ordinal).ToList();
             sb.Append(CultureInfo.InvariantCulture, $"## {Cell(s.Model.Entity(obj)?.Name ?? obj)} ({obj})\n\n```mermaid\nflowchart LR\n");
             for (var i = 0; i < moves.Count; i++)
             {
@@ -159,7 +159,7 @@ public static class Diagrams
             bool ReaderHas(string prop) =>
                 reader.TryGetValue(prop, out var v) && v.Stance == (s.Canon(prop) == "true" ? Stance.HoldsTrue : Stance.HoldsFalse);
             bool Knows(string person, string prop) =>
-                s.BeliefsBefore(person, key).GetValueOrDefault(prop) is { } b && s.IsRight(b, key) == true;
+                s.BeliefBefore(person, prop, key) is { } b && s.IsRight(b, key) == true;
             var readerAhead = inPlay.Count(p => ReaderHas(p) && cast.Any(c => !Knows(c, p)));
             var roomAhead = inPlay.Count(p => !ReaderHas(p) && cast.Any(c => Knows(c, p)));
             var held = s.EmbargoesInForce(t.Id).Count;

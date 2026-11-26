@@ -46,27 +46,35 @@ public static class DraftScan
     public static readonly TimeSpan Limit = TimeSpan.FromMilliseconds(250);
 
     /// <summary>Why a tripwire cannot be used, or null when it can. The validator refuses a put that carries one that cannot.</summary>
-    public static string? Unusable(string pattern)
+    public static string? Unusable(string pattern) => Ready(pattern).Unusable;
+
+    /// <summary>A tripwire made ready to run, or why it cannot be used.</summary>
+    private static Tripwire Ready(string pattern)
     {
         if (string.IsNullOrWhiteSpace(pattern))
-            return "it is empty";
+            return new Tripwire(null, "it is empty");
         try
         {
             var regex = new Regex(pattern, Options, Limit);
             // A pattern that matches nothing at all, or the empty string, would flag every paragraph of every draft.
-            if (regex.IsMatch(""))
-                return "it matches an empty passage, so it would flag every paragraph";
-            return null;
+            return regex.IsMatch("")
+                ? new Tripwire(null, "it matches an empty passage, so it would flag every paragraph")
+                : new Tripwire(regex, null);
         }
         catch (ArgumentException e)
         {
-            return "it is not a pattern the engine can run: " + e.Message;
+            return new Tripwire(null, "it is not a pattern the engine can run: " + e.Message);
         }
         catch (RegexMatchTimeoutException)
         {
-            return "it takes too long to run even on an empty passage";
+            return new Tripwire(null, "it takes too long to run even on an empty passage");
         }
     }
+
+    private sealed record Tripwire(Regex? Regex, string? Unusable);
+
+    /// <summary>What one pattern found in one paragraph of a draft: its matches, and whether it ran out of time there.</summary>
+    private sealed record Passage(int At, List<(string Matched, string Excerpt)> Matches, bool TimedOut);
 
     /// <summary>
     /// A draft's paragraphs, cut by the manuscript reader itself, so that the same text gives the same paragraphs,
@@ -109,46 +117,93 @@ public static class DraftScan
     }
 
     /// <summary>Scan paragraphs of a draft of a scene against the tripwires of every embargo in force on entry to it.</summary>
-    public static ScanResult Run(StoryState s, string sceneId, IReadOnlyList<DraftParagraph> paragraphs, string source)
+    public static ScanResult Run(StoryState s, string sceneId, IReadOnlyList<DraftParagraph> paragraphs, string source) =>
+        Run(s, sceneId, paragraphs, source, new Dictionary<string, Tripwire>(StringComparer.Ordinal));
+
+    /// <summary>Every scene in the manuscript, scanned as it stands, in the order they are told.</summary>
+    public static IReadOnlyList<ScanResult> All(StoryState s)
+    {
+        ArgumentNullException.ThrowIfNull(s);
+        // One set of patterns for the whole scan: an embargo holds in every scene told before it lifts, and its
+        // patterns are made ready once, not once for each of those scenes.
+        var ready = new Dictionary<string, Tripwire>(StringComparer.Ordinal);
+        return s.Telling.Select(t => Run(s, t.Id, Paragraphs(t), $"manuscript/{t.File} lines {t.LineStart}-{t.LineEnd}", ready)).ToList();
+    }
+
+    /// <param name="ready">The patterns already made ready in this scan, added to as new ones are met.</param>
+    private static ScanResult Run(
+        StoryState s, string sceneId, IReadOnlyList<DraftParagraph> paragraphs, string source, Dictionary<string, Tripwire> ready)
     {
         ArgumentNullException.ThrowIfNull(s);
         ArgumentNullException.ThrowIfNull(paragraphs);
         var inForce = s.EmbargoesInForce(sceneId);
         var hits = new List<TripwireHit>();
         var problems = new List<string>();
+        // A paragraph is read as a reader sees it once, when the first pattern is run over it. A pattern is run
+        // over the draft once, and what it found goes under every embargo that carries it: the embargoes in force
+        // early in a long story are many, and the same words guard more than one fact.
+        var readable = new string?[paragraphs.Count];
+        var found = new Dictionary<string, List<Passage>>(StringComparer.Ordinal);
         foreach (var embargo in inForce)
             foreach (var pattern in embargo.Tripwires)
             {
-                if (Unusable(pattern) is { } why)
+                if (!ready.TryGetValue(pattern, out var tripwire))
+                {
+                    s.Model.Effort.Add();
+                    ready[pattern] = tripwire = Ready(pattern);
+                }
+                if (tripwire.Unusable is { } why)
                 {
                     // A ledger written before tripwires were checked may hold one. It is reported every time.
                     problems.Add($"embargo {embargo.Id}: tripwire \"{Plain.OneLine(pattern)}\" was not run: {why}");
                     continue;
                 }
-                var regex = new Regex(pattern, Options, Limit);
-                foreach (var paragraph in paragraphs)
+                if (!found.TryGetValue(pattern, out var passages))
+                    found[pattern] = passages = Passages(s, tripwire.Regex!, paragraphs, readable);
+                foreach (var passage in passages)
                 {
-                    var readable = QuoteMatcher.Readable(paragraph.Text);
-                    try
-                    {
-                        foreach (Match m in regex.Matches(readable))
-                        {
-                            if (m.Length == 0)
-                                continue;
-                            hits.Add(new TripwireHit(embargo.Id, embargo.Prop, embargo.UntilScene, pattern, paragraph.Index,
-                                paragraph.Line, Plain.OneLine(m.Value), Excerpt(readable, m.Index, m.Length)));
-                        }
-                    }
-                    catch (RegexMatchTimeoutException)
-                    {
+                    var paragraph = paragraphs[passage.At];
+                    foreach (var (matched, excerpt) in passage.Matches)
+                        hits.Add(new TripwireHit(embargo.Id, embargo.Prop, embargo.UntilScene, pattern, paragraph.Index, paragraph.Line, matched, excerpt));
+                    if (passage.TimedOut)
                         problems.Add(string.Create(CultureInfo.InvariantCulture,
                             $"embargo {embargo.Id}: tripwire \"{Plain.OneLine(pattern)}\" took too long on paragraph {paragraph.Index} (line {paragraph.Line}) and was not finished there. Read that paragraph yourself, and ask the author to simplify the pattern"));
-                    }
                 }
             }
         var ordered = hits.OrderBy(h => h.Line).ThenBy(h => h.Paragraph).ThenBy(h => h.Embargo, StringComparer.Ordinal)
             .ThenBy(h => h.Pattern, StringComparer.Ordinal).ToList();
         return new ScanResult(sceneId, source, paragraphs.Count, inForce, ordered, problems);
+    }
+
+    /// <summary>The paragraphs of a draft in which a pattern matched or ran out of time, in the order of the draft.</summary>
+    private static List<Passage> Passages(StoryState s, Regex regex, IReadOnlyList<DraftParagraph> paragraphs, string?[] readable)
+    {
+        var passages = new List<Passage>();
+        for (var i = 0; i < paragraphs.Count; i++)
+        {
+            if (readable[i] is not { } text)
+            {
+                s.Model.Effort.Add();
+                readable[i] = text = QuoteMatcher.Readable(paragraphs[i].Text);
+            }
+            s.Model.Effort.Add();
+            var matches = new List<(string Matched, string Excerpt)>();
+            var timedOut = false;
+            try
+            {
+                foreach (Match m in regex.Matches(text))
+                    if (m.Length > 0)
+                        matches.Add((Plain.OneLine(m.Value), Excerpt(text, m.Index, m.Length)));
+            }
+            catch (RegexMatchTimeoutException)
+            {
+                // What it found before it ran out of time still counts.
+                timedOut = true;
+            }
+            if (matches.Count > 0 || timedOut)
+                passages.Add(new Passage(i, matches, timedOut));
+        }
+        return passages;
     }
 
     /// <summary>The sentence a match sits in, cut to a readable length around it. It is one line, whatever the text held.</summary>

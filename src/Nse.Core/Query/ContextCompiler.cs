@@ -83,7 +83,10 @@ public static class ContextCompiler
 
     private sealed record Section(string Title, bool Must, List<string> Lines, List<string> Records)
     {
-        public string Text => Title + "\n" + string.Join("\n", Lines);
+        private string? _text;
+
+        /// <summary>The part as it is printed. It is asked for only once every line is in, and fitting the budget reads it several times.</summary>
+        public string Text => _text ??= Title + "\n" + string.Join("\n", Lines);
     }
 
     /// <param name="tail">
@@ -91,6 +94,72 @@ public static class ContextCompiler
     /// and they are no part of what the manifest id stands for.
     /// </param>
     public static ContextPackage Compile(StoryState s, string sceneId, int budget = DefaultBudget, string tail = "")
+    {
+        var (header, sections, recap, parts) = Gather(s, sceneId);
+        var manifest = new ManifestId(s.Model.Head, OrderMark(s), Freshness.Mark(sceneId, s.Model.Head, parts)).ToString();
+
+        // The size that counts is the size of the finished text: header, sections, the note about what was left
+        // out and the manifest line. Assemble it and measure it, so the budget is a promise and not an estimate.
+        ContextPackage Assemble(bool[] use)
+        {
+            var included = sections.Where((_, i) => use[i]).ToList();
+            var omitted = sections.Where((_, i) => !use[i]).Select(x => $"{x.Title} (~{EstimateTokens(x.Text) + 1} tokens)").ToList();
+            var body = new StringBuilder(header);
+            foreach (var section in included)
+                body.Append("\n\n").Append(section.Text);
+            if (omitted.Count > 0)
+                body.Append("\n\nOMITTED TO FIT THE BUDGET, available through state_at:\n").Append(string.Join("\n", omitted.Select(o => "  " + o)));
+            body.Append(recap);
+            var records = included.SelectMany(x => x.Records).Distinct().OrderBy(r => r, StringComparer.Ordinal).ToList();
+            var final = body.Append($"\n\nManifest {manifest} · manuscript {Short(s.ManuscriptHash)}\nGive this manifest id back when you submit the scene: it says which state the draft was written from.").Append(tail).ToString();
+            return new ContextPackage(sceneId, s.Model.Head, s.ManuscriptHash, manifest, EstimateTokens(final), budget, final, omitted, records, parts);
+        }
+
+        var use = sections.Select(x => x.Must).ToArray();
+        var least = Assemble(use);
+        if (least.EstimatedTokens > budget)
+        {
+            var must = sections.Where(x => x.Must).ToList();
+            throw new BudgetException(
+                $"BUDGET_INSUFFICIENT: the parts that must be in the context for {sceneId} need about {least.EstimatedTokens} tokens and the budget is {budget}. " +
+                "Largest: " + string.Join("; ", must.OrderByDescending(x => EstimateTokens(x.Text)).Take(3).Select(x => $"{x.Title.Split(':')[0]} ~{EstimateTokens(x.Text)}")) +
+                (tail.Length > 0 ? $". About {EstimateTokens(tail)} of that is the closing words on the scene's task, which a context taken to work from always carries" : "") +
+                ". Raise the budget; nothing is ever cut to fit.");
+        }
+        // Take the rest in order while it fits by the sum of its parts, then check the finished text and give
+        // up the largest optional section until it does. With none left this is the text measured above.
+        var used = EstimateTokens(header) + sections.Where(x => x.Must).Sum(x => EstimateTokens(x.Text) + 1);
+        for (var i = 0; i < sections.Count; i++)
+        {
+            var size = EstimateTokens(sections[i].Text) + 1;
+            if (use[i] || used + size > budget)
+                continue;
+            use[i] = true;
+            used += size;
+        }
+        while (true)
+        {
+            var package = Assemble(use);
+            if (package.EstimatedTokens <= budget)
+                return package;
+            var drop = Enumerable.Range(0, sections.Count).Where(i => use[i] && !sections[i].Must)
+                .OrderByDescending(i => EstimateTokens(sections[i].Text)).ThenByDescending(i => i).First();
+            use[drop] = false;
+        }
+    }
+
+    /// <summary>
+    /// What a context for a scene says, part by part: everything in <see cref="ContextPackage.Sections"/>, with
+    /// no text put together and no budget applied. Two contexts are compared by these parts alone, and a what-if
+    /// compares two for every scene of the story and prints none of them.
+    /// </summary>
+    internal static IReadOnlyList<ContextSection> Sections(StoryState s, string sceneId) => Gather(s, sceneId).Parts;
+
+    /// <summary>
+    /// Everything a context is made of, before it is fitted to a budget: the header, the sections with the records
+    /// each rests on, the closing list of constraints, and the parts as they are compared.
+    /// </summary>
+    private static (string Header, List<Section> Sections, string Recap, List<ContextSection> Parts) Gather(StoryState s, string sceneId)
     {
         if (!s.Model.Scenes.TryGetValue(sceneId, out var scene))
             throw new KeyNotFoundException($"No scene record {sceneId}.");
@@ -107,16 +176,23 @@ public static class ContextCompiler
         var pov = s.Model.Entity(scene.Pov) ?? throw new KeyNotFoundException($"No entity {scene.Pov}.");
         string Prop(string id) => (s.Model.Proposition(id) ?? throw new KeyNotFoundException($"No proposition {id}.")).Text;
         // A fact whose changes tie and disagree is not printed as plain truth: whether it is so is not known.
-        string TruthPhrase(string id) =>
-            (s.Canon(id) == "false" ? "It is NOT true that: " + Prop(id) : Prop(id))
-            + (s.FactTie(id, end, before: true) is { } tie
-                ? $" [NOT SETTLED whether this is so by the end of the scene: fact changes {string.Join(" and ", tie)} share a story time and disagree]"
-                : "")
-            // Whether it is so at all may rest on a fact change or a proposition nobody has confirmed.
-            + s.UnconfirmedMark(id);
+        // The same fact is phrased once for each person who does not know it, so the words are kept for the scene.
+        var phrases = new Dictionary<string, string>(StringComparer.Ordinal);
+        string TruthPhrase(string id)
+        {
+            if (phrases.TryGetValue(id, out var phrase))
+                return phrase;
+            return phrases[id] =
+                (s.Canon(id) == "false" ? "It is NOT true that: " + Prop(id) : Prop(id))
+                + (s.FactTie(id, end, before: true) is { } tie
+                    ? $" [NOT SETTLED whether this is so by the end of the scene: fact changes {string.Join(" and ", tie)} share a story time and disagree]"
+                    : "")
+                // Whether it is so at all may rest on a fact change or a proposition nobody has confirmed.
+                + s.UnconfirmedMark(id);
+        }
         // A record that settles nothing: say which kind, never "nothing recorded".
         string Unsettled(string person, string id) =>
-            s.BeliefsBefore(person, end).GetValueOrDefault(id) switch
+            s.BeliefBefore(person, id, end) switch
             {
                 { Unresolved: true } b => $"their records {string.Join(" and ", b.Conflict!)} share a story time and disagree",
                 { Stance: Stance.Undecided } => "recorded as undecided",
@@ -129,7 +205,7 @@ public static class ContextCompiler
             + (b.Stance is Stance.HoldsTrue or Stance.HoldsFalse ? s.UnconfirmedMark(prop, key) : "");
         string InScene(string id) => s.Tell(id) is int n ? $"scene {n}, {id}" : $"{id}, which is not in the manuscript yet";
         string CastOnEntry(string prop) => "      cast on entry: " + string.Join("; ",
-            cast.Select(c => $"{s.Short(c.Person)}: {s.Classify(s.BeliefsBefore(c.Person, key).GetValueOrDefault(prop), key)}"));
+            cast.Select(c => $"{s.Short(c.Person)}: {s.Classify(s.BeliefBefore(c.Person, prop, key), key)}"));
 
         // ---- must: what the scene is for. The contract is the author's statement of what it should do and
         // what it relies on; each thing relied on is shown with whether the records bear it out on entry.
@@ -151,13 +227,13 @@ public static class ContextCompiler
         // submitted before has to know this: each of these it keeps, by leaving it alone, or withdraws. It is
         // also what makes a second draft stale once a first has been applied.
         var recorded = new Section("ALREADY RECORDED AS HAPPENING IN THIS SCENE (a new draft keeps each of these, or withdraws it)", true, [], []);
-        foreach (var happened in s.Model.Events.Values.Where(x => x.Scene == sceneId).OrderBy(x => x.StoryKey).ThenBy(x => x.Id, StringComparer.Ordinal))
+        foreach (var happened in s.Model.EventsIn(sceneId).OrderBy(x => x.StoryKey).ThenBy(x => x.Id, StringComparer.Ordinal))
         {
             var who = happened.Participants.Count == 0 ? "" : " [" + string.Join(", ", happened.Participants.Select(x => $"{s.Short(x.Key)} {Names.Of(x.Value)}")) + "]";
             recorded.Lines.Add(string.Create(CultureInfo.InvariantCulture, $"  {happened.Id} at {happened.StoryKey}, event: {happened.Summary}{who}{Provisional(happened.Id)}"));
             recorded.Records.Add(happened.Id);
         }
-        foreach (var said in s.Model.Assertions.Values.Where(x => x.Scene == sceneId).OrderBy(x => x.StoryKey).ThenBy(x => x.Id, StringComparer.Ordinal))
+        foreach (var said in s.Model.AssertionsIn(sceneId).OrderBy(x => x.StoryKey).ThenBy(x => x.Id, StringComparer.Ordinal))
         {
             var to = said.Addressees.Count == 0 ? "" : " to " + string.Join(", ", said.Addressees.Select(s.Short));
             recorded.Lines.Add(string.Create(CultureInfo.InvariantCulture,
@@ -209,22 +285,24 @@ public static class ContextCompiler
         // later, and what the author has embargoed, which holds even before the revealing scene is written.
         var withheld = new Section("MUST NOT BE REVEALED TO THE READER IN THIS SCENE (the reader is first told later)", true, [], []);
         var embargoes = s.EmbargoesInForce(sceneId);
+        var embargoesOn = embargoes.ToLookup(e => e.Prop, StringComparer.Ordinal);
         string Embargoed(string prop)
         {
-            var mine = embargoes.Where(e => e.Prop == prop).ToList();
+            var mine = embargoesOn[prop].ToList();
             withheld.Records.AddRange(mine.Select(e => e.Id));
             // A provisional embargo is still kept to: the cautious reading of an undecided constraint is to honour it.
             return string.Join("; ", mine.Select(e =>
                 $"embargo {e.Id}{(Provisional(e.Id).Length > 0 ? ProvisionalEmbargoMark : "")}: not before {InScene(e.UntilScene)}"));
         }
         var told = s.MustNotReveal(sceneId);
+        var toldLater = told.Select(t => t.Prop).ToHashSet(StringComparer.Ordinal);
         foreach (var (prop, reveal) in told)
         {
             var embargo = Embargoed(prop);
             withheld.Lines.Add($"  {prop}: {TruthPhrase(prop)} (first told in {InScene(reveal)}{(embargo.Length > 0 ? "; " + embargo : "")})");
             withheld.Lines.Add(CastOnEntry(prop));
         }
-        foreach (var prop in embargoes.Select(e => e.Prop).Distinct().Where(p => told.All(t => t.Prop != p)))
+        foreach (var prop in embargoes.Select(e => e.Prop).Distinct().Where(p => !toldLater.Contains(p)))
         {
             withheld.Lines.Add($"  {prop}: {TruthPhrase(prop)} ({Embargoed(prop)})");
             withheld.Lines.Add(CastOnEntry(prop));
@@ -239,15 +317,25 @@ public static class ContextCompiler
 
         // ---- must: what each cast member does not know; and the point-of-view character's beliefs
         var unknownTo = new List<(string Name, List<string> Props)>();
+        var noRecord = new Dictionary<string, string>(StringComparer.Ordinal);
         foreach (var (entry, person) in cast)
         {
             var head = s.Model.Entity(entry)!.Name + (entry == scene.Pov ? " (point of view)" : "");
             if (entry != person)
                 head += $"  [AUTHOR ONLY: this is {s.Model.Entity(person)!.Name}. Do not reveal it.]";
             var gaps = new Section($"{head}: does NOT know, and must not say it, be told it or act on it in this scene", true, [], []);
-            var personGaps = s.KnowledgeGaps(person, sceneId);
+            var (personGaps, learns) = s.Knowledge(person, sceneId);
             foreach (var gap in personGaps)
             {
+                // Late in a long story most facts in play are ones a person present has no record on and never
+                // comes to know. The line that says so is the same for each of them, and is written once.
+                if (gap is { Status: KnowledgeStatus.NoRecord, LearnsIn: null, LearnsAt: null })
+                {
+                    if (!noRecord.TryGetValue(gap.Prop, out var said))
+                        noRecord[gap.Prop] = said = $"  {gap.Prop}: {TruthPhrase(gap.Prop)} (nothing recorded either way; treat as not knowing)";
+                    gaps.Lines.Add(said);
+                    continue;
+                }
                 var why = gap.LearnsIn is { } later ? $"learns it in {InScene(later)}"
                     // Learned in no scene is still learned. Saying "never" here would be wrong.
                     : gap.LearnsAt is double at ? string.Create(CultureInfo.InvariantCulture, $"learns it later, off the page, at story time {at}")
@@ -270,7 +358,6 @@ public static class ContextCompiler
             var beliefs = s.BeliefsBefore(person, key).OrderBy(kv => kv.Key, StringComparer.Ordinal).ToList();
             var held = new Section($"{head}: beliefs on entry", entry == scene.Pov, [], beliefs.Select(kv => kv.Value.Id).ToList());
             held.Lines.AddRange(beliefs.Count == 0 ? ["  no recorded beliefs yet"] : beliefs.Select(kv => Line(kv.Key, kv.Value)));
-            var learns = s.InPlay(sceneId).Where(p => s.Status(person, p, sceneId) == KnowledgeStatus.LearnsHere).ToList();
             if (learns.Count > 0)
             {
                 held.Lines.Add("  learns during this scene, as recorded:");
@@ -355,7 +442,7 @@ public static class ContextCompiler
         if (rules.Count > 0)
             recap.Append("\n  The author's rules and notes: ").Append(string.Join(", ", rules.Select(r => r.Rule.Id)));
 
-        // ---- assemble within the budget
+        // ---- the header, and the parts as they are compared
         var place = scene.Place is { } p && s.Model.Entity(p) is { } e ? $" Place: {e.Name}." : "";
         var label = s.Model.SceneTimes[sceneId].Label is { } l2 ? $" ({l2})" : "";
         var people = cast.Select(c => c.CastEntry).ToHashSet(StringComparer.Ordinal);
@@ -386,56 +473,7 @@ public static class ContextCompiler
             ]),
         };
         parts.AddRange(sections.Select(x => new ContextSection(x.Title, x.Must, x.Lines)));
-        var manifest = new ManifestId(s.Model.Head, OrderMark(s), Freshness.Mark(sceneId, s.Model.Head, parts)).ToString();
-
-        // The size that counts is the size of the finished text: header, sections, the note about what was left
-        // out and the manifest line. Assemble it and measure it, so the budget is a promise and not an estimate.
-        ContextPackage Assemble(bool[] use)
-        {
-            var included = sections.Where((_, i) => use[i]).ToList();
-            var omitted = sections.Where((_, i) => !use[i]).Select(x => $"{x.Title} (~{EstimateTokens(x.Text) + 1} tokens)").ToList();
-            var body = new StringBuilder(header);
-            foreach (var section in included)
-                body.Append("\n\n").Append(section.Text);
-            if (omitted.Count > 0)
-                body.Append("\n\nOMITTED TO FIT THE BUDGET, available through state_at:\n").Append(string.Join("\n", omitted.Select(o => "  " + o)));
-            body.Append(recap);
-            var records = included.SelectMany(x => x.Records).Distinct().OrderBy(r => r, StringComparer.Ordinal).ToList();
-            var final = body.Append($"\n\nManifest {manifest} · manuscript {Short(s.ManuscriptHash)}\nGive this manifest id back when you submit the scene: it says which state the draft was written from.").Append(tail).ToString();
-            return new ContextPackage(sceneId, s.Model.Head, s.ManuscriptHash, manifest, EstimateTokens(final), budget, final, omitted, records, parts);
-        }
-
-        var use = sections.Select(x => x.Must).ToArray();
-        var least = Assemble(use);
-        if (least.EstimatedTokens > budget)
-        {
-            var must = sections.Where(x => x.Must).ToList();
-            throw new BudgetException(
-                $"BUDGET_INSUFFICIENT: the parts that must be in the context for {sceneId} need about {least.EstimatedTokens} tokens and the budget is {budget}. " +
-                "Largest: " + string.Join("; ", must.OrderByDescending(x => EstimateTokens(x.Text)).Take(3).Select(x => $"{x.Title.Split(':')[0]} ~{EstimateTokens(x.Text)}")) +
-                (tail.Length > 0 ? $". About {EstimateTokens(tail)} of that is the closing words on the scene's task, which a context taken to work from always carries" : "") +
-                ". Raise the budget; nothing is ever cut to fit.");
-        }
-        // Take the rest in order while it fits by the sum of its parts, then check the finished text and give
-        // up the largest optional section until it does. With none left this is the text measured above.
-        var used = EstimateTokens(header) + sections.Where(x => x.Must).Sum(x => EstimateTokens(x.Text) + 1);
-        for (var i = 0; i < sections.Count; i++)
-        {
-            var size = EstimateTokens(sections[i].Text) + 1;
-            if (use[i] || used + size > budget)
-                continue;
-            use[i] = true;
-            used += size;
-        }
-        while (true)
-        {
-            var package = Assemble(use);
-            if (package.EstimatedTokens <= budget)
-                return package;
-            var drop = Enumerable.Range(0, sections.Count).Where(i => use[i] && !sections[i].Must)
-                .OrderByDescending(i => EstimateTokens(sections[i].Text)).ThenByDescending(i => i).First();
-            use[drop] = false;
-        }
+        return (header, sections, recap.ToString(), parts);
     }
 
     /// <summary>The map a session starts from: the scenes, how much is recorded, and what is awaiting review.</summary>

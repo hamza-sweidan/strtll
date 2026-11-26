@@ -13,6 +13,29 @@ public static class StateDump
 {
     public static JsonObject Build(StoryState s)
     {
+        var root = AcrossTheStory(s);
+        var points = new JsonObject();
+        foreach (var (id, key, tell) in Points(s))
+            points[id] = Point(s, key, tell);
+        root["points"] = points;
+        return root;
+    }
+
+    /// <summary>
+    /// The points the document has, in its order: each scene of the telling that has a place in story time, by
+    /// its id, and then the end. The document holds each as <see cref="Point"/> gives it.
+    /// </summary>
+    internal static IEnumerable<(string Id, double Key, int Tell)> Points(StoryState s)
+    {
+        foreach (var scene in s.Telling)
+            if (s.Model.SceneTimes.ContainsKey(scene.Id))
+                yield return (scene.Id, s.Key(scene.Id), scene.Tell);
+        yield return ("end", StoryState.End, StoryState.EndOfTelling);
+    }
+
+    /// <summary>The document without its points: what is said of the story as a whole.</summary>
+    internal static JsonObject AcrossTheStory(StoryState s)
+    {
         var props = s.Model.Propositions.Select(p => p.Id).ToList();
         var holders = s.Holders;
         var root = new JsonObject
@@ -46,13 +69,6 @@ public static class StateDump
         foreach (var a in s.Model.Assertions.Keys.OrderBy(k => k, StringComparer.Ordinal))
             assertions[a] = s.ClassifyAssertion(a);
         root["assertions"] = assertions;
-
-        var points = new JsonObject();
-        foreach (var scene in s.Telling)
-            if (s.Model.SceneTimes.ContainsKey(scene.Id))
-                points[scene.Id] = Point(s, s.Key(scene.Id), scene.Tell);
-        points["end"] = Point(s, StoryState.End, StoryState.EndOfTelling);
-        root["points"] = points;
         return root;
     }
 
@@ -75,8 +91,10 @@ public static class StateDump
             world[obj] = s.Location(obj, key) is { } l ? new JsonObject { ["id"] = l.Id, ["place"] = l.Place } : null;
         var truth = new JsonObject();
         foreach (var p in s.Model.Propositions)
-            truth[p.Id] = s.FactTie(p.Id, key, before: true) is not null ? "unresolved"
-                : s.TruthBefore(p.Id, key) is { } t ? JsonValue.Create(t) : null;
+        {
+            var (settled, tie) = s.Truth(p.Id, key, before: true);
+            truth[p.Id] = tie is not null ? "unresolved" : settled is { } t ? JsonValue.Create(t) : null;
+        }
         return new JsonObject { ["beliefs"] = beliefs, ["reader"] = reader, ["world"] = world, ["truth"] = truth };
     }
 

@@ -153,7 +153,7 @@ public static class StateReport
             sb.Append(CultureInfo.InvariantCulture, $"In story time: {string.Join("; ", facts.Select(f => string.Create(CultureInfo.InvariantCulture, $"{(f.Value ? "true" : "false")} from {(f.StoryKey is { } k ? $"story time {k}" : "the outset")}")))}. Each row is judged against the truth when it was acquired.\n");
         foreach (var h in holder is null ? s.Holders : [holder])
         {
-            var changes = s.Model.Beliefs.Where(b => b.Holder == h && b.Prop == prop)
+            var changes = s.Model.BeliefsOf(h, prop)
                 .OrderBy(b => b.StoryKey).ThenBy(b => b.Id, StringComparer.Ordinal).ToList();
             sb.Append(CultureInfo.InvariantCulture, $"\n{s.Model.Entity(h)!.Name} ({h})\n");
             foreach (var b in changes)
@@ -169,7 +169,7 @@ public static class StateReport
         if (holder is null)
         {
             sb.Append("\nThe reader, in the order of the telling\n");
-            var told = s.Model.Disclosures.Where(d => d.Prop == prop && s.Tell(d.Scene) is not null)
+            var told = s.Model.DisclosuresOf(prop).Where(d => s.Tell(d.Scene) is not null)
                 .OrderBy(d => s.Tell(d.Scene)).ThenBy(d => d.Id, StringComparer.Ordinal).ToList();
             var first = s.RevealScene(prop);
             foreach (var d in told)
@@ -191,7 +191,7 @@ public static class StateReport
         var id = q.Object!;
         var sb = new StringBuilder();
         sb.Append(CultureInfo.InvariantCulture, $"HISTORY OF {id} · ledger head {s.Model.Head}\n{s.Model.Entity(id)!.Name}: where it is kept, in story order\n\n");
-        var moves = s.Model.Placements.Where(p => p.Object == id)
+        var moves = s.Model.PlacementsOf(id)
             .OrderBy(p => p.StoryKey).ThenBy(p => p.Id, StringComparer.Ordinal).ToList();
         foreach (var p in moves)
         {

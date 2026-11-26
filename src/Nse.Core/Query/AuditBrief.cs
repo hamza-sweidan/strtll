@@ -74,13 +74,15 @@ public static class AuditBrief
         var withheld = new List<string>();
         var told = s.MustNotReveal(sceneId);
         var embargoes = s.EmbargoesInForce(sceneId);
+        var embargoesOn = embargoes.ToLookup(e => e.Prop, StringComparer.Ordinal);
+        var toldLater = told.Select(t => t.Prop).ToHashSet(StringComparer.Ordinal);
         string Until(Embargo e) => s.Tell(e.UntilScene) is int n ? $"scene {n}, {e.UntilScene}" : $"{e.UntilScene}, not in the manuscript yet";
         foreach (var (prop, reveal) in told)
         {
-            var mine = embargoes.Where(e => e.Prop == prop).Select(e => $"; embargo {e.Id} until {Until(e)}");
+            var mine = embargoesOn[prop].Select(e => $"; embargo {e.Id} until {Until(e)}");
             withheld.Add($"  {prop}: {Fact(s, prop)} (first told in scene {s.Tell(reveal)}, {reveal}{string.Concat(mine)})");
         }
-        foreach (var e in embargoes.Where(e => told.All(t => t.Prop != e.Prop)))
+        foreach (var e in embargoes.Where(e => !toldLater.Contains(e.Prop)))
             if (s.Model.Proposition(e.Prop) is not null)
                 withheld.Add($"  {e.Prop}: {Fact(s, e.Prop)} (embargo {e.Id} until {Until(e)})");
         if (withheld.Count == 0)
@@ -150,9 +152,9 @@ public static class AuditBrief
 
             """.Replace("\r\n", "\n"));
         var recorded = new List<string>();
-        foreach (var e in s.Model.Events.Values.Where(x => x.Scene == sceneId).OrderBy(x => x.StoryKey).ThenBy(x => x.Id, StringComparer.Ordinal))
+        foreach (var e in s.Model.EventsIn(sceneId).OrderBy(x => x.StoryKey).ThenBy(x => x.Id, StringComparer.Ordinal))
             recorded.Add($"  {e.Id}, event: {Plain.OneLine(e.Summary)}");
-        foreach (var a in s.Model.Assertions.Values.Where(x => x.Scene == sceneId).OrderBy(x => x.StoryKey).ThenBy(x => x.Id, StringComparer.Ordinal))
+        foreach (var a in s.Model.AssertionsIn(sceneId).OrderBy(x => x.StoryKey).ThenBy(x => x.Id, StringComparer.Ordinal))
             recorded.Add($"  {a.Id}, {Names.Of(a.Type)}: {Name(s, a.Speaker)} {(a.Polarity ? "asserts" : "denies")} {a.Prop}: {Fact(s, a.Prop)}");
         foreach (var change in s.RecordedChanges(sceneId))
             recorded.Add($"  {change.RecordId}: {Plain.OneLine(change.Text)}");
@@ -163,11 +165,11 @@ public static class AuditBrief
 
         sb.Append("\nFACTS IN PLAY, BY ID (use these ids; a fact not listed is NEW)\n");
         var ids = s.InPlay(sceneId).ToHashSet(StringComparer.Ordinal);
-        foreach (var a in s.Model.Assertions.Values.Where(x => x.Scene == sceneId))
+        foreach (var a in s.Model.AssertionsIn(sceneId))
             ids.Add(a.Prop);
-        foreach (var b in s.Model.Beliefs.Where(x => x.Scene == sceneId))
+        foreach (var b in s.Model.BeliefsIn(sceneId))
             ids.Add(b.Prop);
-        foreach (var d in s.Model.Disclosures.Where(x => x.Scene == sceneId))
+        foreach (var d in s.Model.DisclosuresIn(sceneId))
             ids.Add(d.Prop);
         var listed = s.Model.Propositions.Where(p => ids.Contains(p.Id)).ToList();
         if (listed.Count == 0)

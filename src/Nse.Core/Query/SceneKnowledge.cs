@@ -47,8 +47,10 @@ public static class SceneKnowledge
     /// <summary>The story key from which a proposition is about anything at all: its first fact change.</summary>
     public static double Starts(this StoryState s, string propId)
     {
-        var keys = s.Model.Facts(propId).Select(f => f.StoryKey ?? double.NegativeInfinity).ToList();
-        return keys.Count == 0 ? double.NegativeInfinity : keys.Min();
+        var (first, any) = (double.PositiveInfinity, false);
+        foreach (var f in s.Model.Facts(propId))
+            (first, any) = (Math.Min(first, f.StoryKey ?? double.NegativeInfinity), true);
+        return any ? first : double.NegativeInfinity;
     }
 
     /// <summary>
@@ -58,16 +60,17 @@ public static class SceneKnowledge
     public static double SceneEnd(this StoryState s, string sceneId)
     {
         var key = s.Key(sceneId);
-        var next = s.Model.SceneTimes.Values.Select(t => t.StoryKey).Where(k => k > key)
-            .DefaultIfEmpty(double.PositiveInfinity).Min();
-        return Math.Min(key + 5, next);
+        return Math.Min(key + 5, s.NextSceneKey(key));
     }
 
     /// <summary>
     /// A fact worth guarding: decided by canon and not handed to the reader in the first scene. Beliefs about
     /// beliefs are left out, since they follow from the rest.
     /// </summary>
-    public static bool Guarded(this StoryState s, string propId)
+    public static bool Guarded(this StoryState s, string propId) =>
+        s.GuardedFacts.GetOrAdd(propId, static (id, state) => IsGuarded(state, id), s);
+
+    private static bool IsGuarded(StoryState s, string propId)
     {
         var p = s.Model.Proposition(propId);
         if (p is null || p.Resolution != Resolution.Decided || p.Nested is not null)
@@ -85,7 +88,10 @@ public static class SceneKnowledge
     /// story time lapses in the scene, not before it. One whose fact changes tie and disagree has not settled
     /// as lapsed, so it stays in play, whichever of the tied records happened to be entered last.
     /// </summary>
-    public static IReadOnlyList<string> InPlay(this StoryState s, string sceneId)
+    public static IReadOnlyList<string> InPlay(this StoryState s, string sceneId) =>
+        s.FactsInPlay.GetOrAdd(sceneId, static (id, state) => FindInPlay(state, id), s);
+
+    private static List<string> FindInPlay(StoryState s, string sceneId)
     {
         var (key, end) = (s.Key(sceneId), s.SceneEnd(sceneId));
         return s.Model.Propositions.Select(p => p.Id)
@@ -156,11 +162,11 @@ public static class SceneKnowledge
             var until = s.Tell(e.UntilScene);
             var canon = s.Model.Proposition(e.Prop) is null ? null : s.Canon(e.Prop);
             Stance? way = canon switch { "true" => Stance.HoldsTrue, "false" => Stance.HoldsFalse, _ => null };
-            foreach (var d in s.Model.Disclosures)
+            foreach (var d in s.Model.DisclosuresOf(e.Prop))
             {
                 var takesIt = way is null ? d.ReaderStance is Stance.HoldsTrue or Stance.HoldsFalse : d.ReaderStance == way;
                 var given = d.Mode == DisclosureMode.Stated || d.Strength == Strength.Certain;
-                if (d.Prop == e.Prop && takesIt && given && s.Tell(d.Scene) is int at && (until is null || at < until))
+                if (takesIt && given && s.Tell(d.Scene) is int at && (until is null || at < until))
                     result.Add(new EmbargoBreach(e, d));
             }
         }
@@ -214,14 +220,27 @@ public static class SceneKnowledge
         s.Model.Propositions.Select(p => p.Id).Where(id => s.RevealScene(id) == sceneId).ToList();
 
     /// <summary>The secret that shuts a person out of a fact, if one does.</summary>
-    public static Secret? Sealed(this StoryState s, string holder, string propId) =>
-        s.Model.Secrets.FirstOrDefault(x => x.Props.Contains(propId) && !x.KnownOnlyTo.Contains(holder));
+    public static Secret? Sealed(this StoryState s, string holder, string propId)
+    {
+        foreach (var secret in s.Model.SecretsOf(propId))
+            if (!secret.KnownOnlyTo.Contains(holder))
+                return secret;
+        return null;
+    }
 
     public static KnowledgeStatus Status(this StoryState s, string holder, string propId, string sceneId)
     {
         var (key, end) = (s.Key(sceneId), s.SceneEnd(sceneId));
-        var onEntry = s.BeliefsBefore(holder, key).GetValueOrDefault(propId);
-        var atEnd = s.BeliefsBefore(holder, end).GetValueOrDefault(propId);
+        return Status(s, holder, propId, s.Model.BeliefsOf(holder, propId), key, end);
+    }
+
+    /// <param name="records">The person's belief changes about the fact.</param>
+    /// <param name="key">The scene's story time.</param>
+    /// <param name="end">Where the scene ends in story time.</param>
+    private static KnowledgeStatus Status(StoryState s, string holder, string propId, IReadOnlyList<BeliefChange> records, double key, double end)
+    {
+        var onEntry = StoryState.Latest(records, key);
+        var atEnd = StoryState.Latest(records, end);
         if (onEntry is not null && s.IsRight(onEntry, key) == true)
             return KnowledgeStatus.Knows;
         if (atEnd is not null && s.IsRight(atEnd, end) == true)
@@ -243,7 +262,16 @@ public static class SceneKnowledge
     public static BeliefChange? FirstRightAfter(this StoryState s, string holder, string propId, string sceneId)
     {
         var end = s.SceneEnd(sceneId);
-        var later = s.Model.Beliefs.Where(b => b.Holder == holder && b.Prop == propId && b.StoryKey >= end)
+        return FirstRightAfter(s, s.Model.BeliefsOf(holder, propId), end);
+    }
+
+    /// <param name="records">The person's belief changes about the fact.</param>
+    /// <param name="end">Where the scene ends in story time.</param>
+    private static BeliefChange? FirstRightAfter(StoryState s, IReadOnlyList<BeliefChange> records, double end)
+    {
+        if (records.Count == 0)
+            return null;
+        var later = records.Where(b => b.StoryKey >= end)
             .OrderBy(b => b.StoryKey).ThenBy(b => b.Id, StringComparer.Ordinal);
         foreach (var b in later)
         {
@@ -259,13 +287,31 @@ public static class SceneKnowledge
         s.FirstRightAfter(holder, propId, sceneId)?.Scene;
 
     /// <summary>Guarded facts in play that a person must not say, be told or act on in a scene, including what they never learn.</summary>
-    public static IReadOnlyList<Gap> KnowledgeGaps(this StoryState s, string holder, string sceneId) =>
-        s.InPlay(sceneId)
-            .Select(p => (Prop: p, Status: s.Status(holder, p, sceneId)))
-            .Where(x => x.Status is KnowledgeStatus.Wrong or KnowledgeStatus.Unaware or KnowledgeStatus.Unsettled or KnowledgeStatus.NoRecord)
-            .Select(x => (x.Prop, x.Status, Later: s.FirstRightAfter(holder, x.Prop, sceneId)))
-            .Select(x => new Gap(x.Prop, x.Status, x.Later?.Scene, x.Later?.StoryKey))
-            .ToList();
+    public static IReadOnlyList<Gap> KnowledgeGaps(this StoryState s, string holder, string sceneId) => s.Knowledge(holder, sceneId).Gaps;
+
+    /// <summary>
+    /// One person against the guarded facts in play in a scene: the gaps, and the facts they come to know during
+    /// it. Both are read off in one pass, each fact's records for the person fetched once. In a long story the
+    /// facts in play are most of the story's facts, and a person has no record on most of them.
+    /// </summary>
+    public static (IReadOnlyList<Gap> Gaps, IReadOnlyList<string> LearnsHere) Knowledge(this StoryState s, string holder, string sceneId)
+    {
+        var (key, end) = (s.Key(sceneId), s.SceneEnd(sceneId));
+        var (gaps, learns) = (new List<Gap>(), new List<string>());
+        foreach (var prop in s.InPlay(sceneId))
+        {
+            var records = s.Model.BeliefsOf(holder, prop);
+            var status = Status(s, holder, prop, records, key, end);
+            if (status == KnowledgeStatus.LearnsHere)
+                learns.Add(prop);
+            else if (status != KnowledgeStatus.Knows)
+            {
+                var later = FirstRightAfter(s, records, end);
+                gaps.Add(new Gap(prop, status, later?.Scene, later?.StoryKey));
+            }
+        }
+        return (gaps, learns);
+    }
 
     /// <summary>
     /// The people in the cast with the point-of-view character first, each with the person behind the cast

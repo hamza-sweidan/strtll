@@ -170,44 +170,69 @@ public static class StoryIndex
         {
             using var tx = c.BeginTransaction();
             Exec(c, tx, Ddl);
-            foreach (var (key, value) in new (string, string)[]
-                     {
-                         ("schema", Schema.ToString(CultureInfo.InvariantCulture)),
-                         ("head", projection.Head.ToString(CultureInfo.InvariantCulture)),
-                         ("ledger_hash", LedgerStore.HeadHash(ledger)), ("manuscript_hash", manuscript.Hash),
-                         ("layout_hash", manuscript.Layout),
-                         ("seen_head", seenHead.ToString(CultureInfo.InvariantCulture)),
-                     })
-                Exec(c, tx, "INSERT INTO meta VALUES (@k, @v)", ("@k", key), ("@v", value));
-            foreach (var s in ledger)
-                Exec(c, tx, "INSERT INTO change_set VALUES (@seq, @id, @hash, @parent, @actor, @note, @ms, @file)",
-                    ("@seq", s.ChangeSet.Seq), ("@id", s.ChangeSet.Id), ("@hash", s.Hash), ("@parent", s.ChangeSet.Parent),
-                    ("@actor", s.ChangeSet.Actor), ("@note", s.ChangeSet.Note), ("@ms", s.ChangeSet.Manuscript), ("@file", s.File));
-            foreach (var s in manuscript.Scenes)
-            {
-                Exec(c, tx, "INSERT INTO manuscript_scene VALUES (@id, @tell, @title, @file, @ls, @le, @hash, @text)",
-                    ("@id", s.Id), ("@tell", s.Tell), ("@title", s.Title), ("@file", s.File), ("@ls", s.LineStart),
-                    ("@le", s.LineEnd), ("@hash", s.Hash), ("@text", s.Text));
-                foreach (var b in s.Blocks)
-                    Exec(c, tx, "INSERT INTO manuscript_block VALUES (@s, @i, @ls, @le, @text)",
-                        ("@s", s.Id), ("@i", b.Index), ("@ls", b.LineStart), ("@le", b.LineEnd), ("@text", b.Text));
-            }
-            foreach (var t in projection.All.OrderBy(t => t.Order))
-            {
-                var (scene, prop, holder, key) = Columns(t.Record);
-                Exec(c, tx,
-                    "INSERT INTO record VALUES (@id, @kind, @ord, @created, @retired, @reason, @initial, @decided, @decidedSeq, @scene, @prop, @holder, @key, @json)",
-                    ("@id", t.Record.Id), ("@kind", t.Record.KindName), ("@ord", t.Order), ("@created", t.CreatedSeq),
-                    ("@retired", t.RetiredSeq), ("@reason", t.RetireReason), ("@initial", Names.Of(t.InitialApproval)),
-                    ("@decided", t.DecidedApproval is { } d ? Names.Of(d) : null), ("@decidedSeq", t.DecidedSeq),
-                    ("@scene", scene), ("@prop", prop), ("@holder", holder), ("@key", key),
-                    ("@json", JsonSerializer.Serialize(t.Record, NseJson.Compact)));
-            }
-            foreach (var e in Evidence(projection, manuscript))
-                Exec(c, tx, "INSERT INTO evidence VALUES (@r, @k, @s, @q, @st)",
-                    ("@r", e.RecordId), ("@k", e.Kind), ("@s", e.Scene), ("@q", e.Quote), ("@st", e.Status));
+            using (var meta = new Insert(c, tx, "meta", 2))
+                foreach (var (key, value) in new (string, string)[]
+                         {
+                             ("schema", Schema.ToString(CultureInfo.InvariantCulture)),
+                             ("head", projection.Head.ToString(CultureInfo.InvariantCulture)),
+                             ("ledger_hash", LedgerStore.HeadHash(ledger)), ("manuscript_hash", manuscript.Hash),
+                             ("layout_hash", manuscript.Layout),
+                             ("seen_head", seenHead.ToString(CultureInfo.InvariantCulture)),
+                         })
+                    meta.Row(key, value);
+            using (var changeSets = new Insert(c, tx, "change_set", 8))
+                foreach (var s in ledger)
+                    changeSets.Row(s.ChangeSet.Seq, s.ChangeSet.Id, s.Hash, s.ChangeSet.Parent, s.ChangeSet.Actor, s.ChangeSet.Note, s.ChangeSet.Manuscript, s.File);
+            using (var scenes = new Insert(c, tx, "manuscript_scene", 8))
+            using (var blocks = new Insert(c, tx, "manuscript_block", 5))
+                foreach (var s in manuscript.Scenes)
+                {
+                    scenes.Row(s.Id, s.Tell, s.Title, s.File, s.LineStart, s.LineEnd, s.Hash, s.Text);
+                    foreach (var b in s.Blocks)
+                        blocks.Row(s.Id, b.Index, b.LineStart, b.LineEnd, b.Text);
+                }
+            using (var records = new Insert(c, tx, "record", 14))
+                foreach (var t in projection.All.OrderBy(t => t.Order))
+                {
+                    var (scene, prop, holder, key) = Columns(t.Record);
+                    records.Row(t.Record.Id, t.Record.KindName, t.Order, t.CreatedSeq, t.RetiredSeq, t.RetireReason, Names.Of(t.InitialApproval),
+                        t.DecidedApproval is { } d ? Names.Of(d) : null, t.DecidedSeq, scene, prop, holder, key,
+                        JsonSerializer.Serialize(t.Record, NseJson.Compact));
+                }
+            using (var evidence = new Insert(c, tx, "evidence", 5))
+                foreach (var e in Evidence(projection, manuscript))
+                    evidence.Row(e.RecordId, e.Kind, e.Scene, e.Quote, e.Status);
             tx.Commit();
         }
+    }
+
+    /// <summary>
+    /// The rows of one table, each a value for every column in the table's own order, put in through one statement
+    /// that is made ready once. The index is rebuilt whole after every change set, and a long story has tens of
+    /// thousands of rows: making a statement ready for each row took most of the rebuild.
+    /// </summary>
+    private sealed class Insert : IDisposable
+    {
+        private readonly SqliteCommand _command;
+
+        public Insert(SqliteConnection connection, SqliteTransaction transaction, string table, int columns)
+        {
+            var names = Enumerable.Range(0, columns).Select(i => "@c" + i.ToString(CultureInfo.InvariantCulture)).ToList();
+            _command = connection.CreateCommand();
+            _command.Transaction = transaction;
+            _command.CommandText = $"INSERT INTO {table} VALUES ({string.Join(", ", names)})";
+            foreach (var name in names)
+                _command.Parameters.Add(new SqliteParameter { ParameterName = name });
+        }
+
+        public void Row(params object?[] values)
+        {
+            for (var i = 0; i < values.Length; i++)
+                _command.Parameters[i].Value = values[i] ?? DBNull.Value;
+            _command.ExecuteNonQuery();
+        }
+
+        public void Dispose() => _command.Dispose();
     }
 
     /// <summary>
@@ -281,6 +306,10 @@ public static class StoryIndex
     public static IReadOnlyList<EvidenceStatus> Evidence(Projection projection, ManuscriptSnapshot manuscript)
     {
         var result = new List<EvidenceStatus>();
+        // A scene is cited by every record of what happens in it, so its paragraphs are read once for all of them.
+        var paragraphs = new Dictionary<string, IReadOnlyList<string>>(StringComparer.Ordinal);
+        IReadOnlyList<string> Paragraphs(ManuscriptScene scene) =>
+            paragraphs.TryGetValue(scene.Id, out var read) ? read : paragraphs[scene.Id] = QuoteMatcher.ReadableParagraphs(scene.Blocks.Select(b => b.Text));
         foreach (var t in projection.LiveAt(projection.Head))
         {
             var (quote, scene) = t.Record switch
@@ -295,7 +324,7 @@ public static class StoryIndex
             if (quote is null || scene is null)
                 continue;
             var status = manuscript.Find(scene) is not { } found ? "scene_missing"
-                : QuoteMatcher.Contains(found.Blocks.Select(b => b.Text), quote) ? "exact" : "missing";
+                : QuoteMatcher.MatchIn(Paragraphs(found), quote) == QuoteMatch.Exact ? "exact" : "missing";
             result.Add(new EvidenceStatus(t.Record.Id, t.Record.KindName, scene, quote, status));
         }
         return result;

@@ -1,3 +1,4 @@
+using System.Collections.Concurrent;
 using Nse.Manuscript;
 using Nse.Model;
 
@@ -29,6 +30,12 @@ public sealed record LocationView(
 /// "On entry to a scene" means strictly before it on the relevant axis. Records that tie are reported as
 /// unresolved, never settled by guessing. Nothing here is stored: every answer is computed from the records.
 /// </summary>
+/// <remarks>
+/// A context, an audit or a what-if asks the same few things of one state thousands of times: where a fact is
+/// first told, which facts are in play in a scene. Those are worked out from the records the first time they
+/// are asked and kept in this object, which is built for one question and never changes. They are not a cache
+/// of the story: they go when the object does, and nothing reads them back from anywhere.
+/// </remarks>
 public sealed class StoryState
 {
     /// <summary>Use as the story key or telling rank to ask about the end of the story.</summary>
@@ -69,6 +76,17 @@ public sealed class StoryState
     public IReadOnlyList<ManuscriptScene> Telling { get; }
 
     private readonly Dictionary<string, int> _tell;
+    private IReadOnlyList<string>? _holders;
+    private IReadOnlyList<string>? _trackedObjects;
+    private double[]? _sceneKeys;
+    private readonly ConcurrentDictionary<string, string> _canon = new(StringComparer.Ordinal);
+    private readonly ConcurrentDictionary<string, string?> _revealScene = new(StringComparer.Ordinal);
+
+    /// <summary>Whether each fact asked about is worth guarding. See <see cref="SceneKnowledge.Guarded"/>.</summary>
+    internal ConcurrentDictionary<string, bool> GuardedFacts { get; } = new(StringComparer.Ordinal);
+
+    /// <summary>The guarded facts in play in each scene asked about. See <see cref="SceneKnowledge.InPlay"/>.</summary>
+    internal ConcurrentDictionary<string, IReadOnlyList<string>> FactsInPlay { get; } = new(StringComparer.Ordinal);
 
     public StoryState(StoryModel model, IReadOnlyList<ManuscriptScene> telling)
     {
@@ -82,12 +100,28 @@ public sealed class StoryState
             ? t.StoryKey
             : throw new KeyNotFoundException($"Scene {sceneId} has no place in story time.");
 
+    /// <summary>The story time of the first scene set after a story time, or infinity when none is.</summary>
+    internal double NextSceneKey(double key)
+    {
+        var keys = _sceneKeys ??= [.. Model.SceneTimes.Values.Select(t => t.StoryKey).Order()];
+        var (low, high) = (0, keys.Length);
+        while (low < high)
+        {
+            var middle = (low + high) >>> 1;
+            if (keys[middle] > key)
+                high = middle;
+            else
+                low = middle + 1;
+        }
+        return low < keys.Length ? keys[low] : double.PositiveInfinity;
+    }
+
     /// <summary>The scene's rank in the telling, or null when it is not in the manuscript.</summary>
     public int? Tell(string sceneId) => _tell.TryGetValue(sceneId, out var t) ? t : null;
 
     /// <summary>People who have at least one belief record, in the order they entered the ledger.</summary>
     public IReadOnlyList<string> Holders =>
-        Model.Entities.Select(e => e.Id).Where(id => Model.Beliefs.Any(b => b.Holder == id)).ToList();
+        _holders ??= Model.Entities.Select(e => e.Id).Where(id => Model.BeliefsOf(id).Count > 0).ToList();
 
     /// <summary>The short name a character goes by.</summary>
     public string Short(string entityId)
@@ -103,7 +137,9 @@ public sealed class StoryState
     /// decided, with no fact change to say which way. The last is a gap in the records, not a "no": a
     /// proposition someone has only just written down is not thereby false.
     /// </summary>
-    public string Canon(string propId)
+    public string Canon(string propId) => _canon.GetOrAdd(propId, static (id, state) => state.FindCanon(id), this);
+
+    private string FindCanon(string propId)
     {
         var p = Model.Proposition(propId) ?? throw new KeyNotFoundException($"No proposition {propId}.");
         return p.Resolution switch
@@ -124,11 +160,19 @@ public sealed class StoryState
     public IReadOnlyList<string> Unconfirmed(string propId, double key = End, bool before = true)
     {
         bool Provisional(string id) => Model.ById.TryGetValue(id, out var t) && t.ApprovalAt(Model.Head) == Approval.Provisional;
-        var ids = new List<string>();
-        if (Provisional(propId))
-            ids.Add(propId);
-        ids.AddRange(Model.Facts(propId).Where(f => InEffect(f, key, before) && Provisional(f.Id)).Select(f => f.Id).OrderBy(id => id, StringComparer.Ordinal));
-        return ids;
+        // Nearly every fact rests on ratified records alone, and this is asked for every line that names one.
+        List<string>? changes = null;
+        foreach (var f in Model.Facts(propId))
+            if (InEffect(f, key, before) && Provisional(f.Id))
+                (changes ??= []).Add(f.Id);
+        changes?.Sort(StringComparer.Ordinal);
+        return (Provisional(propId), changes) switch
+        {
+            (false, null) => [],
+            (true, null) => [propId],
+            (false, _) => changes,
+            _ => [propId, .. changes],
+        };
     }
 
     /// <summary>The words that mark an answer as resting on unconfirmed records, or nothing when it does not.</summary>
@@ -153,19 +197,35 @@ public sealed class StoryState
     /// <summary>The fact changes that share the latest story time and disagree, so that truth is not settled. Null when it is.</summary>
     public IReadOnlyList<string>? FactTie(string propId, double key, bool before) => Truth(propId, key, before).Conflict;
 
-    private (bool? Value, IReadOnlyList<string>? Conflict) Truth(string propId, double key, bool before)
+    /// <summary>Whether a proposition is the case at or just before a story key, and the fact changes that tie if that is not settled.</summary>
+    internal (bool? Value, IReadOnlyList<string>? Conflict) Truth(string propId, double key, bool before)
     {
         var p = Model.Proposition(propId) ?? throw new KeyNotFoundException($"No proposition {propId}.");
-        // Not decided, or decided with nothing recorded to say which way: canon gives no answer.
-        if (p.Resolution != Resolution.Decided || !Model.Facts(propId).Any())
+        if (p.Resolution != Resolution.Decided)
             return (null, null);
-        var latest = LatestFacts(propId, key, before);
-        if (latest.Count == 0)
+        // The fact changes in effect that share the latest story time: what the first of them says, and whether
+        // the rest agree. This is asked for every fact at every point, so it is one pass and keeps no list.
+        var (recorded, found, latestKey, value, agreed) = (false, false, double.NegativeInfinity, false, true);
+        foreach (var f in Model.Facts(propId))
+        {
+            recorded = true;
+            if (!InEffect(f, key, before))
+                continue;
+            var k = f.StoryKey ?? double.NegativeInfinity;
+            if (!found || k > latestKey)
+                (found, latestKey, value, agreed) = (true, k, f.Value, true);
+            else if (k == latestKey && f.Value != value)
+                agreed = false;
+        }
+        // Decided with nothing recorded to say which way: canon gives no answer.
+        if (!recorded)
+            return (null, null);
+        if (!found)
             return (false, null);
         // Two changes at one story time that disagree are a tie. It is reported, never settled by guessing.
-        return latest.All(f => f.Value == latest[0].Value)
-            ? (latest[0].Value, null)
-            : (null, latest.Select(f => f.Id).OrderBy(id => id, StringComparer.Ordinal).ToList());
+        return agreed
+            ? (value, null)
+            : (null, LatestFacts(propId, key, before).Select(f => f.Id).OrderBy(id => id, StringComparer.Ordinal).ToList());
     }
 
     /// <summary>
@@ -212,9 +272,9 @@ public sealed class StoryState
     public IReadOnlyDictionary<string, BeliefView> BeliefsBefore(string holder, double key, bool inclusive = false)
     {
         var groups = new Dictionary<string, (double Key, List<BeliefChange> Records)>(StringComparer.Ordinal);
-        foreach (var b in Model.Beliefs)
+        foreach (var b in Model.BeliefsOf(holder))
         {
-            if (b.Holder != holder || !(b.StoryKey < key || (inclusive && b.StoryKey == key)))
+            if (!(b.StoryKey < key || (inclusive && b.StoryKey == key)))
                 continue;
             if (!groups.TryGetValue(b.Prop, out var cur) || b.StoryKey > cur.Key)
                 groups[b.Prop] = (b.StoryKey, [b]);
@@ -224,10 +284,36 @@ public sealed class StoryState
         return groups.ToDictionary(g => g.Key, g => Settle(g.Value.Records), StringComparer.Ordinal);
     }
 
+    /// <summary>
+    /// What one person makes of one fact strictly before a story key, or null when nothing is recorded by then.
+    /// It is the entry <see cref="BeliefsBefore"/> has for that fact, read from that person's records about that
+    /// fact alone: the question to ask when one fact is wanted, however many the person holds views on.
+    /// </summary>
+    public BeliefView? BeliefBefore(string holder, string propId, double key, bool inclusive = false) =>
+        Latest(Model.BeliefsOf(holder, propId), key, inclusive);
+
+    /// <summary>What one person's records about one fact come to strictly before a story key, or null when none is that early.</summary>
+    internal static BeliefView? Latest(IReadOnlyList<BeliefChange> records, double key, bool inclusive = false)
+    {
+        List<BeliefChange>? latest = null;
+        var latestKey = double.NegativeInfinity;
+        for (var i = 0; i < records.Count; i++)
+        {
+            var b = records[i];
+            if (!(b.StoryKey < key || (inclusive && b.StoryKey == key)))
+                continue;
+            if (latest is null || b.StoryKey > latestKey)
+                (latest, latestKey) = ([b], b.StoryKey);
+            else if (b.StoryKey == latestKey)
+                latest.Add(b);
+        }
+        return latest is null ? null : Settle(latest);
+    }
+
     /// <summary>One answer from records that share the latest story key, or an explicit conflict.</summary>
     private static BeliefView Settle(List<BeliefChange> records)
     {
-        var ordered = records.OrderBy(r => r.Id, StringComparer.Ordinal).ToList();
+        var ordered = records.Count == 1 ? records : records.OrderBy(r => r.Id, StringComparer.Ordinal).ToList();
         var first = ordered[0];
         if (ordered.All(r => r.Stance == first.Stance && r.Strength == first.Strength))
             return new BeliefView(first.Id, first.Holder, first.Prop, first.Stance, first.Strength, first.StoryKey,
@@ -275,8 +361,9 @@ public sealed class StoryState
 
     /// <summary>The first record in which a person takes a proposition to be true.</summary>
     public BeliefChange? FirstHolds(string holder, string propId) =>
-        Model.Beliefs.Where(b => b.Holder == holder && b.Prop == propId && b.Stance == Stance.HoldsTrue)
-            .OrderBy(b => b.StoryKey).ThenBy(b => b.Id, StringComparer.Ordinal).FirstOrDefault();
+        Model.BeliefsOf(holder, propId) is { Count: > 0 } records
+            ? records.Where(b => b.Stance == Stance.HoldsTrue).OrderBy(b => b.StoryKey).ThenBy(b => b.Id, StringComparer.Ordinal).FirstOrDefault()
+            : null;
 
     // ----------------------------------------------------------------- reader
 
@@ -319,14 +406,16 @@ public sealed class StoryState
     }
 
     /// <summary>The first scene in the telling that states the truth of a proposition to the reader, if any does.</summary>
-    public string? RevealScene(string propId)
+    public string? RevealScene(string propId) => _revealScene.GetOrAdd(propId, static (id, state) => state.FindRevealScene(id), this);
+
+    private string? FindRevealScene(string propId)
     {
         var canon = Canon(propId);
         if (canon is not ("true" or "false"))
             return null;
         var want = canon == "true" ? Stance.HoldsTrue : Stance.HoldsFalse;
-        return Model.Disclosures
-            .Where(d => d.Prop == propId && d.Mode == DisclosureMode.Stated && d.ReaderStance == want && Tell(d.Scene) is not null)
+        return Model.DisclosuresOf(propId)
+            .Where(d => d.Mode == DisclosureMode.Stated && d.ReaderStance == want && Tell(d.Scene) is not null)
             .OrderBy(d => Tell(d.Scene)).ThenBy(d => d.Id, StringComparer.Ordinal)
             .FirstOrDefault()?.Scene;
     }
@@ -336,7 +425,7 @@ public sealed class StoryState
     /// <summary>Where an object is kept just before a story key. Null when nothing is recorded yet.</summary>
     public LocationView? Location(string objectId, double key)
     {
-        var before = Model.Placements.Where(p => p.Object == objectId && p.StoryKey < key).ToList();
+        var before = Model.PlacementsOf(objectId).Where(p => p.StoryKey < key).ToList();
         if (before.Count == 0)
             return null;
         var latest = before.Max(p => p.StoryKey);
@@ -349,7 +438,7 @@ public sealed class StoryState
     }
 
     public IReadOnlyList<string> TrackedObjects =>
-        Model.Placements.Select(p => p.Object).Distinct().OrderBy(o => o, StringComparer.Ordinal).ToList();
+        _trackedObjects ??= Model.Placements.Select(p => p.Object).Distinct().OrderBy(o => o, StringComparer.Ordinal).ToList();
 
     // ----------------------------------------------------------------- events
 
@@ -393,5 +482,14 @@ public sealed class StoryState
 public static class Names
 {
     public static string Of<T>(T value) where T : struct, Enum =>
+        Known<T>.Names.TryGetValue(value, out var name) ? name : Written(value);
+
+    private static string Written<T>(T value) where T : struct, Enum =>
         System.Text.Json.JsonNamingPolicy.SnakeCaseLower.ConvertName(value.ToString());
+
+    /// <summary>The name of every value an enum declares, worked out once: a name is printed for nearly every line of every answer.</summary>
+    private static class Known<T> where T : struct, Enum
+    {
+        public static readonly Dictionary<T, string> Names = Enum.GetValues<T>().Distinct().ToDictionary(v => v, Written);
+    }
 }

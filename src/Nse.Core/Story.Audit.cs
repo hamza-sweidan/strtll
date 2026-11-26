@@ -36,11 +36,7 @@ public sealed partial class Story
     }
 
     /// <summary>Every scene in the manuscript, scanned as it stands, in the order they are told.</summary>
-    public IReadOnlyList<ScanResult> ScanAll()
-    {
-        var state = State();
-        return state.Telling.Select(t => DraftScan.Run(state, t.Id, DraftScan.Paragraphs(t), $"manuscript/{t.File} lines {t.LineStart}-{t.LineEnd}")).ToList();
-    }
+    public IReadOnlyList<ScanResult> ScanAll() => DraftScan.All(State());
 
     /// <summary>What the auditor of one scene is given. Reads only; opens no task.</summary>
     public string AuditBrief(string sceneId, AuditMode mode = AuditMode.Leaks)

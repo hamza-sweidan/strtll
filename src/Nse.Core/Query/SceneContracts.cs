@@ -32,15 +32,25 @@ public static class SceneContracts
     {
         var (key, end) = (s.Key(sceneId), s.SceneEnd(sceneId));
         var result = new List<RecordedChange>();
-        foreach (var b in s.Model.Beliefs.Where(b => b.Scene == sceneId).OrderBy(b => b.StoryKey).ThenBy(b => b.Id, StringComparer.Ordinal))
+        foreach (var b in s.Model.BeliefsIn(sceneId).OrderBy(b => b.StoryKey).ThenBy(b => b.Id, StringComparer.Ordinal))
             result.Add(Recorded(s, b.Id, new Intent { Change = IntentKind.Belief, Holder = b.Holder, Prop = b.Prop, Stance = b.Stance, Strength = b.Strength }));
-        foreach (var d in s.Model.Disclosures.Where(d => d.Scene == sceneId).OrderBy(d => d.Id, StringComparer.Ordinal))
+        foreach (var d in s.Model.DisclosuresIn(sceneId).OrderBy(d => d.Id, StringComparer.Ordinal))
             result.Add(Recorded(s, d.Id, new Intent { Change = IntentKind.Disclosure, Prop = d.Prop, Stance = d.ReaderStance, Strength = d.Strength, Mode = d.Mode }));
-        foreach (var p in s.Model.Placements.Where(p => p.Scene == sceneId).OrderBy(p => p.StoryKey).ThenBy(p => p.Id, StringComparer.Ordinal))
+        foreach (var p in s.Model.PlacementsIn(sceneId).OrderBy(p => p.StoryKey).ThenBy(p => p.Id, StringComparer.Ordinal))
             result.Add(Recorded(s, p.Id, new Intent { Change = IntentKind.Placement, Object = p.Object, Place = p.Place }));
         foreach (var prop in s.Model.Propositions)
-            foreach (var f in s.Model.Facts(prop.Id).Where(f => f.StoryKey >= key && f.StoryKey < end).OrderBy(f => f.StoryKey).ThenBy(f => f.Id, StringComparer.Ordinal))
+        {
+            // A fact change names no scene: it belongs to the scene whose span its story time falls in. Few fall
+            // in any one scene, so each fact's changes are looked through first and only those found are sorted.
+            List<FactChange>? within = null;
+            foreach (var f in s.Model.Facts(prop.Id))
+                if (f.StoryKey >= key && f.StoryKey < end)
+                    (within ??= []).Add(f);
+            if (within is null)
+                continue;
+            foreach (var f in within.OrderBy(f => f.StoryKey).ThenBy(f => f.Id, StringComparer.Ordinal))
                 result.Add(Recorded(s, f.Id, new Intent { Change = IntentKind.Fact, Prop = f.Prop, Value = f.Value }));
+        }
         return result;
     }
 
@@ -86,7 +96,7 @@ public static class SceneContracts
         {
             case IntentKind.Belief:
                 var holder = s.Model.Base(need.Holder!);
-                var belief = s.BeliefsBefore(holder, key).GetValueOrDefault(need.Prop!);
+                var belief = s.BeliefBefore(holder, need.Prop!, key);
                 if (belief is null)
                     // A secret that shuts the person out is as good as a record that they do not know.
                     return need.Stance == Stance.Unaware && s.Sealed(holder, need.Prop!) is { } secret

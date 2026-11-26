@@ -29,8 +29,8 @@ public static class Lint
         ArgumentNullException.ThrowIfNull(s);
         return s.Model.Embargoes
             .OrderBy(e => s.Tell(e.UntilScene) ?? int.MaxValue).ThenBy(e => e.Id, StringComparer.Ordinal)
-            .Select(e => new SeededReveal(e, s.Model.Disclosures
-                .Where(d => d.Prop == e.Prop && s.Tell(d.Scene) is int at && (s.Tell(e.UntilScene) is not int until || at < until))
+            .Select(e => new SeededReveal(e, s.Model.DisclosuresOf(e.Prop)
+                .Where(d => s.Tell(d.Scene) is int at && (s.Tell(e.UntilScene) is not int until || at < until))
                 .OrderBy(d => s.Tell(d.Scene)).ThenBy(d => d.Id, StringComparer.Ordinal).ToList()))
             .ToList();
     }
@@ -55,7 +55,7 @@ public static class Lint
             {
                 if (other == b.Holder || !holders.Contains(other) || about.Contains(other) || !seen.Add((other, e.Id, b.Prop)))
                     continue;
-                if (s.Model.Beliefs.Any(x => x.Holder == other && x.Prop == b.Prop))
+                if (s.Model.BeliefsOf(other, b.Prop).Count > 0)
                     continue;
                 notes.Add(new LintNote("CO_WITNESS", b.Id,
                     $"{Who(s, other)} was also at {e.Id}, where {Who(s, b.Holder)} came to hold {b.Prop} ({b.Id}), and has no record on {b.Prop} at all. Did they not notice, or is a record missing?"));
@@ -82,7 +82,7 @@ public static class Lint
             {
                 if (s.Model.Entity(who)?.Type != EntityKind.Character || who == s.Model.Base(a.Speaker))
                     continue;
-                if (s.Model.Beliefs.Any(b => b.Holder == who && b.Prop == a.Prop))
+                if (s.Model.BeliefsOf(who, a.Prop).Count > 0)
                     continue;
                 notes.Add(new LintNote("ADDRESSEE", a.Id,
                     $"{Who(s, who)} was told {a.Prop} by {Who(s, a.Speaker)} in {a.Scene} ({a.Id}), and has no record on {a.Prop} at all. Did they believe it, doubt it, or not take it in?"));
