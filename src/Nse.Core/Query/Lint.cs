@@ -100,6 +100,107 @@ public static class Lint
             .ToList();
     }
 
+    /// <summary>
+    /// Someone comes to hold a fact they already held, the same way and as firmly, on the strength of another
+    /// passage. A record that leaves a person exactly where they were says the passage taught them something
+    /// the fact as worded has no room for: it joins details that are learned at different times, and the first
+    /// passage gave them only one. Two details are separate facts when someone could learn one without the
+    /// other. Both passages are shown side by side, since that is how the join is seen.
+    /// </summary>
+    /// <remarks>
+    /// Left alone: a fact that began or stopped being so in between, where taking it up again is news; records
+    /// that share a story time, which tie and are reported as that; and a record with no passage or source of
+    /// its own, which claims to teach nothing.
+    /// </remarks>
+    public static IReadOnlyList<LintNote> LearnedTwice(StoryState s)
+    {
+        ArgumentNullException.ThrowIfNull(s);
+        var found = new List<(BeliefChange Again, LintNote Note)>();
+        foreach (var holder in s.Holders)
+            foreach (var records in s.Model.BeliefsOf(holder).GroupBy(b => b.Prop, StringComparer.Ordinal))
+            {
+                BeliefChange? last = null;
+                foreach (var b in records.OrderBy(b => b.StoryKey).ThenBy(b => b.Id, StringComparer.Ordinal))
+                {
+                    if (last is not null && LearnedAgain(s, last, b) is { } note)
+                        found.Add((b, note));
+                    last = b;
+                }
+            }
+        return found.OrderBy(x => x.Again.StoryKey).ThenBy(x => x.Again.Id, StringComparer.Ordinal).Select(x => x.Note).ToList();
+    }
+
+    /// <summary>
+    /// The note for a belief change that leaves its holder where an earlier one put them, or null when it does
+    /// not. Asked of one pair of records, so that a scene submission can be checked as it comes in.
+    /// </summary>
+    public static LintNote? LearnedAgain(StoryState s, BeliefChange before, BeliefChange again)
+    {
+        ArgumentNullException.ThrowIfNull(s);
+        ArgumentNullException.ThrowIfNull(before);
+        ArgumentNullException.ThrowIfNull(again);
+        if (again.Stance is not (Stance.HoldsTrue or Stance.HoldsFalse) || again.Stance != before.Stance || again.Strength != before.Strength
+            || !(again.StoryKey > before.StoryKey) || (again.Via is null && again.Quote is null)
+            || (again.Via == before.Via && again.Quote == before.Quote)
+            || s.Model.Proposition(again.Prop) is not { } prop || s.TruthAt(again.Prop, before.StoryKey) != s.TruthAt(again.Prop, again.StoryKey))
+            return null;
+        string Passage(BeliefChange b) => Evidence.Of(s, b) is { } p ? p.ToString() : "no passage cited";
+        var way = $"{(again.Stance == Stance.HoldsTrue ? "as true" : "as false")}{(again.Strength is { } st ? ", " + Names.Of(st) : "")}";
+        return new LintNote("LEARNED_TWICE", again.Id,
+            $"{Who(s, again.Holder)} already takes {again.Prop} {way} ({before.Id}: {Passage(before)}), and {again.Id} has them come to it again from {Passage(again)}. The second record changes nothing. "
+            + $"If the later passage gives them something the earlier one did not, {again.Prop} joins more than one detail: \"{Plain.OneLine(prop.Text)}\". "
+            + "Two details are separate facts when someone could learn them at different times: give the new detail a proposition of its own");
+    }
+
+    /// <summary>
+    /// A statement made in earnest that tells nobody anything: everyone it is said to was already certain of
+    /// the fact. People do repeat what is known. But a passage in which someone is told a thing again usually
+    /// tells them more than the fact as worded holds, and whoever recorded the statement filed the new detail
+    /// under the old fact. Each hearer is shown with the passage they were certain from, so the two can be read
+    /// side by side.
+    /// </summary>
+    /// <remarks>
+    /// Left alone: a lie; narration and thought, which are told to nobody; a statement that reaches anyone who
+    /// was less than certain, since for them it does something; and a hearer with a record of their own on the
+    /// fact from that moment to the end of the scene, which is the case <see cref="LearnedTwice"/> looks at.
+    /// </remarks>
+    public static IReadOnlyList<LintNote> ToldAgain(StoryState s)
+    {
+        ArgumentNullException.ThrowIfNull(s);
+        return s.Model.Assertions.Values.OrderBy(a => a.StoryKey).ThenBy(a => a.Id, StringComparer.Ordinal)
+            .Select(a => ToldAgain(s, a)).OfType<LintNote>().ToList();
+    }
+
+    /// <summary>The note for one statement that tells nobody anything, or null. Asked of one record, so that a scene submission can be checked as it comes in.</summary>
+    public static LintNote? ToldAgain(StoryState s, Assertion a)
+    {
+        ArgumentNullException.ThrowIfNull(s);
+        ArgumentNullException.ThrowIfNull(a);
+        if (a.Type is not (AssertionKind.Dialogue or AssertionKind.Document) || a.Sincerity == Sincerity.Insincere
+            || s.Model.Proposition(a.Prop) is not { } prop || s.ClassifyAssertion(a.Id).StartsWith("lie", StringComparison.Ordinal))
+            return null;
+        var told = a.Addressees.Concat(a.ReadBy is null ? [] : [a.ReadBy]).Select(s.Model.Base).Distinct()
+            .Where(who => who != s.Model.Base(a.Speaker) && s.Model.Entity(who)?.Type == EntityKind.Character)
+            .OrderBy(x => x, StringComparer.Ordinal).ToList();
+        if (told.Count == 0)
+            return null;
+        var end = s.Model.SceneTimes.ContainsKey(a.Scene) ? s.SceneEnd(a.Scene) : double.PositiveInfinity;
+        var already = new List<string>();
+        foreach (var who in told)
+        {
+            var theirs = s.Model.BeliefsOf(who, a.Prop);
+            if (StoryState.Latest(theirs, a.StoryKey) is not { Unresolved: false, Strength: Strength.Certain } held
+                || held.Stance != (a.Polarity ? Stance.HoldsTrue : Stance.HoldsFalse)
+                || theirs.Any(b => b.StoryKey >= a.StoryKey && b.StoryKey < end))
+                return null;
+            already.Add($"{Who(s, who)} ({held.Id}: {(Evidence.Of(s, theirs.First(b => b.Id == held.Id)) is { } p ? p.ToString() : "no passage cited")})");
+        }
+        return new LintNote("TOLD_AGAIN", a.Id,
+            $"{Who(s, a.Speaker)} {(a.Polarity ? "asserts" : "denies")} {a.Prop} in {a.Scene}, from {Evidence.OfSource(s, a.Id)}, and everyone it is said to was already certain of that: {string.Join("; ", already)}. "
+            + $"If this passage gives them something the earlier one did not, {a.Prop} joins more than one detail: \"{Plain.OneLine(prop.Text)}\". "
+            + "Two details are separate facts when someone could learn them at different times: give the new detail a proposition of its own");
+    }
+
     private static string Who(StoryState s, string id) => $"{Plain.OneLine(s.Model.Entity(id)?.Name ?? id)} ({id})";
 
     /// <summary>Every lint, in words, as both front ends print them.</summary>
@@ -124,6 +225,8 @@ public static class Lint
         }
         Section(sb, "People who were there and have no record on what someone else learned", CoWitnesses(s));
         Section(sb, "People who were told something and have no record on it", Addressees(s));
+        Section(sb, "People who learn the same thing twice, which is how a fact that joins two details shows", LearnedTwice(s));
+        Section(sb, "Statements that tell nobody anything new, where the passage may hold a detail the fact does not", ToldAgain(s));
         Section(sb, "Propositions that say nothing of whom they are about", EmptyAbout(s));
         return sb.ToString();
     }

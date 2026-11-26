@@ -165,15 +165,19 @@ public static class ClaudeSetup
         The story's state lives in the engine, not in this conversation. Work through its tools in this order.
 
         1. **Start from the brief.** If it lists work in progress, pick that up before starting anything new.
-        2. **Take the scene's context** with `scene_context`. It says what must not be revealed, what each person
-           present does not know, and what they believe on entry. It opens a task for the scene.
+        2. **Take the scene's context** with `scene_context`. It says what must not be revealed, where each person
+           present is shown not to know or believes the opposite, and what they believe on entry. A fact that is
+           not under a person's name is one they have no record on: do not write them as knowing it, and do not
+           write that they do not. `state_at` with `holder` and `prop` shows any such pair, and the passage behind
+           any line. It opens a task for the scene.
         3. **Note your plan** with `task_note` before you write a word: what you have decided, the questions still
            open, the next step. A hook refuses edits to a scene's prose until its task holds a note.
         4. **Write the prose** in the scene's manuscript file.
         5. **Note again** after each save: what you decided while writing, what is open now, how far the draft has
            got. A hook reminds you when the prose has moved on since your last note.
         6. **Submit** with `submit_scene`: the scene id, the manifest id from the end of the context, and the
-           records the text supports, each quoting the text word for word.
+           records the text supports, each quoting the text word for word. A fact is one detail: two details are
+           separate propositions when someone could learn them at different times.
         7. **After a submission**, note whether more of the scene is still to be written: `more` true or false.
            A hook asks for this before you stop if you have not said.
         8. **Have the scene audited.** Ask the `scene-auditor` agent to audit the scene by its id. It reads the

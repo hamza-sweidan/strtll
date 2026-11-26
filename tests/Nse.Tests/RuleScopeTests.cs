@@ -29,7 +29,7 @@ public sealed class RuleScopeTests : IDisposable
         Assert.DoesNotContain("g_ben", Context("s1"));
         var two = Context("s2");
         Assert.Contains("THE AUTHOR'S RULES AND NOTES FOR THIS SCENE (a note is the author's understanding, to write from; a rule is to keep to)", two);
-        Assert.Contains("  g_ben, PROVISIONAL: do not build on this, note [for Ben]: Ben distrusts anything that comes too easily.", two);
+        Assert.Contains("  g_ben*, note [for Ben]: Ben distrusts anything that comes too easily.", two);
 
         // A persona stands for the person behind it, in the scope as in the cast.
         using var other = new TinyStory();
@@ -76,7 +76,7 @@ public sealed class RuleScopeTests : IDisposable
         foreach (var scene in new[] { "s1", "s2" })
         {
             var text = Context(scene);
-            Assert.Contains("  r_style, PROVISIONAL: do not build on this, rule (style): Past tense throughout.", text);
+            Assert.Contains("  r_style*, rule (style): Past tense throughout.", text);
             Assert.Contains("NEVER SETTLE THESE\n  p_why: Why Ann hid it stays open.", text);
             Assert.DoesNotContain("r_open, PROVISIONAL", text);
         }
@@ -104,7 +104,7 @@ public sealed class RuleScopeTests : IDisposable
         });
         var tight = ContextCompiler.Compile(state, "s2", budget);
         Assert.NotEmpty(tight.Omitted);
-        Assert.Contains("  g_ben, PROVISIONAL: do not build on this, note [for Ben]: Ben distrusts anything that comes too easily.", tight.Text);
+        Assert.Contains("  g_ben*, note [for Ben]: Ben distrusts anything that comes too easily.", tight.Text);
     }
 
     [Fact]
@@ -192,7 +192,9 @@ public sealed class RuleScopeTests : IDisposable
         var text = Context("s2");
         var recap = text[text.IndexOf("\n\nKEEP TO THESE (the parts above, by id)", StringComparison.Ordinal)..text.IndexOf("\n\nManifest ", StringComparison.Ordinal)];
         Assert.Equal(
-            "\n\nKEEP TO THESE (the parts above, by id)\n  Not to be given to the reader: p_hid\n  Not known to Ben, so not said, told or acted on: p_hid\n  The author's rules and notes: g_ben", recap);
+            "\n\nKEEP TO THESE (the parts above, by id)\n  Not to be given to the reader: p_hid\n"
+            + "  A fact that is not under someone's name: no record either way. They do not say it, are not told it and do not act on it, and the text does not say they do not know it.\n"
+            + "  The author's rules and notes: g_ben", recap);
         // It comes after every part and before the manifest, and it is no part of what the manifest stands for.
         Assert.True(text.IndexOf("KEEP TO THESE", StringComparison.Ordinal) > text.IndexOf(ContextCompiler.ProseTitle, StringComparison.Ordinal));
         Assert.DoesNotContain(ContextCompiler.Compile(_tiny.Story.State(), "s2").Sections, p => p.Title.StartsWith("KEEP TO THESE", StringComparison.Ordinal));

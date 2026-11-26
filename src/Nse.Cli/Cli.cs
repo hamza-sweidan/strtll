@@ -45,13 +45,18 @@ public static class Cli
                                                     Shown for confirmation first; runs only at a terminal
           nse state-at (--scene ID | --end) [--holder ID] [--prop ID] [--reader] [--object ID]
                        [--head N] [--json] [--dir DIR]
-                                                    the state on entry to a scene, or at the end of the story
+                                                    the state on entry to a scene, or at the end of the story.
+                                                    With --holder and --prop together: what that person has on
+                                                    that fact, and the passage behind it
           nse state-at --prop ID --history [--holder ID] [--head N] [--dir DIR]
                                                     every change to one fact: who learned it when and how, and when the reader was told
           nse state-at --object ID --history [--head N] [--dir DIR]
                                                     every move of one object: where it was kept from when, and what moved it
           nse scene-context --scene ID [--budget N] [--head N] [--take | --no-task] [--dir DIR]
-                                                    the context for drafting or revising one scene. From an
+                                                    the context for drafting or revising one scene. It lists
+                                                    what is recorded and says the rule for silence once: a
+                                                    fact that is not under a person's name is one they have
+                                                    no record on. From an
                                                     agent's shell it is taken to work from: that opens a task
                                                     for the scene, or adds to the one open. At a terminal, or
                                                     with --head or --no-task, it is only a look; --take opens
@@ -77,7 +82,9 @@ public static class Cli
                                                     --holder), secrets, objects or divergence
           nse lint [--head N] [--dir DIR]           suggestions for the author, never findings: reveals with no
                                                     earlier hint, people who were there or were told and have no
-                                                    record, propositions that name nobody they are about
+                                                    record, people who learn a thing twice and statements that
+                                                    tell nobody anything new (how a fact that joins two details
+                                                    shows), propositions that name nobody they are about
           nse what-if FILE [--dir DIR]              what a change set would do, worked out in memory: whether it
                                                     passes the checks, every answer that would change, scene by
                                                     scene, and which drafting contexts would. Nothing is written.

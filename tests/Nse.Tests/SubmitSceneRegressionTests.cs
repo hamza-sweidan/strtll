@@ -82,7 +82,7 @@ public sealed class SubmitSceneRegressionTests : IDisposable
     {
         // The author ratifies the story so far, so that anything unconfirmed below comes from the drafts.
         Assert.True(_tiny.Apply(new RatifyOp { Ids = _tiny.Story.State().Model.Records.Select(t => t.Record.Id).ToList() }).Applied);
-        Assert.DoesNotContain("UNCONFIRMED", Context("s2"));
+        Assert.DoesNotContain("[UNCONFIRMED", Context("s2"));
         var draftingTwo = Manifest("s2");
 
         // Meanwhile a draft of scene 1 writes down a proposition and says nothing about whether it is so.
@@ -135,7 +135,7 @@ public sealed class SubmitSceneRegressionTests : IDisposable
     {
         Assert.True(_tiny.Put(new Disclosure { Id = "d_told", Scene = "s1", Prop = "p_hid", Mode = DisclosureMode.Stated, ReaderStance = Stance.HoldsTrue, Strength = Strength.Certain }).Applied);
         var manifest = Manifest("s2");
-        Assert.Contains("p_hid [stated, s1] reader takes it as true, certain", Context("s2"));
+        Assert.Contains("  [stated] reader takes it as true, certain:\n    p_hid", Context("s2"));
 
         // Scene 2 is now told first: on entry to it the reader has been given nothing.
         File.Move(Path.Combine(_tiny.Story.ManuscriptDir, "02-two.md"), Path.Combine(_tiny.Story.ManuscriptDir, "00-two.md"));
@@ -218,8 +218,8 @@ public sealed class SubmitSceneRegressionTests : IDisposable
         Assert.Contains(other.Findings, f => f.Code == "CHANGED"
             && f.Message == "+ ALREADY RECORDED AS HAPPENING IN THIS SCENE (a new draft keeps each of these, or withdraws it): l_pocket: the key (key) moves to Ben's pocket (pocket)");
         var context = Context("s2");
-        Assert.Contains("  e_find at 20.1, event: Ben finds the key under the mat. [Ben actor], PROVISIONAL: do not build on this", context);
-        Assert.Contains("  l_pocket: the key (key) moves to Ben's pocket (pocket), PROVISIONAL: do not build on this", context);
+        Assert.Contains("  e_find at 20.1, event: Ben finds the key under the mat. [Ben actor]*", context);
+        Assert.Contains("  l_pocket: the key (key) moves to Ben's pocket (pocket)*", context);
 
         // It asks again, and submits its own account: the move is withdrawn, the finding kept.
         var revised = _tiny.Story.SubmitScene(new SceneReport { Scene = "s2", Manifest = Manifest("s2"), Withdraws = ["l_pocket"], Records = [Ben("b_ben", 20.2)] });

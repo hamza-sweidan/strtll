@@ -167,7 +167,7 @@ public sealed class McpTests(HarbourStory harbour) : IClassFixture<HarbourStory>
 
         var context = Client.TextOf(await client.Call("scene_context", new JsonObject { ["scene"] = "sc_09" }));
         Assert.Contains("CONTEXT FOR SCENE 9, sc_09 \"The Safe\"", context);
-        Assert.Contains("never learns it: SE1 keeps it to Sarah", context);
+        Assert.Contains("P10 (SE1, kept to Sarah)", context);
 
         var brief = Client.TextOf(await client.Call("story_brief", new JsonObject()));
         Assert.StartsWith("STORY BRIEF · ledger head ", brief);

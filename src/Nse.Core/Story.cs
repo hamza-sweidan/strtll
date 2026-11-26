@@ -505,6 +505,20 @@ public sealed partial class Story
         notes.AddRange(after.CheckContract(scene).Select(f => new Finding(f.Code, f.RecordId, f.Message)));
         notes.AddRange(records.OfType<BeliefChange>().Where(b => b.Directness is Directness.Inferred or Directness.Speculative)
             .Select(b => new Finding("FLAGGED", b.Id, $"marked {Names.Of(b.Directness)}: applied as provisional and flagged for the author's review")));
+        // A belief that leaves its holder where an earlier record put them is how a fact that joins two details
+        // shows: the scene taught them something, and the fact as worded had no room for it. Said here, while
+        // whoever recorded it still has both passages in front of them.
+        foreach (var again in records.OfType<BeliefChange>())
+        {
+            var theirs = after.Model.BeliefsOf(again.Holder, again.Prop).OrderBy(b => b.StoryKey).ThenBy(b => b.Id, StringComparer.Ordinal).ToList();
+            var at = theirs.FindIndex(b => b.Id == again.Id);
+            if (at > 0 && Lint.LearnedAgain(after, theirs[at - 1], theirs[at]) is { } twice)
+                notes.Add(new Finding(twice.Code, twice.RecordId, twice.Message));
+        }
+        // The same join shows from the other side when nobody recorded a belief: a statement that tells nobody
+        // anything, because everyone it is said to was already certain.
+        notes.AddRange(records.OfType<Assertion>().Select(a => Lint.ToldAgain(after, a)).OfType<LintNote>()
+            .Select(told => new Finding(told.Code, told.RecordId, told.Message)));
         // What the records declare is checked above. What the text gives away and nobody declared is not, so the
         // text itself is scanned for the tripwires of the embargoes in force. A hit stops nothing: a hint is
         // allowed, and a pattern of words is not a meaning. It is put in front of the author, with the advice

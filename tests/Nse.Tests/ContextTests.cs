@@ -120,8 +120,8 @@ public sealed class ContextTests(HarbourStory harbour) : IClassFixture<HarbourSt
 
         // Scenes are named by id wherever they appear, as state_at names them.
         var nine = ContextCompiler.Compile(_state, "sc_09").Text;
-        Assert.Matches(@"\[stated, sc_0\d\] reader takes it as true", nine);
-        Assert.DoesNotMatch(@"\[\w+, scene \d+\]", nine);
+        Assert.Contains("  [stated] reader takes it as true, certain:\n    P29: Sarah is keeping a sealed envelope in Edmund's handwriting hidden from Daniel. (sc_02, D12)\n    P01; P02; ", nine);
+        Assert.DoesNotMatch(@"\(scene \d+[,)]", nine.Split("THE READER ON ENTRY")[1].Split("\n\n")[0]);
 
         Assert.Contains("Embargo EM1: P05 is not to be stated to the reader before sc_05.", ContextCompiler.Brief(_state));
         // Every embargo in the example story holds at the start, none at the end, and none is broken.
@@ -157,17 +157,52 @@ public sealed class ContextTests(HarbourStory harbour) : IClassFixture<HarbourSt
     public void The_context_for_scene_nine_says_what_a_draft_of_it_needs_to_be_told()
     {
         var text = ContextCompiler.Compile(_state, "sc_09").Text;
-        // A draft is tempted to have Daniel say how Sarah got the letter. He never learns it, and the context says so.
-        Assert.Contains("P10: Sarah took the letter from Edmund's desk drawer on the night he died. (never learns it: SE1 keeps it to Sarah)", text);
-        // Silence in the records is named as silence, not passed off as ignorance.
-        Assert.Contains("P23: A man in a grey coat has been watching the harbour office from the quay. (nothing recorded either way; treat as not knowing)", text);
-        Assert.Contains("(learns it in scene 10, sc_10; currently believes the opposite)", text);
-        Assert.Contains("Sarah Kessler (point of view): beliefs on entry", text);
+        var daniel = text.Split("\nDaniel Kessler: does NOT know, and must not say it, be told it or act on it in this scene\n")[1].Split("\n\n")[0];
+        // A draft is tempted to have Daniel say how Sarah got the letter. He never learns it: a secret keeps it to
+        // her. That is the author's word and not something the story shows of him, so it is kept apart from what
+        // the story does show him not to know; the fact itself is worded under Sarah, who has it.
+        Assert.Contains("  SHUT OUT BY A SECRET the author keeps to the people named. They never learn it:\n    P10 (SE1, kept to Sarah); P35 (SE1, kept to Sarah); P36 (SE1, kept to Sarah)\n", daniel);
+        Assert.Contains("    P10: Sarah took the letter from Edmund's desk drawer on the night he died. (Bs08)\n", text);
+        Assert.Contains("  UNAWARE: the story shows that they do not know it:\n    P07: Jonas Pike is Edmund Kessler's son. (learns it in scene 10, sc_10)\n", daniel);
+        // Holding the wrong view is another thing, and says what is so.
+        Assert.Contains("  BELIEVES THE OPPOSITE of what is so, and acts on it:\n    P03: It is NOT true that: Marta has been taking money from the business. (learns it in scene 10, sc_10)", daniel);
+        // Silence in the records is a third thing. It is not passed off as ignorance, and it is not written out
+        // fact by fact: the rule is said once, and a fact Daniel has no record on is simply not under his name.
+        Assert.Contains("  Not listed means NO RECORD: where a fact is not under someone's name, nothing has been recorded either way. Do not write them as knowing it, and do not write that they do not.", text);
+        Assert.DoesNotContain("P23", daniel);
+        Assert.DoesNotContain("P23", text.Split("\nDaniel Kessler: beliefs on entry\n")[1].Split("\n\n")[0]);
+        Assert.DoesNotContain("nothing recorded either way; treat as not knowing", text);
+        // What he has yet to learn is placed, by id: where it matters to someone here it is worded under their name.
+        Assert.Contains("  NO RECORD ON ENTRY, and they learn it later, so they must not have it yet:\n    P05 (scene 10, sc_10); P06 (scene 10, sc_10); P14 (scene 12, sc_12); ", daniel);
+        Assert.Contains("Sarah Kessler (point of view): beliefs on entry\n  [knows] takes it as true, certain:\n    P01: Edmund Kessler died on the night of 30 April. (Bs07)\n", text);
+        // A fact is worded where it first comes up and named after that.
+        Assert.Contains("Daniel Kessler: beliefs on entry\n  [knows] takes it as true, certain:\n    P01; P02; P08; P09; P32\n", text);
+        Assert.Equal(2, text.Split("Edmund Kessler died on the night of 30 April.").Length);
         Assert.Contains("the letter: Sarah's coat (L5)", text);
         Assert.Contains("manuscript/09-the-safe.md lines 2-", text);
         Assert.Contains("manuscript/08-april.md", text);
-        Assert.Contains("\"No record\" means nothing has been recorded either way", text);
-        Assert.DoesNotContain("PROVISIONAL", text);
+        // Everything in the example has been ratified, so no id carries the mark of a provisional record.
+        Assert.DoesNotMatch(@"\S\*", text);
+        Assert.DoesNotContain("[UNCONFIRMED", text);
+    }
+
+    /// <summary>
+    /// A hint already given to the reader about something still withheld is shown with the fact, in the words that
+    /// gave it: a draft must not undo it, and must not turn it into a statement.
+    /// </summary>
+    [Fact]
+    public void A_withheld_fact_comes_with_what_the_reader_has_had_of_it_so_far()
+    {
+        var text = ContextCompiler.Compile(_state, "sc_09").Text;
+        Assert.Contains(
+            "  P15: The man in the grey coat is Jonas Pike. (first told in scene 11, sc_11; embargo EM5: not before scene 11, sc_11)\n"
+            + "      cast on entry: Sarah: unaware; Daniel: no record; Marta: correctly believes\n"
+            + "      the reader so far: [inferable, sc_07] (D30)\n", text);
+        // Where nothing has been given there is no such line.
+        Assert.Contains(
+            "  P07: Jonas Pike is Edmund Kessler's son. (first told in scene 10, sc_10; embargo EM7: not before scene 10, sc_10)\n"
+            + "      cast on entry: Sarah: unaware; Daniel: unaware; Marta: knows\n"
+            + "  P34: ", text);
     }
 
     // The next three tests come from a fresh agent's complaints after answering the 40 probes with these tools.
@@ -195,6 +230,49 @@ public sealed class ContextTests(HarbourStory harbour) : IClassFixture<HarbourSt
         var reader = StateReport.Text(_state, new StateQuery(Scene: "sc_09", ReaderOnly: true, Prop: "P34"));
         Assert.Contains("truth not yet stated to the reader", reader);
         Assert.Contains("the letter (obj_letter): the office safe  (L6; since sc_09)", StateReport.Text(_state, new StateQuery(Scene: "sc_10", Object: "obj_letter")));
+    }
+
+    /// <summary>
+    /// One person and one fact is the question "what do they have to go on", so the answer shows the passage:
+    /// the words the record quotes, or those of what it came from, with the line they stand on. Silence at that
+    /// point is followed by what the story has them come by later.
+    /// </summary>
+    [Fact]
+    public void One_person_and_one_fact_are_answered_with_the_passage_behind_the_record()
+    {
+        var told = StateReport.Text(_state, new StateQuery(Scene: "sc_11", Holder: "ch_daniel", Prop: "P07"));
+        Assert.Contains("  P07  [correctly believes] takes it as true, believes: Jonas Pike is Edmund Kessler's son.  (Bd17; told by Marta, sc_10)\n"
+                        + "      source: A18, dialogue: Marta asserts P07 to Daniel. \"Jonas is your father's son.\" (sc_10, manuscript/10-stubs.md line 38)\n", told);
+
+        var notYet = StateReport.Text(_state, new StateQuery(Scene: "sc_05", Holder: "ch_daniel", Prop: "P07"));
+        Assert.Contains("  P07  no record. That is not the same as \"does not know\": nothing has been recorded either way.\n"
+                        + "      first recorded later: sc_07, story time 45.1  [unaware] unaware  (Bd28; explicit, sc_07)\n"
+                        + "      passage: \"He was sure he had never heard it.\" (sc_07, manuscript/07-the-kitchen.md line 80)\n", notYet);
+        // Nothing before and nothing after is silence and no more.
+        Assert.DoesNotContain("first recorded later", StateReport.Text(_state, new StateQuery(Scene: "sc_09", Holder: "ch_daniel", Prop: "P23")));
+
+        var history = StateReport.Text(_state, new StateQuery(Prop: "P07", Holder: "ch_daniel", History: true));
+        Assert.Contains("      passage: \"He was sure he had never heard it.\" (sc_07, manuscript/07-the-kitchen.md line 80)\n", history);
+        Assert.Contains("      source: A26, document: Edmund asserts P14 to Daniel, Sarah, Marta. \"I acknowledge you as my son, and I give you a half share in the harbour office.\" (sc_12, manuscript/12-opened.md line 36)\n", history);
+
+        var reader = StateReport.Text(_state, new StateQuery(Scene: "sc_11", ReaderOnly: true, Prop: "P07"));
+        Assert.Contains("      passage: \"Jonas is your father's son.\" (sc_10, manuscript/10-stubs.md line 38)\n", reader);
+        Assert.Contains("      passage: none cited\n", StateReport.Text(_state, new StateQuery(Scene: "sc_09", ReaderOnly: true, Prop: "P34")));
+
+        // Everyone at once, or everything one person holds, stays a list: the passages are for the narrow question.
+        Assert.DoesNotContain("passage:", StateReport.Text(_state, new StateQuery(Scene: "sc_11", Prop: "P07")));
+        Assert.DoesNotContain("source:", StateReport.Text(_state, new StateQuery(Scene: "sc_11", Prop: "P07")));
+        Assert.DoesNotContain("source:", StateReport.Text(_state, new StateQuery(Scene: "sc_11", Holder: "ch_daniel")));
+        Assert.DoesNotContain("source:", StateReport.Text(_state, new StateQuery(Prop: "P07", History: true)));
+    }
+
+    [Fact]
+    public void A_passage_whose_words_have_left_the_text_says_so()
+    {
+        var gone = new Passage("words that were cut", "sc_10", "Bd17", null, null);
+        Assert.Equal("\"words that were cut\" (sc_10; the words are not in that scene's text as it stands)", gone.ToString());
+        var record = _state.Model.BeliefsOf("ch_daniel", "P07").Single(b => b.Id == "Bd28");
+        Assert.Equal(new Passage("He was sure he had never heard it.", "sc_07", "Bd28", "07-the-kitchen.md", 80), Evidence.Of(_state, record));
     }
 
     [Fact]

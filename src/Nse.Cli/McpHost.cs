@@ -40,15 +40,17 @@ public static class McpHost
 
         Reading:
         2. For one narrow question (one person, one fact, the reader, an object at one point) call state_at
-           with holder, prop, reader or object. For "when did she learn it", "who told him" or "when is the
-           reader told", add history with prop; for an object's moves, history with object.
+           with holder, prop, reader or object. Holder and prop together also show the passage behind
+           what they hold. For "when did she learn it", "who told him" or "when is the reader told", add
+           history with prop; for an object's moves, history with object.
         3. "On entry to a scene" means just before it begins: in story time for people and objects, in
            reading order for the reader. A flashback is late in the telling and early in story time.
         4. "no record" means nothing has been recorded either way. It does not mean the person does not
-           know. Labels in square brackets (knows, FALSE BELIEF, OUTDATED BELIEF, unaware, ORDER NOT
-           ESTABLISHED) are computed: trust them over your reading of the prose. PROVISIONAL is not
-           confirmed by the author, and UNCONFIRMED rests on such a record: do not build on either. Use
-           ids (sc_07, ch_daniel, P12) exactly as given.
+           know. A context lists only what is recorded: a fact not under someone's name is one they have
+           no record on. Labels in square brackets (knows, FALSE BELIEF, OUTDATED BELIEF, unaware, ORDER
+           NOT ESTABLISHED) are computed: trust them over your reading of the prose. PROVISIONAL (a * in
+           a context) is not confirmed by the author, and UNCONFIRMED rests on such a record: do not
+           build on either. Use ids (sc_07, ch_daniel, P12) exactly as given.
 
         Drafting or revising a scene:
         5. Call scene_context for the scene and follow it: what must not be revealed, what each cast member
@@ -62,7 +64,8 @@ public static class McpHost
            each person came to believe and how, what the reader was given, where things moved. Each names
            the scene, is dated within the span the context gives, involves only the cast, and quotes the
            text word for word. Declare everything of weight, planned or not. Under withdraws, name any
-           record the context lists for this scene that your draft no longer supports.
+           record the context lists for this scene that your draft no longer supports. A fact is one
+           detail: two details are separate propositions when someone could learn them at different times.
         8. Refused means nothing was written, and each finding says what to change. STALE_CONTEXT means
            the state moved under your draft: take the context again and check the draft against the lines
            listed.
@@ -136,7 +139,7 @@ public sealed class NseTools(Story story, ServerOptions options)
     // Not marked read-only: taken to work from, it writes the scene's task under work/tasks. It changes nothing
     // of the story, and asked twice with nothing moved it writes once.
     [McpServerTool(Name = "scene_context", Title = "Context for one scene", ReadOnly = false, Destructive = false, Idempotent = true, OpenWorld = false)]
-    [Description("Everything needed to draft or revise one scene, as the state on entry to it: what must not be revealed to the reader, open questions that must stay open, what each cast member does not know and must not say, what each believes, what the reader has been told, where tracked objects are, and which manuscript passages to read. Taking it opens a task for the scene, or adds to the one already open, so that a later session can see work had begun and from what; its last lines say what to note before you write. If you only want to read it, to answer a question, set look. Fails with BUDGET_INSUFFICIENT rather than cutting anything that must be there.")]
+    [Description("Everything needed to draft or revise one scene, as the state on entry to it: what must not be revealed to the reader, with the hints already given; open questions that must stay open; what is so that nobody present has any record on; where each cast member is shown not to know, or believes the opposite; what each believes; what the reader has been told; where tracked objects are; and which manuscript passages to read. Silence is not listed: a fact that is not under a person's name is one they have no record on, and state_at with holder and prop shows any such pair. Taking it opens a task for the scene, or adds to the one already open, so that a later session can see work had begun and from what; its last lines say what to note before you write. If you only want to read it, to answer a question, set look. Fails with BUDGET_INSUFFICIENT rather than cutting anything that must be there.")]
     public string SceneContext(
         [Description("Scene id, for example sc_07. story_brief lists them.")] string scene,
         [Description("Size limit in rough tokens. Default 10000.")] int? budget = null,
@@ -149,7 +152,7 @@ public sealed class NseTools(Story story, ServerOptions options)
             : ContextCompiler.Compile(story.State(head), scene, budget ?? ContextCompiler.DefaultBudget).Text);
 
     [McpServerTool(Name = "state_at", Title = "State at one point", ReadOnly = true, Idempotent = true, OpenWorld = false)]
-    [Description("A focused question about one point in the story: on entry to a scene, or at the end. Narrow it to one person (holder), one fact (prop), the reader, or one object. With no narrowing it returns everyone's beliefs, the reader's state and where things are. Give exactly one of scene or end, unless history is true.")]
+    [Description("A focused question about one point in the story: on entry to a scene, or at the end. Narrow it to one person (holder), one fact (prop), the reader, or one object. With holder and prop together the answer shows the passage behind what that person has on that fact, the words quoted and the line they stand on, and when they have nothing, what they come by later. With no narrowing it returns everyone's beliefs, the reader's state and where things are. Give exactly one of scene or end, unless history is true.")]
     public string StateAt(
         [Description("Scene id: the state on entry to this scene.")] string? scene = null,
         [Description("True for the state at the end of the story. Do not combine with scene.")] bool end = false,
@@ -196,7 +199,7 @@ public sealed class NseTools(Story story, ServerOptions options)
         });
 
     [McpServerTool(Name = "lint", Title = "Suggestions for the author", ReadOnly = true, Idempotent = true, OpenWorld = false)]
-    [Description("Suggestions, never findings: each embargoed reveal with the earlier disclosures that prepare the reader for it, or NO SEED; people who were at an event where someone else learned a fact, or were told a fact, and have no record on it; propositions that name nobody they are about. Show them to the author when asked what the records may be missing. Do not record a belief because a lint suggests one: ask.")]
+    [Description("Suggestions, never findings: each embargoed reveal with the earlier disclosures that prepare the reader for it, or NO SEED; people who were at an event where someone else learned a fact, or were told a fact, and have no record on it; a person who learns the same thing twice, and a statement that tells nobody anything new, each of which is how a fact that joins two details shows; propositions that name nobody they are about. Show them to the author when asked what the records may be missing. Do not record a belief because a lint suggests one: ask.")]
     public string LintOf(
         [Description("Answer as of an older ledger head. Leave out for the current state.")] int? head = null) =>
         Guarded(() => Lint.Text(story.State(head)));

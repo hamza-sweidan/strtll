@@ -93,6 +93,90 @@ public sealed class LintTests : IDisposable
         Assert.Empty(Lint.Addressees(lied.Story.State()));
     }
 
+    /// <summary>Ann tells Ben, in scene 2, what the scene's own text has already shown him.</summary>
+    private Assertion AnnTellsBen => new()
+    {
+        Id = "a_tell", Scene = "s2", StoryKey = 20.2, Type = AssertionKind.Dialogue, Speaker = "ann", Addressees = ["ben"], Prop = "p_hid",
+        Quote = "put it in his pocket",
+    };
+
+    [Fact]
+    public void Someone_who_learns_the_same_thing_twice_is_named_with_both_passages()
+    {
+        Put(_tiny.BenBelief("b_one", 20.1, quote: "Ben found the key under the mat"), AnnTellsBen,
+            _tiny.BenBelief("b_two", 20.3, channel: Channel.Told, via: "a_tell"));
+        var note = Assert.Single(Lint.LearnedTwice(State));
+        Assert.Equal(("LEARNED_TWICE", "b_two"), (note.Code, note.RecordId));
+        Assert.Equal(
+            "Ben (ben) already takes p_hid as true, believes (b_one: \"Ben found the key under the mat\" (s2, manuscript/02-two.md line 4)), "
+            + "and b_two has them come to it again from \"put it in his pocket\" (s2, manuscript/02-two.md line 4). The second record changes nothing. "
+            + "If the later passage gives them something the earlier one did not, p_hid joins more than one detail: \"Ann hid the key under the mat.\". "
+            + "Two details are separate facts when someone could learn them at different times: give the new detail a proposition of its own",
+            note.Message);
+        Assert.Contains("People who learn the same thing twice, which is how a fact that joins two details shows (1):\n  LEARNED_TWICE b_two: Ben (ben) already takes p_hid as true, believes", Lint.Text(State));
+    }
+
+    [Fact]
+    public void A_second_record_that_moves_someone_or_follows_a_change_in_the_fact_is_not_learning_it_twice()
+    {
+        // Firmer than before: the second passage did something the first had not.
+        Put(_tiny.BenBelief("b_one", 20.1, quote: "Ben found the key under the mat"), AnnTellsBen,
+            _tiny.BenBelief("b_two", 20.3, channel: Channel.Told, via: "a_tell") with { Strength = Strength.Certain });
+        Assert.Empty(Lint.LearnedTwice(State));
+
+        // The same view at the same story time is a tie, and is reported as that elsewhere.
+        using var tied = new TinyStory(annInSceneTwo: true);
+        Assert.True(tied.Put(tied.BenBelief("b_one", 20.3, quote: "Ben found the key under the mat"), AnnTellsBen,
+            tied.BenBelief("b_two", 20.3, channel: Channel.Told, via: "a_tell")).Applied);
+        Assert.Empty(Lint.LearnedTwice(tied.Story.State()));
+
+        // A record that cites no passage and no source claims to teach nothing.
+        using var bare = new TinyStory(annInSceneTwo: true);
+        Assert.True(bare.Put(bare.BenBelief("b_one", 20.1, quote: "Ben found the key under the mat"), bare.BenBelief("b_two", 20.3, channel: Channel.Assumed)).Applied);
+        Assert.Empty(Lint.LearnedTwice(bare.Story.State()));
+
+        // The key was moved and put back in between: taking the fact up again is news.
+        using var moved = new TinyStory(annInSceneTwo: true);
+        Assert.True(moved.Put(
+            moved.BenBelief("b_one", 20.1, quote: "Ben found the key under the mat"),
+            new FactChange { Id = "f_gone", Prop = "p_hid", Value = false, StoryKey = 20.15 },
+            AnnTellsBen,
+            moved.BenBelief("b_two", 20.3, channel: Channel.Told, via: "a_tell")).Applied);
+        Assert.Empty(Lint.LearnedTwice(moved.Story.State()));
+    }
+
+    [Fact]
+    public void A_statement_that_tells_nobody_anything_new_is_named_and_one_that_reaches_someone_unsure_is_not()
+    {
+        // Ben is certain of where the key was hidden, and Ann tells him so in scene 2: it tells him nothing.
+        Put(_tiny.BenBelief("b_sure", 15) with { Strength = Strength.Certain, Scene = null, Channel = Channel.Background }, AnnTellsBen);
+        var note = Assert.Single(Lint.ToldAgain(State));
+        Assert.Equal(("TOLD_AGAIN", "a_tell"), (note.Code, note.RecordId));
+        Assert.Equal(
+            "Ann (ann) asserts p_hid in s2, from \"put it in his pocket\" (s2, manuscript/02-two.md line 4), and everyone it is said to was already certain of that: "
+            + "Ben (ben) (b_sure: no passage cited). If this passage gives them something the earlier one did not, p_hid joins more than one detail: \"Ann hid the key under the mat.\". "
+            + "Two details are separate facts when someone could learn them at different times: give the new detail a proposition of its own",
+            note.Message);
+
+        // Less than certain, he is given support by being told, and that is no sign of anything.
+        using var unsure = new TinyStory(annInSceneTwo: true);
+        Assert.True(unsure.Put(unsure.BenBelief("b_thinks", 15) with { Scene = null, Channel = Channel.Background }, AnnTellsBen).Applied);
+        Assert.Empty(Lint.ToldAgain(unsure.Story.State()));
+
+        // A record of his own from that moment on is the other case, and is looked at there.
+        using var recorded = new TinyStory(annInSceneTwo: true);
+        Assert.True(recorded.Put(recorded.BenBelief("b_sure", 15) with { Strength = Strength.Certain, Scene = null, Channel = Channel.Background }, AnnTellsBen,
+            recorded.BenBelief("b_again", 20.2, channel: Channel.Told, via: "a_tell") with { Strength = Strength.Certain }).Applied);
+        Assert.Empty(Lint.ToldAgain(recorded.Story.State()));
+        Assert.Equal("b_again", Assert.Single(Lint.LearnedTwice(recorded.Story.State())).RecordId);
+
+        // Narration is told to nobody.
+        using var narrated = new TinyStory(annInSceneTwo: true);
+        Assert.True(narrated.Put(narrated.BenBelief("b_sure", 15) with { Strength = Strength.Certain, Scene = null, Channel = Channel.Background },
+            AnnTellsBen with { Type = AssertionKind.Narration, Focalizer = "ben", Addressees = [] }).Applied);
+        Assert.Empty(Lint.ToldAgain(narrated.Story.State()));
+    }
+
     [Fact]
     public void A_proposition_that_names_nobody_is_named()
     {
@@ -139,6 +223,10 @@ public sealed class LintTests : IDisposable
                 Lint.CoWitnesses(s).Select(n => $"{n.RecordId} {n.Message[(n.Message.IndexOf('(') + 1)..n.Message.IndexOf(')')]}"));
             Assert.Equal(["A27"], Lint.Addressees(s).Select(n => n.RecordId));
             Assert.Empty(Lint.EmptyAbout(s));
+            // Nobody learns a thing twice. One statement tells three people what each was certain of: "He never
+            // posted it", of a fact that joins the writing, the sealing and the not posting.
+            Assert.Empty(Lint.LearnedTwice(s));
+            Assert.Equal(["A28"], Lint.ToldAgain(s).Select(n => n.RecordId));
 
             var output = new StringWriter();
             Assert.Equal(0, Cli.Cli.Run(["lint", "--dir", root], output, new StringWriter()));

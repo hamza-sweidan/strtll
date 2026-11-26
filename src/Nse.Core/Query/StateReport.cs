@@ -2,6 +2,7 @@ using System.Globalization;
 using System.Text;
 using System.Text.Json.Nodes;
 using Nse.Model;
+using Nse.Text;
 
 namespace Nse.Query;
 
@@ -74,6 +75,8 @@ public static class StateReport
                 : s.TruthBefore(q.Prop, key) == true ? "; the case at this point" : "; not the case at this point";
             sb.Append(CultureInfo.InvariantCulture, $"{q.Prop}: {s.Model.Proposition(q.Prop)!.Text} Canon: {canon}{now}.{s.UnconfirmedMark(q.Prop, key)}\n");
         }
+        // One person and one fact: the question is what they have to go on, so the passages are shown.
+        var pair = plan.Holder is not null && q.Prop is not null;
         if (plan.People)
             foreach (var h in plan.Holder is null ? s.Holders : [plan.Holder])
             {
@@ -81,8 +84,12 @@ public static class StateReport
                 var beliefs = s.BeliefsBefore(h, key);
                 var shown = beliefs.Where(kv => q.Prop is null || kv.Key == q.Prop).OrderBy(kv => kv.Key, StringComparer.Ordinal).ToList();
                 foreach (var (p, b) in shown)
+                {
                     // A label is a judgement against the truth; where the truth is unconfirmed, so is the label.
                     sb.Append(CultureInfo.InvariantCulture, $"  {p}  [{s.Classify(b, key)}] {Stand(b.Stance, b.Strength)}: {s.Model.Proposition(p)!.Text}  ({b.Id}{Source(s, b)}{Approved(s, b.Id)}){(b.Stance is Stance.HoldsTrue or Stance.HoldsFalse ? s.UnconfirmedMark(p, key) : "")}\n");
+                    if (pair)
+                        Passages(s, sb, b);
+                }
 
                 // A secret is the author's declaration that someone never learns a thing. It is not a belief
                 // record, so it is said here; otherwise the silence would read as "no record".
@@ -102,6 +109,13 @@ public static class StateReport
                     sb.Append(q.Prop is not null
                         ? $"  {q.Prop}  no record. That is not the same as \"does not know\": nothing has been recorded either way.\n"
                         : $"  no record either way for: {string.Join(", ", silent)}\n");
+                // Asked about one person and one fact, silence at this point is half an answer. The other half
+                // is whether the story has them come by it later, and from what.
+                if (pair && silent.Count > 0 && FirstFrom(s, h, q.Prop!, key) is { } later)
+                {
+                    sb.Append(CultureInfo.InvariantCulture, $"      first recorded later: {Where(s, later.Scene, later.StoryKey)}, story time {later.StoryKey}  [{s.Classify(later)}] {Stand(later.Stance, later.Strength)}  ({later.Id}{Source(s, later)}{Approved(s, later.Id)})\n");
+                    Passages(s, sb, later);
+                }
             }
         if (plan.Reader)
         {
@@ -117,6 +131,9 @@ public static class StateReport
                 var stated = first is null || s.Tell(first) >= tell ? "; truth not yet stated to the reader"
                     : first == d.Scene ? "" : $"; truth first stated in {first}";
                 sb.Append(CultureInfo.InvariantCulture, $"  {p}  [{Names.Of(d.Mode)}, {d.Scene}] {Stand(d.Stance, d.Strength)}: {s.Model.Proposition(p)!.Text}  ({d.Id}{stated}{Approved(s, d.Id)})\n");
+                // The reader and one fact: the words that gave it to them.
+                if (q.Prop is not null && q.ReaderOnly && !d.Unresolved && s.Model.DisclosuresOf(p).FirstOrDefault(x => x.Id == d.Id) is { } given)
+                    sb.Append(Evidence.Of(s, given) is { } passage ? $"      passage: {passage}\n" : "      passage: none cited\n");
             }
         }
         if (plan.World)
@@ -160,6 +177,9 @@ public static class StateReport
             {
                 var view = new BeliefView(b.Id, b.Holder, b.Prop, b.Stance, b.Strength, b.StoryKey, b.Scene, b.Channel, b.Via);
                 sb.Append(CultureInfo.InvariantCulture, $"  {Where(s, b.Scene, b.StoryKey),-22}  story time {b.StoryKey,-7}  [{s.Classify(view)}] {Stand(b.Stance, b.Strength)}  ({b.Id}{Source(s, view)}{Approved(s, b.Id)})\n");
+                // One person's history of one fact: each change with the passage it rests on.
+                if (holder is not null)
+                    Passages(s, sb, view);
             }
             if (changes.Count == 0)
                 sb.Append(s.Sealed(h, prop) is { } secret
@@ -245,6 +265,36 @@ public static class StateReport
             if (key is null || k == key)
                 result[k] = value?.DeepClone();
         return result;
+    }
+
+    /// <summary>The first record a person has on a fact at or after a point in story time: what they come by later, having nothing before.</summary>
+    private static BeliefView? FirstFrom(StoryState s, string holder, string prop, double key) =>
+        s.Model.BeliefsOf(holder, prop).Where(b => b.StoryKey >= key)
+            .OrderBy(b => b.StoryKey).ThenBy(b => b.Id, StringComparer.Ordinal)
+            .Select(b => new BeliefView(b.Id, b.Holder, b.Prop, b.Stance, b.Strength, b.StoryKey, b.Scene, b.Channel, b.Via))
+            .FirstOrDefault();
+
+    /// <summary>
+    /// What one belief rests on, on lines of its own under its row: the words the record quotes, and the event
+    /// or statement it came from with the words that one quotes. A record that cites nothing says so: a claim
+    /// with no passage behind it is worth knowing about too.
+    /// </summary>
+    private static void Passages(StoryState s, StringBuilder sb, BeliefView view)
+    {
+        if (view.Unresolved || s.Model.BeliefsOf(view.Holder, view.Prop).FirstOrDefault(b => b.Id == view.Id) is not { } record)
+            return;
+        if (Evidence.Own(s, record) is { } own)
+            sb.Append(CultureInfo.InvariantCulture, $"      passage: {own}\n");
+        if (record.Via is { } via)
+        {
+            var what = s.Model.Events.TryGetValue(via, out var happened) ? $"event: {Plain.OneLine(happened.Summary)}"
+                : s.Model.Assertions.TryGetValue(via, out var said)
+                    ? $"{Names.Of(said.Type)}: {s.Short(s.Model.Base(said.Speaker))} {(said.Polarity ? "asserts" : "denies")} {said.Prop}{(said.Addressees.Count == 0 ? "" : " to " + string.Join(", ", said.Addressees.Select(s.Short)))}."
+                : "a record that is not in force.";
+            sb.Append(CultureInfo.InvariantCulture, $"      source: {via}, {what} {(Evidence.OfSource(s, via) is { } from ? from.ToString() : "It cites no passage.")}\n");
+        }
+        else if (record.Quote is null)
+            sb.Append(CultureInfo.InvariantCulture, $"      passage: none cited. The record gives how it is known as {Names.Of(record.Channel).Replace('_', ' ')}.\n");
     }
 
     /// <summary>How and where a belief was acquired, and from whom when it came from something said or written.</summary>

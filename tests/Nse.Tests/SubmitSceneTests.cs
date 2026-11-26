@@ -91,6 +91,55 @@ public sealed class SubmitSceneTests : IDisposable
         Assert.DoesNotContain(typeof(ChangeSetDraft).GetProperties(), p => p.Name == "Basis");
     }
 
+    /// <summary>
+    /// The author's records already have Ben sure of where the key was hidden. A scene that has him "come to" the
+    /// same view from another passage taught him something the fact as worded has no room for, and whoever
+    /// recorded it is told so on the spot, with both passages.
+    /// </summary>
+    [Fact]
+    public void A_belief_that_changes_nothing_comes_back_as_a_sign_of_a_fact_that_joins_two_details()
+    {
+        Assert.True(_tiny.Put(new BeliefChange
+        {
+            Id = "b_before", Holder = "ben", Prop = "p_hid", Stance = Stance.HoldsTrue, Strength = Strength.Certain, StoryKey = 15,
+            Channel = Channel.Background,
+        }).Applied);
+        var again = new BeliefChange
+        {
+            Id = "b_again", Holder = "ben", Prop = "p_hid", Stance = Stance.HoldsTrue, Strength = Strength.Certain, StoryKey = 20.1, Scene = "s2",
+            Channel = Channel.TookPart, Via = "e_find",
+        };
+        var result = Submit(_tiny, Manifest(_tiny, "s2"), Finds, again);
+        Assert.True(result.Applied, Codes(result));
+        var note = Assert.Single(result.Notes, n => n.Code == "LEARNED_TWICE");
+        Assert.Equal("b_again", note.RecordId);
+        Assert.Contains("Ben (ben) already takes p_hid as true, certain (b_before: no passage cited), and b_again has them come to it again from \"Ben found the key under the mat\" (s2, manuscript/02-two.md line 4).", note.Message);
+        Assert.Contains("Two details are separate facts when someone could learn them at different times", note.Message);
+        Assert.Contains("LEARNED_TWICE b_again", SubmitReport.Text(result));
+    }
+
+    /// <summary>The same join seen from the statement: Ann tells Ben, in scene 2, what he was already certain of, and nobody records that he learned anything.</summary>
+    [Fact]
+    public void A_statement_that_tells_nobody_anything_new_comes_back_with_the_submission_that_records_it()
+    {
+        using var tiny = new TinyStory(annInSceneTwo: true);
+        Assert.True(tiny.Put(new BeliefChange
+        {
+            Id = "b_before", Holder = "ben", Prop = "p_hid", Stance = Stance.HoldsTrue, Strength = Strength.Certain, StoryKey = 15,
+            Channel = Channel.Background,
+        }).Applied);
+        var tells = new Assertion
+        {
+            Id = "a_tell", Scene = "s2", StoryKey = 20.2, Type = AssertionKind.Dialogue, Speaker = "ann", Addressees = ["ben"], Prop = "p_hid",
+            Quote = "put it in his pocket",
+        };
+        var result = Submit(tiny, Manifest(tiny, "s2"), tells);
+        Assert.True(result.Applied, Codes(result));
+        var note = Assert.Single(result.Notes, n => n.Code == "TOLD_AGAIN");
+        Assert.Equal("a_tell", note.RecordId);
+        Assert.Contains("everyone it is said to was already certain of that: Ben (ben) (b_before: no passage cited)", note.Message);
+    }
+
     /// <summary>A draft missing an intended belief change, and a draft containing an unplanned one, are both reported.</summary>
     [Fact]
     public void A_missing_intended_change_and_an_unplanned_one_are_both_reported()
@@ -98,12 +147,15 @@ public sealed class SubmitSceneTests : IDisposable
         // The author plans that Ben finds the key, pockets it, and works out who hid it.
         Assert.True(_tiny.Put(ContractFor(BenLearns, KeyToPocket)).Applied);
         var context = ContextCompiler.Compile(_tiny.Story.State(), "s2").Text;
-        Assert.Contains("CONTRACT FOR THIS SCENE (c_s2, PROVISIONAL: do not build on this): what it is meant to do", context);
+        Assert.Contains("CONTRACT FOR THIS SCENE (c_s2*): what it is meant to do", context);
         Assert.Contains("  outline: Ben finds the key.", context);
         Assert.Contains("  intends: Ben (ben) comes to take p_hid as true", context);
         Assert.Contains("  intends: the key (key) moves to Ben's pocket (pocket)", context);
         Assert.Contains("  relies on: the key (key) is kept at under the mat (mat). It is so (l_mat).", context);
         Assert.Contains("  relies on: Ben (ben) is unaware of p_hid. NOT BORNE OUT ON ENTRY. Nothing is recorded either way", context);
+        // The plan is written in ids, so the fact it names is put in words with it, once.
+        Assert.Contains("  the facts it names:\n    p_hid: Ann hid the key under the mat. [UNCONFIRMED]\n  Anything else of weight", context);
+        Assert.Equal(2, context.Split("Ann hid the key under the mat.").Length);
 
         // The draft's report leaves the belief change out.
         var missing = Submit(_tiny, Manifest(_tiny, "s2"), Finds, Pockets);
@@ -220,7 +272,7 @@ public sealed class SubmitSceneTests : IDisposable
                 t => Ok(t.Put(new SceneContract { Id = "x8", Scene = "s2", Intends = [KeyToPocket] }))),
             new("the record of where the key is kept is retired", true, "- WORLD ON ENTRY: the key: under the mat (l_mat)",
                 t => Ok(t.Apply(new RetireOp { Id = "l_mat", Reason = "correction" }))),
-            new("the hidden-key fact lapses before the scene", true, "- Ben (point of view): does NOT know",
+            new("the hidden-key fact lapses before the scene", true, "- SO, AND NOBODY IN THIS SCENE HAS ANY RECORD ON IT",
                 t => Ok(t.Put(new FactChange { Id = "x10", Prop = "p_hid", Value = false, StoryKey = 15 }))),
 
             // Unrelated: the ledger moves and the context for scene 2 says what it said.

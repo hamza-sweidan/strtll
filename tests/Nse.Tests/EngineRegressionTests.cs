@@ -188,7 +188,7 @@ public sealed class EngineRegressionTests : IDisposable
         Assert.True(_tiny.Put(new Embargo { Id = "em1", Prop = "p_hid", UntilScene = "s2" }).Applied);
         var context = ContextCompiler.Compile(_tiny.Story.State(), "s1").Text;
         // No scene states it yet, so nothing but the embargo protects it. That is the case when drafting ahead.
-        Assert.Contains("  p_hid: Ann hid the key under the mat. [UNCONFIRMED: rests on provisional p_hid, f_hid] (embargo em1, provisional but keep to it: not before scene 2, s2)", context);
+        Assert.Contains("  p_hid: Ann hid the key under the mat. [UNCONFIRMED] (embargo em1, provisional but keep to it: not before scene 2, s2)", context);
         Assert.DoesNotContain("nothing is being withheld", context);
         Assert.DoesNotContain("embargo em1", ContextCompiler.Compile(_tiny.Story.State(), "s2").Text);
         Assert.Contains("Embargo em1: p_hid is not to be stated to the reader before s2.", ContextCompiler.Brief(_tiny.Story.State()));
@@ -381,8 +381,11 @@ public sealed class EngineRegressionTests : IDisposable
         Assert.Null(gap.LearnsIn);
         Assert.Equal(25.0, gap.LearnsAt);
         var text = ContextCompiler.Compile(s, "s2").Text;
-        Assert.Contains("p_hid: Ann hid the key under the mat. [UNCONFIRMED: rests on provisional p_hid, f_hid] (learns it later, off the page, at story time 25; currently believes the opposite)", text);
+        Assert.Contains("  BELIEVES THE OPPOSITE of what is so, and acts on it:\n    p_hid: Ann hid the key under the mat. [UNCONFIRMED] (learns it later, off the page, at story time 25)", text);
         Assert.DoesNotContain("never learns it", text);
+        // Two contexts are compared by the line in full, as it was always written.
+        Assert.Contains("  p_hid: Ann hid the key under the mat. [UNCONFIRMED: rests on provisional p_hid, f_hid] (learns it later, off the page, at story time 25; currently believes the opposite)",
+            ContextCompiler.Compile(s, "s2").Sections.Single(x => x.Title.StartsWith("Ben (point of view): does NOT know", StringComparison.Ordinal)).Lines);
     }
 
     // ---- 12. Whether a statement was true was judged against whether the fact was ever true, not when it was said.
@@ -505,11 +508,13 @@ public sealed class EngineRegressionTests : IDisposable
         var text = ContextCompiler.Compile(s, "s2").Text;
         var gaps = text.Split("Ben (point of view): does NOT know, and must not say it, be told it or act on it in this scene\n")[1].Split("\n\n")[0];
         Assert.Equal(
-            "  p_hid: Ann hid the key under the mat. [UNCONFIRMED: rests on provisional p_hid, f_hid] (recorded as undecided; treat as not knowing)\n" +
-            "  p_tie: The door is locked. [NOT SETTLED whether this is so by the end of the scene: fact changes fa and fb share a story time and disagree] [UNCONFIRMED: rests on provisional p_tie, fa, fb] (holds a view, but whether the fact is so is not settled, so the view cannot be judged; treat as not knowing)",
+            "  NOT SETTLED what they make of it:\n" +
+            "    p_hid: Ann hid the key under the mat. [UNCONFIRMED] (recorded as undecided; treat as not knowing)\n" +
+            "    p_tie: The door is locked. [NOT SETTLED whether this is so by the end of the scene: fact changes fa and fb share a story time and disagree] [UNCONFIRMED] (holds a view, but whether the fact is so is not settled, so the view cannot be judged; treat as not knowing)",
             gaps);
-        Assert.DoesNotContain("nothing recorded either way", gaps);
-        Assert.Contains("p_tie [ORDER NOT ESTABLISHED] takes it as true, believes", text);
+        Assert.DoesNotContain("NO RECORD", gaps);
+        // Worded above, where it is not settled, so here it is named: the view he holds, under the label it earns.
+        Assert.Contains("  [ORDER NOT ESTABLISHED] takes it as true, believes:\n    p_tie*", text);
     }
 
     /// <summary>An outsider who took the secret fact as true after it had stopped being so was let in.</summary>
@@ -583,17 +588,127 @@ public sealed class EngineRegressionTests : IDisposable
     }
 
     [Fact]
-    public void A_cast_member_with_no_belief_records_still_gets_a_does_not_know_section()
+    public void A_cast_member_with_no_belief_records_is_still_named_and_comes_under_the_rule_about_silence()
     {
         AddThirdScene("ann", "cara", "mat");
         var s = _tiny.Story.State();
         Assert.Equal(["ann", "cara"], s.CastHolders("s3").Select(c => c.Person));
         var text = ContextCompiler.Compile(s, "s3").Text;
         Assert.Contains("\nCast: Ann (ann, point of view); Cara (cara, no belief records); under the mat (mat, not a person, so nothing is tracked for it).\n", text);
-        var cara = text.Split("Cara: does NOT know, and must not say it, be told it or act on it in this scene\n")[1].Split("\n\n")[0];
-        // Nothing in this small story has been ratified, so the fact itself is marked as unconfirmed.
-        Assert.Equal("  p_hid: Ann hid the key under the mat. [UNCONFIRMED: rests on provisional p_hid, f_hid] (nothing recorded either way; treat as not knowing)", cara);
+        // She has no record on anything, and the story shows nothing of what she does not know. That is silence,
+        // which is said once for everyone, so there is no list of it under her name; she is still there.
+        Assert.Contains("  Not listed means NO RECORD: where a fact is not under someone's name, nothing has been recorded either way.", text);
+        Assert.DoesNotContain("Cara: does NOT know", text);
         Assert.Contains("Cara: beliefs on entry\n  no recorded beliefs yet", text);
+        // The guarded fact is under the name of the one who has it. Nothing in this small story has been ratified,
+        // so it is marked as unconfirmed.
+        Assert.Contains("Ann (point of view): beliefs on entry\n  [knows] takes it as true, certain:\n    p_hid: Ann hid the key under the mat. [UNCONFIRMED] (b_ann*)", text);
+        Assert.Contains("  A fact that is not under someone's name: no record either way.", text);
+    }
+
+    [Fact]
+    public void A_fact_in_play_that_nobody_present_has_a_record_on_is_said_once_as_the_authors_alone()
+    {
+        static string ThirdSceneThroughCara(TinyStory tiny, params string[] cast)
+        {
+            File.WriteAllText(Path.Combine(tiny.Story.ManuscriptDir, "03-three.md"), "<!-- scene: s3 -->\n# Three\n\nCara waited in the hall.\n");
+            Assert.True(tiny.Put(
+                new Entity { Id = "cara", Type = EntityKind.Character, Name = "Cara" },
+                new SceneRecord { Id = "s3", Pov = "cara", Cast = cast }, new SceneTime { Id = "t3", Scene = "s3", StoryKey = 30 }).Applied);
+            return ContextCompiler.Compile(tiny.Story.State(), "s3").Text;
+        }
+
+        // Cara is alone in a scene, and knows nothing of the key. The fact is still so, and a draft has to be
+        // shown it to keep from contradicting it.
+        var text = ThirdSceneThroughCara(_tiny, "cara");
+        Assert.Contains(
+            "SO, AND NOBODY IN THIS SCENE HAS ANY RECORD ON IT (the author's alone: nobody here says it or acts on it, and nothing in the scene may contradict it)\n"
+            + "  p_hid: Ann hid the key under the mat. [UNCONFIRMED]\n", text);
+        Assert.DoesNotContain("Cara (point of view): does NOT know", text);
+
+        // With Ann there too, it is under her name, and Cara, through whom the scene is told, is named as having nothing on it.
+        using var two = new TinyStory();
+        var both = ThirdSceneThroughCara(two, "cara", "ann");
+        Assert.DoesNotContain("SO, AND NOBODY IN THIS SCENE", both);
+        Assert.Contains(
+            "Cara (point of view): does NOT know, and must not say it, be told it or act on it in this scene\n"
+            + "  NO RECORD EITHER WAY, where someone else here holds a view. Nothing says they have it, so they do not say it or act on it:\n"
+            + "    p_hid\n", both);
+        Assert.Contains("  Not known to Cara, so not said, told or acted on: p_hid\n", both);
+    }
+
+    /// <summary>A scene that is still to be written is a marker with nothing under it, and its context says that and not a span of lines that runs backwards.</summary>
+    [Fact]
+    public void A_scene_with_no_text_yet_is_pointed_at_by_its_marker()
+    {
+        File.WriteAllText(Path.Combine(_tiny.Story.ManuscriptDir, "03-three.md"), "<!-- scene: s3 -->\n");
+        Assert.True(_tiny.Put(new SceneRecord { Id = "s3", Pov = "ann", Cast = ["ann"] }, new SceneTime { Id = "t3", Scene = "s3", StoryKey = 30 }).Applied);
+        var text = ContextCompiler.Compile(_tiny.Story.State(), "s3").Text;
+        Assert.Contains("  manuscript/03-three.md: this scene has no text yet. It goes under its marker, which is on line 1\n", text);
+        Assert.Contains("  manuscript/02-two.md lines 2-4: the scene before it in the telling (s2)", text);
+        Assert.DoesNotMatch(@"lines (\d+)-0\b", text);
+    }
+
+    /// <summary>
+    /// A fact nobody present has a record on, which is about somebody elsewhere, is the least likely to be
+    /// contradicted by the scene. It has a part of its own, the last to be taken: in a story of threads that
+    /// never meet, such facts are most of the story's, and they are what is left out, by name, when the budget is short.
+    /// </summary>
+    [Fact]
+    public void A_fact_with_no_record_here_that_is_about_someone_elsewhere_is_the_first_thing_left_out()
+    {
+        File.WriteAllText(Path.Combine(_tiny.Story.ManuscriptDir, "03-three.md"), "<!-- scene: s3 -->\n# Three\n\nCara waited in the hall.\n");
+        Assert.True(_tiny.Put(
+            new Entity { Id = "cara", Type = EntityKind.Character, Name = "Cara" },
+            new SceneRecord { Id = "s3", Pov = "cara", Cast = ["cara"], Place = "mat" }, new SceneTime { Id = "t3", Scene = "s3", StoryKey = 30 },
+            new Proposition { Id = "p_ann_debt", Text = "Ann owes Ben money.", About = ["ann", "ben"] },
+            new FactChange { Id = "f_debt", Prop = "p_ann_debt", Value = true, StoryKey = 5 },
+            new Proposition { Id = "p_cara_kin", Text = "Cara is Ann's sister.", About = ["cara", "ann"] },
+            new FactChange { Id = "f_kin", Prop = "p_cara_kin", Value = true },
+            new Proposition { Id = "p_loose", Text = "The mat hides a loose board.", About = ["mat"] },
+            new FactChange { Id = "f_loose", Prop = "p_loose", Value = true }).Applied);
+        // A few more about people elsewhere, so that the part is worth more than the line that names it when it is left out.
+        Assert.True(_tiny.Put(Enumerable.Range(1, 6).SelectMany(n => new LedgerRecord[]
+        {
+            new Proposition { Id = $"p_far{n}", Text = $"Ben keeps the spare key number {n} in a place only Ann has seen.", About = ["ben", "ann"] },
+            new FactChange { Id = $"f_far{n}", Prop = $"p_far{n}", Value = true },
+        }).ToArray()).Applied);
+        var whole = ContextCompiler.Compile(_tiny.Story.State(), "s3");
+        Assert.Empty(whole.Omitted);
+        // About her, about the place she is in, or about nobody in particular: those touch the scene.
+        Assert.Contains(
+            "SO, AND NOBODY IN THIS SCENE HAS ANY RECORD ON IT (the author's alone: nobody here says it or acts on it, and nothing in the scene may contradict it)\n"
+            + "  p_hid: Ann hid the key under the mat. [UNCONFIRMED]\n"
+            + "  p_cara_kin: Cara is Ann's sister. [UNCONFIRMED]\n"
+            + "  p_loose: The mat hides a loose board. [UNCONFIRMED]\n\n", whole.Text);
+        Assert.Contains("ALSO SO, WITH NO RECORD HERE, AND ABOUT NOBODY AND NOTHING IN THIS SCENE (the author's alone)\n  p_ann_debt: Ann owes Ben money. [UNCONFIRMED]\n  p_far1: ", whole.Text);
+
+        var tight = ContextCompiler.Compile(_tiny.Story.State(), "s3", whole.EstimatedTokens - 5);
+        Assert.Equal("ALSO SO, WITH NO RECORD HERE, AND ABOUT NOBODY AND NOTHING IN THIS SCENE (the author's alone)", Assert.Single(tight.Omitted).Split(" (~")[0]);
+        Assert.Contains("  p_cara_kin: Cara is Ann's sister.", tight.Text);
+        Assert.DoesNotContain("Ann owes Ben money.", tight.Text);
+        // What is left out of the text is still part of what the context stands for.
+        Assert.Equal(whole.ManifestId, tight.ManifestId);
+
+        // Over by a little, the least is given up: the smallest part whose absence is enough, not the last one.
+        // Here Ann is in the room and holds a view on each of twenty facts, and the reader has a hint of each. The
+        // reader's part comes last, and a smaller one is enough.
+        using var crowded = new TinyStory(annInSceneTwo: true);
+        Assert.True(crowded.Put(Enumerable.Range(1, 20).SelectMany(n => new LedgerRecord[]
+        {
+            new Proposition { Id = $"p_n{n}", Text = $"The house has a room numbered {n} that only Ann has ever been inside.", About = ["ann"] },
+            new FactChange { Id = $"f_n{n}", Prop = $"p_n{n}", Value = true },
+            new BeliefChange { Id = $"b_n{n}", Holder = "ann", Prop = $"p_n{n}", Stance = Stance.HoldsTrue, Strength = Strength.Certain, StoryKey = 1, Channel = Channel.Background },
+            new Disclosure { Id = $"d_n{n}", Scene = "s1", Prop = $"p_n{n}", Mode = DisclosureMode.Implied, ReaderStance = Stance.HoldsTrue, Strength = Strength.Suspects },
+        }).ToArray()).Applied);
+        var all = ContextCompiler.Compile(crowded.Story.State(), "s2");
+        Assert.Empty(all.Omitted);
+        var less = ContextCompiler.Compile(crowded.Story.State(), "s2", all.EstimatedTokens - 5);
+        Assert.StartsWith("SINCE EACH PERSON WAS LAST ON STAGE", Assert.Single(less.Omitted));
+        Assert.Contains("THE READER ON ENTRY (in reading order)\n", less.Text);
+        Assert.Contains("Ann: beliefs on entry\n", less.Text);
+        Assert.Contains("    p_n1: The house has a room numbered 1 that only Ann has ever been inside.", less.Text);
+        Assert.True(less.EstimatedTokens <= less.Budget);
     }
 
     [Fact]
