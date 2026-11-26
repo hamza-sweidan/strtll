@@ -1,0 +1,6 @@
+# The index is rebuilt from ledger/ and manuscript/ and is never the truth.
+.nse/
+# Held while a change set is being appended. It stays in place and is not part of the story.
+ledger/.lock
+# What a session was in the middle of: working notes, local to this machine and not part of the story.
+work/tasks/

@@ -1,0 +1,259 @@
+{
+ "format": 1,
+ "seq": 11,
+ "id": "cs_de9731351c",
+ "parent": "d1fb2c9a6bcf109fd39c82c93a0b106fee3bcd6cd668b420506f57391741d1aa",
+ "actor": "import:harbour-letter",
+ "note": "Scene 7, The Kitchen",
+ "manuscript": "d22347c950696d67bf251bdcd2a94ed3eba53fc87cab65e33fc2d4297ab1c9b7",
+ "ops": [
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bd07",
+    "holder": "ch_daniel",
+    "prop": "P08",
+    "stance": "holds_true",
+    "strength": "certain",
+    "story_key": 45.1,
+    "scene": "sc_07",
+    "channel": "witnessed",
+    "via": "E07a",
+    "directness": "stated",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bd08",
+    "holder": "ch_daniel",
+    "prop": "P09",
+    "stance": "holds_true",
+    "strength": "certain",
+    "story_key": 45.1,
+    "scene": "sc_07",
+    "channel": "witnessed",
+    "via": "E07a",
+    "directness": "stated",
+    "quote": "Mr Jonas Pike",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bd09",
+    "holder": "ch_daniel",
+    "prop": "P11",
+    "stance": "holds_true",
+    "strength": "believes",
+    "story_key": 45.1,
+    "scene": "sc_07",
+    "channel": "told",
+    "via": "A11",
+    "directness": "stated",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bd10",
+    "holder": "ch_daniel",
+    "prop": "P13",
+    "stance": "holds_true",
+    "strength": "believes",
+    "story_key": 45.1,
+    "scene": "sc_07",
+    "channel": "told",
+    "via": "A12",
+    "directness": "stated",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bd11",
+    "holder": "ch_daniel",
+    "prop": "P18",
+    "stance": "holds_true",
+    "strength": "believes",
+    "story_key": 45.2,
+    "scene": "sc_07",
+    "channel": "inferred",
+    "via": "E07b",
+    "directness": "stated",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bd12",
+    "holder": "ch_daniel",
+    "prop": "P19",
+    "stance": "holds_true",
+    "strength": "believes",
+    "story_key": 45.2,
+    "scene": "sc_07",
+    "channel": "inferred",
+    "via": "E07b",
+    "directness": "stated",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bd26",
+    "holder": "ch_daniel",
+    "prop": "P27",
+    "stance": "holds_true",
+    "strength": "suspects",
+    "story_key": 45.3,
+    "scene": "sc_07",
+    "channel": "inferred",
+    "via": "E07b",
+    "directness": "stated",
+    "quote": "Do you not see that those might be one thing?",
+    "origin": "import",
+    "note": "The scene has him say it, so he does not first learn it in scene 10."
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bd28",
+    "holder": "ch_daniel",
+    "prop": "P07",
+    "stance": "unaware",
+    "story_key": 45.1,
+    "scene": "sc_07",
+    "channel": "explicit",
+    "directness": "stated",
+    "quote": "He was sure he had never heard it.",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bs22",
+    "holder": "ch_sarah",
+    "prop": "P31",
+    "stance": "holds_true",
+    "strength": "certain",
+    "story_key": 45.2,
+    "scene": "sc_07",
+    "channel": "told",
+    "via": "A13",
+    "directness": "entailed",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "disclosure",
+    "id": "D27",
+    "scene": "sc_07",
+    "prop": "P09",
+    "mode": "stated",
+    "reader_stance": "holds_true",
+    "strength": "certain",
+    "quote": "Mr Jonas Pike",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "disclosure",
+    "id": "D28",
+    "scene": "sc_07",
+    "prop": "P18",
+    "mode": "focalized",
+    "reader_stance": "undecided",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "disclosure",
+    "id": "D29",
+    "scene": "sc_07",
+    "prop": "P31",
+    "mode": "stated",
+    "reader_stance": "holds_true",
+    "strength": "certain",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "disclosure",
+    "id": "D30",
+    "scene": "sc_07",
+    "prop": "P15",
+    "mode": "inferable",
+    "reader_stance": "holds_true",
+    "strength": "suspects",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "disclosure",
+    "id": "D31",
+    "scene": "sc_07",
+    "prop": "P21",
+    "mode": "inferable",
+    "reader_stance": "holds_false",
+    "strength": "believes",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "disclosure",
+    "id": "D47",
+    "scene": "sc_07",
+    "prop": "P34",
+    "mode": "inferable",
+    "reader_stance": "holds_true",
+    "strength": "suspects",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  }
+ ]
+}

@@ -1,0 +1,1796 @@
+{
+ "swap": [
+  "sc_03",
+  "sc_04"
+ ],
+ "telling": [
+  "sc_01",
+  "sc_02",
+  "sc_04",
+  "sc_03",
+  "sc_05",
+  "sc_06",
+  "sc_07",
+  "sc_08",
+  "sc_09",
+  "sc_10",
+  "sc_11",
+  "sc_12"
+ ],
+ "reveal_scene": {
+  "P01": "sc_01",
+  "P02": "sc_01",
+  "P03": "sc_05",
+  "P04": "sc_05",
+  "P05": "sc_05",
+  "P06": "sc_05",
+  "P07": "sc_10",
+  "P08": "sc_02",
+  "P09": "sc_07",
+  "P10": "sc_08",
+  "P11": "sc_02",
+  "P12": "sc_08",
+  "P13": "sc_02",
+  "P14": "sc_12",
+  "P15": "sc_11",
+  "P16": "sc_05",
+  "P17": "sc_04",
+  "P18": "sc_08",
+  "P19": null,
+  "P20": null,
+  "P21": "sc_09",
+  "P22": "sc_04",
+  "P23": "sc_06",
+  "P24": "sc_11",
+  "P25": "sc_01",
+  "P26": "sc_01",
+  "P27": "sc_06",
+  "P28": "sc_11",
+  "P29": "sc_02",
+  "P30": "sc_01",
+  "P31": "sc_07",
+  "P32": "sc_01",
+  "P33": "sc_05",
+  "P34": "sc_10",
+  "P35": "sc_08",
+  "P36": "sc_08"
+ },
+ "reader": {
+  "sc_01": {},
+  "sc_02": {
+   "P01": {
+    "id": "D01",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P02": {
+    "id": "D02",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P03": {
+    "id": "D04",
+    "mode": "focalized",
+    "stance": "holds_true",
+    "strength": "suspects"
+   },
+   "P04": {
+    "id": "D03",
+    "mode": "asserted_by_character",
+    "stance": "undecided"
+   },
+   "P25": {
+    "id": "D05",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P26": {
+    "id": "D06",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P30": {
+    "id": "D08",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P32": {
+    "id": "D07",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   }
+  },
+  "sc_04": {
+   "P01": {
+    "id": "D01",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P02": {
+    "id": "D02",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P03": {
+    "id": "D04",
+    "mode": "focalized",
+    "stance": "holds_true",
+    "strength": "suspects"
+   },
+   "P04": {
+    "id": "D03",
+    "mode": "asserted_by_character",
+    "stance": "undecided"
+   },
+   "P08": {
+    "id": "D09",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P11": {
+    "id": "D10",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P13": {
+    "id": "D11",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P25": {
+    "id": "D05",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P26": {
+    "id": "D06",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P29": {
+    "id": "D12",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P30": {
+    "id": "D08",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P32": {
+    "id": "D07",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   }
+  },
+  "sc_03": {
+   "P01": {
+    "id": "D01",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P02": {
+    "id": "D02",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P03": {
+    "id": "D04",
+    "mode": "focalized",
+    "stance": "holds_true",
+    "strength": "suspects"
+   },
+   "P04": {
+    "id": "D03",
+    "mode": "asserted_by_character",
+    "stance": "undecided"
+   },
+   "P08": {
+    "id": "D09",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P11": {
+    "id": "D10",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P13": {
+    "id": "D11",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P17": {
+    "id": "D15",
+    "mode": "stated",
+    "stance": "holds_false",
+    "strength": "certain"
+   },
+   "P22": {
+    "id": "D14",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P25": {
+    "id": "D05",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P26": {
+    "id": "D06",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P29": {
+    "id": "D12",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P30": {
+    "id": "D08",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P32": {
+    "id": "D07",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   }
+  },
+  "sc_05": {
+   "P01": {
+    "id": "D01",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P02": {
+    "id": "D02",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P03": {
+    "id": "D04",
+    "mode": "focalized",
+    "stance": "holds_true",
+    "strength": "suspects"
+   },
+   "P04": {
+    "id": "D03",
+    "mode": "asserted_by_character",
+    "stance": "undecided"
+   },
+   "P08": {
+    "id": "D09",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P11": {
+    "id": "D10",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P12": {
+    "id": "D13",
+    "mode": "asserted_by_character",
+    "stance": "holds_false",
+    "strength": "suspects"
+   },
+   "P13": {
+    "id": "D11",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P17": {
+    "id": "D15",
+    "mode": "stated",
+    "stance": "holds_false",
+    "strength": "certain"
+   },
+   "P22": {
+    "id": "D14",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P25": {
+    "id": "D05",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P26": {
+    "id": "D06",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P29": {
+    "id": "D12",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P30": {
+    "id": "D08",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P32": {
+    "id": "D07",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   }
+  },
+  "sc_06": {
+   "P01": {
+    "id": "D01",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P02": {
+    "id": "D02",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P03": {
+    "id": "D19",
+    "mode": "stated",
+    "stance": "holds_false",
+    "strength": "certain"
+   },
+   "P04": {
+    "id": "D17",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P05": {
+    "id": "D16",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P06": {
+    "id": "D18",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P08": {
+    "id": "D09",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P11": {
+    "id": "D10",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P12": {
+    "id": "D13",
+    "mode": "asserted_by_character",
+    "stance": "holds_false",
+    "strength": "suspects"
+   },
+   "P13": {
+    "id": "D11",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P16": {
+    "id": "D20",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P17": {
+    "id": "D22",
+    "mode": "stated",
+    "stance": "holds_false",
+    "strength": "certain"
+   },
+   "P21": {
+    "id": "D23",
+    "mode": "focalized",
+    "stance": "holds_false",
+    "strength": "suspects"
+   },
+   "P22": {
+    "id": "D14",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P25": {
+    "id": "D05",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P26": {
+    "id": "D06",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P29": {
+    "id": "D12",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P30": {
+    "id": "D08",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P32": {
+    "id": "D07",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P33": {
+    "id": "D21",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "believes"
+   }
+  },
+  "sc_07": {
+   "P01": {
+    "id": "D01",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P02": {
+    "id": "D02",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P03": {
+    "id": "D19",
+    "mode": "stated",
+    "stance": "holds_false",
+    "strength": "certain"
+   },
+   "P04": {
+    "id": "D17",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P05": {
+    "id": "D16",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P06": {
+    "id": "D18",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P08": {
+    "id": "D09",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P11": {
+    "id": "D10",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P12": {
+    "id": "D13",
+    "mode": "asserted_by_character",
+    "stance": "holds_false",
+    "strength": "suspects"
+   },
+   "P13": {
+    "id": "D11",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P16": {
+    "id": "D20",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P17": {
+    "id": "D22",
+    "mode": "stated",
+    "stance": "holds_false",
+    "strength": "certain"
+   },
+   "P19": {
+    "id": "D25",
+    "mode": "focalized",
+    "stance": "undecided"
+   },
+   "P21": {
+    "id": "D23",
+    "mode": "focalized",
+    "stance": "holds_false",
+    "strength": "suspects"
+   },
+   "P22": {
+    "id": "D14",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P23": {
+    "id": "D24",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P25": {
+    "id": "D05",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P26": {
+    "id": "D06",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P27": {
+    "id": "D26",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "believes"
+   },
+   "P29": {
+    "id": "D12",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P30": {
+    "id": "D08",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P32": {
+    "id": "D07",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P33": {
+    "id": "D21",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "believes"
+   }
+  },
+  "sc_08": {
+   "P01": {
+    "id": "D01",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P02": {
+    "id": "D02",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P03": {
+    "id": "D19",
+    "mode": "stated",
+    "stance": "holds_false",
+    "strength": "certain"
+   },
+   "P04": {
+    "id": "D17",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P05": {
+    "id": "D16",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P06": {
+    "id": "D18",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P08": {
+    "id": "D09",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P09": {
+    "id": "D27",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P11": {
+    "id": "D10",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P12": {
+    "id": "D13",
+    "mode": "asserted_by_character",
+    "stance": "holds_false",
+    "strength": "suspects"
+   },
+   "P13": {
+    "id": "D11",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P15": {
+    "id": "D30",
+    "mode": "inferable",
+    "stance": "holds_true",
+    "strength": "suspects"
+   },
+   "P16": {
+    "id": "D20",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P17": {
+    "id": "D22",
+    "mode": "stated",
+    "stance": "holds_false",
+    "strength": "certain"
+   },
+   "P18": {
+    "id": "D28",
+    "mode": "focalized",
+    "stance": "undecided"
+   },
+   "P19": {
+    "id": "D25",
+    "mode": "focalized",
+    "stance": "undecided"
+   },
+   "P21": {
+    "id": "D31",
+    "mode": "inferable",
+    "stance": "holds_false",
+    "strength": "believes"
+   },
+   "P22": {
+    "id": "D14",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P23": {
+    "id": "D24",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P25": {
+    "id": "D05",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P26": {
+    "id": "D06",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P27": {
+    "id": "D26",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "believes"
+   },
+   "P29": {
+    "id": "D12",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P30": {
+    "id": "D08",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P31": {
+    "id": "D29",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P32": {
+    "id": "D07",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P33": {
+    "id": "D21",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "believes"
+   },
+   "P34": {
+    "id": "D47",
+    "mode": "inferable",
+    "stance": "holds_true",
+    "strength": "suspects"
+   }
+  },
+  "sc_09": {
+   "P01": {
+    "id": "D01",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P02": {
+    "id": "D02",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P03": {
+    "id": "D19",
+    "mode": "stated",
+    "stance": "holds_false",
+    "strength": "certain"
+   },
+   "P04": {
+    "id": "D17",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P05": {
+    "id": "D16",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P06": {
+    "id": "D18",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P08": {
+    "id": "D09",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P09": {
+    "id": "D27",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P10": {
+    "id": "D32",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P11": {
+    "id": "D10",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P12": {
+    "id": "D33",
+    "mode": "stated",
+    "stance": "holds_false",
+    "strength": "certain"
+   },
+   "P13": {
+    "id": "D11",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P15": {
+    "id": "D30",
+    "mode": "inferable",
+    "stance": "holds_true",
+    "strength": "suspects"
+   },
+   "P16": {
+    "id": "D20",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P17": {
+    "id": "D22",
+    "mode": "stated",
+    "stance": "holds_false",
+    "strength": "certain"
+   },
+   "P18": {
+    "id": "D34",
+    "mode": "stated",
+    "stance": "holds_false",
+    "strength": "certain"
+   },
+   "P19": {
+    "id": "D36",
+    "mode": "posed",
+    "stance": "undecided"
+   },
+   "P20": {
+    "id": "D35",
+    "mode": "posed",
+    "stance": "undecided"
+   },
+   "P21": {
+    "id": "D31",
+    "mode": "inferable",
+    "stance": "holds_false",
+    "strength": "believes"
+   },
+   "P22": {
+    "id": "D14",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P23": {
+    "id": "D24",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P25": {
+    "id": "D05",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P26": {
+    "id": "D06",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P27": {
+    "id": "D26",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "believes"
+   },
+   "P29": {
+    "id": "D12",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P30": {
+    "id": "D08",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P31": {
+    "id": "D29",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P32": {
+    "id": "D07",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P33": {
+    "id": "D21",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "believes"
+   },
+   "P34": {
+    "id": "D47",
+    "mode": "inferable",
+    "stance": "holds_true",
+    "strength": "suspects"
+   },
+   "P35": {
+    "id": "D44",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P36": {
+    "id": "D45",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   }
+  },
+  "sc_10": {
+   "P01": {
+    "id": "D01",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P02": {
+    "id": "D02",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P03": {
+    "id": "D19",
+    "mode": "stated",
+    "stance": "holds_false",
+    "strength": "certain"
+   },
+   "P04": {
+    "id": "D17",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P05": {
+    "id": "D16",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P06": {
+    "id": "D18",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P08": {
+    "id": "D09",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P09": {
+    "id": "D27",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P10": {
+    "id": "D32",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P11": {
+    "id": "D10",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P12": {
+    "id": "D33",
+    "mode": "stated",
+    "stance": "holds_false",
+    "strength": "certain"
+   },
+   "P13": {
+    "id": "D11",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P15": {
+    "id": "D30",
+    "mode": "inferable",
+    "stance": "holds_true",
+    "strength": "suspects"
+   },
+   "P16": {
+    "id": "D20",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P17": {
+    "id": "D22",
+    "mode": "stated",
+    "stance": "holds_false",
+    "strength": "certain"
+   },
+   "P18": {
+    "id": "D34",
+    "mode": "stated",
+    "stance": "holds_false",
+    "strength": "certain"
+   },
+   "P19": {
+    "id": "D36",
+    "mode": "posed",
+    "stance": "undecided"
+   },
+   "P20": {
+    "id": "D35",
+    "mode": "posed",
+    "stance": "undecided"
+   },
+   "P21": {
+    "id": "D37",
+    "mode": "stated",
+    "stance": "holds_false",
+    "strength": "certain"
+   },
+   "P22": {
+    "id": "D14",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P23": {
+    "id": "D24",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P25": {
+    "id": "D05",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P26": {
+    "id": "D06",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P27": {
+    "id": "D26",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "believes"
+   },
+   "P29": {
+    "id": "D12",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P30": {
+    "id": "D08",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P31": {
+    "id": "D29",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P32": {
+    "id": "D07",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P33": {
+    "id": "D21",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "believes"
+   },
+   "P34": {
+    "id": "D47",
+    "mode": "inferable",
+    "stance": "holds_true",
+    "strength": "suspects"
+   },
+   "P35": {
+    "id": "D44",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P36": {
+    "id": "D45",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   }
+  },
+  "sc_11": {
+   "P01": {
+    "id": "D01",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P02": {
+    "id": "D02",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P03": {
+    "id": "D19",
+    "mode": "stated",
+    "stance": "holds_false",
+    "strength": "certain"
+   },
+   "P04": {
+    "id": "D17",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P05": {
+    "id": "D16",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P06": {
+    "id": "D18",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P07": {
+    "id": "D39",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P08": {
+    "id": "D09",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P09": {
+    "id": "D27",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P10": {
+    "id": "D32",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P11": {
+    "id": "D10",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P12": {
+    "id": "D33",
+    "mode": "stated",
+    "stance": "holds_false",
+    "strength": "certain"
+   },
+   "P13": {
+    "id": "D11",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P15": {
+    "id": "D30",
+    "mode": "inferable",
+    "stance": "holds_true",
+    "strength": "suspects"
+   },
+   "P16": {
+    "id": "D20",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P17": {
+    "id": "D22",
+    "mode": "stated",
+    "stance": "holds_false",
+    "strength": "certain"
+   },
+   "P18": {
+    "id": "D34",
+    "mode": "stated",
+    "stance": "holds_false",
+    "strength": "certain"
+   },
+   "P19": {
+    "id": "D36",
+    "mode": "posed",
+    "stance": "undecided"
+   },
+   "P20": {
+    "id": "D35",
+    "mode": "posed",
+    "stance": "undecided"
+   },
+   "P21": {
+    "id": "D37",
+    "mode": "stated",
+    "stance": "holds_false",
+    "strength": "certain"
+   },
+   "P22": {
+    "id": "D14",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P23": {
+    "id": "D24",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P25": {
+    "id": "D05",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P26": {
+    "id": "D06",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P27": {
+    "id": "D38",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P29": {
+    "id": "D12",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P30": {
+    "id": "D08",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P31": {
+    "id": "D29",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P32": {
+    "id": "D07",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P33": {
+    "id": "D48",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P34": {
+    "id": "D46",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P35": {
+    "id": "D44",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P36": {
+    "id": "D45",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   }
+  },
+  "sc_12": {
+   "P01": {
+    "id": "D01",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P02": {
+    "id": "D02",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P03": {
+    "id": "D19",
+    "mode": "stated",
+    "stance": "holds_false",
+    "strength": "certain"
+   },
+   "P04": {
+    "id": "D17",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P05": {
+    "id": "D16",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P06": {
+    "id": "D18",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P07": {
+    "id": "D39",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P08": {
+    "id": "D09",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P09": {
+    "id": "D27",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P10": {
+    "id": "D32",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P11": {
+    "id": "D10",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P12": {
+    "id": "D33",
+    "mode": "stated",
+    "stance": "holds_false",
+    "strength": "certain"
+   },
+   "P13": {
+    "id": "D11",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P15": {
+    "id": "D40",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P16": {
+    "id": "D20",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P17": {
+    "id": "D22",
+    "mode": "stated",
+    "stance": "holds_false",
+    "strength": "certain"
+   },
+   "P18": {
+    "id": "D34",
+    "mode": "stated",
+    "stance": "holds_false",
+    "strength": "certain"
+   },
+   "P19": {
+    "id": "D36",
+    "mode": "posed",
+    "stance": "undecided"
+   },
+   "P20": {
+    "id": "D35",
+    "mode": "posed",
+    "stance": "undecided"
+   },
+   "P21": {
+    "id": "D37",
+    "mode": "stated",
+    "stance": "holds_false",
+    "strength": "certain"
+   },
+   "P22": {
+    "id": "D14",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P23": {
+    "id": "D24",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P24": {
+    "id": "D42",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P25": {
+    "id": "D05",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P26": {
+    "id": "D06",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P27": {
+    "id": "D38",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P28": {
+    "id": "D41",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P29": {
+    "id": "D12",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P30": {
+    "id": "D08",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P31": {
+    "id": "D29",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P32": {
+    "id": "D07",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P33": {
+    "id": "D48",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P34": {
+    "id": "D46",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P35": {
+    "id": "D44",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P36": {
+    "id": "D45",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   }
+  },
+  "end": {
+   "P01": {
+    "id": "D01",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P02": {
+    "id": "D02",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P03": {
+    "id": "D19",
+    "mode": "stated",
+    "stance": "holds_false",
+    "strength": "certain"
+   },
+   "P04": {
+    "id": "D17",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P05": {
+    "id": "D16",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P06": {
+    "id": "D18",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P07": {
+    "id": "D39",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P08": {
+    "id": "D09",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P09": {
+    "id": "D27",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P10": {
+    "id": "D32",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P11": {
+    "id": "D10",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P12": {
+    "id": "D33",
+    "mode": "stated",
+    "stance": "holds_false",
+    "strength": "certain"
+   },
+   "P13": {
+    "id": "D11",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P14": {
+    "id": "D43",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P15": {
+    "id": "D40",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P16": {
+    "id": "D20",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P17": {
+    "id": "D22",
+    "mode": "stated",
+    "stance": "holds_false",
+    "strength": "certain"
+   },
+   "P18": {
+    "id": "D34",
+    "mode": "stated",
+    "stance": "holds_false",
+    "strength": "certain"
+   },
+   "P19": {
+    "id": "D36",
+    "mode": "posed",
+    "stance": "undecided"
+   },
+   "P20": {
+    "id": "D35",
+    "mode": "posed",
+    "stance": "undecided"
+   },
+   "P21": {
+    "id": "D37",
+    "mode": "stated",
+    "stance": "holds_false",
+    "strength": "certain"
+   },
+   "P22": {
+    "id": "D14",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P23": {
+    "id": "D24",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P24": {
+    "id": "D42",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P25": {
+    "id": "D05",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P26": {
+    "id": "D06",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P27": {
+    "id": "D38",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P28": {
+    "id": "D41",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P29": {
+    "id": "D12",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P30": {
+    "id": "D08",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P31": {
+    "id": "D29",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P32": {
+    "id": "D07",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P33": {
+    "id": "D48",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P34": {
+    "id": "D46",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P35": {
+    "id": "D44",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   },
+   "P36": {
+    "id": "D45",
+    "mode": "stated",
+    "stance": "holds_true",
+    "strength": "certain"
+   }
+  }
+ }
+}

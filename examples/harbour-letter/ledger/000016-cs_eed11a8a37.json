@@ -1,0 +1,459 @@
+{
+ "format": 1,
+ "seq": 16,
+ "id": "cs_eed11a8a37",
+ "parent": "732dd6f113cf1fd4a6945ec2d3aaf8df5ea6e66ee62bb3fa7153ec031965aa85",
+ "actor": "import:harbour-letter",
+ "note": "Scene 12, Opened",
+ "manuscript": "d22347c950696d67bf251bdcd2a94ed3eba53fc87cab65e33fc2d4297ab1c9b7",
+ "ops": [
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bd23",
+    "holder": "ch_daniel",
+    "prop": "P15",
+    "stance": "holds_true",
+    "strength": "certain",
+    "story_key": 80.1,
+    "scene": "sc_12",
+    "channel": "told",
+    "via": "A24b",
+    "directness": "stated",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bd24",
+    "holder": "ch_daniel",
+    "prop": "P16",
+    "stance": "holds_true",
+    "strength": "believes",
+    "story_key": 80.1,
+    "scene": "sc_12",
+    "channel": "inferred",
+    "via": "E12a",
+    "directness": "entailed",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bd25",
+    "holder": "ch_daniel",
+    "prop": "P22",
+    "stance": "holds_true",
+    "strength": "believes",
+    "story_key": 80.1,
+    "scene": "sc_12",
+    "channel": "inferred",
+    "via": "E12a",
+    "directness": "entailed",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bd27",
+    "holder": "ch_daniel",
+    "prop": "P17",
+    "stance": "holds_false",
+    "strength": "believes",
+    "story_key": 80.1,
+    "scene": "sc_12",
+    "channel": "witnessed",
+    "via": "E12a",
+    "directness": "entailed",
+    "origin": "import",
+    "note": "Tom names the visitor in front of him."
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bd18",
+    "holder": "ch_daniel",
+    "prop": "P24",
+    "stance": "holds_true",
+    "strength": "certain",
+    "story_key": 80.1,
+    "scene": "sc_12",
+    "channel": "witnessed",
+    "via": "E12a",
+    "directness": "stated",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bd19",
+    "holder": "ch_daniel",
+    "prop": "P14",
+    "stance": "holds_true",
+    "strength": "certain",
+    "story_key": 80.3,
+    "scene": "sc_12",
+    "channel": "told",
+    "via": "A26",
+    "directness": "stated",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bd20",
+    "holder": "ch_daniel",
+    "prop": "P07",
+    "stance": "holds_true",
+    "strength": "certain",
+    "story_key": 80.3,
+    "scene": "sc_12",
+    "channel": "told",
+    "via": "A26",
+    "directness": "entailed",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bs30",
+    "holder": "ch_sarah",
+    "prop": "P14",
+    "stance": "holds_true",
+    "strength": "certain",
+    "story_key": 80.3,
+    "scene": "sc_12",
+    "channel": "told",
+    "via": "A26",
+    "directness": "stated",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bs31",
+    "holder": "ch_sarah",
+    "prop": "P07",
+    "stance": "holds_true",
+    "strength": "certain",
+    "story_key": 80.3,
+    "scene": "sc_12",
+    "channel": "told",
+    "via": "A26",
+    "directness": "entailed",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bs32",
+    "holder": "ch_sarah",
+    "prop": "P19",
+    "stance": "undecided",
+    "story_key": 80.4,
+    "scene": "sc_12",
+    "channel": "explicit",
+    "via": "E12d",
+    "directness": "stated",
+    "quote": "Nobody will ever know what he meant.",
+    "origin": "import",
+    "note": "Her view on entry to scene 12 is still the earlier belief; she gives it up during the scene."
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bm25",
+    "holder": "ch_marta",
+    "prop": "P16",
+    "stance": "holds_true",
+    "strength": "certain",
+    "story_key": 80.1,
+    "scene": "sc_12",
+    "channel": "told",
+    "via": "A24b",
+    "directness": "entailed",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bm19",
+    "holder": "ch_marta",
+    "prop": "P15",
+    "stance": "holds_true",
+    "strength": "certain",
+    "story_key": 80.1,
+    "scene": "sc_12",
+    "channel": "told",
+    "via": "A24b",
+    "directness": "stated",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bm20",
+    "holder": "ch_marta",
+    "prop": "P24",
+    "stance": "holds_true",
+    "strength": "certain",
+    "story_key": 80.1,
+    "scene": "sc_12",
+    "channel": "witnessed",
+    "via": "E12a",
+    "directness": "entailed",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bm21",
+    "holder": "ch_marta",
+    "prop": "P14",
+    "stance": "holds_true",
+    "strength": "certain",
+    "story_key": 80.3,
+    "scene": "sc_12",
+    "channel": "told",
+    "via": "A26",
+    "directness": "stated",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bm22",
+    "holder": "ch_marta",
+    "prop": "P19",
+    "stance": "holds_false",
+    "strength": "believes",
+    "story_key": 80.4,
+    "scene": "sc_12",
+    "channel": "inferred",
+    "via": "E12d",
+    "directness": "stated",
+    "quote": "He stamped it. He meant it to go.",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bt06",
+    "holder": "ch_tom",
+    "prop": "P15",
+    "stance": "holds_true",
+    "strength": "certain",
+    "story_key": 80.1,
+    "scene": "sc_12",
+    "channel": "told",
+    "via": "A24b",
+    "directness": "stated",
+    "quote": "That's the fellow who wanted the ferry times",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bt07",
+    "holder": "ch_tom",
+    "prop": "P17",
+    "stance": "holds_false",
+    "strength": "certain",
+    "story_key": 80.1,
+    "scene": "sc_12",
+    "channel": "inferred",
+    "via": "E12a",
+    "directness": "entailed",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bt08",
+    "holder": "ch_tom",
+    "prop": "P07",
+    "stance": "holds_true",
+    "strength": "believes",
+    "story_key": 80.1,
+    "scene": "sc_12",
+    "channel": "told",
+    "via": "A24",
+    "directness": "stated",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bt09",
+    "holder": "ch_tom",
+    "prop": "P24",
+    "stance": "holds_true",
+    "strength": "certain",
+    "story_key": 80.1,
+    "scene": "sc_12",
+    "channel": "witnessed",
+    "via": "E12a",
+    "directness": "entailed",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bj19",
+    "holder": "ch_jonas",
+    "prop": "P09",
+    "stance": "holds_true",
+    "strength": "certain",
+    "story_key": 80.2,
+    "scene": "sc_12",
+    "channel": "witnessed",
+    "via": "E12b",
+    "directness": "stated",
+    "quote": "He read the front: his own name, his mother's street.",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bj20",
+    "holder": "ch_jonas",
+    "prop": "P21",
+    "stance": "holds_false",
+    "strength": "certain",
+    "story_key": 80.3,
+    "scene": "sc_12",
+    "channel": "witnessed",
+    "via": "E12c",
+    "directness": "entailed",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bj08",
+    "holder": "ch_jonas",
+    "prop": "P08",
+    "stance": "holds_true",
+    "strength": "certain",
+    "story_key": 80.2,
+    "scene": "sc_12",
+    "channel": "witnessed",
+    "via": "E12b",
+    "directness": "stated",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bj09",
+    "holder": "ch_jonas",
+    "prop": "P14",
+    "stance": "holds_true",
+    "strength": "certain",
+    "story_key": 80.3,
+    "scene": "sc_12",
+    "channel": "read",
+    "via": "A26",
+    "directness": "stated",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "disclosure",
+    "id": "D43",
+    "scene": "sc_12",
+    "prop": "P14",
+    "mode": "stated",
+    "reader_stance": "holds_true",
+    "strength": "certain",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "placement",
+    "id": "L7",
+    "object": "obj_letter",
+    "place": "loc_jonas_hands",
+    "story_key": 80.2,
+    "scene": "sc_12",
+    "cause": "E12b",
+    "quote": "Jonas Pike took it",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  }
+ ]
+}

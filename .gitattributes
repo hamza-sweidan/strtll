@@ -1,0 +1,16 @@
+# Source is checked out with LF on every platform. The texts built into the engine take the line ends of their
+# source file, and they have to be the same bytes wherever the engine is built.
+*.cs      text eol=lf
+*.csproj  text eol=lf
+*.props   text eol=lf
+*.slnx    text eol=lf
+*.json    text eol=lf
+*.md      text eol=lf
+*.sh      text eol=lf
+*.ps1     text eol=lf
+.gitattributes text eol=lf
+.gitignore text eol=lf
+
+# The test fixtures and the example story are compared and hashed byte for byte: no conversion on any platform.
+tests/Nse.Tests/Fixtures/** -text
+examples/** -text

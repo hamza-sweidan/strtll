@@ -1,0 +1,1146 @@
+{
+ "format": 1,
+ "seq": 2,
+ "id": "cs_acb1d731f0",
+ "parent": "74cde23042c1fabb4c5b0ff55ff1fca3b99a490bf17e0a8ddc6a8507360d0051",
+ "actor": "import:harbour-letter",
+ "note": "Propositions, their truth, rules, embargoes and secrets",
+ "manuscript": "d22347c950696d67bf251bdcd2a94ed3eba53fc87cab65e33fc2d4297ab1c9b7",
+ "ops": [
+  {
+   "op": "put",
+   "record": {
+    "kind": "proposition",
+    "id": "P01",
+    "text": "Edmund Kessler died on the night of 30 April.",
+    "about": [
+     "ch_edmund"
+    ],
+    "resolution": "decided",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "fact_change",
+    "id": "f_P01",
+    "prop": "P01",
+    "value": true,
+    "story_key": -159.8,
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "proposition",
+    "id": "P02",
+    "text": "The harbour office ledgers show a monthly withdrawal marked R.P., running for about thirty years and stopping in January.",
+    "about": [
+     "obj_ledgers"
+    ],
+    "resolution": "decided",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "fact_change",
+    "id": "f_P02",
+    "prop": "P02",
+    "value": true,
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "proposition",
+    "id": "P03",
+    "text": "Marta has been taking money from the business.",
+    "about": [
+     "ch_marta"
+    ],
+    "resolution": "decided",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "fact_change",
+    "id": "f_P03",
+    "prop": "P03",
+    "value": false,
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "proposition",
+    "id": "P04",
+    "text": "The R.P. withdrawals were made on Edmund's instructions.",
+    "about": [
+     "ch_edmund",
+     "ch_marta"
+    ],
+    "resolution": "decided",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "fact_change",
+    "id": "f_P04",
+    "prop": "P04",
+    "value": true,
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "proposition",
+    "id": "P05",
+    "text": "R.P. is Rose Pike, and the withdrawals were payments Edmund made to her every month.",
+    "about": [
+     "ch_rose",
+     "ch_edmund"
+    ],
+    "resolution": "decided",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "fact_change",
+    "id": "f_P05",
+    "prop": "P05",
+    "value": true,
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "proposition",
+    "id": "P06",
+    "text": "Rose Pike died in January.",
+    "about": [
+     "ch_rose"
+    ],
+    "resolution": "decided",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "fact_change",
+    "id": "f_P06",
+    "prop": "P06",
+    "value": true,
+    "story_key": -300,
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "proposition",
+    "id": "P07",
+    "text": "Jonas Pike is Edmund Kessler's son.",
+    "about": [
+     "ch_jonas",
+     "ch_edmund"
+    ],
+    "resolution": "decided",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "fact_change",
+    "id": "f_P07",
+    "prop": "P07",
+    "value": true,
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "proposition",
+    "id": "P08",
+    "text": "Edmund wrote a private letter, sealed and stamped it, and never posted it.",
+    "about": [
+     "ch_edmund",
+     "obj_letter"
+    ],
+    "resolution": "decided",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "fact_change",
+    "id": "f_P08",
+    "prop": "P08",
+    "value": true,
+    "story_key": -170,
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "proposition",
+    "id": "P09",
+    "text": "The letter is addressed to Jonas Pike.",
+    "about": [
+     "obj_letter",
+     "ch_jonas"
+    ],
+    "resolution": "decided",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "fact_change",
+    "id": "f_P09",
+    "prop": "P09",
+    "value": true,
+    "story_key": -170,
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "proposition",
+    "id": "P10",
+    "text": "Sarah took the letter from Edmund's desk drawer on the night he died.",
+    "about": [
+     "ch_sarah",
+     "obj_letter"
+    ],
+    "resolution": "decided",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "fact_change",
+    "id": "f_P10",
+    "prop": "P10",
+    "value": true,
+    "story_key": -159.7,
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "proposition",
+    "id": "P11",
+    "text": "Sarah has had the letter in her keeping since April.",
+    "about": [
+     "ch_sarah",
+     "obj_letter"
+    ],
+    "resolution": "decided",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "fact_change",
+    "id": "f_P11",
+    "prop": "P11",
+    "value": true,
+    "story_key": -159.7,
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "proposition",
+    "id": "P12",
+    "text": "There was nothing in Edmund's desk but invoices.",
+    "about": [
+     "ch_edmund"
+    ],
+    "resolution": "decided",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "fact_change",
+    "id": "f_P12",
+    "prop": "P12",
+    "value": false,
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "proposition",
+    "id": "P13",
+    "text": "Sarah has never opened the letter.",
+    "about": [
+     "ch_sarah",
+     "obj_letter"
+    ],
+    "resolution": "decided",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "fact_change",
+    "id": "f_P13",
+    "prop": "P13",
+    "value": true,
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "proposition",
+    "id": "P14",
+    "text": "In the letter, Edmund acknowledges Jonas as his son and gives him a half share in the harbour office.",
+    "about": [
+     "obj_letter",
+     "ch_jonas",
+     "ch_edmund"
+    ],
+    "resolution": "decided",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "fact_change",
+    "id": "f_P14",
+    "prop": "P14",
+    "value": true,
+    "story_key": -170,
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "proposition",
+    "id": "P15",
+    "text": "The man in the grey coat is Jonas Pike.",
+    "about": [
+     "ch_greycoat",
+     "ch_jonas"
+    ],
+    "resolution": "decided",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "fact_change",
+    "id": "f_P15",
+    "prop": "P15",
+    "value": true,
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "proposition",
+    "id": "P16",
+    "text": "The man in the grey coat is Rose Pike's son.",
+    "about": [
+     "ch_greycoat",
+     "ch_rose"
+    ],
+    "resolution": "decided",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "fact_change",
+    "id": "f_P16",
+    "prop": "P16",
+    "value": true,
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "proposition",
+    "id": "P17",
+    "text": "The man who came to the office on Tuesday was only a traveller asking about ferry times.",
+    "about": [
+     "ch_greycoat"
+    ],
+    "resolution": "decided",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "fact_change",
+    "id": "f_P17",
+    "prop": "P17",
+    "value": false,
+    "story_key": 25.1,
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "proposition",
+    "id": "P18",
+    "text": "Edmund gave the letter to Sarah himself.",
+    "about": [
+     "ch_edmund",
+     "ch_sarah",
+     "obj_letter"
+    ],
+    "resolution": "decided",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "fact_change",
+    "id": "f_P18",
+    "prop": "P18",
+    "value": false,
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "proposition",
+    "id": "P19",
+    "text": "Edmund had decided not to send the letter.",
+    "about": [
+     "ch_edmund",
+     "obj_letter"
+    ],
+    "resolution": "ambiguous",
+    "origin": "import",
+    "note": "Ambiguous by design. Characters hold opinions; the story never decides."
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "proposition",
+    "id": "P20",
+    "text": "Edmund wrote the letter before his last quarrel with Daniel.",
+    "about": [
+     "ch_edmund",
+     "ch_daniel",
+     "obj_letter"
+    ],
+    "resolution": "open",
+    "origin": "import",
+    "note": "Not established. The two events have tied story keys."
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "proposition",
+    "id": "P21",
+    "text": "Edmund left no letter or message for Rose Pike's son.",
+    "about": [
+     "ch_edmund",
+     "ch_jonas"
+    ],
+    "resolution": "decided",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "fact_change",
+    "id": "f_P21",
+    "prop": "P21",
+    "value": false,
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "proposition",
+    "id": "P22",
+    "text": "A man in a grey coat came to the harbour office on Tuesday asking for Edmund Kessler.",
+    "about": [
+     "ch_greycoat"
+    ],
+    "resolution": "decided",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "fact_change",
+    "id": "f_P22",
+    "prop": "P22",
+    "value": true,
+    "story_key": 25.1,
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "proposition",
+    "id": "P23",
+    "text": "A man in a grey coat has been watching the harbour office from the quay.",
+    "about": [
+     "ch_greycoat"
+    ],
+    "resolution": "decided",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "fact_change",
+    "id": "f_P23",
+    "prop": "P23",
+    "value": true,
+    "story_key": 30.2,
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "proposition",
+    "id": "P24",
+    "text": "Jonas Pike is in town.",
+    "about": [
+     "ch_jonas"
+    ],
+    "resolution": "decided",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "fact_change",
+    "id": "f_P24",
+    "prop": "P24",
+    "value": true,
+    "story_key": 25,
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "proposition",
+    "id": "P25",
+    "text": "Hallam Marine's offer for the harbour office lapses on Friday the twenty-third.",
+    "about": [
+     "org_hallam"
+    ],
+    "resolution": "decided",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "fact_change",
+    "id": "f_P25",
+    "prop": "P25",
+    "value": true,
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "proposition",
+    "id": "P26",
+    "text": "Daniel means to sell the harbour office.",
+    "about": [
+     "ch_daniel"
+    ],
+    "resolution": "decided",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "fact_change",
+    "id": "f_P26",
+    "prop": "P26",
+    "value": true,
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "proposition",
+    "id": "P27",
+    "text": "The R.P. withdrawals are connected with the name on the envelope.",
+    "about": [
+     "obj_ledgers",
+     "obj_letter"
+    ],
+    "resolution": "decided",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "fact_change",
+    "id": "f_P27",
+    "prop": "P27",
+    "value": true,
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "proposition",
+    "id": "P28",
+    "text": "Before she died, Rose Pike told Jonas that Edmund Kessler was his father.",
+    "about": [
+     "ch_rose",
+     "ch_jonas"
+    ],
+    "resolution": "decided",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "fact_change",
+    "id": "f_P28",
+    "prop": "P28",
+    "value": true,
+    "story_key": -310,
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "proposition",
+    "id": "P29",
+    "text": "Sarah is keeping a sealed envelope in Edmund's handwriting hidden from Daniel.",
+    "about": [
+     "ch_sarah",
+     "obj_letter"
+    ],
+    "resolution": "decided",
+    "nested": {
+     "holder": "ch_daniel",
+     "prop": "P11",
+     "stance": "unaware"
+    },
+    "origin": "import",
+    "note": "A concealment is derived: Sarah has the letter (P11) and Daniel does not know it until scene 7."
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "fact_change",
+    "id": "f_P29",
+    "prop": "P29",
+    "value": true,
+    "story_key": -159.7,
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "fact_change",
+    "id": "f_P29_end",
+    "prop": "P29",
+    "value": false,
+    "story_key": 45.1,
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "proposition",
+    "id": "P30",
+    "text": "Daniel believes Marta has been taking money from the business.",
+    "about": [
+     "ch_daniel",
+     "ch_marta"
+    ],
+    "resolution": "decided",
+    "nested": {
+     "holder": "ch_daniel",
+     "prop": "P03"
+    },
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "fact_change",
+    "id": "f_P30",
+    "prop": "P30",
+    "value": true,
+    "story_key": 10.3,
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "fact_change",
+    "id": "f_P30_end",
+    "prop": "P30",
+    "value": false,
+    "story_key": 55.1,
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "proposition",
+    "id": "P31",
+    "text": "Daniel believes Edmund gave the letter to Sarah himself.",
+    "about": [
+     "ch_daniel",
+     "ch_sarah"
+    ],
+    "resolution": "decided",
+    "nested": {
+     "holder": "ch_daniel",
+     "prop": "P18"
+    },
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "fact_change",
+    "id": "f_P31",
+    "prop": "P31",
+    "value": true,
+    "story_key": 45.2,
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "proposition",
+    "id": "P32",
+    "text": "Edmund and Daniel quarrelled about selling the office in the last week of April.",
+    "about": [
+     "ch_edmund",
+     "ch_daniel"
+    ],
+    "resolution": "decided",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "fact_change",
+    "id": "f_P32",
+    "prop": "P32",
+    "value": true,
+    "story_key": -170,
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "proposition",
+    "id": "P33",
+    "text": "Rose Pike had a son by Edmund Kessler.",
+    "about": [
+     "ch_rose",
+     "ch_edmund"
+    ],
+    "resolution": "decided",
+    "origin": "import",
+    "note": "Split from P07. The reader learns this in scene 5 without the name; that the son is called Jonas Pike (P07) is not stated until scene 10. One proposition cannot carry two facts with different reveal times."
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "fact_change",
+    "id": "f_P33",
+    "prop": "P33",
+    "value": true,
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "proposition",
+    "id": "P34",
+    "text": "Jonas Pike is Rose Pike's son.",
+    "about": [
+     "ch_jonas",
+     "ch_rose"
+    ],
+    "resolution": "decided",
+    "origin": "import",
+    "note": "What is given away if Marta says \"Rose's boy\" aloud."
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "fact_change",
+    "id": "f_P34",
+    "prop": "P34",
+    "value": true,
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "proposition",
+    "id": "P35",
+    "text": "Sarah was at her father's desk in the harbour office on the night he died.",
+    "about": [
+     "ch_sarah"
+    ],
+    "resolution": "decided",
+    "origin": "import",
+    "note": "A circumstance of P10 that can be given away on its own."
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "fact_change",
+    "id": "f_P35",
+    "prop": "P35",
+    "value": true,
+    "story_key": -159.9,
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "proposition",
+    "id": "P36",
+    "text": "The letter lay in Edmund's desk drawer until the night he died.",
+    "about": [
+     "obj_letter",
+     "ch_edmund"
+    ],
+    "resolution": "decided",
+    "origin": "import",
+    "note": "A circumstance of P10 that can be given away on its own."
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "fact_change",
+    "id": "f_P36",
+    "prop": "P36",
+    "value": true,
+    "story_key": -170,
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "rule",
+    "id": "R1",
+    "type": "never_resolve",
+    "prop": "P19",
+    "text": "Whether Edmund meant to send the letter is ambiguous by design. No scene may settle it. Characters may hold and voice opinions.",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "rule",
+    "id": "R2",
+    "type": "never_establish",
+    "prop": "P20",
+    "text": "Whether the letter was written before or after the quarrel is not established. Do not establish it without an author decision.",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "rule",
+    "id": "R3",
+    "type": "style",
+    "text": "Close third person, past tense, one point-of-view character per scene. British spelling. The narration reports only what the POV character can perceive or think.",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "embargo",
+    "id": "EM1",
+    "prop": "P05",
+    "until_scene": "sc_05",
+    "tripwires": [
+     "\\bRose\\b",
+     "\\bPike\\b"
+    ],
+    "origin": "import",
+    "note": "Who R.P. is."
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "embargo",
+    "id": "EM2",
+    "prop": "P33",
+    "until_scene": "sc_05",
+    "tripwires": [
+     "father's son",
+     "\\bhis son\\b",
+     "half-brother",
+     "Edmund's son"
+    ],
+    "origin": "import",
+    "note": "That Edmund has another son. The reader gathers it in scene 5; Daniel and Sarah learn much later."
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "embargo",
+    "id": "EM7",
+    "prop": "P07",
+    "until_scene": "sc_10",
+    "tripwires": [
+     "Jonas[^.\\n]{0,120}\\b(son|brother)\\b",
+     "\\b(son|brother)\\b[^.\\n]{0,120}Jonas"
+    ],
+    "origin": "import",
+    "note": "That the son is the Jonas Pike on the envelope. The reader can infer it from scene 7; it is stated in scene 10."
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "embargo",
+    "id": "EM3",
+    "prop": "P09",
+    "until_scene": "sc_07",
+    "tripwires": [
+     "\\bJonas\\b"
+    ],
+    "origin": "import",
+    "note": "The name on the envelope. Sarah knows it from April; the reader first sees it in scene 7."
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "embargo",
+    "id": "EM4",
+    "prop": "P10",
+    "until_scene": "sc_08",
+    "tripwires": [
+     "night (he|her father|their father|Edmund) died",
+     "desk drawer",
+     "from (the|his|her father's|Dad's) desk",
+     "under the invoices"
+    ],
+    "origin": "import",
+    "note": "How Sarah came to have the letter. Daniel never learns it."
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "embargo",
+    "id": "EM5",
+    "prop": "P15",
+    "until_scene": "sc_11",
+    "tripwires": [
+     "grey coat[^.\\n]{0,200}\\b(Jonas|Pike)\\b",
+     "\\b(Jonas|Pike)\\b[^.\\n]{0,200}grey coat"
+    ],
+    "origin": "import",
+    "note": "That the stranger and the name on the envelope are the same man."
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "embargo",
+    "id": "EM6",
+    "prop": "P14",
+    "until_scene": "sc_12",
+    "tripwires": [
+     "half share",
+     "acknowledge"
+    ],
+    "origin": "import",
+    "note": "What the letter says. Nobody living knows until it is read."
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "secret",
+    "id": "SE1",
+    "props": [
+     "P10",
+     "P35",
+     "P36"
+    ],
+    "known_only_to": [
+     "ch_sarah"
+    ],
+    "origin": "import",
+    "note": "How Sarah came by the letter. She tells nobody in the story as written, and Daniel is left believing their father gave it to her. Declared here so that 'never learns it' is a fact and not just a missing record."
+   },
+   "approval": "ratified"
+  }
+ ]
+}

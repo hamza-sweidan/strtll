@@ -1,0 +1,242 @@
+{
+ "format": 1,
+ "seq": 8,
+ "id": "cs_6d1b99b282",
+ "parent": "ea1d8b752953e696fc2cedf4c927c1d1b036442d9f4a10df9a514fe2b204ac3b",
+ "actor": "import:harbour-letter",
+ "note": "Scene 4, The Man in the Grey Coat",
+ "manuscript": "d22347c950696d67bf251bdcd2a94ed3eba53fc87cab65e33fc2d4297ab1c9b7",
+ "ops": [
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bm08",
+    "holder": "ch_marta",
+    "prop": "P22",
+    "stance": "holds_true",
+    "strength": "certain",
+    "story_key": 25.1,
+    "scene": "sc_04",
+    "channel": "took_part",
+    "via": "E04a",
+    "directness": "stated",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bm09",
+    "holder": "ch_marta",
+    "prop": "P16",
+    "stance": "holds_true",
+    "strength": "believes",
+    "story_key": 25.1,
+    "scene": "sc_04",
+    "channel": "inferred",
+    "via": "E04a",
+    "directness": "stated",
+    "quote": "He had Rose's mouth.",
+    "quote_scene": "sc_05",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bm10",
+    "holder": "ch_marta",
+    "prop": "P15",
+    "stance": "holds_true",
+    "strength": "believes",
+    "story_key": 25.1,
+    "scene": "sc_04",
+    "channel": "inferred",
+    "via": "E04a",
+    "directness": "entailed",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bm11",
+    "holder": "ch_marta",
+    "prop": "P24",
+    "stance": "holds_true",
+    "strength": "believes",
+    "story_key": 25.1,
+    "scene": "sc_04",
+    "channel": "inferred",
+    "via": "E04a",
+    "directness": "entailed",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bm12",
+    "holder": "ch_marta",
+    "prop": "P17",
+    "stance": "holds_false",
+    "strength": "believes",
+    "story_key": 25.2,
+    "scene": "sc_04",
+    "channel": "took_part",
+    "via": "E04b",
+    "directness": "entailed",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bt03",
+    "holder": "ch_tom",
+    "prop": "P22",
+    "stance": "holds_true",
+    "strength": "certain",
+    "story_key": 25.1,
+    "scene": "sc_04",
+    "channel": "witnessed",
+    "via": "E04a",
+    "directness": "stated",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bt04",
+    "holder": "ch_tom",
+    "prop": "P15",
+    "stance": "unaware",
+    "story_key": 25.1,
+    "scene": "sc_04",
+    "channel": "explicit",
+    "via": "E04a",
+    "directness": "stated",
+    "quote": "Tom had no idea who he was.",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bt05",
+    "holder": "ch_tom",
+    "prop": "P17",
+    "stance": "holds_true",
+    "strength": "believes",
+    "story_key": 25.2,
+    "scene": "sc_04",
+    "channel": "told",
+    "via": "A10",
+    "directness": "stated",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bj13",
+    "holder": "ch_jonas",
+    "prop": "P22",
+    "stance": "holds_true",
+    "strength": "certain",
+    "story_key": 25.1,
+    "scene": "sc_04",
+    "channel": "took_part",
+    "via": "E04a",
+    "directness": "entailed",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bj18",
+    "holder": "ch_jonas",
+    "prop": "P17",
+    "stance": "holds_false",
+    "strength": "certain",
+    "story_key": 25.1,
+    "scene": "sc_04",
+    "channel": "took_part",
+    "via": "E04a",
+    "directness": "entailed",
+    "origin": "import",
+    "note": "He knows why he came."
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bj05",
+    "holder": "ch_jonas",
+    "prop": "P01",
+    "stance": "holds_true",
+    "strength": "certain",
+    "story_key": 25.1,
+    "scene": "sc_04",
+    "channel": "told",
+    "via": "A09",
+    "directness": "stated",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "disclosure",
+    "id": "D14",
+    "scene": "sc_04",
+    "prop": "P22",
+    "mode": "stated",
+    "reader_stance": "holds_true",
+    "strength": "certain",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "disclosure",
+    "id": "D15",
+    "scene": "sc_04",
+    "prop": "P17",
+    "mode": "stated",
+    "reader_stance": "holds_false",
+    "strength": "certain",
+    "quote": "He asked for Mr Kessler.",
+    "origin": "import",
+    "note": "The reader watches the man ask for Edmund by name, so Marta's 'a traveller' is visibly false in this scene, not the next."
+   },
+   "approval": "ratified"
+  }
+ ]
+}

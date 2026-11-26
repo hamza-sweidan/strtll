@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Nse.Cli/Nse.Cli.csproj" />
+    <Project Path="src/Nse.Core/Nse.Core.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Nse.Tests/Nse.Tests.csproj" />
+  </Folder>
+</Solution>

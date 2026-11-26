@@ -1,0 +1,138 @@
+{
+ "format": 1,
+ "seq": 6,
+ "id": "cs_45f47e9139",
+ "parent": "1ff21abce576f15fbab498d723d8fe77e371f541c4e669b40e2f86c9f7c83f49",
+ "actor": "import:harbour-letter",
+ "note": "Scene 2, The Tea Tin",
+ "manuscript": "d22347c950696d67bf251bdcd2a94ed3eba53fc87cab65e33fc2d4297ab1c9b7",
+ "ops": [
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bs14",
+    "holder": "ch_sarah",
+    "prop": "P02",
+    "stance": "holds_true",
+    "strength": "believes",
+    "story_key": 15.2,
+    "scene": "sc_02",
+    "channel": "told",
+    "via": "A03",
+    "directness": "stated",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bs15",
+    "holder": "ch_sarah",
+    "prop": "P26",
+    "stance": "holds_true",
+    "strength": "certain",
+    "story_key": 15.2,
+    "scene": "sc_02",
+    "channel": "told",
+    "via": "A04",
+    "directness": "stated",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bs16",
+    "holder": "ch_sarah",
+    "prop": "P25",
+    "stance": "holds_true",
+    "strength": "believes",
+    "story_key": 15.2,
+    "scene": "sc_02",
+    "channel": "told",
+    "via": "A05",
+    "directness": "stated",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "disclosure",
+    "id": "D09",
+    "scene": "sc_02",
+    "prop": "P08",
+    "mode": "stated",
+    "reader_stance": "holds_true",
+    "strength": "certain",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "disclosure",
+    "id": "D10",
+    "scene": "sc_02",
+    "prop": "P11",
+    "mode": "stated",
+    "reader_stance": "holds_true",
+    "strength": "certain",
+    "quote": "she had spent six months not finding out",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "disclosure",
+    "id": "D11",
+    "scene": "sc_02",
+    "prop": "P13",
+    "mode": "stated",
+    "reader_stance": "holds_true",
+    "strength": "certain",
+    "quote": "She had never opened it.",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "disclosure",
+    "id": "D12",
+    "scene": "sc_02",
+    "prop": "P29",
+    "mode": "stated",
+    "reader_stance": "holds_true",
+    "strength": "certain",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "placement",
+    "id": "L4",
+    "object": "obj_letter",
+    "place": "loc_tea_tin",
+    "story_key": 15.1,
+    "scene": "sc_02",
+    "cause": "E02a",
+    "quote": "She laid the envelope in the tea tin",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  }
+ ]
+}

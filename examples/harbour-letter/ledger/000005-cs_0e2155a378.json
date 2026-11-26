@@ -1,0 +1,179 @@
+{
+ "format": 1,
+ "seq": 5,
+ "id": "cs_0e2155a378",
+ "parent": "10ece5e7ea2de7c7974c9c200f4d73cf7ecf0dcccd45424d351bc6230de9ea31",
+ "actor": "import:harbour-letter",
+ "note": "Scene 1, The Valuation",
+ "manuscript": "d22347c950696d67bf251bdcd2a94ed3eba53fc87cab65e33fc2d4297ab1c9b7",
+ "ops": [
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bd03",
+    "holder": "ch_daniel",
+    "prop": "P02",
+    "stance": "holds_true",
+    "strength": "certain",
+    "story_key": 10.1,
+    "scene": "sc_01",
+    "channel": "witnessed",
+    "via": "E01a",
+    "directness": "stated",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bd04",
+    "holder": "ch_daniel",
+    "prop": "P04",
+    "stance": "holds_false",
+    "strength": "believes",
+    "story_key": 10.2,
+    "scene": "sc_01",
+    "channel": "told",
+    "via": "A01",
+    "directness": "stated",
+    "quote": "He did not believe her.",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bd05",
+    "holder": "ch_daniel",
+    "prop": "P03",
+    "stance": "holds_true",
+    "strength": "believes",
+    "story_key": 10.3,
+    "scene": "sc_01",
+    "channel": "inferred",
+    "via": "E01c",
+    "directness": "stated",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "disclosure",
+    "id": "D01",
+    "scene": "sc_01",
+    "prop": "P01",
+    "mode": "stated",
+    "reader_stance": "holds_true",
+    "strength": "certain",
+    "quote": "His father had died in April.",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "disclosure",
+    "id": "D02",
+    "scene": "sc_01",
+    "prop": "P02",
+    "mode": "stated",
+    "reader_stance": "holds_true",
+    "strength": "certain",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "disclosure",
+    "id": "D03",
+    "scene": "sc_01",
+    "prop": "P04",
+    "mode": "asserted_by_character",
+    "reader_stance": "undecided",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "disclosure",
+    "id": "D04",
+    "scene": "sc_01",
+    "prop": "P03",
+    "mode": "focalized",
+    "reader_stance": "holds_true",
+    "strength": "suspects",
+    "quote": "Marta had been taking money for years.",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "disclosure",
+    "id": "D05",
+    "scene": "sc_01",
+    "prop": "P25",
+    "mode": "stated",
+    "reader_stance": "holds_true",
+    "strength": "certain",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "disclosure",
+    "id": "D06",
+    "scene": "sc_01",
+    "prop": "P26",
+    "mode": "stated",
+    "reader_stance": "holds_true",
+    "strength": "certain",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "disclosure",
+    "id": "D07",
+    "scene": "sc_01",
+    "prop": "P32",
+    "mode": "stated",
+    "reader_stance": "holds_true",
+    "strength": "certain",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "disclosure",
+    "id": "D08",
+    "scene": "sc_01",
+    "prop": "P30",
+    "mode": "stated",
+    "reader_stance": "holds_true",
+    "strength": "certain",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  }
+ ]
+}

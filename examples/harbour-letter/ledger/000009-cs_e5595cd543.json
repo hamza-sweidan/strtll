@@ -1,0 +1,147 @@
+{
+ "format": 1,
+ "seq": 9,
+ "id": "cs_e5595cd543",
+ "parent": "98a916ed4ed7a931662f80fec6da150eaa4d650bed56bd920fe629a7131d7060",
+ "actor": "import:harbour-letter",
+ "note": "Scene 5, Rose",
+ "manuscript": "d22347c950696d67bf251bdcd2a94ed3eba53fc87cab65e33fc2d4297ab1c9b7",
+ "ops": [
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bm26",
+    "holder": "ch_marta",
+    "prop": "P30",
+    "stance": "holds_true",
+    "strength": "believes",
+    "story_key": 28.1,
+    "scene": "sc_05",
+    "channel": "inferred",
+    "directness": "stated",
+    "quote": "She had seen what he thought.",
+    "origin": "import",
+    "note": "This sentence shows Marta aware of Daniel's suspicion before scene 9."
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "disclosure",
+    "id": "D16",
+    "scene": "sc_05",
+    "prop": "P05",
+    "mode": "stated",
+    "reader_stance": "holds_true",
+    "strength": "certain",
+    "quote": "Rose Pike.",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "disclosure",
+    "id": "D17",
+    "scene": "sc_05",
+    "prop": "P04",
+    "mode": "stated",
+    "reader_stance": "holds_true",
+    "strength": "certain",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "disclosure",
+    "id": "D18",
+    "scene": "sc_05",
+    "prop": "P06",
+    "mode": "stated",
+    "reader_stance": "holds_true",
+    "strength": "certain",
+    "quote": "Rose had died in January.",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "disclosure",
+    "id": "D19",
+    "scene": "sc_05",
+    "prop": "P03",
+    "mode": "stated",
+    "reader_stance": "holds_false",
+    "strength": "certain",
+    "quote": "She had never taken a penny that was not on Edmund's instruction.",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "disclosure",
+    "id": "D20",
+    "scene": "sc_05",
+    "prop": "P16",
+    "mode": "stated",
+    "reader_stance": "holds_true",
+    "strength": "certain",
+    "quote": "He had Rose's mouth.",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "disclosure",
+    "id": "D21",
+    "scene": "sc_05",
+    "prop": "P33",
+    "mode": "stated",
+    "reader_stance": "holds_true",
+    "strength": "believes",
+    "quote": "asked for his father by name",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "disclosure",
+    "id": "D22",
+    "scene": "sc_05",
+    "prop": "P17",
+    "mode": "stated",
+    "reader_stance": "holds_false",
+    "strength": "certain",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "disclosure",
+    "id": "D23",
+    "scene": "sc_05",
+    "prop": "P21",
+    "mode": "focalized",
+    "reader_stance": "holds_false",
+    "strength": "suspects",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  }
+ ]
+}

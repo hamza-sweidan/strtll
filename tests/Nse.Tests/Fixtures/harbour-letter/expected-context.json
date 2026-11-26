@@ -1,0 +1,3913 @@
+{
+ "sc_01": {
+  "must_not_reveal": [
+   [
+    "P08",
+    "sc_02"
+   ],
+   [
+    "P11",
+    "sc_02"
+   ],
+   [
+    "P13",
+    "sc_02"
+   ],
+   [
+    "P29",
+    "sc_02"
+   ],
+   [
+    "P03",
+    "sc_05"
+   ],
+   [
+    "P04",
+    "sc_05"
+   ],
+   [
+    "P05",
+    "sc_05"
+   ],
+   [
+    "P06",
+    "sc_05"
+   ],
+   [
+    "P16",
+    "sc_05"
+   ],
+   [
+    "P33",
+    "sc_05"
+   ],
+   [
+    "P27",
+    "sc_06"
+   ],
+   [
+    "P09",
+    "sc_07"
+   ],
+   [
+    "P10",
+    "sc_08"
+   ],
+   [
+    "P12",
+    "sc_08"
+   ],
+   [
+    "P18",
+    "sc_08"
+   ],
+   [
+    "P35",
+    "sc_08"
+   ],
+   [
+    "P36",
+    "sc_08"
+   ],
+   [
+    "P21",
+    "sc_09"
+   ],
+   [
+    "P07",
+    "sc_10"
+   ],
+   [
+    "P34",
+    "sc_10"
+   ],
+   [
+    "P15",
+    "sc_11"
+   ],
+   [
+    "P28",
+    "sc_11"
+   ],
+   [
+    "P14",
+    "sc_12"
+   ]
+  ],
+  "revealed_here": [
+   "P01",
+   "P02",
+   "P25",
+   "P26",
+   "P30",
+   "P32"
+  ],
+  "in_play": [
+   "P03",
+   "P04",
+   "P05",
+   "P06",
+   "P07",
+   "P08",
+   "P09",
+   "P10",
+   "P11",
+   "P12",
+   "P13",
+   "P14",
+   "P15",
+   "P16",
+   "P18",
+   "P21",
+   "P27",
+   "P28",
+   "P33",
+   "P34",
+   "P35",
+   "P36"
+  ],
+  "cast": {
+   "ch_daniel": {
+    "status": {
+     "P03": "wrong",
+     "P04": "wrong",
+     "P05": "no_record",
+     "P06": "no_record",
+     "P07": "no_record",
+     "P08": "no_record",
+     "P09": "no_record",
+     "P10": "unaware",
+     "P11": "no_record",
+     "P12": "no_record",
+     "P13": "no_record",
+     "P14": "no_record",
+     "P15": "no_record",
+     "P16": "no_record",
+     "P18": "no_record",
+     "P21": "no_record",
+     "P27": "no_record",
+     "P28": "no_record",
+     "P33": "no_record",
+     "P34": "no_record",
+     "P35": "unaware",
+     "P36": "unaware"
+    },
+    "gaps": [
+     [
+      "P03",
+      "wrong",
+      "sc_10"
+     ],
+     [
+      "P04",
+      "wrong",
+      "sc_10"
+     ],
+     [
+      "P05",
+      "no_record",
+      "sc_10"
+     ],
+     [
+      "P06",
+      "no_record",
+      "sc_10"
+     ],
+     [
+      "P07",
+      "no_record",
+      "sc_10"
+     ],
+     [
+      "P08",
+      "no_record",
+      "sc_07"
+     ],
+     [
+      "P09",
+      "no_record",
+      "sc_07"
+     ],
+     [
+      "P10",
+      "unaware",
+      null
+     ],
+     [
+      "P11",
+      "no_record",
+      "sc_07"
+     ],
+     [
+      "P12",
+      "no_record",
+      null
+     ],
+     [
+      "P13",
+      "no_record",
+      "sc_07"
+     ],
+     [
+      "P14",
+      "no_record",
+      "sc_12"
+     ],
+     [
+      "P15",
+      "no_record",
+      "sc_12"
+     ],
+     [
+      "P16",
+      "no_record",
+      "sc_12"
+     ],
+     [
+      "P18",
+      "no_record",
+      null
+     ],
+     [
+      "P21",
+      "no_record",
+      "sc_10"
+     ],
+     [
+      "P27",
+      "no_record",
+      "sc_07"
+     ],
+     [
+      "P28",
+      "no_record",
+      null
+     ],
+     [
+      "P33",
+      "no_record",
+      "sc_10"
+     ],
+     [
+      "P34",
+      "no_record",
+      "sc_10"
+     ],
+     [
+      "P35",
+      "unaware",
+      null
+     ],
+     [
+      "P36",
+      "unaware",
+      null
+     ]
+    ]
+   },
+   "ch_marta": {
+    "status": {
+     "P03": "knows",
+     "P04": "knows",
+     "P05": "knows",
+     "P06": "knows",
+     "P07": "knows",
+     "P08": "no_record",
+     "P09": "no_record",
+     "P10": "unaware",
+     "P11": "no_record",
+     "P12": "no_record",
+     "P13": "no_record",
+     "P14": "no_record",
+     "P15": "no_record",
+     "P16": "no_record",
+     "P18": "no_record",
+     "P21": "wrong",
+     "P27": "no_record",
+     "P28": "no_record",
+     "P33": "knows",
+     "P34": "knows",
+     "P35": "unaware",
+     "P36": "unaware"
+    },
+    "gaps": [
+     [
+      "P08",
+      "no_record",
+      "sc_09"
+     ],
+     [
+      "P09",
+      "no_record",
+      "sc_09"
+     ],
+     [
+      "P10",
+      "unaware",
+      null
+     ],
+     [
+      "P11",
+      "no_record",
+      "sc_09"
+     ],
+     [
+      "P12",
+      "no_record",
+      null
+     ],
+     [
+      "P13",
+      "no_record",
+      "sc_09"
+     ],
+     [
+      "P14",
+      "no_record",
+      "sc_12"
+     ],
+     [
+      "P15",
+      "no_record",
+      "sc_04"
+     ],
+     [
+      "P16",
+      "no_record",
+      "sc_04"
+     ],
+     [
+      "P18",
+      "no_record",
+      null
+     ],
+     [
+      "P21",
+      "wrong",
+      "sc_09"
+     ],
+     [
+      "P27",
+      "no_record",
+      "sc_09"
+     ],
+     [
+      "P28",
+      "no_record",
+      null
+     ],
+     [
+      "P35",
+      "unaware",
+      null
+     ],
+     [
+      "P36",
+      "unaware",
+      null
+     ]
+    ]
+   },
+   "ch_tom": {
+    "status": {
+     "P03": "no_record",
+     "P04": "no_record",
+     "P05": "no_record",
+     "P06": "no_record",
+     "P07": "no_record",
+     "P08": "no_record",
+     "P09": "no_record",
+     "P10": "unaware",
+     "P11": "no_record",
+     "P12": "no_record",
+     "P13": "no_record",
+     "P14": "no_record",
+     "P15": "no_record",
+     "P16": "no_record",
+     "P18": "no_record",
+     "P21": "no_record",
+     "P27": "no_record",
+     "P28": "no_record",
+     "P33": "no_record",
+     "P34": "no_record",
+     "P35": "unaware",
+     "P36": "unaware"
+    },
+    "gaps": [
+     [
+      "P03",
+      "no_record",
+      null
+     ],
+     [
+      "P04",
+      "no_record",
+      null
+     ],
+     [
+      "P05",
+      "no_record",
+      null
+     ],
+     [
+      "P06",
+      "no_record",
+      null
+     ],
+     [
+      "P07",
+      "no_record",
+      "sc_12"
+     ],
+     [
+      "P08",
+      "no_record",
+      null
+     ],
+     [
+      "P09",
+      "no_record",
+      null
+     ],
+     [
+      "P10",
+      "unaware",
+      null
+     ],
+     [
+      "P11",
+      "no_record",
+      null
+     ],
+     [
+      "P12",
+      "no_record",
+      null
+     ],
+     [
+      "P13",
+      "no_record",
+      null
+     ],
+     [
+      "P14",
+      "no_record",
+      null
+     ],
+     [
+      "P15",
+      "no_record",
+      "sc_12"
+     ],
+     [
+      "P16",
+      "no_record",
+      null
+     ],
+     [
+      "P18",
+      "no_record",
+      null
+     ],
+     [
+      "P21",
+      "no_record",
+      null
+     ],
+     [
+      "P27",
+      "no_record",
+      null
+     ],
+     [
+      "P28",
+      "no_record",
+      null
+     ],
+     [
+      "P33",
+      "no_record",
+      null
+     ],
+     [
+      "P34",
+      "no_record",
+      null
+     ],
+     [
+      "P35",
+      "unaware",
+      null
+     ],
+     [
+      "P36",
+      "unaware",
+      null
+     ]
+    ]
+   }
+  }
+ },
+ "sc_02": {
+  "must_not_reveal": [
+   [
+    "P03",
+    "sc_05"
+   ],
+   [
+    "P04",
+    "sc_05"
+   ],
+   [
+    "P05",
+    "sc_05"
+   ],
+   [
+    "P06",
+    "sc_05"
+   ],
+   [
+    "P16",
+    "sc_05"
+   ],
+   [
+    "P33",
+    "sc_05"
+   ],
+   [
+    "P27",
+    "sc_06"
+   ],
+   [
+    "P09",
+    "sc_07"
+   ],
+   [
+    "P10",
+    "sc_08"
+   ],
+   [
+    "P12",
+    "sc_08"
+   ],
+   [
+    "P18",
+    "sc_08"
+   ],
+   [
+    "P35",
+    "sc_08"
+   ],
+   [
+    "P36",
+    "sc_08"
+   ],
+   [
+    "P21",
+    "sc_09"
+   ],
+   [
+    "P07",
+    "sc_10"
+   ],
+   [
+    "P34",
+    "sc_10"
+   ],
+   [
+    "P15",
+    "sc_11"
+   ],
+   [
+    "P28",
+    "sc_11"
+   ],
+   [
+    "P14",
+    "sc_12"
+   ]
+  ],
+  "revealed_here": [
+   "P08",
+   "P11",
+   "P13",
+   "P29"
+  ],
+  "in_play": [
+   "P03",
+   "P04",
+   "P05",
+   "P06",
+   "P07",
+   "P08",
+   "P09",
+   "P10",
+   "P11",
+   "P12",
+   "P13",
+   "P14",
+   "P15",
+   "P16",
+   "P18",
+   "P21",
+   "P27",
+   "P28",
+   "P33",
+   "P34",
+   "P35",
+   "P36"
+  ],
+  "cast": {
+   "ch_sarah": {
+    "status": {
+     "P03": "no_record",
+     "P04": "no_record",
+     "P05": "no_record",
+     "P06": "no_record",
+     "P07": "unaware",
+     "P08": "knows",
+     "P09": "knows",
+     "P10": "knows",
+     "P11": "knows",
+     "P12": "knows",
+     "P13": "knows",
+     "P14": "unaware",
+     "P15": "no_record",
+     "P16": "no_record",
+     "P18": "knows",
+     "P21": "no_record",
+     "P27": "no_record",
+     "P28": "no_record",
+     "P33": "no_record",
+     "P34": "no_record",
+     "P35": "knows",
+     "P36": "knows"
+    },
+    "gaps": [
+     [
+      "P03",
+      "no_record",
+      "sc_03"
+     ],
+     [
+      "P04",
+      "no_record",
+      "sc_03"
+     ],
+     [
+      "P05",
+      "no_record",
+      "sc_11"
+     ],
+     [
+      "P06",
+      "no_record",
+      "sc_11"
+     ],
+     [
+      "P07",
+      "unaware",
+      "sc_11"
+     ],
+     [
+      "P14",
+      "unaware",
+      "sc_12"
+     ],
+     [
+      "P15",
+      "no_record",
+      "sc_11"
+     ],
+     [
+      "P16",
+      "no_record",
+      "sc_11"
+     ],
+     [
+      "P21",
+      "no_record",
+      "sc_11"
+     ],
+     [
+      "P27",
+      "no_record",
+      "sc_03"
+     ],
+     [
+      "P28",
+      "no_record",
+      "sc_11"
+     ],
+     [
+      "P33",
+      "no_record",
+      "sc_11"
+     ],
+     [
+      "P34",
+      "no_record",
+      "sc_11"
+     ]
+    ]
+   },
+   "ch_daniel": {
+    "status": {
+     "P03": "wrong",
+     "P04": "wrong",
+     "P05": "no_record",
+     "P06": "no_record",
+     "P07": "no_record",
+     "P08": "no_record",
+     "P09": "no_record",
+     "P10": "unaware",
+     "P11": "no_record",
+     "P12": "no_record",
+     "P13": "no_record",
+     "P14": "no_record",
+     "P15": "no_record",
+     "P16": "no_record",
+     "P18": "no_record",
+     "P21": "no_record",
+     "P27": "no_record",
+     "P28": "no_record",
+     "P33": "no_record",
+     "P34": "no_record",
+     "P35": "unaware",
+     "P36": "unaware"
+    },
+    "gaps": [
+     [
+      "P03",
+      "wrong",
+      "sc_10"
+     ],
+     [
+      "P04",
+      "wrong",
+      "sc_10"
+     ],
+     [
+      "P05",
+      "no_record",
+      "sc_10"
+     ],
+     [
+      "P06",
+      "no_record",
+      "sc_10"
+     ],
+     [
+      "P07",
+      "no_record",
+      "sc_10"
+     ],
+     [
+      "P08",
+      "no_record",
+      "sc_07"
+     ],
+     [
+      "P09",
+      "no_record",
+      "sc_07"
+     ],
+     [
+      "P10",
+      "unaware",
+      null
+     ],
+     [
+      "P11",
+      "no_record",
+      "sc_07"
+     ],
+     [
+      "P12",
+      "no_record",
+      null
+     ],
+     [
+      "P13",
+      "no_record",
+      "sc_07"
+     ],
+     [
+      "P14",
+      "no_record",
+      "sc_12"
+     ],
+     [
+      "P15",
+      "no_record",
+      "sc_12"
+     ],
+     [
+      "P16",
+      "no_record",
+      "sc_12"
+     ],
+     [
+      "P18",
+      "no_record",
+      null
+     ],
+     [
+      "P21",
+      "no_record",
+      "sc_10"
+     ],
+     [
+      "P27",
+      "no_record",
+      "sc_07"
+     ],
+     [
+      "P28",
+      "no_record",
+      null
+     ],
+     [
+      "P33",
+      "no_record",
+      "sc_10"
+     ],
+     [
+      "P34",
+      "no_record",
+      "sc_10"
+     ],
+     [
+      "P35",
+      "unaware",
+      null
+     ],
+     [
+      "P36",
+      "unaware",
+      null
+     ]
+    ]
+   }
+  }
+ },
+ "sc_03": {
+  "must_not_reveal": [
+   [
+    "P03",
+    "sc_05"
+   ],
+   [
+    "P04",
+    "sc_05"
+   ],
+   [
+    "P05",
+    "sc_05"
+   ],
+   [
+    "P06",
+    "sc_05"
+   ],
+   [
+    "P16",
+    "sc_05"
+   ],
+   [
+    "P33",
+    "sc_05"
+   ],
+   [
+    "P27",
+    "sc_06"
+   ],
+   [
+    "P09",
+    "sc_07"
+   ],
+   [
+    "P10",
+    "sc_08"
+   ],
+   [
+    "P12",
+    "sc_08"
+   ],
+   [
+    "P18",
+    "sc_08"
+   ],
+   [
+    "P35",
+    "sc_08"
+   ],
+   [
+    "P36",
+    "sc_08"
+   ],
+   [
+    "P21",
+    "sc_09"
+   ],
+   [
+    "P07",
+    "sc_10"
+   ],
+   [
+    "P34",
+    "sc_10"
+   ],
+   [
+    "P15",
+    "sc_11"
+   ],
+   [
+    "P28",
+    "sc_11"
+   ],
+   [
+    "P14",
+    "sc_12"
+   ]
+  ],
+  "revealed_here": [],
+  "in_play": [
+   "P03",
+   "P04",
+   "P05",
+   "P06",
+   "P07",
+   "P08",
+   "P09",
+   "P10",
+   "P11",
+   "P12",
+   "P13",
+   "P14",
+   "P15",
+   "P16",
+   "P18",
+   "P21",
+   "P27",
+   "P28",
+   "P33",
+   "P34",
+   "P35",
+   "P36"
+  ],
+  "cast": {
+   "ch_daniel": {
+    "status": {
+     "P03": "wrong",
+     "P04": "wrong",
+     "P05": "no_record",
+     "P06": "no_record",
+     "P07": "no_record",
+     "P08": "no_record",
+     "P09": "no_record",
+     "P10": "unaware",
+     "P11": "no_record",
+     "P12": "wrong",
+     "P13": "no_record",
+     "P14": "no_record",
+     "P15": "no_record",
+     "P16": "no_record",
+     "P18": "no_record",
+     "P21": "no_record",
+     "P27": "no_record",
+     "P28": "no_record",
+     "P33": "no_record",
+     "P34": "no_record",
+     "P35": "unaware",
+     "P36": "unaware"
+    },
+    "gaps": [
+     [
+      "P03",
+      "wrong",
+      "sc_10"
+     ],
+     [
+      "P04",
+      "wrong",
+      "sc_10"
+     ],
+     [
+      "P05",
+      "no_record",
+      "sc_10"
+     ],
+     [
+      "P06",
+      "no_record",
+      "sc_10"
+     ],
+     [
+      "P07",
+      "no_record",
+      "sc_10"
+     ],
+     [
+      "P08",
+      "no_record",
+      "sc_07"
+     ],
+     [
+      "P09",
+      "no_record",
+      "sc_07"
+     ],
+     [
+      "P10",
+      "unaware",
+      null
+     ],
+     [
+      "P11",
+      "no_record",
+      "sc_07"
+     ],
+     [
+      "P12",
+      "wrong",
+      null
+     ],
+     [
+      "P13",
+      "no_record",
+      "sc_07"
+     ],
+     [
+      "P14",
+      "no_record",
+      "sc_12"
+     ],
+     [
+      "P15",
+      "no_record",
+      "sc_12"
+     ],
+     [
+      "P16",
+      "no_record",
+      "sc_12"
+     ],
+     [
+      "P18",
+      "no_record",
+      null
+     ],
+     [
+      "P21",
+      "no_record",
+      "sc_10"
+     ],
+     [
+      "P27",
+      "no_record",
+      "sc_07"
+     ],
+     [
+      "P28",
+      "no_record",
+      null
+     ],
+     [
+      "P33",
+      "no_record",
+      "sc_10"
+     ],
+     [
+      "P34",
+      "no_record",
+      "sc_10"
+     ],
+     [
+      "P35",
+      "unaware",
+      null
+     ],
+     [
+      "P36",
+      "unaware",
+      null
+     ]
+    ]
+   },
+   "ch_sarah": {
+    "status": {
+     "P03": "learns_here",
+     "P04": "learns_here",
+     "P05": "no_record",
+     "P06": "no_record",
+     "P07": "unaware",
+     "P08": "knows",
+     "P09": "knows",
+     "P10": "knows",
+     "P11": "knows",
+     "P12": "knows",
+     "P13": "knows",
+     "P14": "unaware",
+     "P15": "no_record",
+     "P16": "no_record",
+     "P18": "knows",
+     "P21": "no_record",
+     "P27": "learns_here",
+     "P28": "no_record",
+     "P33": "no_record",
+     "P34": "no_record",
+     "P35": "knows",
+     "P36": "knows"
+    },
+    "gaps": [
+     [
+      "P05",
+      "no_record",
+      "sc_11"
+     ],
+     [
+      "P06",
+      "no_record",
+      "sc_11"
+     ],
+     [
+      "P07",
+      "unaware",
+      "sc_11"
+     ],
+     [
+      "P14",
+      "unaware",
+      "sc_12"
+     ],
+     [
+      "P15",
+      "no_record",
+      "sc_11"
+     ],
+     [
+      "P16",
+      "no_record",
+      "sc_11"
+     ],
+     [
+      "P21",
+      "no_record",
+      "sc_11"
+     ],
+     [
+      "P28",
+      "no_record",
+      "sc_11"
+     ],
+     [
+      "P33",
+      "no_record",
+      "sc_11"
+     ],
+     [
+      "P34",
+      "no_record",
+      "sc_11"
+     ]
+    ]
+   },
+   "ch_tom": {
+    "status": {
+     "P03": "no_record",
+     "P04": "no_record",
+     "P05": "no_record",
+     "P06": "no_record",
+     "P07": "no_record",
+     "P08": "no_record",
+     "P09": "no_record",
+     "P10": "unaware",
+     "P11": "no_record",
+     "P12": "wrong",
+     "P13": "no_record",
+     "P14": "no_record",
+     "P15": "no_record",
+     "P16": "no_record",
+     "P18": "no_record",
+     "P21": "no_record",
+     "P27": "no_record",
+     "P28": "no_record",
+     "P33": "no_record",
+     "P34": "no_record",
+     "P35": "unaware",
+     "P36": "unaware"
+    },
+    "gaps": [
+     [
+      "P03",
+      "no_record",
+      null
+     ],
+     [
+      "P04",
+      "no_record",
+      null
+     ],
+     [
+      "P05",
+      "no_record",
+      null
+     ],
+     [
+      "P06",
+      "no_record",
+      null
+     ],
+     [
+      "P07",
+      "no_record",
+      "sc_12"
+     ],
+     [
+      "P08",
+      "no_record",
+      null
+     ],
+     [
+      "P09",
+      "no_record",
+      null
+     ],
+     [
+      "P10",
+      "unaware",
+      null
+     ],
+     [
+      "P11",
+      "no_record",
+      null
+     ],
+     [
+      "P12",
+      "wrong",
+      null
+     ],
+     [
+      "P13",
+      "no_record",
+      null
+     ],
+     [
+      "P14",
+      "no_record",
+      null
+     ],
+     [
+      "P15",
+      "no_record",
+      "sc_12"
+     ],
+     [
+      "P16",
+      "no_record",
+      null
+     ],
+     [
+      "P18",
+      "no_record",
+      null
+     ],
+     [
+      "P21",
+      "no_record",
+      null
+     ],
+     [
+      "P27",
+      "no_record",
+      null
+     ],
+     [
+      "P28",
+      "no_record",
+      null
+     ],
+     [
+      "P33",
+      "no_record",
+      null
+     ],
+     [
+      "P34",
+      "no_record",
+      null
+     ],
+     [
+      "P35",
+      "unaware",
+      null
+     ],
+     [
+      "P36",
+      "unaware",
+      null
+     ]
+    ]
+   }
+  }
+ },
+ "sc_04": {
+  "must_not_reveal": [
+   [
+    "P03",
+    "sc_05"
+   ],
+   [
+    "P04",
+    "sc_05"
+   ],
+   [
+    "P05",
+    "sc_05"
+   ],
+   [
+    "P06",
+    "sc_05"
+   ],
+   [
+    "P16",
+    "sc_05"
+   ],
+   [
+    "P33",
+    "sc_05"
+   ],
+   [
+    "P27",
+    "sc_06"
+   ],
+   [
+    "P09",
+    "sc_07"
+   ],
+   [
+    "P10",
+    "sc_08"
+   ],
+   [
+    "P12",
+    "sc_08"
+   ],
+   [
+    "P18",
+    "sc_08"
+   ],
+   [
+    "P35",
+    "sc_08"
+   ],
+   [
+    "P36",
+    "sc_08"
+   ],
+   [
+    "P21",
+    "sc_09"
+   ],
+   [
+    "P07",
+    "sc_10"
+   ],
+   [
+    "P34",
+    "sc_10"
+   ],
+   [
+    "P15",
+    "sc_11"
+   ],
+   [
+    "P24",
+    "sc_11"
+   ],
+   [
+    "P28",
+    "sc_11"
+   ],
+   [
+    "P14",
+    "sc_12"
+   ]
+  ],
+  "revealed_here": [
+   "P17",
+   "P22"
+  ],
+  "in_play": [
+   "P03",
+   "P04",
+   "P05",
+   "P06",
+   "P07",
+   "P08",
+   "P09",
+   "P10",
+   "P11",
+   "P12",
+   "P13",
+   "P14",
+   "P15",
+   "P16",
+   "P17",
+   "P18",
+   "P21",
+   "P22",
+   "P24",
+   "P27",
+   "P28",
+   "P33",
+   "P34",
+   "P35",
+   "P36"
+  ],
+  "cast": {
+   "ch_tom": {
+    "status": {
+     "P03": "no_record",
+     "P04": "no_record",
+     "P05": "no_record",
+     "P06": "no_record",
+     "P07": "no_record",
+     "P08": "no_record",
+     "P09": "no_record",
+     "P10": "unaware",
+     "P11": "no_record",
+     "P12": "wrong",
+     "P13": "no_record",
+     "P14": "no_record",
+     "P15": "unaware",
+     "P16": "no_record",
+     "P17": "wrong",
+     "P18": "no_record",
+     "P21": "no_record",
+     "P22": "learns_here",
+     "P24": "no_record",
+     "P27": "no_record",
+     "P28": "no_record",
+     "P33": "no_record",
+     "P34": "no_record",
+     "P35": "unaware",
+     "P36": "unaware"
+    },
+    "gaps": [
+     [
+      "P03",
+      "no_record",
+      null
+     ],
+     [
+      "P04",
+      "no_record",
+      null
+     ],
+     [
+      "P05",
+      "no_record",
+      null
+     ],
+     [
+      "P06",
+      "no_record",
+      null
+     ],
+     [
+      "P07",
+      "no_record",
+      "sc_12"
+     ],
+     [
+      "P08",
+      "no_record",
+      null
+     ],
+     [
+      "P09",
+      "no_record",
+      null
+     ],
+     [
+      "P10",
+      "unaware",
+      null
+     ],
+     [
+      "P11",
+      "no_record",
+      null
+     ],
+     [
+      "P12",
+      "wrong",
+      null
+     ],
+     [
+      "P13",
+      "no_record",
+      null
+     ],
+     [
+      "P14",
+      "no_record",
+      null
+     ],
+     [
+      "P15",
+      "unaware",
+      "sc_12"
+     ],
+     [
+      "P16",
+      "no_record",
+      null
+     ],
+     [
+      "P17",
+      "wrong",
+      "sc_12"
+     ],
+     [
+      "P18",
+      "no_record",
+      null
+     ],
+     [
+      "P21",
+      "no_record",
+      null
+     ],
+     [
+      "P24",
+      "no_record",
+      "sc_12"
+     ],
+     [
+      "P27",
+      "no_record",
+      null
+     ],
+     [
+      "P28",
+      "no_record",
+      null
+     ],
+     [
+      "P33",
+      "no_record",
+      null
+     ],
+     [
+      "P34",
+      "no_record",
+      null
+     ],
+     [
+      "P35",
+      "unaware",
+      null
+     ],
+     [
+      "P36",
+      "unaware",
+      null
+     ]
+    ]
+   },
+   "ch_marta": {
+    "status": {
+     "P03": "knows",
+     "P04": "knows",
+     "P05": "knows",
+     "P06": "knows",
+     "P07": "knows",
+     "P08": "no_record",
+     "P09": "no_record",
+     "P10": "unaware",
+     "P11": "no_record",
+     "P12": "no_record",
+     "P13": "no_record",
+     "P14": "no_record",
+     "P15": "learns_here",
+     "P16": "learns_here",
+     "P17": "learns_here",
+     "P18": "no_record",
+     "P21": "wrong",
+     "P22": "learns_here",
+     "P24": "learns_here",
+     "P27": "no_record",
+     "P28": "no_record",
+     "P33": "knows",
+     "P34": "knows",
+     "P35": "unaware",
+     "P36": "unaware"
+    },
+    "gaps": [
+     [
+      "P08",
+      "no_record",
+      "sc_09"
+     ],
+     [
+      "P09",
+      "no_record",
+      "sc_09"
+     ],
+     [
+      "P10",
+      "unaware",
+      null
+     ],
+     [
+      "P11",
+      "no_record",
+      "sc_09"
+     ],
+     [
+      "P12",
+      "no_record",
+      null
+     ],
+     [
+      "P13",
+      "no_record",
+      "sc_09"
+     ],
+     [
+      "P14",
+      "no_record",
+      "sc_12"
+     ],
+     [
+      "P18",
+      "no_record",
+      null
+     ],
+     [
+      "P21",
+      "wrong",
+      "sc_09"
+     ],
+     [
+      "P27",
+      "no_record",
+      "sc_09"
+     ],
+     [
+      "P28",
+      "no_record",
+      null
+     ],
+     [
+      "P35",
+      "unaware",
+      null
+     ],
+     [
+      "P36",
+      "unaware",
+      null
+     ]
+    ]
+   },
+   "ch_jonas": {
+    "status": {
+     "P03": "no_record",
+     "P04": "no_record",
+     "P05": "no_record",
+     "P06": "knows",
+     "P07": "knows",
+     "P08": "no_record",
+     "P09": "no_record",
+     "P10": "unaware",
+     "P11": "no_record",
+     "P12": "no_record",
+     "P13": "no_record",
+     "P14": "no_record",
+     "P15": "knows",
+     "P16": "knows",
+     "P17": "learns_here",
+     "P18": "no_record",
+     "P21": "no_record",
+     "P22": "learns_here",
+     "P24": "learns_here",
+     "P27": "no_record",
+     "P28": "knows",
+     "P33": "knows",
+     "P34": "knows",
+     "P35": "unaware",
+     "P36": "unaware"
+    },
+    "gaps": [
+     [
+      "P03",
+      "no_record",
+      null
+     ],
+     [
+      "P04",
+      "no_record",
+      null
+     ],
+     [
+      "P05",
+      "no_record",
+      null
+     ],
+     [
+      "P08",
+      "no_record",
+      "sc_11"
+     ],
+     [
+      "P09",
+      "no_record",
+      "sc_11"
+     ],
+     [
+      "P10",
+      "unaware",
+      null
+     ],
+     [
+      "P11",
+      "no_record",
+      "sc_11"
+     ],
+     [
+      "P12",
+      "no_record",
+      null
+     ],
+     [
+      "P13",
+      "no_record",
+      "sc_11"
+     ],
+     [
+      "P14",
+      "no_record",
+      "sc_12"
+     ],
+     [
+      "P18",
+      "no_record",
+      null
+     ],
+     [
+      "P21",
+      "no_record",
+      "sc_11"
+     ],
+     [
+      "P27",
+      "no_record",
+      null
+     ],
+     [
+      "P35",
+      "unaware",
+      null
+     ],
+     [
+      "P36",
+      "unaware",
+      null
+     ]
+    ]
+   }
+  }
+ },
+ "sc_05": {
+  "must_not_reveal": [
+   [
+    "P27",
+    "sc_06"
+   ],
+   [
+    "P09",
+    "sc_07"
+   ],
+   [
+    "P10",
+    "sc_08"
+   ],
+   [
+    "P12",
+    "sc_08"
+   ],
+   [
+    "P18",
+    "sc_08"
+   ],
+   [
+    "P35",
+    "sc_08"
+   ],
+   [
+    "P36",
+    "sc_08"
+   ],
+   [
+    "P21",
+    "sc_09"
+   ],
+   [
+    "P07",
+    "sc_10"
+   ],
+   [
+    "P34",
+    "sc_10"
+   ],
+   [
+    "P15",
+    "sc_11"
+   ],
+   [
+    "P24",
+    "sc_11"
+   ],
+   [
+    "P28",
+    "sc_11"
+   ],
+   [
+    "P14",
+    "sc_12"
+   ]
+  ],
+  "revealed_here": [
+   "P03",
+   "P04",
+   "P05",
+   "P06",
+   "P16",
+   "P33"
+  ],
+  "in_play": [
+   "P03",
+   "P04",
+   "P05",
+   "P06",
+   "P07",
+   "P08",
+   "P09",
+   "P10",
+   "P11",
+   "P12",
+   "P13",
+   "P14",
+   "P15",
+   "P16",
+   "P17",
+   "P18",
+   "P21",
+   "P22",
+   "P24",
+   "P27",
+   "P28",
+   "P33",
+   "P34",
+   "P35",
+   "P36"
+  ],
+  "cast": {
+   "ch_marta": {
+    "status": {
+     "P03": "knows",
+     "P04": "knows",
+     "P05": "knows",
+     "P06": "knows",
+     "P07": "knows",
+     "P08": "no_record",
+     "P09": "no_record",
+     "P10": "unaware",
+     "P11": "no_record",
+     "P12": "no_record",
+     "P13": "no_record",
+     "P14": "no_record",
+     "P15": "knows",
+     "P16": "knows",
+     "P17": "knows",
+     "P18": "no_record",
+     "P21": "wrong",
+     "P22": "knows",
+     "P24": "knows",
+     "P27": "no_record",
+     "P28": "no_record",
+     "P33": "knows",
+     "P34": "knows",
+     "P35": "unaware",
+     "P36": "unaware"
+    },
+    "gaps": [
+     [
+      "P08",
+      "no_record",
+      "sc_09"
+     ],
+     [
+      "P09",
+      "no_record",
+      "sc_09"
+     ],
+     [
+      "P10",
+      "unaware",
+      null
+     ],
+     [
+      "P11",
+      "no_record",
+      "sc_09"
+     ],
+     [
+      "P12",
+      "no_record",
+      null
+     ],
+     [
+      "P13",
+      "no_record",
+      "sc_09"
+     ],
+     [
+      "P14",
+      "no_record",
+      "sc_12"
+     ],
+     [
+      "P18",
+      "no_record",
+      null
+     ],
+     [
+      "P21",
+      "wrong",
+      "sc_09"
+     ],
+     [
+      "P27",
+      "no_record",
+      "sc_09"
+     ],
+     [
+      "P28",
+      "no_record",
+      null
+     ],
+     [
+      "P35",
+      "unaware",
+      null
+     ],
+     [
+      "P36",
+      "unaware",
+      null
+     ]
+    ]
+   }
+  }
+ },
+ "sc_06": {
+  "must_not_reveal": [
+   [
+    "P09",
+    "sc_07"
+   ],
+   [
+    "P10",
+    "sc_08"
+   ],
+   [
+    "P12",
+    "sc_08"
+   ],
+   [
+    "P18",
+    "sc_08"
+   ],
+   [
+    "P35",
+    "sc_08"
+   ],
+   [
+    "P36",
+    "sc_08"
+   ],
+   [
+    "P21",
+    "sc_09"
+   ],
+   [
+    "P07",
+    "sc_10"
+   ],
+   [
+    "P34",
+    "sc_10"
+   ],
+   [
+    "P15",
+    "sc_11"
+   ],
+   [
+    "P24",
+    "sc_11"
+   ],
+   [
+    "P28",
+    "sc_11"
+   ],
+   [
+    "P14",
+    "sc_12"
+   ]
+  ],
+  "revealed_here": [
+   "P23",
+   "P27"
+  ],
+  "in_play": [
+   "P03",
+   "P04",
+   "P05",
+   "P06",
+   "P07",
+   "P08",
+   "P09",
+   "P10",
+   "P11",
+   "P12",
+   "P13",
+   "P14",
+   "P15",
+   "P16",
+   "P17",
+   "P18",
+   "P21",
+   "P22",
+   "P23",
+   "P24",
+   "P27",
+   "P28",
+   "P33",
+   "P34",
+   "P35",
+   "P36"
+  ],
+  "cast": {
+   "ch_sarah": {
+    "status": {
+     "P03": "knows",
+     "P04": "knows",
+     "P05": "no_record",
+     "P06": "no_record",
+     "P07": "unaware",
+     "P08": "knows",
+     "P09": "knows",
+     "P10": "knows",
+     "P11": "knows",
+     "P12": "knows",
+     "P13": "knows",
+     "P14": "unaware",
+     "P15": "unaware",
+     "P16": "no_record",
+     "P17": "no_record",
+     "P18": "knows",
+     "P21": "no_record",
+     "P22": "no_record",
+     "P23": "learns_here",
+     "P24": "no_record",
+     "P27": "knows",
+     "P28": "no_record",
+     "P33": "no_record",
+     "P34": "no_record",
+     "P35": "knows",
+     "P36": "knows"
+    },
+    "gaps": [
+     [
+      "P05",
+      "no_record",
+      "sc_11"
+     ],
+     [
+      "P06",
+      "no_record",
+      "sc_11"
+     ],
+     [
+      "P07",
+      "unaware",
+      "sc_11"
+     ],
+     [
+      "P14",
+      "unaware",
+      "sc_12"
+     ],
+     [
+      "P15",
+      "unaware",
+      "sc_11"
+     ],
+     [
+      "P16",
+      "no_record",
+      "sc_11"
+     ],
+     [
+      "P17",
+      "no_record",
+      "sc_11"
+     ],
+     [
+      "P21",
+      "no_record",
+      "sc_11"
+     ],
+     [
+      "P22",
+      "no_record",
+      "sc_11"
+     ],
+     [
+      "P24",
+      "no_record",
+      "sc_11"
+     ],
+     [
+      "P28",
+      "no_record",
+      "sc_11"
+     ],
+     [
+      "P33",
+      "no_record",
+      "sc_11"
+     ],
+     [
+      "P34",
+      "no_record",
+      "sc_11"
+     ]
+    ]
+   },
+   "ch_jonas": {
+    "status": {
+     "P03": "no_record",
+     "P04": "no_record",
+     "P05": "no_record",
+     "P06": "knows",
+     "P07": "knows",
+     "P08": "no_record",
+     "P09": "no_record",
+     "P10": "unaware",
+     "P11": "no_record",
+     "P12": "no_record",
+     "P13": "no_record",
+     "P14": "no_record",
+     "P15": "knows",
+     "P16": "knows",
+     "P17": "knows",
+     "P18": "no_record",
+     "P21": "no_record",
+     "P22": "knows",
+     "P23": "learns_here",
+     "P24": "knows",
+     "P27": "no_record",
+     "P28": "knows",
+     "P33": "knows",
+     "P34": "knows",
+     "P35": "unaware",
+     "P36": "unaware"
+    },
+    "gaps": [
+     [
+      "P03",
+      "no_record",
+      null
+     ],
+     [
+      "P04",
+      "no_record",
+      null
+     ],
+     [
+      "P05",
+      "no_record",
+      null
+     ],
+     [
+      "P08",
+      "no_record",
+      "sc_11"
+     ],
+     [
+      "P09",
+      "no_record",
+      "sc_11"
+     ],
+     [
+      "P10",
+      "unaware",
+      null
+     ],
+     [
+      "P11",
+      "no_record",
+      "sc_11"
+     ],
+     [
+      "P12",
+      "no_record",
+      null
+     ],
+     [
+      "P13",
+      "no_record",
+      "sc_11"
+     ],
+     [
+      "P14",
+      "no_record",
+      "sc_12"
+     ],
+     [
+      "P18",
+      "no_record",
+      null
+     ],
+     [
+      "P21",
+      "no_record",
+      "sc_11"
+     ],
+     [
+      "P27",
+      "no_record",
+      null
+     ],
+     [
+      "P35",
+      "unaware",
+      null
+     ],
+     [
+      "P36",
+      "unaware",
+      null
+     ]
+    ]
+   }
+  }
+ },
+ "sc_07": {
+  "must_not_reveal": [
+   [
+    "P10",
+    "sc_08"
+   ],
+   [
+    "P12",
+    "sc_08"
+   ],
+   [
+    "P18",
+    "sc_08"
+   ],
+   [
+    "P35",
+    "sc_08"
+   ],
+   [
+    "P36",
+    "sc_08"
+   ],
+   [
+    "P21",
+    "sc_09"
+   ],
+   [
+    "P07",
+    "sc_10"
+   ],
+   [
+    "P34",
+    "sc_10"
+   ],
+   [
+    "P15",
+    "sc_11"
+   ],
+   [
+    "P24",
+    "sc_11"
+   ],
+   [
+    "P28",
+    "sc_11"
+   ],
+   [
+    "P14",
+    "sc_12"
+   ]
+  ],
+  "revealed_here": [
+   "P09",
+   "P31"
+  ],
+  "in_play": [
+   "P03",
+   "P04",
+   "P05",
+   "P06",
+   "P07",
+   "P08",
+   "P09",
+   "P10",
+   "P11",
+   "P12",
+   "P13",
+   "P14",
+   "P15",
+   "P16",
+   "P17",
+   "P18",
+   "P21",
+   "P22",
+   "P23",
+   "P24",
+   "P27",
+   "P28",
+   "P33",
+   "P34",
+   "P35",
+   "P36"
+  ],
+  "cast": {
+   "ch_daniel": {
+    "status": {
+     "P03": "wrong",
+     "P04": "wrong",
+     "P05": "no_record",
+     "P06": "no_record",
+     "P07": "unaware",
+     "P08": "learns_here",
+     "P09": "learns_here",
+     "P10": "unaware",
+     "P11": "learns_here",
+     "P12": "wrong",
+     "P13": "learns_here",
+     "P14": "no_record",
+     "P15": "no_record",
+     "P16": "no_record",
+     "P17": "no_record",
+     "P18": "wrong",
+     "P21": "no_record",
+     "P22": "no_record",
+     "P23": "no_record",
+     "P24": "no_record",
+     "P27": "learns_here",
+     "P28": "no_record",
+     "P33": "no_record",
+     "P34": "no_record",
+     "P35": "unaware",
+     "P36": "unaware"
+    },
+    "gaps": [
+     [
+      "P03",
+      "wrong",
+      "sc_10"
+     ],
+     [
+      "P04",
+      "wrong",
+      "sc_10"
+     ],
+     [
+      "P05",
+      "no_record",
+      "sc_10"
+     ],
+     [
+      "P06",
+      "no_record",
+      "sc_10"
+     ],
+     [
+      "P07",
+      "unaware",
+      "sc_10"
+     ],
+     [
+      "P10",
+      "unaware",
+      null
+     ],
+     [
+      "P12",
+      "wrong",
+      null
+     ],
+     [
+      "P14",
+      "no_record",
+      "sc_12"
+     ],
+     [
+      "P15",
+      "no_record",
+      "sc_12"
+     ],
+     [
+      "P16",
+      "no_record",
+      "sc_12"
+     ],
+     [
+      "P17",
+      "no_record",
+      "sc_12"
+     ],
+     [
+      "P18",
+      "wrong",
+      null
+     ],
+     [
+      "P21",
+      "no_record",
+      "sc_10"
+     ],
+     [
+      "P22",
+      "no_record",
+      "sc_12"
+     ],
+     [
+      "P23",
+      "no_record",
+      null
+     ],
+     [
+      "P24",
+      "no_record",
+      "sc_12"
+     ],
+     [
+      "P28",
+      "no_record",
+      null
+     ],
+     [
+      "P33",
+      "no_record",
+      "sc_10"
+     ],
+     [
+      "P34",
+      "no_record",
+      "sc_10"
+     ],
+     [
+      "P35",
+      "unaware",
+      null
+     ],
+     [
+      "P36",
+      "unaware",
+      null
+     ]
+    ]
+   },
+   "ch_sarah": {
+    "status": {
+     "P03": "knows",
+     "P04": "knows",
+     "P05": "no_record",
+     "P06": "no_record",
+     "P07": "unaware",
+     "P08": "knows",
+     "P09": "knows",
+     "P10": "knows",
+     "P11": "knows",
+     "P12": "knows",
+     "P13": "knows",
+     "P14": "unaware",
+     "P15": "unaware",
+     "P16": "no_record",
+     "P17": "no_record",
+     "P18": "knows",
+     "P21": "no_record",
+     "P22": "no_record",
+     "P23": "knows",
+     "P24": "no_record",
+     "P27": "knows",
+     "P28": "no_record",
+     "P33": "no_record",
+     "P34": "no_record",
+     "P35": "knows",
+     "P36": "knows"
+    },
+    "gaps": [
+     [
+      "P05",
+      "no_record",
+      "sc_11"
+     ],
+     [
+      "P06",
+      "no_record",
+      "sc_11"
+     ],
+     [
+      "P07",
+      "unaware",
+      "sc_11"
+     ],
+     [
+      "P14",
+      "unaware",
+      "sc_12"
+     ],
+     [
+      "P15",
+      "unaware",
+      "sc_11"
+     ],
+     [
+      "P16",
+      "no_record",
+      "sc_11"
+     ],
+     [
+      "P17",
+      "no_record",
+      "sc_11"
+     ],
+     [
+      "P21",
+      "no_record",
+      "sc_11"
+     ],
+     [
+      "P22",
+      "no_record",
+      "sc_11"
+     ],
+     [
+      "P24",
+      "no_record",
+      "sc_11"
+     ],
+     [
+      "P28",
+      "no_record",
+      "sc_11"
+     ],
+     [
+      "P33",
+      "no_record",
+      "sc_11"
+     ],
+     [
+      "P34",
+      "no_record",
+      "sc_11"
+     ]
+    ]
+   }
+  }
+ },
+ "sc_08": {
+  "must_not_reveal": [
+   [
+    "P21",
+    "sc_09"
+   ],
+   [
+    "P07",
+    "sc_10"
+   ],
+   [
+    "P34",
+    "sc_10"
+   ],
+   [
+    "P15",
+    "sc_11"
+   ],
+   [
+    "P28",
+    "sc_11"
+   ],
+   [
+    "P14",
+    "sc_12"
+   ]
+  ],
+  "revealed_here": [
+   "P10",
+   "P12",
+   "P18",
+   "P35",
+   "P36"
+  ],
+  "in_play": [
+   "P03",
+   "P04",
+   "P05",
+   "P06",
+   "P07",
+   "P08",
+   "P09",
+   "P10",
+   "P11",
+   "P12",
+   "P13",
+   "P14",
+   "P15",
+   "P16",
+   "P18",
+   "P21",
+   "P27",
+   "P28",
+   "P33",
+   "P34",
+   "P35",
+   "P36"
+  ],
+  "cast": {
+   "ch_sarah": {
+    "status": {
+     "P03": "no_record",
+     "P04": "no_record",
+     "P05": "no_record",
+     "P06": "no_record",
+     "P07": "unaware",
+     "P08": "learns_here",
+     "P09": "learns_here",
+     "P10": "learns_here",
+     "P11": "learns_here",
+     "P12": "learns_here",
+     "P13": "learns_here",
+     "P14": "unaware",
+     "P15": "no_record",
+     "P16": "no_record",
+     "P18": "learns_here",
+     "P21": "no_record",
+     "P27": "no_record",
+     "P28": "no_record",
+     "P33": "no_record",
+     "P34": "no_record",
+     "P35": "learns_here",
+     "P36": "learns_here"
+    },
+    "gaps": [
+     [
+      "P03",
+      "no_record",
+      "sc_03"
+     ],
+     [
+      "P04",
+      "no_record",
+      "sc_03"
+     ],
+     [
+      "P05",
+      "no_record",
+      "sc_11"
+     ],
+     [
+      "P06",
+      "no_record",
+      "sc_11"
+     ],
+     [
+      "P07",
+      "unaware",
+      "sc_11"
+     ],
+     [
+      "P14",
+      "unaware",
+      "sc_12"
+     ],
+     [
+      "P15",
+      "no_record",
+      "sc_11"
+     ],
+     [
+      "P16",
+      "no_record",
+      "sc_11"
+     ],
+     [
+      "P21",
+      "no_record",
+      "sc_11"
+     ],
+     [
+      "P27",
+      "no_record",
+      "sc_03"
+     ],
+     [
+      "P28",
+      "no_record",
+      "sc_11"
+     ],
+     [
+      "P33",
+      "no_record",
+      "sc_11"
+     ],
+     [
+      "P34",
+      "no_record",
+      "sc_11"
+     ]
+    ]
+   }
+  }
+ },
+ "sc_09": {
+  "must_not_reveal": [
+   [
+    "P07",
+    "sc_10"
+   ],
+   [
+    "P34",
+    "sc_10"
+   ],
+   [
+    "P15",
+    "sc_11"
+   ],
+   [
+    "P24",
+    "sc_11"
+   ],
+   [
+    "P28",
+    "sc_11"
+   ],
+   [
+    "P14",
+    "sc_12"
+   ]
+  ],
+  "revealed_here": [
+   "P21"
+  ],
+  "in_play": [
+   "P03",
+   "P04",
+   "P05",
+   "P06",
+   "P07",
+   "P08",
+   "P09",
+   "P10",
+   "P11",
+   "P12",
+   "P13",
+   "P14",
+   "P15",
+   "P16",
+   "P17",
+   "P18",
+   "P21",
+   "P22",
+   "P23",
+   "P24",
+   "P27",
+   "P28",
+   "P33",
+   "P34",
+   "P35",
+   "P36"
+  ],
+  "cast": {
+   "ch_sarah": {
+    "status": {
+     "P03": "knows",
+     "P04": "knows",
+     "P05": "no_record",
+     "P06": "no_record",
+     "P07": "unaware",
+     "P08": "knows",
+     "P09": "knows",
+     "P10": "knows",
+     "P11": "knows",
+     "P12": "knows",
+     "P13": "knows",
+     "P14": "unaware",
+     "P15": "unaware",
+     "P16": "no_record",
+     "P17": "no_record",
+     "P18": "knows",
+     "P21": "no_record",
+     "P22": "no_record",
+     "P23": "knows",
+     "P24": "no_record",
+     "P27": "knows",
+     "P28": "no_record",
+     "P33": "no_record",
+     "P34": "no_record",
+     "P35": "knows",
+     "P36": "knows"
+    },
+    "gaps": [
+     [
+      "P05",
+      "no_record",
+      "sc_11"
+     ],
+     [
+      "P06",
+      "no_record",
+      "sc_11"
+     ],
+     [
+      "P07",
+      "unaware",
+      "sc_11"
+     ],
+     [
+      "P14",
+      "unaware",
+      "sc_12"
+     ],
+     [
+      "P15",
+      "unaware",
+      "sc_11"
+     ],
+     [
+      "P16",
+      "no_record",
+      "sc_11"
+     ],
+     [
+      "P17",
+      "no_record",
+      "sc_11"
+     ],
+     [
+      "P21",
+      "no_record",
+      "sc_11"
+     ],
+     [
+      "P22",
+      "no_record",
+      "sc_11"
+     ],
+     [
+      "P24",
+      "no_record",
+      "sc_11"
+     ],
+     [
+      "P28",
+      "no_record",
+      "sc_11"
+     ],
+     [
+      "P33",
+      "no_record",
+      "sc_11"
+     ],
+     [
+      "P34",
+      "no_record",
+      "sc_11"
+     ]
+    ]
+   },
+   "ch_daniel": {
+    "status": {
+     "P03": "wrong",
+     "P04": "wrong",
+     "P05": "no_record",
+     "P06": "no_record",
+     "P07": "unaware",
+     "P08": "knows",
+     "P09": "knows",
+     "P10": "unaware",
+     "P11": "knows",
+     "P12": "wrong",
+     "P13": "knows",
+     "P14": "no_record",
+     "P15": "no_record",
+     "P16": "no_record",
+     "P17": "no_record",
+     "P18": "wrong",
+     "P21": "no_record",
+     "P22": "no_record",
+     "P23": "no_record",
+     "P24": "no_record",
+     "P27": "knows",
+     "P28": "no_record",
+     "P33": "no_record",
+     "P34": "no_record",
+     "P35": "unaware",
+     "P36": "unaware"
+    },
+    "gaps": [
+     [
+      "P03",
+      "wrong",
+      "sc_10"
+     ],
+     [
+      "P04",
+      "wrong",
+      "sc_10"
+     ],
+     [
+      "P05",
+      "no_record",
+      "sc_10"
+     ],
+     [
+      "P06",
+      "no_record",
+      "sc_10"
+     ],
+     [
+      "P07",
+      "unaware",
+      "sc_10"
+     ],
+     [
+      "P10",
+      "unaware",
+      null
+     ],
+     [
+      "P12",
+      "wrong",
+      null
+     ],
+     [
+      "P14",
+      "no_record",
+      "sc_12"
+     ],
+     [
+      "P15",
+      "no_record",
+      "sc_12"
+     ],
+     [
+      "P16",
+      "no_record",
+      "sc_12"
+     ],
+     [
+      "P17",
+      "no_record",
+      "sc_12"
+     ],
+     [
+      "P18",
+      "wrong",
+      null
+     ],
+     [
+      "P21",
+      "no_record",
+      "sc_10"
+     ],
+     [
+      "P22",
+      "no_record",
+      "sc_12"
+     ],
+     [
+      "P23",
+      "no_record",
+      null
+     ],
+     [
+      "P24",
+      "no_record",
+      "sc_12"
+     ],
+     [
+      "P28",
+      "no_record",
+      null
+     ],
+     [
+      "P33",
+      "no_record",
+      "sc_10"
+     ],
+     [
+      "P34",
+      "no_record",
+      "sc_10"
+     ],
+     [
+      "P35",
+      "unaware",
+      null
+     ],
+     [
+      "P36",
+      "unaware",
+      null
+     ]
+    ]
+   },
+   "ch_marta": {
+    "status": {
+     "P03": "knows",
+     "P04": "knows",
+     "P05": "knows",
+     "P06": "knows",
+     "P07": "knows",
+     "P08": "learns_here",
+     "P09": "learns_here",
+     "P10": "unaware",
+     "P11": "learns_here",
+     "P12": "no_record",
+     "P13": "learns_here",
+     "P14": "no_record",
+     "P15": "knows",
+     "P16": "knows",
+     "P17": "knows",
+     "P18": "no_record",
+     "P21": "learns_here",
+     "P22": "knows",
+     "P23": "no_record",
+     "P24": "knows",
+     "P27": "learns_here",
+     "P28": "no_record",
+     "P33": "knows",
+     "P34": "knows",
+     "P35": "unaware",
+     "P36": "unaware"
+    },
+    "gaps": [
+     [
+      "P10",
+      "unaware",
+      null
+     ],
+     [
+      "P12",
+      "no_record",
+      null
+     ],
+     [
+      "P14",
+      "no_record",
+      "sc_12"
+     ],
+     [
+      "P18",
+      "no_record",
+      null
+     ],
+     [
+      "P23",
+      "no_record",
+      null
+     ],
+     [
+      "P28",
+      "no_record",
+      null
+     ],
+     [
+      "P35",
+      "unaware",
+      null
+     ],
+     [
+      "P36",
+      "unaware",
+      null
+     ]
+    ]
+   }
+  }
+ },
+ "sc_10": {
+  "must_not_reveal": [
+   [
+    "P15",
+    "sc_11"
+   ],
+   [
+    "P24",
+    "sc_11"
+   ],
+   [
+    "P28",
+    "sc_11"
+   ],
+   [
+    "P14",
+    "sc_12"
+   ]
+  ],
+  "revealed_here": [
+   "P07",
+   "P34"
+  ],
+  "in_play": [
+   "P03",
+   "P04",
+   "P05",
+   "P06",
+   "P07",
+   "P08",
+   "P09",
+   "P10",
+   "P11",
+   "P12",
+   "P13",
+   "P14",
+   "P15",
+   "P16",
+   "P17",
+   "P18",
+   "P21",
+   "P22",
+   "P23",
+   "P24",
+   "P27",
+   "P28",
+   "P33",
+   "P34",
+   "P35",
+   "P36"
+  ],
+  "cast": {
+   "ch_daniel": {
+    "status": {
+     "P03": "learns_here",
+     "P04": "learns_here",
+     "P05": "learns_here",
+     "P06": "learns_here",
+     "P07": "learns_here",
+     "P08": "knows",
+     "P09": "knows",
+     "P10": "unaware",
+     "P11": "knows",
+     "P12": "wrong",
+     "P13": "knows",
+     "P14": "no_record",
+     "P15": "no_record",
+     "P16": "no_record",
+     "P17": "no_record",
+     "P18": "wrong",
+     "P21": "learns_here",
+     "P22": "no_record",
+     "P23": "no_record",
+     "P24": "no_record",
+     "P27": "knows",
+     "P28": "no_record",
+     "P33": "learns_here",
+     "P34": "learns_here",
+     "P35": "unaware",
+     "P36": "unaware"
+    },
+    "gaps": [
+     [
+      "P10",
+      "unaware",
+      null
+     ],
+     [
+      "P12",
+      "wrong",
+      null
+     ],
+     [
+      "P14",
+      "no_record",
+      "sc_12"
+     ],
+     [
+      "P15",
+      "no_record",
+      "sc_12"
+     ],
+     [
+      "P16",
+      "no_record",
+      "sc_12"
+     ],
+     [
+      "P17",
+      "no_record",
+      "sc_12"
+     ],
+     [
+      "P18",
+      "wrong",
+      null
+     ],
+     [
+      "P22",
+      "no_record",
+      "sc_12"
+     ],
+     [
+      "P23",
+      "no_record",
+      null
+     ],
+     [
+      "P24",
+      "no_record",
+      "sc_12"
+     ],
+     [
+      "P28",
+      "no_record",
+      null
+     ],
+     [
+      "P35",
+      "unaware",
+      null
+     ],
+     [
+      "P36",
+      "unaware",
+      null
+     ]
+    ]
+   },
+   "ch_marta": {
+    "status": {
+     "P03": "knows",
+     "P04": "knows",
+     "P05": "knows",
+     "P06": "knows",
+     "P07": "knows",
+     "P08": "knows",
+     "P09": "knows",
+     "P10": "unaware",
+     "P11": "knows",
+     "P12": "no_record",
+     "P13": "knows",
+     "P14": "unaware",
+     "P15": "knows",
+     "P16": "knows",
+     "P17": "knows",
+     "P18": "no_record",
+     "P21": "knows",
+     "P22": "knows",
+     "P23": "no_record",
+     "P24": "knows",
+     "P27": "knows",
+     "P28": "no_record",
+     "P33": "knows",
+     "P34": "knows",
+     "P35": "unaware",
+     "P36": "unaware"
+    },
+    "gaps": [
+     [
+      "P10",
+      "unaware",
+      null
+     ],
+     [
+      "P12",
+      "no_record",
+      null
+     ],
+     [
+      "P14",
+      "unaware",
+      "sc_12"
+     ],
+     [
+      "P18",
+      "no_record",
+      null
+     ],
+     [
+      "P23",
+      "no_record",
+      null
+     ],
+     [
+      "P28",
+      "no_record",
+      null
+     ],
+     [
+      "P35",
+      "unaware",
+      null
+     ],
+     [
+      "P36",
+      "unaware",
+      null
+     ]
+    ]
+   }
+  }
+ },
+ "sc_11": {
+  "must_not_reveal": [
+   [
+    "P14",
+    "sc_12"
+   ]
+  ],
+  "revealed_here": [
+   "P15",
+   "P24",
+   "P28"
+  ],
+  "in_play": [
+   "P03",
+   "P04",
+   "P05",
+   "P06",
+   "P07",
+   "P08",
+   "P09",
+   "P10",
+   "P11",
+   "P12",
+   "P13",
+   "P14",
+   "P15",
+   "P16",
+   "P17",
+   "P18",
+   "P21",
+   "P22",
+   "P23",
+   "P24",
+   "P27",
+   "P28",
+   "P33",
+   "P34",
+   "P35",
+   "P36"
+  ],
+  "cast": {
+   "ch_sarah": {
+    "status": {
+     "P03": "knows",
+     "P04": "knows",
+     "P05": "learns_here",
+     "P06": "learns_here",
+     "P07": "learns_here",
+     "P08": "knows",
+     "P09": "knows",
+     "P10": "knows",
+     "P11": "knows",
+     "P12": "knows",
+     "P13": "knows",
+     "P14": "unaware",
+     "P15": "learns_here",
+     "P16": "learns_here",
+     "P17": "learns_here",
+     "P18": "knows",
+     "P21": "learns_here",
+     "P22": "learns_here",
+     "P23": "knows",
+     "P24": "learns_here",
+     "P27": "knows",
+     "P28": "learns_here",
+     "P33": "learns_here",
+     "P34": "learns_here",
+     "P35": "knows",
+     "P36": "knows"
+    },
+    "gaps": [
+     [
+      "P14",
+      "unaware",
+      "sc_12"
+     ]
+    ]
+   },
+   "ch_jonas": {
+    "status": {
+     "P03": "no_record",
+     "P04": "no_record",
+     "P05": "no_record",
+     "P06": "knows",
+     "P07": "knows",
+     "P08": "learns_here",
+     "P09": "learns_here",
+     "P10": "unaware",
+     "P11": "learns_here",
+     "P12": "no_record",
+     "P13": "learns_here",
+     "P14": "no_record",
+     "P15": "knows",
+     "P16": "knows",
+     "P17": "knows",
+     "P18": "no_record",
+     "P21": "learns_here",
+     "P22": "knows",
+     "P23": "knows",
+     "P24": "knows",
+     "P27": "no_record",
+     "P28": "knows",
+     "P33": "knows",
+     "P34": "knows",
+     "P35": "unaware",
+     "P36": "unaware"
+    },
+    "gaps": [
+     [
+      "P03",
+      "no_record",
+      null
+     ],
+     [
+      "P04",
+      "no_record",
+      null
+     ],
+     [
+      "P05",
+      "no_record",
+      null
+     ],
+     [
+      "P10",
+      "unaware",
+      null
+     ],
+     [
+      "P12",
+      "no_record",
+      null
+     ],
+     [
+      "P14",
+      "no_record",
+      "sc_12"
+     ],
+     [
+      "P18",
+      "no_record",
+      null
+     ],
+     [
+      "P27",
+      "no_record",
+      null
+     ],
+     [
+      "P35",
+      "unaware",
+      null
+     ],
+     [
+      "P36",
+      "unaware",
+      null
+     ]
+    ]
+   }
+  }
+ },
+ "sc_12": {
+  "must_not_reveal": [],
+  "revealed_here": [
+   "P14"
+  ],
+  "in_play": [
+   "P03",
+   "P04",
+   "P05",
+   "P06",
+   "P07",
+   "P08",
+   "P09",
+   "P10",
+   "P11",
+   "P12",
+   "P13",
+   "P14",
+   "P15",
+   "P16",
+   "P17",
+   "P18",
+   "P21",
+   "P22",
+   "P23",
+   "P24",
+   "P27",
+   "P28",
+   "P33",
+   "P34",
+   "P35",
+   "P36"
+  ],
+  "cast": {
+   "ch_daniel": {
+    "status": {
+     "P03": "knows",
+     "P04": "knows",
+     "P05": "knows",
+     "P06": "knows",
+     "P07": "knows",
+     "P08": "knows",
+     "P09": "knows",
+     "P10": "unaware",
+     "P11": "knows",
+     "P12": "wrong",
+     "P13": "knows",
+     "P14": "learns_here",
+     "P15": "learns_here",
+     "P16": "learns_here",
+     "P17": "learns_here",
+     "P18": "wrong",
+     "P21": "knows",
+     "P22": "learns_here",
+     "P23": "no_record",
+     "P24": "learns_here",
+     "P27": "knows",
+     "P28": "no_record",
+     "P33": "knows",
+     "P34": "knows",
+     "P35": "unaware",
+     "P36": "unaware"
+    },
+    "gaps": [
+     [
+      "P10",
+      "unaware",
+      null
+     ],
+     [
+      "P12",
+      "wrong",
+      null
+     ],
+     [
+      "P18",
+      "wrong",
+      null
+     ],
+     [
+      "P23",
+      "no_record",
+      null
+     ],
+     [
+      "P28",
+      "no_record",
+      null
+     ],
+     [
+      "P35",
+      "unaware",
+      null
+     ],
+     [
+      "P36",
+      "unaware",
+      null
+     ]
+    ]
+   },
+   "ch_sarah": {
+    "status": {
+     "P03": "knows",
+     "P04": "knows",
+     "P05": "knows",
+     "P06": "knows",
+     "P07": "knows",
+     "P08": "knows",
+     "P09": "knows",
+     "P10": "knows",
+     "P11": "knows",
+     "P12": "knows",
+     "P13": "knows",
+     "P14": "learns_here",
+     "P15": "knows",
+     "P16": "knows",
+     "P17": "knows",
+     "P18": "knows",
+     "P21": "knows",
+     "P22": "knows",
+     "P23": "knows",
+     "P24": "knows",
+     "P27": "knows",
+     "P28": "knows",
+     "P33": "knows",
+     "P34": "knows",
+     "P35": "knows",
+     "P36": "knows"
+    },
+    "gaps": []
+   },
+   "ch_jonas": {
+    "status": {
+     "P03": "no_record",
+     "P04": "no_record",
+     "P05": "no_record",
+     "P06": "knows",
+     "P07": "knows",
+     "P08": "knows",
+     "P09": "knows",
+     "P10": "unaware",
+     "P11": "knows",
+     "P12": "no_record",
+     "P13": "knows",
+     "P14": "learns_here",
+     "P15": "knows",
+     "P16": "knows",
+     "P17": "knows",
+     "P18": "no_record",
+     "P21": "knows",
+     "P22": "knows",
+     "P23": "knows",
+     "P24": "knows",
+     "P27": "no_record",
+     "P28": "knows",
+     "P33": "knows",
+     "P34": "knows",
+     "P35": "unaware",
+     "P36": "unaware"
+    },
+    "gaps": [
+     [
+      "P03",
+      "no_record",
+      null
+     ],
+     [
+      "P04",
+      "no_record",
+      null
+     ],
+     [
+      "P05",
+      "no_record",
+      null
+     ],
+     [
+      "P10",
+      "unaware",
+      null
+     ],
+     [
+      "P12",
+      "no_record",
+      null
+     ],
+     [
+      "P18",
+      "no_record",
+      null
+     ],
+     [
+      "P27",
+      "no_record",
+      null
+     ],
+     [
+      "P35",
+      "unaware",
+      null
+     ],
+     [
+      "P36",
+      "unaware",
+      null
+     ]
+    ]
+   },
+   "ch_marta": {
+    "status": {
+     "P03": "knows",
+     "P04": "knows",
+     "P05": "knows",
+     "P06": "knows",
+     "P07": "knows",
+     "P08": "knows",
+     "P09": "knows",
+     "P10": "unaware",
+     "P11": "knows",
+     "P12": "no_record",
+     "P13": "knows",
+     "P14": "learns_here",
+     "P15": "knows",
+     "P16": "knows",
+     "P17": "knows",
+     "P18": "no_record",
+     "P21": "knows",
+     "P22": "knows",
+     "P23": "no_record",
+     "P24": "knows",
+     "P27": "knows",
+     "P28": "no_record",
+     "P33": "knows",
+     "P34": "knows",
+     "P35": "unaware",
+     "P36": "unaware"
+    },
+    "gaps": [
+     [
+      "P10",
+      "unaware",
+      null
+     ],
+     [
+      "P12",
+      "no_record",
+      null
+     ],
+     [
+      "P18",
+      "no_record",
+      null
+     ],
+     [
+      "P23",
+      "no_record",
+      null
+     ],
+     [
+      "P28",
+      "no_record",
+      null
+     ],
+     [
+      "P35",
+      "unaware",
+      null
+     ],
+     [
+      "P36",
+      "unaware",
+      null
+     ]
+    ]
+   },
+   "ch_tom": {
+    "status": {
+     "P03": "no_record",
+     "P04": "no_record",
+     "P05": "no_record",
+     "P06": "no_record",
+     "P07": "learns_here",
+     "P08": "no_record",
+     "P09": "no_record",
+     "P10": "unaware",
+     "P11": "no_record",
+     "P12": "wrong",
+     "P13": "no_record",
+     "P14": "no_record",
+     "P15": "learns_here",
+     "P16": "no_record",
+     "P17": "learns_here",
+     "P18": "no_record",
+     "P21": "no_record",
+     "P22": "knows",
+     "P23": "no_record",
+     "P24": "learns_here",
+     "P27": "no_record",
+     "P28": "no_record",
+     "P33": "no_record",
+     "P34": "no_record",
+     "P35": "unaware",
+     "P36": "unaware"
+    },
+    "gaps": [
+     [
+      "P03",
+      "no_record",
+      null
+     ],
+     [
+      "P04",
+      "no_record",
+      null
+     ],
+     [
+      "P05",
+      "no_record",
+      null
+     ],
+     [
+      "P06",
+      "no_record",
+      null
+     ],
+     [
+      "P08",
+      "no_record",
+      null
+     ],
+     [
+      "P09",
+      "no_record",
+      null
+     ],
+     [
+      "P10",
+      "unaware",
+      null
+     ],
+     [
+      "P11",
+      "no_record",
+      null
+     ],
+     [
+      "P12",
+      "wrong",
+      null
+     ],
+     [
+      "P13",
+      "no_record",
+      null
+     ],
+     [
+      "P14",
+      "no_record",
+      null
+     ],
+     [
+      "P16",
+      "no_record",
+      null
+     ],
+     [
+      "P18",
+      "no_record",
+      null
+     ],
+     [
+      "P21",
+      "no_record",
+      null
+     ],
+     [
+      "P23",
+      "no_record",
+      null
+     ],
+     [
+      "P27",
+      "no_record",
+      null
+     ],
+     [
+      "P28",
+      "no_record",
+      null
+     ],
+     [
+      "P33",
+      "no_record",
+      null
+     ],
+     [
+      "P34",
+      "no_record",
+      null
+     ],
+     [
+      "P35",
+      "unaware",
+      null
+     ],
+     [
+      "P36",
+      "unaware",
+      null
+     ]
+    ]
+   }
+  }
+ }
+}

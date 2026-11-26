@@ -1,0 +1,376 @@
+{
+ "format": 1,
+ "seq": 12,
+ "id": "cs_1729872d51",
+ "parent": "cd4126e8d119634bf66356152c3fd27ef2d2886571adf0ec8927547ac939b891",
+ "actor": "import:harbour-letter",
+ "note": "Scene 8, April",
+ "manuscript": "d22347c950696d67bf251bdcd2a94ed3eba53fc87cab65e33fc2d4297ab1c9b7",
+ "ops": [
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bs02",
+    "holder": "ch_sarah",
+    "prop": "P08",
+    "stance": "holds_true",
+    "strength": "certain",
+    "story_key": -159.9,
+    "scene": "sc_08",
+    "channel": "witnessed",
+    "via": "E08a",
+    "directness": "stated",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bs03",
+    "holder": "ch_sarah",
+    "prop": "P09",
+    "stance": "holds_true",
+    "strength": "certain",
+    "story_key": -159.9,
+    "scene": "sc_08",
+    "channel": "witnessed",
+    "via": "E08a",
+    "directness": "stated",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bs35",
+    "holder": "ch_sarah",
+    "prop": "P35",
+    "stance": "holds_true",
+    "strength": "certain",
+    "story_key": -159.9,
+    "scene": "sc_08",
+    "channel": "took_part",
+    "via": "E08a",
+    "directness": "stated",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bs36",
+    "holder": "ch_sarah",
+    "prop": "P36",
+    "stance": "holds_true",
+    "strength": "certain",
+    "story_key": -159.9,
+    "scene": "sc_08",
+    "channel": "witnessed",
+    "via": "E08a",
+    "directness": "stated",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bs04",
+    "holder": "ch_sarah",
+    "prop": "P12",
+    "stance": "holds_false",
+    "strength": "certain",
+    "story_key": -159.9,
+    "scene": "sc_08",
+    "channel": "witnessed",
+    "via": "E08a",
+    "directness": "entailed",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bs05",
+    "holder": "ch_sarah",
+    "prop": "P07",
+    "stance": "unaware",
+    "story_key": -159.9,
+    "scene": "sc_08",
+    "channel": "explicit",
+    "via": "E08a",
+    "directness": "stated",
+    "quote": "She did not know who Jonas Pike was.",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bs06",
+    "holder": "ch_sarah",
+    "prop": "P20",
+    "stance": "undecided",
+    "story_key": -159.9,
+    "scene": "sc_08",
+    "channel": "explicit",
+    "via": "E08a",
+    "directness": "stated",
+    "quote": "She did not know whether he had written it before that quarrel or after.",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bs07",
+    "holder": "ch_sarah",
+    "prop": "P01",
+    "stance": "holds_true",
+    "strength": "certain",
+    "story_key": -159.8,
+    "scene": "sc_08",
+    "channel": "told",
+    "via": "E08b",
+    "directness": "stated",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bs08",
+    "holder": "ch_sarah",
+    "prop": "P10",
+    "stance": "holds_true",
+    "strength": "certain",
+    "story_key": -159.7,
+    "scene": "sc_08",
+    "channel": "took_part",
+    "via": "E08c",
+    "directness": "stated",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bs09",
+    "holder": "ch_sarah",
+    "prop": "P11",
+    "stance": "holds_true",
+    "strength": "certain",
+    "story_key": -159.7,
+    "scene": "sc_08",
+    "channel": "took_part",
+    "via": "E08c",
+    "directness": "entailed",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bs10",
+    "holder": "ch_sarah",
+    "prop": "P13",
+    "stance": "holds_true",
+    "strength": "certain",
+    "story_key": -159.7,
+    "scene": "sc_08",
+    "channel": "took_part",
+    "via": "E08c",
+    "directness": "entailed",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bs11",
+    "holder": "ch_sarah",
+    "prop": "P14",
+    "stance": "unaware",
+    "story_key": -159.7,
+    "scene": "sc_08",
+    "channel": "explicit",
+    "via": "E08c",
+    "directness": "entailed",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bs12",
+    "holder": "ch_sarah",
+    "prop": "P18",
+    "stance": "holds_false",
+    "strength": "certain",
+    "story_key": -159.7,
+    "scene": "sc_08",
+    "channel": "took_part",
+    "via": "E08c",
+    "directness": "entailed",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bs43",
+    "holder": "ch_sarah",
+    "prop": "P19",
+    "stance": "undecided",
+    "story_key": -159.8,
+    "scene": "sc_08",
+    "channel": "explicit",
+    "directness": "stated",
+    "quote": "the envelope did not say.",
+    "origin": "import",
+    "note": "On the night she finds it she cannot tell. Her later belief that he had decided against it is Bs13."
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "disclosure",
+    "id": "D32",
+    "scene": "sc_08",
+    "prop": "P10",
+    "mode": "stated",
+    "reader_stance": "holds_true",
+    "strength": "certain",
+    "quote": "She put the envelope inside her coat.",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "disclosure",
+    "id": "D33",
+    "scene": "sc_08",
+    "prop": "P12",
+    "mode": "stated",
+    "reader_stance": "holds_false",
+    "strength": "certain",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "disclosure",
+    "id": "D34",
+    "scene": "sc_08",
+    "prop": "P18",
+    "mode": "stated",
+    "reader_stance": "holds_false",
+    "strength": "certain",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "disclosure",
+    "id": "D35",
+    "scene": "sc_08",
+    "prop": "P20",
+    "mode": "posed",
+    "reader_stance": "undecided",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "disclosure",
+    "id": "D36",
+    "scene": "sc_08",
+    "prop": "P19",
+    "mode": "posed",
+    "reader_stance": "undecided",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "disclosure",
+    "id": "D44",
+    "scene": "sc_08",
+    "prop": "P35",
+    "mode": "stated",
+    "reader_stance": "holds_true",
+    "strength": "certain",
+    "quote": "pulled open the desk drawer",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "disclosure",
+    "id": "D45",
+    "scene": "sc_08",
+    "prop": "P36",
+    "mode": "stated",
+    "reader_stance": "holds_true",
+    "strength": "certain",
+    "quote": "under them, flat against the wood, was an envelope",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "placement",
+    "id": "L2",
+    "object": "obj_letter",
+    "place": "loc_sarah_coat",
+    "story_key": -159.7,
+    "scene": "sc_08",
+    "cause": "E08c",
+    "quote": "She put the envelope inside her coat.",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  }
+ ]
+}

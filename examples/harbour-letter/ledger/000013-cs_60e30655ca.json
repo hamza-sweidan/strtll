@@ -1,0 +1,168 @@
+{
+ "format": 1,
+ "seq": 13,
+ "id": "cs_60e30655ca",
+ "parent": "27087bb86102936fde769caf73b71866e6015041284c8643e80b10a43dc97423",
+ "actor": "import:harbour-letter",
+ "note": "Scene 9, The Safe",
+ "manuscript": "d22347c950696d67bf251bdcd2a94ed3eba53fc87cab65e33fc2d4297ab1c9b7",
+ "ops": [
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bm24",
+    "holder": "ch_marta",
+    "prop": "P27",
+    "stance": "holds_true",
+    "strength": "certain",
+    "story_key": 50.1,
+    "scene": "sc_09",
+    "channel": "inferred",
+    "via": "E09a",
+    "directness": "entailed",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bm13",
+    "holder": "ch_marta",
+    "prop": "P08",
+    "stance": "holds_true",
+    "strength": "certain",
+    "story_key": 50.1,
+    "scene": "sc_09",
+    "channel": "witnessed",
+    "via": "E09a",
+    "directness": "stated",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bm14",
+    "holder": "ch_marta",
+    "prop": "P09",
+    "stance": "holds_true",
+    "strength": "certain",
+    "story_key": 50.1,
+    "scene": "sc_09",
+    "channel": "witnessed",
+    "via": "E09a",
+    "directness": "stated",
+    "quote": "Marta read the name on the envelope.",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bm15",
+    "holder": "ch_marta",
+    "prop": "P21",
+    "stance": "holds_false",
+    "strength": "certain",
+    "story_key": 50.1,
+    "scene": "sc_09",
+    "channel": "witnessed",
+    "via": "E09a",
+    "directness": "entailed",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bm16",
+    "holder": "ch_marta",
+    "prop": "P13",
+    "stance": "holds_true",
+    "strength": "believes",
+    "story_key": 50.1,
+    "scene": "sc_09",
+    "channel": "witnessed",
+    "via": "E09a",
+    "directness": "entailed",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bm17",
+    "holder": "ch_marta",
+    "prop": "P11",
+    "stance": "holds_true",
+    "strength": "believes",
+    "story_key": 50.2,
+    "scene": "sc_09",
+    "channel": "told",
+    "via": "A15",
+    "directness": "stated",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bm18",
+    "holder": "ch_marta",
+    "prop": "P30",
+    "stance": "holds_true",
+    "strength": "certain",
+    "story_key": 50.3,
+    "scene": "sc_09",
+    "channel": "inferred",
+    "via": "E09c",
+    "directness": "entailed",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "disclosure",
+    "id": "D37",
+    "scene": "sc_09",
+    "prop": "P21",
+    "mode": "stated",
+    "reader_stance": "holds_false",
+    "strength": "certain",
+    "quote": "It turns out there was one after all.",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "placement",
+    "id": "L6",
+    "object": "obj_letter",
+    "place": "loc_office_safe",
+    "story_key": 50.1,
+    "scene": "sc_09",
+    "cause": "E09a",
+    "quote": "He shut the safe and turned the key",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  }
+ ]
+}

@@ -1,0 +1,123 @@
+{
+ "format": 1,
+ "seq": 10,
+ "id": "cs_50f25a8191",
+ "parent": "330841caa240c1c0d07fcddef2abca5342d29fec95ed0cfd00e3e4f6bdea7742",
+ "actor": "import:harbour-letter",
+ "note": "Scene 6, Low Water",
+ "manuscript": "d22347c950696d67bf251bdcd2a94ed3eba53fc87cab65e33fc2d4297ab1c9b7",
+ "ops": [
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bs20",
+    "holder": "ch_sarah",
+    "prop": "P23",
+    "stance": "holds_true",
+    "strength": "certain",
+    "story_key": 30.2,
+    "scene": "sc_06",
+    "channel": "witnessed",
+    "via": "E06b",
+    "directness": "stated",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bs21",
+    "holder": "ch_sarah",
+    "prop": "P15",
+    "stance": "unaware",
+    "story_key": 30.2,
+    "scene": "sc_06",
+    "channel": "explicit",
+    "via": "E06b",
+    "directness": "stated",
+    "quote": "She had no idea who he was.",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bj14",
+    "holder": "ch_jonas",
+    "prop": "P23",
+    "stance": "holds_true",
+    "strength": "certain",
+    "story_key": 30.2,
+    "scene": "sc_06",
+    "channel": "took_part",
+    "via": "E06b",
+    "directness": "entailed",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "disclosure",
+    "id": "D24",
+    "scene": "sc_06",
+    "prop": "P23",
+    "mode": "stated",
+    "reader_stance": "holds_true",
+    "strength": "certain",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "disclosure",
+    "id": "D25",
+    "scene": "sc_06",
+    "prop": "P19",
+    "mode": "focalized",
+    "reader_stance": "undecided",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "disclosure",
+    "id": "D26",
+    "scene": "sc_06",
+    "prop": "P27",
+    "mode": "stated",
+    "reader_stance": "holds_true",
+    "strength": "believes",
+    "quote": "The second initial in Daniel's ledgers was the first letter of the surname on the envelope.",
+    "origin": "import",
+    "note": "The reader already knows R.P. is Rose Pike, so being told the initial matches reveals the connection here, not in scene 10."
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "placement",
+    "id": "L5",
+    "object": "obj_letter",
+    "place": "loc_sarah_coat",
+    "story_key": 30.1,
+    "scene": "sc_06",
+    "cause": "E06a",
+    "quote": "She put it in her coat pocket",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  }
+ ]
+}

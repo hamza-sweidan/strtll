@@ -1,0 +1,7553 @@
+{
+ "holders": [
+  "ch_daniel",
+  "ch_sarah",
+  "ch_marta",
+  "ch_tom",
+  "ch_jonas"
+ ],
+ "telling": [
+  "sc_01",
+  "sc_02",
+  "sc_03",
+  "sc_04",
+  "sc_05",
+  "sc_06",
+  "sc_07",
+  "sc_08",
+  "sc_09",
+  "sc_10",
+  "sc_11",
+  "sc_12"
+ ],
+ "canon": {
+  "P01": "true",
+  "P02": "true",
+  "P03": "false",
+  "P04": "true",
+  "P05": "true",
+  "P06": "true",
+  "P07": "true",
+  "P08": "true",
+  "P09": "true",
+  "P10": "true",
+  "P11": "true",
+  "P12": "false",
+  "P13": "true",
+  "P14": "true",
+  "P15": "true",
+  "P16": "true",
+  "P17": "false",
+  "P18": "false",
+  "P19": "ambiguous",
+  "P20": "open",
+  "P21": "false",
+  "P22": "true",
+  "P23": "true",
+  "P24": "true",
+  "P25": "true",
+  "P26": "true",
+  "P27": "true",
+  "P28": "true",
+  "P29": "true",
+  "P30": "true",
+  "P31": "true",
+  "P32": "true",
+  "P33": "true",
+  "P34": "true",
+  "P35": "true",
+  "P36": "true"
+ },
+ "reveal_scene": {
+  "P01": "sc_01",
+  "P02": "sc_01",
+  "P03": "sc_05",
+  "P04": "sc_05",
+  "P05": "sc_05",
+  "P06": "sc_05",
+  "P07": "sc_10",
+  "P08": "sc_02",
+  "P09": "sc_07",
+  "P10": "sc_08",
+  "P11": "sc_02",
+  "P12": "sc_08",
+  "P13": "sc_02",
+  "P14": "sc_12",
+  "P15": "sc_11",
+  "P16": "sc_05",
+  "P17": "sc_04",
+  "P18": "sc_08",
+  "P19": null,
+  "P20": null,
+  "P21": "sc_09",
+  "P22": "sc_04",
+  "P23": "sc_06",
+  "P24": "sc_11",
+  "P25": "sc_01",
+  "P26": "sc_01",
+  "P27": "sc_06",
+  "P28": "sc_11",
+  "P29": "sc_02",
+  "P30": "sc_01",
+  "P31": "sc_07",
+  "P32": "sc_01",
+  "P33": "sc_05",
+  "P34": "sc_10",
+  "P35": "sc_08",
+  "P36": "sc_08"
+ },
+ "first_holds": {
+  "ch_daniel": {
+   "P01": "background",
+   "P02": "sc_01",
+   "P03": "sc_01",
+   "P04": "sc_10",
+   "P05": "sc_10",
+   "P06": "sc_10",
+   "P07": "sc_10",
+   "P08": "sc_07",
+   "P09": "sc_07",
+   "P11": "sc_07",
+   "P12": "sc_03",
+   "P13": "sc_07",
+   "P14": "sc_12",
+   "P15": "sc_12",
+   "P16": "sc_12",
+   "P18": "sc_07",
+   "P19": "sc_07",
+   "P22": "sc_12",
+   "P24": "sc_12",
+   "P27": "sc_07",
+   "P32": "background",
+   "P33": "sc_10",
+   "P34": "sc_10"
+  },
+  "ch_sarah": {
+   "P01": "sc_08",
+   "P02": "sc_02",
+   "P04": "sc_03",
+   "P05": "sc_11",
+   "P06": "sc_11",
+   "P07": "sc_11",
+   "P08": "sc_08",
+   "P09": "sc_08",
+   "P10": "sc_08",
+   "P11": "sc_08",
+   "P13": "sc_08",
+   "P14": "sc_12",
+   "P15": "sc_11",
+   "P16": "sc_11",
+   "P19": "background",
+   "P22": "sc_11",
+   "P23": "sc_06",
+   "P24": "sc_11",
+   "P25": "sc_02",
+   "P26": "sc_02",
+   "P27": "sc_03",
+   "P28": "sc_11",
+   "P30": "sc_03",
+   "P31": "sc_07",
+   "P32": "background",
+   "P33": "sc_11",
+   "P34": "sc_11",
+   "P35": "sc_08",
+   "P36": "sc_08"
+  },
+  "ch_marta": {
+   "P01": "background",
+   "P02": "background",
+   "P04": "background",
+   "P05": "background",
+   "P06": "background",
+   "P07": "background",
+   "P08": "sc_09",
+   "P09": "sc_09",
+   "P11": "sc_09",
+   "P13": "sc_09",
+   "P14": "sc_12",
+   "P15": "sc_04",
+   "P16": "sc_04",
+   "P21": "background",
+   "P22": "sc_04",
+   "P24": "sc_04",
+   "P26": "background",
+   "P27": "sc_09",
+   "P30": "sc_05",
+   "P33": "background",
+   "P34": "background"
+  },
+  "ch_tom": {
+   "P01": "background",
+   "P07": "sc_12",
+   "P12": "sc_03",
+   "P15": "sc_12",
+   "P17": "sc_04",
+   "P22": "sc_04",
+   "P24": "sc_12"
+  },
+  "ch_jonas": {
+   "P01": "sc_04",
+   "P06": "background",
+   "P07": "background",
+   "P08": "sc_11",
+   "P09": "sc_11",
+   "P11": "sc_11",
+   "P13": "sc_11",
+   "P14": "sc_12",
+   "P15": "background",
+   "P16": "background",
+   "P22": "sc_04",
+   "P23": "sc_06",
+   "P24": "background",
+   "P28": "background",
+   "P33": "background",
+   "P34": "background"
+  }
+ },
+ "assertions": {
+  "A01": "sincere: true",
+  "A02": "narration through Daniel: false",
+  "A03": "sincere: true",
+  "A04": "sincerity not established: true",
+  "A05": "sincerity not established: true",
+  "A06": "lie: false",
+  "A07": "sincere: false",
+  "A08": "sincere: true",
+  "A09": "sincere: true",
+  "A10": "lie: false",
+  "A11": "sincere: true",
+  "A12": "sincere: true",
+  "A13": "sincere: false",
+  "A14": "sincere: canon ambiguous",
+  "A15": "sincere: true",
+  "A17": "sincere: true",
+  "A18": "sincere: true",
+  "A19": "sincere: true",
+  "A20": "sincere: true",
+  "A21": "sincere: true",
+  "A21b": "sincere: true",
+  "A22": "sincere: true",
+  "A23": "sincere: true",
+  "A23b": "sincere: true",
+  "A23c": "sincere: true",
+  "A24": "sincere: true",
+  "A24b": "sincere: true",
+  "A26": "sincerity not established: true",
+  "A27": "sincere: canon ambiguous",
+  "A28": "sincere: true"
+ },
+ "points": {
+  "sc_01": {
+   "beliefs": {
+    "ch_daniel": {
+     "P01": {
+      "id": "Bd02",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P32": {
+      "id": "Bd01",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     }
+    },
+    "ch_sarah": {
+     "P01": {
+      "id": "Bs07",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P07": {
+      "id": "Bs05",
+      "stance": "unaware",
+      "label": "unaware"
+     },
+     "P08": {
+      "id": "Bs02",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P09": {
+      "id": "Bs03",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P10": {
+      "id": "Bs08",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P11": {
+      "id": "Bs09",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P12": {
+      "id": "Bs04",
+      "stance": "holds_false",
+      "strength": "certain",
+      "label": "knows it is false"
+     },
+     "P13": {
+      "id": "Bs10",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P14": {
+      "id": "Bs11",
+      "stance": "unaware",
+      "label": "unaware"
+     },
+     "P18": {
+      "id": "Bs12",
+      "stance": "holds_false",
+      "strength": "certain",
+      "label": "knows it is false"
+     },
+     "P19": {
+      "id": "Bs13",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "believes; canon ambiguous"
+     },
+     "P20": {
+      "id": "Bs06",
+      "stance": "undecided",
+      "label": "undecided"
+     },
+     "P32": {
+      "id": "Bs01",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P35": {
+      "id": "Bs35",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P36": {
+      "id": "Bs36",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     }
+    },
+    "ch_marta": {
+     "P01": {
+      "id": "Bm06",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P02": {
+      "id": "Bm01",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P03": {
+      "id": "Bm23",
+      "stance": "holds_false",
+      "strength": "certain",
+      "label": "knows it is false"
+     },
+     "P04": {
+      "id": "Bm02",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P05": {
+      "id": "Bm03",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P06": {
+      "id": "Bm05",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P07": {
+      "id": "Bm04",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P21": {
+      "id": "Bm07",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "FALSE BELIEF"
+     },
+     "P33": {
+      "id": "Bm04b",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P34": {
+      "id": "Bm04c",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     }
+    },
+    "ch_tom": {
+     "P01": {
+      "id": "Bt01",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     }
+    },
+    "ch_jonas": {
+     "P01": {
+      "id": "Bj04",
+      "stance": "unaware",
+      "label": "unaware"
+     },
+     "P06": {
+      "id": "Bj03",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P07": {
+      "id": "Bj02",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P15": {
+      "id": "Bj10",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P16": {
+      "id": "Bj11",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P28": {
+      "id": "Bj01",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P33": {
+      "id": "Bj02b",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P34": {
+      "id": "Bj02c",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     }
+    }
+   },
+   "reader": {},
+   "world": {
+    "obj_letter": {
+     "id": "L3",
+     "place": "loc_sarah_suitcase"
+    }
+   },
+   "truth": {
+    "P01": true,
+    "P02": true,
+    "P03": false,
+    "P04": true,
+    "P05": true,
+    "P06": true,
+    "P07": true,
+    "P08": true,
+    "P09": true,
+    "P10": true,
+    "P11": true,
+    "P12": false,
+    "P13": true,
+    "P14": true,
+    "P15": true,
+    "P16": true,
+    "P17": false,
+    "P18": false,
+    "P19": null,
+    "P20": null,
+    "P21": false,
+    "P22": false,
+    "P23": false,
+    "P24": false,
+    "P25": true,
+    "P26": true,
+    "P27": true,
+    "P28": true,
+    "P29": true,
+    "P30": false,
+    "P31": false,
+    "P32": true,
+    "P33": true,
+    "P34": true,
+    "P35": true,
+    "P36": true
+   }
+  },
+  "sc_02": {
+   "beliefs": {
+    "ch_daniel": {
+     "P01": {
+      "id": "Bd02",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P02": {
+      "id": "Bd03",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P03": {
+      "id": "Bd05",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "FALSE BELIEF"
+     },
+     "P04": {
+      "id": "Bd04",
+      "stance": "holds_false",
+      "strength": "believes",
+      "label": "FALSE BELIEF"
+     },
+     "P32": {
+      "id": "Bd01",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     }
+    },
+    "ch_sarah": {
+     "P01": {
+      "id": "Bs07",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P07": {
+      "id": "Bs05",
+      "stance": "unaware",
+      "label": "unaware"
+     },
+     "P08": {
+      "id": "Bs02",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P09": {
+      "id": "Bs03",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P10": {
+      "id": "Bs08",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P11": {
+      "id": "Bs09",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P12": {
+      "id": "Bs04",
+      "stance": "holds_false",
+      "strength": "certain",
+      "label": "knows it is false"
+     },
+     "P13": {
+      "id": "Bs10",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P14": {
+      "id": "Bs11",
+      "stance": "unaware",
+      "label": "unaware"
+     },
+     "P18": {
+      "id": "Bs12",
+      "stance": "holds_false",
+      "strength": "certain",
+      "label": "knows it is false"
+     },
+     "P19": {
+      "id": "Bs13",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "believes; canon ambiguous"
+     },
+     "P20": {
+      "id": "Bs06",
+      "stance": "undecided",
+      "label": "undecided"
+     },
+     "P32": {
+      "id": "Bs01",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P35": {
+      "id": "Bs35",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P36": {
+      "id": "Bs36",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     }
+    },
+    "ch_marta": {
+     "P01": {
+      "id": "Bm06",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P02": {
+      "id": "Bm01",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P03": {
+      "id": "Bm23",
+      "stance": "holds_false",
+      "strength": "certain",
+      "label": "knows it is false"
+     },
+     "P04": {
+      "id": "Bm02",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P05": {
+      "id": "Bm03",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P06": {
+      "id": "Bm05",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P07": {
+      "id": "Bm04",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P21": {
+      "id": "Bm07",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "FALSE BELIEF"
+     },
+     "P26": {
+      "id": "Bm28",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P33": {
+      "id": "Bm04b",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P34": {
+      "id": "Bm04c",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     }
+    },
+    "ch_tom": {
+     "P01": {
+      "id": "Bt01",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     }
+    },
+    "ch_jonas": {
+     "P01": {
+      "id": "Bj04",
+      "stance": "unaware",
+      "label": "unaware"
+     },
+     "P06": {
+      "id": "Bj03",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P07": {
+      "id": "Bj02",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P15": {
+      "id": "Bj10",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P16": {
+      "id": "Bj11",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P28": {
+      "id": "Bj01",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P33": {
+      "id": "Bj02b",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P34": {
+      "id": "Bj02c",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     }
+    }
+   },
+   "reader": {
+    "P01": {
+     "id": "D01",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P02": {
+     "id": "D02",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P03": {
+     "id": "D04",
+     "mode": "focalized",
+     "stance": "holds_true",
+     "strength": "suspects"
+    },
+    "P04": {
+     "id": "D03",
+     "mode": "asserted_by_character",
+     "stance": "undecided"
+    },
+    "P25": {
+     "id": "D05",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P26": {
+     "id": "D06",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P30": {
+     "id": "D08",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P32": {
+     "id": "D07",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    }
+   },
+   "world": {
+    "obj_letter": {
+     "id": "L3",
+     "place": "loc_sarah_suitcase"
+    }
+   },
+   "truth": {
+    "P01": true,
+    "P02": true,
+    "P03": false,
+    "P04": true,
+    "P05": true,
+    "P06": true,
+    "P07": true,
+    "P08": true,
+    "P09": true,
+    "P10": true,
+    "P11": true,
+    "P12": false,
+    "P13": true,
+    "P14": true,
+    "P15": true,
+    "P16": true,
+    "P17": false,
+    "P18": false,
+    "P19": null,
+    "P20": null,
+    "P21": false,
+    "P22": false,
+    "P23": false,
+    "P24": false,
+    "P25": true,
+    "P26": true,
+    "P27": true,
+    "P28": true,
+    "P29": true,
+    "P30": true,
+    "P31": false,
+    "P32": true,
+    "P33": true,
+    "P34": true,
+    "P35": true,
+    "P36": true
+   }
+  },
+  "sc_03": {
+   "beliefs": {
+    "ch_daniel": {
+     "P01": {
+      "id": "Bd02",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P02": {
+      "id": "Bd03",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P03": {
+      "id": "Bd05",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "FALSE BELIEF"
+     },
+     "P04": {
+      "id": "Bd04",
+      "stance": "holds_false",
+      "strength": "believes",
+      "label": "FALSE BELIEF"
+     },
+     "P32": {
+      "id": "Bd01",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     }
+    },
+    "ch_sarah": {
+     "P01": {
+      "id": "Bs07",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P02": {
+      "id": "Bs14",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P07": {
+      "id": "Bs05",
+      "stance": "unaware",
+      "label": "unaware"
+     },
+     "P08": {
+      "id": "Bs02",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P09": {
+      "id": "Bs03",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P10": {
+      "id": "Bs08",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P11": {
+      "id": "Bs09",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P12": {
+      "id": "Bs04",
+      "stance": "holds_false",
+      "strength": "certain",
+      "label": "knows it is false"
+     },
+     "P13": {
+      "id": "Bs10",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P14": {
+      "id": "Bs11",
+      "stance": "unaware",
+      "label": "unaware"
+     },
+     "P18": {
+      "id": "Bs12",
+      "stance": "holds_false",
+      "strength": "certain",
+      "label": "knows it is false"
+     },
+     "P19": {
+      "id": "Bs13",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "believes; canon ambiguous"
+     },
+     "P20": {
+      "id": "Bs06",
+      "stance": "undecided",
+      "label": "undecided"
+     },
+     "P25": {
+      "id": "Bs16",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P26": {
+      "id": "Bs15",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P32": {
+      "id": "Bs01",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P35": {
+      "id": "Bs35",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P36": {
+      "id": "Bs36",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     }
+    },
+    "ch_marta": {
+     "P01": {
+      "id": "Bm06",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P02": {
+      "id": "Bm01",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P03": {
+      "id": "Bm23",
+      "stance": "holds_false",
+      "strength": "certain",
+      "label": "knows it is false"
+     },
+     "P04": {
+      "id": "Bm02",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P05": {
+      "id": "Bm03",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P06": {
+      "id": "Bm05",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P07": {
+      "id": "Bm04",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P21": {
+      "id": "Bm07",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "FALSE BELIEF"
+     },
+     "P26": {
+      "id": "Bm28",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P33": {
+      "id": "Bm04b",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P34": {
+      "id": "Bm04c",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     }
+    },
+    "ch_tom": {
+     "P01": {
+      "id": "Bt01",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     }
+    },
+    "ch_jonas": {
+     "P01": {
+      "id": "Bj04",
+      "stance": "unaware",
+      "label": "unaware"
+     },
+     "P06": {
+      "id": "Bj03",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P07": {
+      "id": "Bj02",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P15": {
+      "id": "Bj10",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P16": {
+      "id": "Bj11",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P28": {
+      "id": "Bj01",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P33": {
+      "id": "Bj02b",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P34": {
+      "id": "Bj02c",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     }
+    }
+   },
+   "reader": {
+    "P01": {
+     "id": "D01",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P02": {
+     "id": "D02",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P03": {
+     "id": "D04",
+     "mode": "focalized",
+     "stance": "holds_true",
+     "strength": "suspects"
+    },
+    "P04": {
+     "id": "D03",
+     "mode": "asserted_by_character",
+     "stance": "undecided"
+    },
+    "P08": {
+     "id": "D09",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P11": {
+     "id": "D10",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P13": {
+     "id": "D11",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P25": {
+     "id": "D05",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P26": {
+     "id": "D06",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P29": {
+     "id": "D12",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P30": {
+     "id": "D08",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P32": {
+     "id": "D07",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    }
+   },
+   "world": {
+    "obj_letter": {
+     "id": "L4",
+     "place": "loc_tea_tin"
+    }
+   },
+   "truth": {
+    "P01": true,
+    "P02": true,
+    "P03": false,
+    "P04": true,
+    "P05": true,
+    "P06": true,
+    "P07": true,
+    "P08": true,
+    "P09": true,
+    "P10": true,
+    "P11": true,
+    "P12": false,
+    "P13": true,
+    "P14": true,
+    "P15": true,
+    "P16": true,
+    "P17": false,
+    "P18": false,
+    "P19": null,
+    "P20": null,
+    "P21": false,
+    "P22": false,
+    "P23": false,
+    "P24": false,
+    "P25": true,
+    "P26": true,
+    "P27": true,
+    "P28": true,
+    "P29": true,
+    "P30": true,
+    "P31": false,
+    "P32": true,
+    "P33": true,
+    "P34": true,
+    "P35": true,
+    "P36": true
+   }
+  },
+  "sc_04": {
+   "beliefs": {
+    "ch_daniel": {
+     "P01": {
+      "id": "Bd02",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P02": {
+      "id": "Bd03",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P03": {
+      "id": "Bd05",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "FALSE BELIEF"
+     },
+     "P04": {
+      "id": "Bd04",
+      "stance": "holds_false",
+      "strength": "believes",
+      "label": "FALSE BELIEF"
+     },
+     "P12": {
+      "id": "Bd06",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "FALSE BELIEF"
+     },
+     "P32": {
+      "id": "Bd01",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     }
+    },
+    "ch_sarah": {
+     "P01": {
+      "id": "Bs07",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P02": {
+      "id": "Bs42",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P03": {
+      "id": "Bs18",
+      "stance": "holds_false",
+      "strength": "believes",
+      "label": "correctly doubts"
+     },
+     "P04": {
+      "id": "Bs40",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P07": {
+      "id": "Bs05",
+      "stance": "unaware",
+      "label": "unaware"
+     },
+     "P08": {
+      "id": "Bs02",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P09": {
+      "id": "Bs03",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P10": {
+      "id": "Bs08",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P11": {
+      "id": "Bs09",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P12": {
+      "id": "Bs04",
+      "stance": "holds_false",
+      "strength": "certain",
+      "label": "knows it is false"
+     },
+     "P13": {
+      "id": "Bs10",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P14": {
+      "id": "Bs11",
+      "stance": "unaware",
+      "label": "unaware"
+     },
+     "P18": {
+      "id": "Bs12",
+      "stance": "holds_false",
+      "strength": "certain",
+      "label": "knows it is false"
+     },
+     "P19": {
+      "id": "Bs13",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "believes; canon ambiguous"
+     },
+     "P20": {
+      "id": "Bs06",
+      "stance": "undecided",
+      "label": "undecided"
+     },
+     "P25": {
+      "id": "Bs16",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P26": {
+      "id": "Bs15",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P27": {
+      "id": "Bs19",
+      "stance": "holds_true",
+      "strength": "suspects",
+      "label": "correctly suspects"
+     },
+     "P30": {
+      "id": "Bs17",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P32": {
+      "id": "Bs01",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P35": {
+      "id": "Bs35",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P36": {
+      "id": "Bs36",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     }
+    },
+    "ch_marta": {
+     "P01": {
+      "id": "Bm06",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P02": {
+      "id": "Bm01",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P03": {
+      "id": "Bm23",
+      "stance": "holds_false",
+      "strength": "certain",
+      "label": "knows it is false"
+     },
+     "P04": {
+      "id": "Bm02",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P05": {
+      "id": "Bm03",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P06": {
+      "id": "Bm05",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P07": {
+      "id": "Bm04",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P21": {
+      "id": "Bm07",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "FALSE BELIEF"
+     },
+     "P26": {
+      "id": "Bm28",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P33": {
+      "id": "Bm04b",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P34": {
+      "id": "Bm04c",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     }
+    },
+    "ch_tom": {
+     "P01": {
+      "id": "Bt01",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P12": {
+      "id": "Bt02",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "FALSE BELIEF"
+     }
+    },
+    "ch_jonas": {
+     "P01": {
+      "id": "Bj04",
+      "stance": "unaware",
+      "label": "unaware"
+     },
+     "P06": {
+      "id": "Bj03",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P07": {
+      "id": "Bj02",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P15": {
+      "id": "Bj10",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P16": {
+      "id": "Bj11",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P28": {
+      "id": "Bj01",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P33": {
+      "id": "Bj02b",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P34": {
+      "id": "Bj02c",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     }
+    }
+   },
+   "reader": {
+    "P01": {
+     "id": "D01",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P02": {
+     "id": "D02",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P03": {
+     "id": "D04",
+     "mode": "focalized",
+     "stance": "holds_true",
+     "strength": "suspects"
+    },
+    "P04": {
+     "id": "D03",
+     "mode": "asserted_by_character",
+     "stance": "undecided"
+    },
+    "P08": {
+     "id": "D09",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P11": {
+     "id": "D10",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P12": {
+     "id": "D13",
+     "mode": "asserted_by_character",
+     "stance": "holds_false",
+     "strength": "suspects"
+    },
+    "P13": {
+     "id": "D11",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P25": {
+     "id": "D05",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P26": {
+     "id": "D06",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P29": {
+     "id": "D12",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P30": {
+     "id": "D08",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P32": {
+     "id": "D07",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    }
+   },
+   "world": {
+    "obj_letter": {
+     "id": "L4",
+     "place": "loc_tea_tin"
+    }
+   },
+   "truth": {
+    "P01": true,
+    "P02": true,
+    "P03": false,
+    "P04": true,
+    "P05": true,
+    "P06": true,
+    "P07": true,
+    "P08": true,
+    "P09": true,
+    "P10": true,
+    "P11": true,
+    "P12": false,
+    "P13": true,
+    "P14": true,
+    "P15": true,
+    "P16": true,
+    "P17": false,
+    "P18": false,
+    "P19": null,
+    "P20": null,
+    "P21": false,
+    "P22": false,
+    "P23": false,
+    "P24": false,
+    "P25": true,
+    "P26": true,
+    "P27": true,
+    "P28": true,
+    "P29": true,
+    "P30": true,
+    "P31": false,
+    "P32": true,
+    "P33": true,
+    "P34": true,
+    "P35": true,
+    "P36": true
+   }
+  },
+  "sc_05": {
+   "beliefs": {
+    "ch_daniel": {
+     "P01": {
+      "id": "Bd02",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P02": {
+      "id": "Bd03",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P03": {
+      "id": "Bd05",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "FALSE BELIEF"
+     },
+     "P04": {
+      "id": "Bd04",
+      "stance": "holds_false",
+      "strength": "believes",
+      "label": "FALSE BELIEF"
+     },
+     "P12": {
+      "id": "Bd06",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "FALSE BELIEF"
+     },
+     "P32": {
+      "id": "Bd01",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     }
+    },
+    "ch_sarah": {
+     "P01": {
+      "id": "Bs07",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P02": {
+      "id": "Bs42",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P03": {
+      "id": "Bs18",
+      "stance": "holds_false",
+      "strength": "believes",
+      "label": "correctly doubts"
+     },
+     "P04": {
+      "id": "Bs40",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P07": {
+      "id": "Bs05",
+      "stance": "unaware",
+      "label": "unaware"
+     },
+     "P08": {
+      "id": "Bs02",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P09": {
+      "id": "Bs03",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P10": {
+      "id": "Bs08",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P11": {
+      "id": "Bs09",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P12": {
+      "id": "Bs04",
+      "stance": "holds_false",
+      "strength": "certain",
+      "label": "knows it is false"
+     },
+     "P13": {
+      "id": "Bs10",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P14": {
+      "id": "Bs11",
+      "stance": "unaware",
+      "label": "unaware"
+     },
+     "P18": {
+      "id": "Bs12",
+      "stance": "holds_false",
+      "strength": "certain",
+      "label": "knows it is false"
+     },
+     "P19": {
+      "id": "Bs13",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "believes; canon ambiguous"
+     },
+     "P20": {
+      "id": "Bs06",
+      "stance": "undecided",
+      "label": "undecided"
+     },
+     "P25": {
+      "id": "Bs16",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P26": {
+      "id": "Bs15",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P27": {
+      "id": "Bs19",
+      "stance": "holds_true",
+      "strength": "suspects",
+      "label": "correctly suspects"
+     },
+     "P30": {
+      "id": "Bs17",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P32": {
+      "id": "Bs01",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P35": {
+      "id": "Bs35",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P36": {
+      "id": "Bs36",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     }
+    },
+    "ch_marta": {
+     "P01": {
+      "id": "Bm06",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P02": {
+      "id": "Bm01",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P03": {
+      "id": "Bm23",
+      "stance": "holds_false",
+      "strength": "certain",
+      "label": "knows it is false"
+     },
+     "P04": {
+      "id": "Bm02",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P05": {
+      "id": "Bm03",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P06": {
+      "id": "Bm05",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P07": {
+      "id": "Bm04",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P15": {
+      "id": "Bm10",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P16": {
+      "id": "Bm09",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P17": {
+      "id": "Bm12",
+      "stance": "holds_false",
+      "strength": "believes",
+      "label": "correctly doubts"
+     },
+     "P21": {
+      "id": "Bm07",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "FALSE BELIEF"
+     },
+     "P22": {
+      "id": "Bm08",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P24": {
+      "id": "Bm11",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P26": {
+      "id": "Bm28",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P33": {
+      "id": "Bm04b",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P34": {
+      "id": "Bm04c",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     }
+    },
+    "ch_tom": {
+     "P01": {
+      "id": "Bt01",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P12": {
+      "id": "Bt02",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "FALSE BELIEF"
+     },
+     "P15": {
+      "id": "Bt04",
+      "stance": "unaware",
+      "label": "unaware"
+     },
+     "P17": {
+      "id": "Bt05",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "FALSE BELIEF"
+     },
+     "P22": {
+      "id": "Bt03",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     }
+    },
+    "ch_jonas": {
+     "P01": {
+      "id": "Bj05",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P06": {
+      "id": "Bj03",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P07": {
+      "id": "Bj02",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P15": {
+      "id": "Bj10",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P16": {
+      "id": "Bj11",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P17": {
+      "id": "Bj18",
+      "stance": "holds_false",
+      "strength": "certain",
+      "label": "knows it is false"
+     },
+     "P22": {
+      "id": "Bj13",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P24": {
+      "id": "Bj12",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P28": {
+      "id": "Bj01",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P33": {
+      "id": "Bj02b",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P34": {
+      "id": "Bj02c",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     }
+    }
+   },
+   "reader": {
+    "P01": {
+     "id": "D01",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P02": {
+     "id": "D02",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P03": {
+     "id": "D04",
+     "mode": "focalized",
+     "stance": "holds_true",
+     "strength": "suspects"
+    },
+    "P04": {
+     "id": "D03",
+     "mode": "asserted_by_character",
+     "stance": "undecided"
+    },
+    "P08": {
+     "id": "D09",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P11": {
+     "id": "D10",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P12": {
+     "id": "D13",
+     "mode": "asserted_by_character",
+     "stance": "holds_false",
+     "strength": "suspects"
+    },
+    "P13": {
+     "id": "D11",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P17": {
+     "id": "D15",
+     "mode": "stated",
+     "stance": "holds_false",
+     "strength": "certain"
+    },
+    "P22": {
+     "id": "D14",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P25": {
+     "id": "D05",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P26": {
+     "id": "D06",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P29": {
+     "id": "D12",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P30": {
+     "id": "D08",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P32": {
+     "id": "D07",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    }
+   },
+   "world": {
+    "obj_letter": {
+     "id": "L4",
+     "place": "loc_tea_tin"
+    }
+   },
+   "truth": {
+    "P01": true,
+    "P02": true,
+    "P03": false,
+    "P04": true,
+    "P05": true,
+    "P06": true,
+    "P07": true,
+    "P08": true,
+    "P09": true,
+    "P10": true,
+    "P11": true,
+    "P12": false,
+    "P13": true,
+    "P14": true,
+    "P15": true,
+    "P16": true,
+    "P17": false,
+    "P18": false,
+    "P19": null,
+    "P20": null,
+    "P21": false,
+    "P22": true,
+    "P23": false,
+    "P24": true,
+    "P25": true,
+    "P26": true,
+    "P27": true,
+    "P28": true,
+    "P29": true,
+    "P30": true,
+    "P31": false,
+    "P32": true,
+    "P33": true,
+    "P34": true,
+    "P35": true,
+    "P36": true
+   }
+  },
+  "sc_06": {
+   "beliefs": {
+    "ch_daniel": {
+     "P01": {
+      "id": "Bd02",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P02": {
+      "id": "Bd03",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P03": {
+      "id": "Bd05",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "FALSE BELIEF"
+     },
+     "P04": {
+      "id": "Bd04",
+      "stance": "holds_false",
+      "strength": "believes",
+      "label": "FALSE BELIEF"
+     },
+     "P12": {
+      "id": "Bd06",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "FALSE BELIEF"
+     },
+     "P32": {
+      "id": "Bd01",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     }
+    },
+    "ch_sarah": {
+     "P01": {
+      "id": "Bs07",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P02": {
+      "id": "Bs42",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P03": {
+      "id": "Bs18",
+      "stance": "holds_false",
+      "strength": "believes",
+      "label": "correctly doubts"
+     },
+     "P04": {
+      "id": "Bs40",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P07": {
+      "id": "Bs05",
+      "stance": "unaware",
+      "label": "unaware"
+     },
+     "P08": {
+      "id": "Bs02",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P09": {
+      "id": "Bs03",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P10": {
+      "id": "Bs08",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P11": {
+      "id": "Bs09",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P12": {
+      "id": "Bs04",
+      "stance": "holds_false",
+      "strength": "certain",
+      "label": "knows it is false"
+     },
+     "P13": {
+      "id": "Bs10",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P14": {
+      "id": "Bs11",
+      "stance": "unaware",
+      "label": "unaware"
+     },
+     "P18": {
+      "id": "Bs12",
+      "stance": "holds_false",
+      "strength": "certain",
+      "label": "knows it is false"
+     },
+     "P19": {
+      "id": "Bs13",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "believes; canon ambiguous"
+     },
+     "P20": {
+      "id": "Bs06",
+      "stance": "undecided",
+      "label": "undecided"
+     },
+     "P25": {
+      "id": "Bs16",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P26": {
+      "id": "Bs15",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P27": {
+      "id": "Bs19",
+      "stance": "holds_true",
+      "strength": "suspects",
+      "label": "correctly suspects"
+     },
+     "P30": {
+      "id": "Bs17",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P32": {
+      "id": "Bs01",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P35": {
+      "id": "Bs35",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P36": {
+      "id": "Bs36",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     }
+    },
+    "ch_marta": {
+     "P01": {
+      "id": "Bm06",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P02": {
+      "id": "Bm01",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P03": {
+      "id": "Bm23",
+      "stance": "holds_false",
+      "strength": "certain",
+      "label": "knows it is false"
+     },
+     "P04": {
+      "id": "Bm02",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P05": {
+      "id": "Bm03",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P06": {
+      "id": "Bm05",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P07": {
+      "id": "Bm04",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P15": {
+      "id": "Bm10",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P16": {
+      "id": "Bm09",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P17": {
+      "id": "Bm12",
+      "stance": "holds_false",
+      "strength": "believes",
+      "label": "correctly doubts"
+     },
+     "P21": {
+      "id": "Bm07",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "FALSE BELIEF"
+     },
+     "P22": {
+      "id": "Bm08",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P24": {
+      "id": "Bm11",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P26": {
+      "id": "Bm28",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P30": {
+      "id": "Bm26",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P33": {
+      "id": "Bm04b",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P34": {
+      "id": "Bm04c",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     }
+    },
+    "ch_tom": {
+     "P01": {
+      "id": "Bt01",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P12": {
+      "id": "Bt02",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "FALSE BELIEF"
+     },
+     "P15": {
+      "id": "Bt04",
+      "stance": "unaware",
+      "label": "unaware"
+     },
+     "P17": {
+      "id": "Bt05",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "FALSE BELIEF"
+     },
+     "P22": {
+      "id": "Bt03",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     }
+    },
+    "ch_jonas": {
+     "P01": {
+      "id": "Bj05",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P06": {
+      "id": "Bj03",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P07": {
+      "id": "Bj02",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P15": {
+      "id": "Bj10",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P16": {
+      "id": "Bj11",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P17": {
+      "id": "Bj18",
+      "stance": "holds_false",
+      "strength": "certain",
+      "label": "knows it is false"
+     },
+     "P22": {
+      "id": "Bj13",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P24": {
+      "id": "Bj12",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P28": {
+      "id": "Bj01",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P33": {
+      "id": "Bj02b",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P34": {
+      "id": "Bj02c",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     }
+    }
+   },
+   "reader": {
+    "P01": {
+     "id": "D01",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P02": {
+     "id": "D02",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P03": {
+     "id": "D19",
+     "mode": "stated",
+     "stance": "holds_false",
+     "strength": "certain"
+    },
+    "P04": {
+     "id": "D17",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P05": {
+     "id": "D16",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P06": {
+     "id": "D18",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P08": {
+     "id": "D09",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P11": {
+     "id": "D10",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P12": {
+     "id": "D13",
+     "mode": "asserted_by_character",
+     "stance": "holds_false",
+     "strength": "suspects"
+    },
+    "P13": {
+     "id": "D11",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P16": {
+     "id": "D20",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P17": {
+     "id": "D22",
+     "mode": "stated",
+     "stance": "holds_false",
+     "strength": "certain"
+    },
+    "P21": {
+     "id": "D23",
+     "mode": "focalized",
+     "stance": "holds_false",
+     "strength": "suspects"
+    },
+    "P22": {
+     "id": "D14",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P25": {
+     "id": "D05",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P26": {
+     "id": "D06",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P29": {
+     "id": "D12",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P30": {
+     "id": "D08",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P32": {
+     "id": "D07",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P33": {
+     "id": "D21",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "believes"
+    }
+   },
+   "world": {
+    "obj_letter": {
+     "id": "L4",
+     "place": "loc_tea_tin"
+    }
+   },
+   "truth": {
+    "P01": true,
+    "P02": true,
+    "P03": false,
+    "P04": true,
+    "P05": true,
+    "P06": true,
+    "P07": true,
+    "P08": true,
+    "P09": true,
+    "P10": true,
+    "P11": true,
+    "P12": false,
+    "P13": true,
+    "P14": true,
+    "P15": true,
+    "P16": true,
+    "P17": false,
+    "P18": false,
+    "P19": null,
+    "P20": null,
+    "P21": false,
+    "P22": true,
+    "P23": false,
+    "P24": true,
+    "P25": true,
+    "P26": true,
+    "P27": true,
+    "P28": true,
+    "P29": true,
+    "P30": true,
+    "P31": false,
+    "P32": true,
+    "P33": true,
+    "P34": true,
+    "P35": true,
+    "P36": true
+   }
+  },
+  "sc_07": {
+   "beliefs": {
+    "ch_daniel": {
+     "P01": {
+      "id": "Bd02",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P02": {
+      "id": "Bd03",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P03": {
+      "id": "Bd05",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "FALSE BELIEF"
+     },
+     "P04": {
+      "id": "Bd04",
+      "stance": "holds_false",
+      "strength": "believes",
+      "label": "FALSE BELIEF"
+     },
+     "P12": {
+      "id": "Bd06",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "FALSE BELIEF"
+     },
+     "P32": {
+      "id": "Bd01",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     }
+    },
+    "ch_sarah": {
+     "P01": {
+      "id": "Bs07",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P02": {
+      "id": "Bs42",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P03": {
+      "id": "Bs18",
+      "stance": "holds_false",
+      "strength": "believes",
+      "label": "correctly doubts"
+     },
+     "P04": {
+      "id": "Bs40",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P07": {
+      "id": "Bs05",
+      "stance": "unaware",
+      "label": "unaware"
+     },
+     "P08": {
+      "id": "Bs02",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P09": {
+      "id": "Bs03",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P10": {
+      "id": "Bs08",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P11": {
+      "id": "Bs09",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P12": {
+      "id": "Bs04",
+      "stance": "holds_false",
+      "strength": "certain",
+      "label": "knows it is false"
+     },
+     "P13": {
+      "id": "Bs10",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P14": {
+      "id": "Bs11",
+      "stance": "unaware",
+      "label": "unaware"
+     },
+     "P15": {
+      "id": "Bs21",
+      "stance": "unaware",
+      "label": "unaware"
+     },
+     "P18": {
+      "id": "Bs12",
+      "stance": "holds_false",
+      "strength": "certain",
+      "label": "knows it is false"
+     },
+     "P19": {
+      "id": "Bs13",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "believes; canon ambiguous"
+     },
+     "P20": {
+      "id": "Bs06",
+      "stance": "undecided",
+      "label": "undecided"
+     },
+     "P23": {
+      "id": "Bs20",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P25": {
+      "id": "Bs16",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P26": {
+      "id": "Bs15",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P27": {
+      "id": "Bs19",
+      "stance": "holds_true",
+      "strength": "suspects",
+      "label": "correctly suspects"
+     },
+     "P30": {
+      "id": "Bs17",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P32": {
+      "id": "Bs01",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P35": {
+      "id": "Bs35",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P36": {
+      "id": "Bs36",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     }
+    },
+    "ch_marta": {
+     "P01": {
+      "id": "Bm06",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P02": {
+      "id": "Bm01",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P03": {
+      "id": "Bm23",
+      "stance": "holds_false",
+      "strength": "certain",
+      "label": "knows it is false"
+     },
+     "P04": {
+      "id": "Bm02",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P05": {
+      "id": "Bm03",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P06": {
+      "id": "Bm05",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P07": {
+      "id": "Bm04",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P15": {
+      "id": "Bm10",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P16": {
+      "id": "Bm09",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P17": {
+      "id": "Bm12",
+      "stance": "holds_false",
+      "strength": "believes",
+      "label": "correctly doubts"
+     },
+     "P21": {
+      "id": "Bm07",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "FALSE BELIEF"
+     },
+     "P22": {
+      "id": "Bm08",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P24": {
+      "id": "Bm11",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P26": {
+      "id": "Bm28",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P30": {
+      "id": "Bm26",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P33": {
+      "id": "Bm04b",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P34": {
+      "id": "Bm04c",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     }
+    },
+    "ch_tom": {
+     "P01": {
+      "id": "Bt01",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P12": {
+      "id": "Bt02",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "FALSE BELIEF"
+     },
+     "P15": {
+      "id": "Bt04",
+      "stance": "unaware",
+      "label": "unaware"
+     },
+     "P17": {
+      "id": "Bt05",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "FALSE BELIEF"
+     },
+     "P22": {
+      "id": "Bt03",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     }
+    },
+    "ch_jonas": {
+     "P01": {
+      "id": "Bj05",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P06": {
+      "id": "Bj03",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P07": {
+      "id": "Bj02",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P15": {
+      "id": "Bj10",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P16": {
+      "id": "Bj11",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P17": {
+      "id": "Bj18",
+      "stance": "holds_false",
+      "strength": "certain",
+      "label": "knows it is false"
+     },
+     "P22": {
+      "id": "Bj13",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P23": {
+      "id": "Bj14",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P24": {
+      "id": "Bj12",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P28": {
+      "id": "Bj01",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P33": {
+      "id": "Bj02b",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P34": {
+      "id": "Bj02c",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     }
+    }
+   },
+   "reader": {
+    "P01": {
+     "id": "D01",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P02": {
+     "id": "D02",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P03": {
+     "id": "D19",
+     "mode": "stated",
+     "stance": "holds_false",
+     "strength": "certain"
+    },
+    "P04": {
+     "id": "D17",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P05": {
+     "id": "D16",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P06": {
+     "id": "D18",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P08": {
+     "id": "D09",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P11": {
+     "id": "D10",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P12": {
+     "id": "D13",
+     "mode": "asserted_by_character",
+     "stance": "holds_false",
+     "strength": "suspects"
+    },
+    "P13": {
+     "id": "D11",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P16": {
+     "id": "D20",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P17": {
+     "id": "D22",
+     "mode": "stated",
+     "stance": "holds_false",
+     "strength": "certain"
+    },
+    "P19": {
+     "id": "D25",
+     "mode": "focalized",
+     "stance": "undecided"
+    },
+    "P21": {
+     "id": "D23",
+     "mode": "focalized",
+     "stance": "holds_false",
+     "strength": "suspects"
+    },
+    "P22": {
+     "id": "D14",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P23": {
+     "id": "D24",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P25": {
+     "id": "D05",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P26": {
+     "id": "D06",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P27": {
+     "id": "D26",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "believes"
+    },
+    "P29": {
+     "id": "D12",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P30": {
+     "id": "D08",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P32": {
+     "id": "D07",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P33": {
+     "id": "D21",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "believes"
+    }
+   },
+   "world": {
+    "obj_letter": {
+     "id": "L5",
+     "place": "loc_sarah_coat"
+    }
+   },
+   "truth": {
+    "P01": true,
+    "P02": true,
+    "P03": false,
+    "P04": true,
+    "P05": true,
+    "P06": true,
+    "P07": true,
+    "P08": true,
+    "P09": true,
+    "P10": true,
+    "P11": true,
+    "P12": false,
+    "P13": true,
+    "P14": true,
+    "P15": true,
+    "P16": true,
+    "P17": false,
+    "P18": false,
+    "P19": null,
+    "P20": null,
+    "P21": false,
+    "P22": true,
+    "P23": true,
+    "P24": true,
+    "P25": true,
+    "P26": true,
+    "P27": true,
+    "P28": true,
+    "P29": true,
+    "P30": true,
+    "P31": false,
+    "P32": true,
+    "P33": true,
+    "P34": true,
+    "P35": true,
+    "P36": true
+   }
+  },
+  "sc_08": {
+   "beliefs": {
+    "ch_daniel": {
+     "P32": {
+      "id": "Bd01",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     }
+    },
+    "ch_sarah": {
+     "P32": {
+      "id": "Bs01",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     }
+    },
+    "ch_marta": {
+     "P02": {
+      "id": "Bm01",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P03": {
+      "id": "Bm23",
+      "stance": "holds_false",
+      "strength": "certain",
+      "label": "knows it is false"
+     },
+     "P04": {
+      "id": "Bm02",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P05": {
+      "id": "Bm03",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P06": {
+      "id": "Bm05",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P07": {
+      "id": "Bm04",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P33": {
+      "id": "Bm04b",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P34": {
+      "id": "Bm04c",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     }
+    },
+    "ch_tom": {},
+    "ch_jonas": {
+     "P06": {
+      "id": "Bj03",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P07": {
+      "id": "Bj02",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P15": {
+      "id": "Bj10",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P16": {
+      "id": "Bj11",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P28": {
+      "id": "Bj01",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P33": {
+      "id": "Bj02b",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P34": {
+      "id": "Bj02c",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     }
+    }
+   },
+   "reader": {
+    "P01": {
+     "id": "D01",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P02": {
+     "id": "D02",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P03": {
+     "id": "D19",
+     "mode": "stated",
+     "stance": "holds_false",
+     "strength": "certain"
+    },
+    "P04": {
+     "id": "D17",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P05": {
+     "id": "D16",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P06": {
+     "id": "D18",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P08": {
+     "id": "D09",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P09": {
+     "id": "D27",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P11": {
+     "id": "D10",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P12": {
+     "id": "D13",
+     "mode": "asserted_by_character",
+     "stance": "holds_false",
+     "strength": "suspects"
+    },
+    "P13": {
+     "id": "D11",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P15": {
+     "id": "D30",
+     "mode": "inferable",
+     "stance": "holds_true",
+     "strength": "suspects"
+    },
+    "P16": {
+     "id": "D20",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P17": {
+     "id": "D22",
+     "mode": "stated",
+     "stance": "holds_false",
+     "strength": "certain"
+    },
+    "P18": {
+     "id": "D28",
+     "mode": "focalized",
+     "stance": "undecided"
+    },
+    "P19": {
+     "id": "D25",
+     "mode": "focalized",
+     "stance": "undecided"
+    },
+    "P21": {
+     "id": "D31",
+     "mode": "inferable",
+     "stance": "holds_false",
+     "strength": "believes"
+    },
+    "P22": {
+     "id": "D14",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P23": {
+     "id": "D24",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P25": {
+     "id": "D05",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P26": {
+     "id": "D06",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P27": {
+     "id": "D26",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "believes"
+    },
+    "P29": {
+     "id": "D12",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P30": {
+     "id": "D08",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P31": {
+     "id": "D29",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P32": {
+     "id": "D07",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P33": {
+     "id": "D21",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "believes"
+    },
+    "P34": {
+     "id": "D47",
+     "mode": "inferable",
+     "stance": "holds_true",
+     "strength": "suspects"
+    }
+   },
+   "world": {
+    "obj_letter": {
+     "id": "L1",
+     "place": "loc_desk_drawer"
+    }
+   },
+   "truth": {
+    "P01": false,
+    "P02": true,
+    "P03": false,
+    "P04": true,
+    "P05": true,
+    "P06": true,
+    "P07": true,
+    "P08": true,
+    "P09": true,
+    "P10": false,
+    "P11": false,
+    "P12": false,
+    "P13": true,
+    "P14": true,
+    "P15": true,
+    "P16": true,
+    "P17": false,
+    "P18": false,
+    "P19": null,
+    "P20": null,
+    "P21": false,
+    "P22": false,
+    "P23": false,
+    "P24": false,
+    "P25": true,
+    "P26": true,
+    "P27": true,
+    "P28": true,
+    "P29": false,
+    "P30": false,
+    "P31": false,
+    "P32": true,
+    "P33": true,
+    "P34": true,
+    "P35": false,
+    "P36": true
+   }
+  },
+  "sc_09": {
+   "beliefs": {
+    "ch_daniel": {
+     "P01": {
+      "id": "Bd02",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P02": {
+      "id": "Bd03",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P03": {
+      "id": "Bd05",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "FALSE BELIEF"
+     },
+     "P04": {
+      "id": "Bd04",
+      "stance": "holds_false",
+      "strength": "believes",
+      "label": "FALSE BELIEF"
+     },
+     "P07": {
+      "id": "Bd28",
+      "stance": "unaware",
+      "label": "unaware"
+     },
+     "P08": {
+      "id": "Bd07",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P09": {
+      "id": "Bd08",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P11": {
+      "id": "Bd09",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P12": {
+      "id": "Bd06",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "FALSE BELIEF"
+     },
+     "P13": {
+      "id": "Bd10",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P18": {
+      "id": "Bd11",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "FALSE BELIEF"
+     },
+     "P19": {
+      "id": "Bd12",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "believes; canon ambiguous"
+     },
+     "P27": {
+      "id": "Bd26",
+      "stance": "holds_true",
+      "strength": "suspects",
+      "label": "correctly suspects"
+     },
+     "P32": {
+      "id": "Bd01",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     }
+    },
+    "ch_sarah": {
+     "P01": {
+      "id": "Bs07",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P02": {
+      "id": "Bs42",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P03": {
+      "id": "Bs18",
+      "stance": "holds_false",
+      "strength": "believes",
+      "label": "correctly doubts"
+     },
+     "P04": {
+      "id": "Bs40",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P07": {
+      "id": "Bs05",
+      "stance": "unaware",
+      "label": "unaware"
+     },
+     "P08": {
+      "id": "Bs02",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P09": {
+      "id": "Bs03",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P10": {
+      "id": "Bs08",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P11": {
+      "id": "Bs09",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P12": {
+      "id": "Bs04",
+      "stance": "holds_false",
+      "strength": "certain",
+      "label": "knows it is false"
+     },
+     "P13": {
+      "id": "Bs10",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P14": {
+      "id": "Bs11",
+      "stance": "unaware",
+      "label": "unaware"
+     },
+     "P15": {
+      "id": "Bs21",
+      "stance": "unaware",
+      "label": "unaware"
+     },
+     "P18": {
+      "id": "Bs12",
+      "stance": "holds_false",
+      "strength": "certain",
+      "label": "knows it is false"
+     },
+     "P19": {
+      "id": "Bs13",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "believes; canon ambiguous"
+     },
+     "P20": {
+      "id": "Bs06",
+      "stance": "undecided",
+      "label": "undecided"
+     },
+     "P23": {
+      "id": "Bs20",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P25": {
+      "id": "Bs16",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P26": {
+      "id": "Bs15",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P27": {
+      "id": "Bs19",
+      "stance": "holds_true",
+      "strength": "suspects",
+      "label": "correctly suspects"
+     },
+     "P30": {
+      "id": "Bs17",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P31": {
+      "id": "Bs22",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P32": {
+      "id": "Bs01",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P35": {
+      "id": "Bs35",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P36": {
+      "id": "Bs36",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     }
+    },
+    "ch_marta": {
+     "P01": {
+      "id": "Bm06",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P02": {
+      "id": "Bm01",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P03": {
+      "id": "Bm23",
+      "stance": "holds_false",
+      "strength": "certain",
+      "label": "knows it is false"
+     },
+     "P04": {
+      "id": "Bm02",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P05": {
+      "id": "Bm03",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P06": {
+      "id": "Bm05",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P07": {
+      "id": "Bm04",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P15": {
+      "id": "Bm10",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P16": {
+      "id": "Bm09",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P17": {
+      "id": "Bm12",
+      "stance": "holds_false",
+      "strength": "believes",
+      "label": "correctly doubts"
+     },
+     "P21": {
+      "id": "Bm07",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "FALSE BELIEF"
+     },
+     "P22": {
+      "id": "Bm08",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P24": {
+      "id": "Bm11",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P26": {
+      "id": "Bm28",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P30": {
+      "id": "Bm26",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P33": {
+      "id": "Bm04b",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P34": {
+      "id": "Bm04c",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     }
+    },
+    "ch_tom": {
+     "P01": {
+      "id": "Bt01",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P12": {
+      "id": "Bt02",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "FALSE BELIEF"
+     },
+     "P15": {
+      "id": "Bt04",
+      "stance": "unaware",
+      "label": "unaware"
+     },
+     "P17": {
+      "id": "Bt05",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "FALSE BELIEF"
+     },
+     "P22": {
+      "id": "Bt03",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     }
+    },
+    "ch_jonas": {
+     "P01": {
+      "id": "Bj05",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P06": {
+      "id": "Bj03",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P07": {
+      "id": "Bj02",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P15": {
+      "id": "Bj10",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P16": {
+      "id": "Bj11",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P17": {
+      "id": "Bj18",
+      "stance": "holds_false",
+      "strength": "certain",
+      "label": "knows it is false"
+     },
+     "P22": {
+      "id": "Bj13",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P23": {
+      "id": "Bj14",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P24": {
+      "id": "Bj12",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P28": {
+      "id": "Bj01",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P33": {
+      "id": "Bj02b",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P34": {
+      "id": "Bj02c",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     }
+    }
+   },
+   "reader": {
+    "P01": {
+     "id": "D01",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P02": {
+     "id": "D02",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P03": {
+     "id": "D19",
+     "mode": "stated",
+     "stance": "holds_false",
+     "strength": "certain"
+    },
+    "P04": {
+     "id": "D17",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P05": {
+     "id": "D16",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P06": {
+     "id": "D18",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P08": {
+     "id": "D09",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P09": {
+     "id": "D27",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P10": {
+     "id": "D32",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P11": {
+     "id": "D10",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P12": {
+     "id": "D33",
+     "mode": "stated",
+     "stance": "holds_false",
+     "strength": "certain"
+    },
+    "P13": {
+     "id": "D11",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P15": {
+     "id": "D30",
+     "mode": "inferable",
+     "stance": "holds_true",
+     "strength": "suspects"
+    },
+    "P16": {
+     "id": "D20",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P17": {
+     "id": "D22",
+     "mode": "stated",
+     "stance": "holds_false",
+     "strength": "certain"
+    },
+    "P18": {
+     "id": "D34",
+     "mode": "stated",
+     "stance": "holds_false",
+     "strength": "certain"
+    },
+    "P19": {
+     "id": "D36",
+     "mode": "posed",
+     "stance": "undecided"
+    },
+    "P20": {
+     "id": "D35",
+     "mode": "posed",
+     "stance": "undecided"
+    },
+    "P21": {
+     "id": "D31",
+     "mode": "inferable",
+     "stance": "holds_false",
+     "strength": "believes"
+    },
+    "P22": {
+     "id": "D14",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P23": {
+     "id": "D24",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P25": {
+     "id": "D05",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P26": {
+     "id": "D06",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P27": {
+     "id": "D26",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "believes"
+    },
+    "P29": {
+     "id": "D12",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P30": {
+     "id": "D08",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P31": {
+     "id": "D29",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P32": {
+     "id": "D07",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P33": {
+     "id": "D21",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "believes"
+    },
+    "P34": {
+     "id": "D47",
+     "mode": "inferable",
+     "stance": "holds_true",
+     "strength": "suspects"
+    },
+    "P35": {
+     "id": "D44",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P36": {
+     "id": "D45",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    }
+   },
+   "world": {
+    "obj_letter": {
+     "id": "L5",
+     "place": "loc_sarah_coat"
+    }
+   },
+   "truth": {
+    "P01": true,
+    "P02": true,
+    "P03": false,
+    "P04": true,
+    "P05": true,
+    "P06": true,
+    "P07": true,
+    "P08": true,
+    "P09": true,
+    "P10": true,
+    "P11": true,
+    "P12": false,
+    "P13": true,
+    "P14": true,
+    "P15": true,
+    "P16": true,
+    "P17": false,
+    "P18": false,
+    "P19": null,
+    "P20": null,
+    "P21": false,
+    "P22": true,
+    "P23": true,
+    "P24": true,
+    "P25": true,
+    "P26": true,
+    "P27": true,
+    "P28": true,
+    "P29": false,
+    "P30": true,
+    "P31": true,
+    "P32": true,
+    "P33": true,
+    "P34": true,
+    "P35": true,
+    "P36": true
+   }
+  },
+  "sc_10": {
+   "beliefs": {
+    "ch_daniel": {
+     "P01": {
+      "id": "Bd02",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P02": {
+      "id": "Bd03",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P03": {
+      "id": "Bd05",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "FALSE BELIEF"
+     },
+     "P04": {
+      "id": "Bd04",
+      "stance": "holds_false",
+      "strength": "believes",
+      "label": "FALSE BELIEF"
+     },
+     "P07": {
+      "id": "Bd28",
+      "stance": "unaware",
+      "label": "unaware"
+     },
+     "P08": {
+      "id": "Bd07",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P09": {
+      "id": "Bd08",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P11": {
+      "id": "Bd09",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P12": {
+      "id": "Bd06",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "FALSE BELIEF"
+     },
+     "P13": {
+      "id": "Bd10",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P18": {
+      "id": "Bd11",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "FALSE BELIEF"
+     },
+     "P19": {
+      "id": "Bd12",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "believes; canon ambiguous"
+     },
+     "P27": {
+      "id": "Bd26",
+      "stance": "holds_true",
+      "strength": "suspects",
+      "label": "correctly suspects"
+     },
+     "P32": {
+      "id": "Bd01",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     }
+    },
+    "ch_sarah": {
+     "P01": {
+      "id": "Bs07",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P02": {
+      "id": "Bs42",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P03": {
+      "id": "Bs18",
+      "stance": "holds_false",
+      "strength": "believes",
+      "label": "correctly doubts"
+     },
+     "P04": {
+      "id": "Bs40",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P07": {
+      "id": "Bs05",
+      "stance": "unaware",
+      "label": "unaware"
+     },
+     "P08": {
+      "id": "Bs02",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P09": {
+      "id": "Bs03",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P10": {
+      "id": "Bs08",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P11": {
+      "id": "Bs09",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P12": {
+      "id": "Bs04",
+      "stance": "holds_false",
+      "strength": "certain",
+      "label": "knows it is false"
+     },
+     "P13": {
+      "id": "Bs10",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P14": {
+      "id": "Bs11",
+      "stance": "unaware",
+      "label": "unaware"
+     },
+     "P15": {
+      "id": "Bs21",
+      "stance": "unaware",
+      "label": "unaware"
+     },
+     "P18": {
+      "id": "Bs12",
+      "stance": "holds_false",
+      "strength": "certain",
+      "label": "knows it is false"
+     },
+     "P19": {
+      "id": "Bs13",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "believes; canon ambiguous"
+     },
+     "P20": {
+      "id": "Bs06",
+      "stance": "undecided",
+      "label": "undecided"
+     },
+     "P23": {
+      "id": "Bs20",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P25": {
+      "id": "Bs16",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P26": {
+      "id": "Bs15",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P27": {
+      "id": "Bs19",
+      "stance": "holds_true",
+      "strength": "suspects",
+      "label": "correctly suspects"
+     },
+     "P30": {
+      "id": "Bs17",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P31": {
+      "id": "Bs22",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P32": {
+      "id": "Bs01",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P35": {
+      "id": "Bs35",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P36": {
+      "id": "Bs36",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     }
+    },
+    "ch_marta": {
+     "P01": {
+      "id": "Bm06",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P02": {
+      "id": "Bm01",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P03": {
+      "id": "Bm23",
+      "stance": "holds_false",
+      "strength": "certain",
+      "label": "knows it is false"
+     },
+     "P04": {
+      "id": "Bm02",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P05": {
+      "id": "Bm03",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P06": {
+      "id": "Bm05",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P07": {
+      "id": "Bm04",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P08": {
+      "id": "Bm13",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P09": {
+      "id": "Bm14",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P11": {
+      "id": "Bm17",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P13": {
+      "id": "Bm16",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P15": {
+      "id": "Bm10",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P16": {
+      "id": "Bm09",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P17": {
+      "id": "Bm12",
+      "stance": "holds_false",
+      "strength": "believes",
+      "label": "correctly doubts"
+     },
+     "P21": {
+      "id": "Bm15",
+      "stance": "holds_false",
+      "strength": "certain",
+      "label": "knows it is false"
+     },
+     "P22": {
+      "id": "Bm08",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P24": {
+      "id": "Bm11",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P26": {
+      "id": "Bm28",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P27": {
+      "id": "Bm24",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P30": {
+      "id": "Bm18",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P33": {
+      "id": "Bm04b",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P34": {
+      "id": "Bm04c",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     }
+    },
+    "ch_tom": {
+     "P01": {
+      "id": "Bt01",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P12": {
+      "id": "Bt02",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "FALSE BELIEF"
+     },
+     "P15": {
+      "id": "Bt04",
+      "stance": "unaware",
+      "label": "unaware"
+     },
+     "P17": {
+      "id": "Bt05",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "FALSE BELIEF"
+     },
+     "P22": {
+      "id": "Bt03",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     }
+    },
+    "ch_jonas": {
+     "P01": {
+      "id": "Bj05",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P06": {
+      "id": "Bj03",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P07": {
+      "id": "Bj02",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P15": {
+      "id": "Bj10",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P16": {
+      "id": "Bj11",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P17": {
+      "id": "Bj18",
+      "stance": "holds_false",
+      "strength": "certain",
+      "label": "knows it is false"
+     },
+     "P22": {
+      "id": "Bj13",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P23": {
+      "id": "Bj14",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P24": {
+      "id": "Bj12",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P28": {
+      "id": "Bj01",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P33": {
+      "id": "Bj02b",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P34": {
+      "id": "Bj02c",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     }
+    }
+   },
+   "reader": {
+    "P01": {
+     "id": "D01",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P02": {
+     "id": "D02",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P03": {
+     "id": "D19",
+     "mode": "stated",
+     "stance": "holds_false",
+     "strength": "certain"
+    },
+    "P04": {
+     "id": "D17",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P05": {
+     "id": "D16",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P06": {
+     "id": "D18",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P08": {
+     "id": "D09",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P09": {
+     "id": "D27",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P10": {
+     "id": "D32",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P11": {
+     "id": "D10",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P12": {
+     "id": "D33",
+     "mode": "stated",
+     "stance": "holds_false",
+     "strength": "certain"
+    },
+    "P13": {
+     "id": "D11",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P15": {
+     "id": "D30",
+     "mode": "inferable",
+     "stance": "holds_true",
+     "strength": "suspects"
+    },
+    "P16": {
+     "id": "D20",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P17": {
+     "id": "D22",
+     "mode": "stated",
+     "stance": "holds_false",
+     "strength": "certain"
+    },
+    "P18": {
+     "id": "D34",
+     "mode": "stated",
+     "stance": "holds_false",
+     "strength": "certain"
+    },
+    "P19": {
+     "id": "D36",
+     "mode": "posed",
+     "stance": "undecided"
+    },
+    "P20": {
+     "id": "D35",
+     "mode": "posed",
+     "stance": "undecided"
+    },
+    "P21": {
+     "id": "D37",
+     "mode": "stated",
+     "stance": "holds_false",
+     "strength": "certain"
+    },
+    "P22": {
+     "id": "D14",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P23": {
+     "id": "D24",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P25": {
+     "id": "D05",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P26": {
+     "id": "D06",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P27": {
+     "id": "D26",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "believes"
+    },
+    "P29": {
+     "id": "D12",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P30": {
+     "id": "D08",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P31": {
+     "id": "D29",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P32": {
+     "id": "D07",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P33": {
+     "id": "D21",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "believes"
+    },
+    "P34": {
+     "id": "D47",
+     "mode": "inferable",
+     "stance": "holds_true",
+     "strength": "suspects"
+    },
+    "P35": {
+     "id": "D44",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P36": {
+     "id": "D45",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    }
+   },
+   "world": {
+    "obj_letter": {
+     "id": "L6",
+     "place": "loc_office_safe"
+    }
+   },
+   "truth": {
+    "P01": true,
+    "P02": true,
+    "P03": false,
+    "P04": true,
+    "P05": true,
+    "P06": true,
+    "P07": true,
+    "P08": true,
+    "P09": true,
+    "P10": true,
+    "P11": true,
+    "P12": false,
+    "P13": true,
+    "P14": true,
+    "P15": true,
+    "P16": true,
+    "P17": false,
+    "P18": false,
+    "P19": null,
+    "P20": null,
+    "P21": false,
+    "P22": true,
+    "P23": true,
+    "P24": true,
+    "P25": true,
+    "P26": true,
+    "P27": true,
+    "P28": true,
+    "P29": false,
+    "P30": true,
+    "P31": true,
+    "P32": true,
+    "P33": true,
+    "P34": true,
+    "P35": true,
+    "P36": true
+   }
+  },
+  "sc_11": {
+   "beliefs": {
+    "ch_daniel": {
+     "P01": {
+      "id": "Bd02",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P02": {
+      "id": "Bd03",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P03": {
+      "id": "Bd15",
+      "stance": "holds_false",
+      "strength": "certain",
+      "label": "knows it is false"
+     },
+     "P04": {
+      "id": "Bd14",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P05": {
+      "id": "Bd13",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P06": {
+      "id": "Bd16",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P07": {
+      "id": "Bd17",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P08": {
+      "id": "Bd07",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P09": {
+      "id": "Bd08",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P11": {
+      "id": "Bd09",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P12": {
+      "id": "Bd06",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "FALSE BELIEF"
+     },
+     "P13": {
+      "id": "Bd10",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P18": {
+      "id": "Bd11",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "FALSE BELIEF"
+     },
+     "P19": {
+      "id": "Bd12",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "believes; canon ambiguous"
+     },
+     "P21": {
+      "id": "Bd22",
+      "stance": "holds_false",
+      "strength": "certain",
+      "label": "knows it is false"
+     },
+     "P27": {
+      "id": "Bd21",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P32": {
+      "id": "Bd01",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P33": {
+      "id": "Bd17b",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P34": {
+      "id": "Bd17c",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     }
+    },
+    "ch_sarah": {
+     "P01": {
+      "id": "Bs07",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P02": {
+      "id": "Bs42",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P03": {
+      "id": "Bs18",
+      "stance": "holds_false",
+      "strength": "believes",
+      "label": "correctly doubts"
+     },
+     "P04": {
+      "id": "Bs40",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P07": {
+      "id": "Bs05",
+      "stance": "unaware",
+      "label": "unaware"
+     },
+     "P08": {
+      "id": "Bs02",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P09": {
+      "id": "Bs03",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P10": {
+      "id": "Bs08",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P11": {
+      "id": "Bs09",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P12": {
+      "id": "Bs04",
+      "stance": "holds_false",
+      "strength": "certain",
+      "label": "knows it is false"
+     },
+     "P13": {
+      "id": "Bs10",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P14": {
+      "id": "Bs11",
+      "stance": "unaware",
+      "label": "unaware"
+     },
+     "P15": {
+      "id": "Bs21",
+      "stance": "unaware",
+      "label": "unaware"
+     },
+     "P18": {
+      "id": "Bs12",
+      "stance": "holds_false",
+      "strength": "certain",
+      "label": "knows it is false"
+     },
+     "P19": {
+      "id": "Bs13",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "believes; canon ambiguous"
+     },
+     "P20": {
+      "id": "Bs06",
+      "stance": "undecided",
+      "label": "undecided"
+     },
+     "P23": {
+      "id": "Bs20",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P25": {
+      "id": "Bs16",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P26": {
+      "id": "Bs15",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P27": {
+      "id": "Bs19",
+      "stance": "holds_true",
+      "strength": "suspects",
+      "label": "correctly suspects"
+     },
+     "P30": {
+      "id": "Bs17",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "OUTDATED BELIEF"
+     },
+     "P31": {
+      "id": "Bs22",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P32": {
+      "id": "Bs01",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P35": {
+      "id": "Bs35",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P36": {
+      "id": "Bs36",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     }
+    },
+    "ch_marta": {
+     "P01": {
+      "id": "Bm06",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P02": {
+      "id": "Bm01",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P03": {
+      "id": "Bm23",
+      "stance": "holds_false",
+      "strength": "certain",
+      "label": "knows it is false"
+     },
+     "P04": {
+      "id": "Bm02",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P05": {
+      "id": "Bm03",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P06": {
+      "id": "Bm05",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P07": {
+      "id": "Bm04",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P08": {
+      "id": "Bm13",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P09": {
+      "id": "Bm14",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P11": {
+      "id": "Bm17",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P13": {
+      "id": "Bm16",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P14": {
+      "id": "Bm27",
+      "stance": "unaware",
+      "label": "unaware"
+     },
+     "P15": {
+      "id": "Bm10",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P16": {
+      "id": "Bm09",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P17": {
+      "id": "Bm12",
+      "stance": "holds_false",
+      "strength": "believes",
+      "label": "correctly doubts"
+     },
+     "P21": {
+      "id": "Bm15",
+      "stance": "holds_false",
+      "strength": "certain",
+      "label": "knows it is false"
+     },
+     "P22": {
+      "id": "Bm08",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P24": {
+      "id": "Bm11",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P26": {
+      "id": "Bm28",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P27": {
+      "id": "Bm24",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P30": {
+      "id": "Bm18",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "OUTDATED BELIEF"
+     },
+     "P33": {
+      "id": "Bm04b",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P34": {
+      "id": "Bm04c",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     }
+    },
+    "ch_tom": {
+     "P01": {
+      "id": "Bt01",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P12": {
+      "id": "Bt02",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "FALSE BELIEF"
+     },
+     "P15": {
+      "id": "Bt04",
+      "stance": "unaware",
+      "label": "unaware"
+     },
+     "P17": {
+      "id": "Bt05",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "FALSE BELIEF"
+     },
+     "P22": {
+      "id": "Bt03",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     }
+    },
+    "ch_jonas": {
+     "P01": {
+      "id": "Bj05",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P06": {
+      "id": "Bj03",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P07": {
+      "id": "Bj02",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P15": {
+      "id": "Bj10",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P16": {
+      "id": "Bj11",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P17": {
+      "id": "Bj18",
+      "stance": "holds_false",
+      "strength": "certain",
+      "label": "knows it is false"
+     },
+     "P22": {
+      "id": "Bj13",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P23": {
+      "id": "Bj14",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P24": {
+      "id": "Bj12",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P28": {
+      "id": "Bj01",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P33": {
+      "id": "Bj02b",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P34": {
+      "id": "Bj02c",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     }
+    }
+   },
+   "reader": {
+    "P01": {
+     "id": "D01",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P02": {
+     "id": "D02",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P03": {
+     "id": "D19",
+     "mode": "stated",
+     "stance": "holds_false",
+     "strength": "certain"
+    },
+    "P04": {
+     "id": "D17",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P05": {
+     "id": "D16",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P06": {
+     "id": "D18",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P07": {
+     "id": "D39",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P08": {
+     "id": "D09",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P09": {
+     "id": "D27",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P10": {
+     "id": "D32",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P11": {
+     "id": "D10",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P12": {
+     "id": "D33",
+     "mode": "stated",
+     "stance": "holds_false",
+     "strength": "certain"
+    },
+    "P13": {
+     "id": "D11",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P15": {
+     "id": "D30",
+     "mode": "inferable",
+     "stance": "holds_true",
+     "strength": "suspects"
+    },
+    "P16": {
+     "id": "D20",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P17": {
+     "id": "D22",
+     "mode": "stated",
+     "stance": "holds_false",
+     "strength": "certain"
+    },
+    "P18": {
+     "id": "D34",
+     "mode": "stated",
+     "stance": "holds_false",
+     "strength": "certain"
+    },
+    "P19": {
+     "id": "D36",
+     "mode": "posed",
+     "stance": "undecided"
+    },
+    "P20": {
+     "id": "D35",
+     "mode": "posed",
+     "stance": "undecided"
+    },
+    "P21": {
+     "id": "D37",
+     "mode": "stated",
+     "stance": "holds_false",
+     "strength": "certain"
+    },
+    "P22": {
+     "id": "D14",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P23": {
+     "id": "D24",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P25": {
+     "id": "D05",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P26": {
+     "id": "D06",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P27": {
+     "id": "D38",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P29": {
+     "id": "D12",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P30": {
+     "id": "D08",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P31": {
+     "id": "D29",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P32": {
+     "id": "D07",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P33": {
+     "id": "D48",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P34": {
+     "id": "D46",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P35": {
+     "id": "D44",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P36": {
+     "id": "D45",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    }
+   },
+   "world": {
+    "obj_letter": {
+     "id": "L6",
+     "place": "loc_office_safe"
+    }
+   },
+   "truth": {
+    "P01": true,
+    "P02": true,
+    "P03": false,
+    "P04": true,
+    "P05": true,
+    "P06": true,
+    "P07": true,
+    "P08": true,
+    "P09": true,
+    "P10": true,
+    "P11": true,
+    "P12": false,
+    "P13": true,
+    "P14": true,
+    "P15": true,
+    "P16": true,
+    "P17": false,
+    "P18": false,
+    "P19": null,
+    "P20": null,
+    "P21": false,
+    "P22": true,
+    "P23": true,
+    "P24": true,
+    "P25": true,
+    "P26": true,
+    "P27": true,
+    "P28": true,
+    "P29": false,
+    "P30": false,
+    "P31": true,
+    "P32": true,
+    "P33": true,
+    "P34": true,
+    "P35": true,
+    "P36": true
+   }
+  },
+  "sc_12": {
+   "beliefs": {
+    "ch_daniel": {
+     "P01": {
+      "id": "Bd02",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P02": {
+      "id": "Bd03",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P03": {
+      "id": "Bd15",
+      "stance": "holds_false",
+      "strength": "certain",
+      "label": "knows it is false"
+     },
+     "P04": {
+      "id": "Bd14",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P05": {
+      "id": "Bd13",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P06": {
+      "id": "Bd16",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P07": {
+      "id": "Bd17",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P08": {
+      "id": "Bd07",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P09": {
+      "id": "Bd08",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P11": {
+      "id": "Bd09",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P12": {
+      "id": "Bd06",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "FALSE BELIEF"
+     },
+     "P13": {
+      "id": "Bd10",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P18": {
+      "id": "Bd11",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "FALSE BELIEF"
+     },
+     "P19": {
+      "id": "Bd12",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "believes; canon ambiguous"
+     },
+     "P21": {
+      "id": "Bd22",
+      "stance": "holds_false",
+      "strength": "certain",
+      "label": "knows it is false"
+     },
+     "P27": {
+      "id": "Bd21",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P32": {
+      "id": "Bd01",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P33": {
+      "id": "Bd17b",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P34": {
+      "id": "Bd17c",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     }
+    },
+    "ch_sarah": {
+     "P01": {
+      "id": "Bs07",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P02": {
+      "id": "Bs42",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P03": {
+      "id": "Bs44",
+      "stance": "holds_false",
+      "strength": "certain",
+      "label": "knows it is false"
+     },
+     "P04": {
+      "id": "Bs40",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P05": {
+      "id": "Bs29",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P06": {
+      "id": "Bs27",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P07": {
+      "id": "Bs26",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P08": {
+      "id": "Bs02",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P09": {
+      "id": "Bs03",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P10": {
+      "id": "Bs08",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P11": {
+      "id": "Bs09",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P12": {
+      "id": "Bs04",
+      "stance": "holds_false",
+      "strength": "certain",
+      "label": "knows it is false"
+     },
+     "P13": {
+      "id": "Bs10",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P14": {
+      "id": "Bs11",
+      "stance": "unaware",
+      "label": "unaware"
+     },
+     "P15": {
+      "id": "Bs23",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P16": {
+      "id": "Bs38",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P17": {
+      "id": "Bs41",
+      "stance": "holds_false",
+      "strength": "believes",
+      "label": "correctly doubts"
+     },
+     "P18": {
+      "id": "Bs12",
+      "stance": "holds_false",
+      "strength": "certain",
+      "label": "knows it is false"
+     },
+     "P19": {
+      "id": "Bs13",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "believes; canon ambiguous"
+     },
+     "P20": {
+      "id": "Bs06",
+      "stance": "undecided",
+      "label": "undecided"
+     },
+     "P21": {
+      "id": "Bs37",
+      "stance": "holds_false",
+      "strength": "certain",
+      "label": "knows it is false"
+     },
+     "P22": {
+      "id": "Bs28",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P23": {
+      "id": "Bs20",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P24": {
+      "id": "Bs24",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P25": {
+      "id": "Bs16",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P26": {
+      "id": "Bs15",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P27": {
+      "id": "Bs39",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P28": {
+      "id": "Bs25",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P30": {
+      "id": "Bs17",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "OUTDATED BELIEF"
+     },
+     "P31": {
+      "id": "Bs22",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P32": {
+      "id": "Bs01",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P33": {
+      "id": "Bs26b",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P34": {
+      "id": "Bs26c",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P35": {
+      "id": "Bs35",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P36": {
+      "id": "Bs36",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     }
+    },
+    "ch_marta": {
+     "P01": {
+      "id": "Bm06",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P02": {
+      "id": "Bm01",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P03": {
+      "id": "Bm23",
+      "stance": "holds_false",
+      "strength": "certain",
+      "label": "knows it is false"
+     },
+     "P04": {
+      "id": "Bm02",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P05": {
+      "id": "Bm03",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P06": {
+      "id": "Bm05",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P07": {
+      "id": "Bm04",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P08": {
+      "id": "Bm13",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P09": {
+      "id": "Bm14",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P11": {
+      "id": "Bm17",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P13": {
+      "id": "Bm16",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P14": {
+      "id": "Bm27",
+      "stance": "unaware",
+      "label": "unaware"
+     },
+     "P15": {
+      "id": "Bm10",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P16": {
+      "id": "Bm09",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P17": {
+      "id": "Bm12",
+      "stance": "holds_false",
+      "strength": "believes",
+      "label": "correctly doubts"
+     },
+     "P21": {
+      "id": "Bm15",
+      "stance": "holds_false",
+      "strength": "certain",
+      "label": "knows it is false"
+     },
+     "P22": {
+      "id": "Bm08",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P24": {
+      "id": "Bm11",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P26": {
+      "id": "Bm28",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P27": {
+      "id": "Bm24",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P30": {
+      "id": "Bm18",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "OUTDATED BELIEF"
+     },
+     "P33": {
+      "id": "Bm04b",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P34": {
+      "id": "Bm04c",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     }
+    },
+    "ch_tom": {
+     "P01": {
+      "id": "Bt01",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P12": {
+      "id": "Bt02",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "FALSE BELIEF"
+     },
+     "P15": {
+      "id": "Bt04",
+      "stance": "unaware",
+      "label": "unaware"
+     },
+     "P17": {
+      "id": "Bt05",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "FALSE BELIEF"
+     },
+     "P22": {
+      "id": "Bt03",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     }
+    },
+    "ch_jonas": {
+     "P01": {
+      "id": "Bj05",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P06": {
+      "id": "Bj03",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P07": {
+      "id": "Bj02",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P08": {
+      "id": "Bj06",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P09": {
+      "id": "Bj07",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P11": {
+      "id": "Bj16",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P13": {
+      "id": "Bj17",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P15": {
+      "id": "Bj10",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P16": {
+      "id": "Bj11",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P17": {
+      "id": "Bj18",
+      "stance": "holds_false",
+      "strength": "certain",
+      "label": "knows it is false"
+     },
+     "P21": {
+      "id": "Bj15",
+      "stance": "holds_false",
+      "strength": "believes",
+      "label": "correctly doubts"
+     },
+     "P22": {
+      "id": "Bj13",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P23": {
+      "id": "Bj14",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P24": {
+      "id": "Bj12",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P28": {
+      "id": "Bj01",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P33": {
+      "id": "Bj02b",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P34": {
+      "id": "Bj02c",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     }
+    }
+   },
+   "reader": {
+    "P01": {
+     "id": "D01",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P02": {
+     "id": "D02",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P03": {
+     "id": "D19",
+     "mode": "stated",
+     "stance": "holds_false",
+     "strength": "certain"
+    },
+    "P04": {
+     "id": "D17",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P05": {
+     "id": "D16",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P06": {
+     "id": "D18",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P07": {
+     "id": "D39",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P08": {
+     "id": "D09",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P09": {
+     "id": "D27",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P10": {
+     "id": "D32",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P11": {
+     "id": "D10",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P12": {
+     "id": "D33",
+     "mode": "stated",
+     "stance": "holds_false",
+     "strength": "certain"
+    },
+    "P13": {
+     "id": "D11",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P15": {
+     "id": "D40",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P16": {
+     "id": "D20",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P17": {
+     "id": "D22",
+     "mode": "stated",
+     "stance": "holds_false",
+     "strength": "certain"
+    },
+    "P18": {
+     "id": "D34",
+     "mode": "stated",
+     "stance": "holds_false",
+     "strength": "certain"
+    },
+    "P19": {
+     "id": "D36",
+     "mode": "posed",
+     "stance": "undecided"
+    },
+    "P20": {
+     "id": "D35",
+     "mode": "posed",
+     "stance": "undecided"
+    },
+    "P21": {
+     "id": "D37",
+     "mode": "stated",
+     "stance": "holds_false",
+     "strength": "certain"
+    },
+    "P22": {
+     "id": "D14",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P23": {
+     "id": "D24",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P24": {
+     "id": "D42",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P25": {
+     "id": "D05",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P26": {
+     "id": "D06",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P27": {
+     "id": "D38",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P28": {
+     "id": "D41",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P29": {
+     "id": "D12",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P30": {
+     "id": "D08",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P31": {
+     "id": "D29",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P32": {
+     "id": "D07",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P33": {
+     "id": "D48",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P34": {
+     "id": "D46",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P35": {
+     "id": "D44",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P36": {
+     "id": "D45",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    }
+   },
+   "world": {
+    "obj_letter": {
+     "id": "L6",
+     "place": "loc_office_safe"
+    }
+   },
+   "truth": {
+    "P01": true,
+    "P02": true,
+    "P03": false,
+    "P04": true,
+    "P05": true,
+    "P06": true,
+    "P07": true,
+    "P08": true,
+    "P09": true,
+    "P10": true,
+    "P11": true,
+    "P12": false,
+    "P13": true,
+    "P14": true,
+    "P15": true,
+    "P16": true,
+    "P17": false,
+    "P18": false,
+    "P19": null,
+    "P20": null,
+    "P21": false,
+    "P22": true,
+    "P23": true,
+    "P24": true,
+    "P25": true,
+    "P26": true,
+    "P27": true,
+    "P28": true,
+    "P29": false,
+    "P30": false,
+    "P31": true,
+    "P32": true,
+    "P33": true,
+    "P34": true,
+    "P35": true,
+    "P36": true
+   }
+  },
+  "end": {
+   "beliefs": {
+    "ch_daniel": {
+     "P01": {
+      "id": "Bd02",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P02": {
+      "id": "Bd03",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P03": {
+      "id": "Bd15",
+      "stance": "holds_false",
+      "strength": "certain",
+      "label": "knows it is false"
+     },
+     "P04": {
+      "id": "Bd14",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P05": {
+      "id": "Bd13",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P06": {
+      "id": "Bd16",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P07": {
+      "id": "Bd20",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P08": {
+      "id": "Bd07",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P09": {
+      "id": "Bd08",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P11": {
+      "id": "Bd09",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P12": {
+      "id": "Bd06",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "FALSE BELIEF"
+     },
+     "P13": {
+      "id": "Bd10",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P14": {
+      "id": "Bd19",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P15": {
+      "id": "Bd23",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P16": {
+      "id": "Bd24",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P17": {
+      "id": "Bd27",
+      "stance": "holds_false",
+      "strength": "believes",
+      "label": "correctly doubts"
+     },
+     "P18": {
+      "id": "Bd11",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "FALSE BELIEF"
+     },
+     "P19": {
+      "id": "Bd12",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "believes; canon ambiguous"
+     },
+     "P21": {
+      "id": "Bd22",
+      "stance": "holds_false",
+      "strength": "certain",
+      "label": "knows it is false"
+     },
+     "P22": {
+      "id": "Bd25",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P24": {
+      "id": "Bd18",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P27": {
+      "id": "Bd21",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P32": {
+      "id": "Bd01",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P33": {
+      "id": "Bd17b",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P34": {
+      "id": "Bd17c",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     }
+    },
+    "ch_sarah": {
+     "P01": {
+      "id": "Bs07",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P02": {
+      "id": "Bs42",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P03": {
+      "id": "Bs44",
+      "stance": "holds_false",
+      "strength": "certain",
+      "label": "knows it is false"
+     },
+     "P04": {
+      "id": "Bs40",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P05": {
+      "id": "Bs29",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P06": {
+      "id": "Bs27",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P07": {
+      "id": "Bs31",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P08": {
+      "id": "Bs02",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P09": {
+      "id": "Bs03",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P10": {
+      "id": "Bs08",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P11": {
+      "id": "Bs09",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P12": {
+      "id": "Bs04",
+      "stance": "holds_false",
+      "strength": "certain",
+      "label": "knows it is false"
+     },
+     "P13": {
+      "id": "Bs10",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P14": {
+      "id": "Bs30",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P15": {
+      "id": "Bs23",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P16": {
+      "id": "Bs38",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P17": {
+      "id": "Bs41",
+      "stance": "holds_false",
+      "strength": "believes",
+      "label": "correctly doubts"
+     },
+     "P18": {
+      "id": "Bs12",
+      "stance": "holds_false",
+      "strength": "certain",
+      "label": "knows it is false"
+     },
+     "P19": {
+      "id": "Bs32",
+      "stance": "undecided",
+      "label": "undecided"
+     },
+     "P20": {
+      "id": "Bs06",
+      "stance": "undecided",
+      "label": "undecided"
+     },
+     "P21": {
+      "id": "Bs37",
+      "stance": "holds_false",
+      "strength": "certain",
+      "label": "knows it is false"
+     },
+     "P22": {
+      "id": "Bs28",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P23": {
+      "id": "Bs20",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P24": {
+      "id": "Bs24",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P25": {
+      "id": "Bs16",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P26": {
+      "id": "Bs15",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P27": {
+      "id": "Bs39",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P28": {
+      "id": "Bs25",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P30": {
+      "id": "Bs17",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "OUTDATED BELIEF"
+     },
+     "P31": {
+      "id": "Bs22",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P32": {
+      "id": "Bs01",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P33": {
+      "id": "Bs26b",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P34": {
+      "id": "Bs26c",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P35": {
+      "id": "Bs35",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P36": {
+      "id": "Bs36",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     }
+    },
+    "ch_marta": {
+     "P01": {
+      "id": "Bm06",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P02": {
+      "id": "Bm01",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P03": {
+      "id": "Bm23",
+      "stance": "holds_false",
+      "strength": "certain",
+      "label": "knows it is false"
+     },
+     "P04": {
+      "id": "Bm02",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P05": {
+      "id": "Bm03",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P06": {
+      "id": "Bm05",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P07": {
+      "id": "Bm04",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P08": {
+      "id": "Bm13",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P09": {
+      "id": "Bm14",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P11": {
+      "id": "Bm17",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P13": {
+      "id": "Bm16",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P14": {
+      "id": "Bm21",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P15": {
+      "id": "Bm19",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P16": {
+      "id": "Bm25",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P17": {
+      "id": "Bm12",
+      "stance": "holds_false",
+      "strength": "believes",
+      "label": "correctly doubts"
+     },
+     "P19": {
+      "id": "Bm22",
+      "stance": "holds_false",
+      "strength": "believes",
+      "label": "believes; canon ambiguous"
+     },
+     "P21": {
+      "id": "Bm15",
+      "stance": "holds_false",
+      "strength": "certain",
+      "label": "knows it is false"
+     },
+     "P22": {
+      "id": "Bm08",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P24": {
+      "id": "Bm20",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P26": {
+      "id": "Bm28",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P27": {
+      "id": "Bm24",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P30": {
+      "id": "Bm18",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "OUTDATED BELIEF"
+     },
+     "P33": {
+      "id": "Bm04b",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P34": {
+      "id": "Bm04c",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     }
+    },
+    "ch_tom": {
+     "P01": {
+      "id": "Bt01",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P07": {
+      "id": "Bt08",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P12": {
+      "id": "Bt02",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "FALSE BELIEF"
+     },
+     "P15": {
+      "id": "Bt06",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P17": {
+      "id": "Bt07",
+      "stance": "holds_false",
+      "strength": "certain",
+      "label": "knows it is false"
+     },
+     "P22": {
+      "id": "Bt03",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P24": {
+      "id": "Bt09",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     }
+    },
+    "ch_jonas": {
+     "P01": {
+      "id": "Bj05",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P06": {
+      "id": "Bj03",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P07": {
+      "id": "Bj02",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P08": {
+      "id": "Bj08",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P09": {
+      "id": "Bj19",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P11": {
+      "id": "Bj16",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P13": {
+      "id": "Bj17",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P14": {
+      "id": "Bj09",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P15": {
+      "id": "Bj10",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P16": {
+      "id": "Bj11",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P17": {
+      "id": "Bj18",
+      "stance": "holds_false",
+      "strength": "certain",
+      "label": "knows it is false"
+     },
+     "P21": {
+      "id": "Bj20",
+      "stance": "holds_false",
+      "strength": "certain",
+      "label": "knows it is false"
+     },
+     "P22": {
+      "id": "Bj13",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P23": {
+      "id": "Bj14",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P24": {
+      "id": "Bj12",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P28": {
+      "id": "Bj01",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     },
+     "P33": {
+      "id": "Bj02b",
+      "stance": "holds_true",
+      "strength": "believes",
+      "label": "correctly believes"
+     },
+     "P34": {
+      "id": "Bj02c",
+      "stance": "holds_true",
+      "strength": "certain",
+      "label": "knows"
+     }
+    }
+   },
+   "reader": {
+    "P01": {
+     "id": "D01",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P02": {
+     "id": "D02",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P03": {
+     "id": "D19",
+     "mode": "stated",
+     "stance": "holds_false",
+     "strength": "certain"
+    },
+    "P04": {
+     "id": "D17",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P05": {
+     "id": "D16",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P06": {
+     "id": "D18",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P07": {
+     "id": "D39",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P08": {
+     "id": "D09",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P09": {
+     "id": "D27",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P10": {
+     "id": "D32",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P11": {
+     "id": "D10",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P12": {
+     "id": "D33",
+     "mode": "stated",
+     "stance": "holds_false",
+     "strength": "certain"
+    },
+    "P13": {
+     "id": "D11",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P14": {
+     "id": "D43",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P15": {
+     "id": "D40",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P16": {
+     "id": "D20",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P17": {
+     "id": "D22",
+     "mode": "stated",
+     "stance": "holds_false",
+     "strength": "certain"
+    },
+    "P18": {
+     "id": "D34",
+     "mode": "stated",
+     "stance": "holds_false",
+     "strength": "certain"
+    },
+    "P19": {
+     "id": "D36",
+     "mode": "posed",
+     "stance": "undecided"
+    },
+    "P20": {
+     "id": "D35",
+     "mode": "posed",
+     "stance": "undecided"
+    },
+    "P21": {
+     "id": "D37",
+     "mode": "stated",
+     "stance": "holds_false",
+     "strength": "certain"
+    },
+    "P22": {
+     "id": "D14",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P23": {
+     "id": "D24",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P24": {
+     "id": "D42",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P25": {
+     "id": "D05",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P26": {
+     "id": "D06",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P27": {
+     "id": "D38",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P28": {
+     "id": "D41",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P29": {
+     "id": "D12",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P30": {
+     "id": "D08",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P31": {
+     "id": "D29",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P32": {
+     "id": "D07",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P33": {
+     "id": "D48",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P34": {
+     "id": "D46",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P35": {
+     "id": "D44",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    },
+    "P36": {
+     "id": "D45",
+     "mode": "stated",
+     "stance": "holds_true",
+     "strength": "certain"
+    }
+   },
+   "world": {
+    "obj_letter": {
+     "id": "L7",
+     "place": "loc_jonas_hands"
+    }
+   },
+   "truth": {
+    "P01": true,
+    "P02": true,
+    "P03": false,
+    "P04": true,
+    "P05": true,
+    "P06": true,
+    "P07": true,
+    "P08": true,
+    "P09": true,
+    "P10": true,
+    "P11": true,
+    "P12": false,
+    "P13": true,
+    "P14": true,
+    "P15": true,
+    "P16": true,
+    "P17": false,
+    "P18": false,
+    "P19": null,
+    "P20": null,
+    "P21": false,
+    "P22": true,
+    "P23": true,
+    "P24": true,
+    "P25": true,
+    "P26": true,
+    "P27": true,
+    "P28": true,
+    "P29": false,
+    "P30": false,
+    "P31": true,
+    "P32": true,
+    "P33": true,
+    "P34": true,
+    "P35": true,
+    "P36": true
+   }
+  }
+ },
+ "source": {
+  "story_sha256": "7b9e1cff50ee98c18a9ebcadeb77d3ccd1f9582e1606d44feca6681d148477fe",
+  "made_by": "a reference implementation of the same questions, kept outside this repository"
+ }
+}

@@ -1,0 +1,1243 @@
+{
+ "format": 1,
+ "seq": 3,
+ "id": "cs_65e0be654b",
+ "parent": "7679643162d92e89b9ae34af3df3f857d568ceff3b13c2880f0c7942a06cff02",
+ "actor": "import:harbour-letter",
+ "note": "What happens and what is said",
+ "manuscript": "d22347c950696d67bf251bdcd2a94ed3eba53fc87cab65e33fc2d4297ab1c9b7",
+ "ops": [
+  {
+   "op": "put",
+   "record": {
+    "kind": "event",
+    "id": "Eb1",
+    "story_key": -10000,
+    "summary": "Edmund begins paying Rose Pike every month through the office books; Marta makes the payments and keeps the record.",
+    "participants": {
+     "ch_edmund": "actor",
+     "ch_marta": "actor",
+     "ch_rose": "addressee"
+    },
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "event",
+    "id": "Eb2",
+    "story_key": -310,
+    "summary": "Rose Pike tells Jonas that Edmund Kessler is his father.",
+    "participants": {
+     "ch_rose": "actor",
+     "ch_jonas": "addressee"
+    },
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "event",
+    "id": "Eb3",
+    "story_key": -300,
+    "summary": "Rose Pike dies; the payments stop.",
+    "participants": {
+     "ch_rose": "actor",
+     "ch_marta": "witness",
+     "ch_jonas": "witness"
+    },
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "event",
+    "id": "Eb4",
+    "story_key": -170,
+    "summary": "Edmund writes, seals and stamps a letter to Jonas Pike and leaves it in his desk drawer.",
+    "participants": {
+     "ch_edmund": "actor"
+    },
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "event",
+    "id": "Eb5",
+    "story_key": -170,
+    "summary": "Edmund and Daniel quarrel about selling the office.",
+    "participants": {
+     "ch_edmund": "actor",
+     "ch_daniel": "actor"
+    },
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "event",
+    "id": "Eb6",
+    "story_key": -161,
+    "summary": "Edmund collapses at the office and is taken to hospital.",
+    "participants": {
+     "ch_edmund": "actor",
+     "ch_daniel": "witness"
+    },
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "event",
+    "id": "E08a",
+    "scene": "sc_08",
+    "story_key": -159.9,
+    "summary": "Fetching her father's glasses from the office at night, Sarah finds a sealed, stamped envelope under the invoices in his desk drawer and reads the name on it.",
+    "participants": {
+     "ch_sarah": "actor"
+    },
+    "quote": "under them, flat against the wood, was an envelope",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "event",
+    "id": "E08b",
+    "scene": "sc_08",
+    "story_key": -159.8,
+    "summary": "The hospital rings Sarah: her father has died.",
+    "participants": {
+     "ch_sarah": "addressee"
+    },
+    "quote": "your father died a few minutes ago",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "event",
+    "id": "E08c",
+    "scene": "sc_08",
+    "story_key": -159.7,
+    "summary": "Sarah puts the envelope inside her coat and takes it away.",
+    "participants": {
+     "ch_sarah": "actor"
+    },
+    "quote": "She put the envelope inside her coat.",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "event",
+    "id": "Eb7",
+    "story_key": -159,
+    "summary": "Daniel, Marta and Tom learn that Edmund has died.",
+    "participants": {
+     "ch_daniel": "addressee",
+     "ch_marta": "addressee",
+     "ch_tom": "addressee"
+    },
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "event",
+    "id": "Eb8",
+    "story_key": -150,
+    "summary": "Sarah goes back to the city with the letter hidden in the lining of her suitcase.",
+    "participants": {
+     "ch_sarah": "actor"
+    },
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "event",
+    "id": "E01a",
+    "scene": "sc_01",
+    "story_key": 10.1,
+    "summary": "Going through thirty years of ledgers, Daniel finds a monthly withdrawal marked only R.P. that stops in January.",
+    "participants": {
+     "ch_daniel": "actor"
+    },
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "event",
+    "id": "E01b",
+    "scene": "sc_01",
+    "story_key": 10.2,
+    "summary": "Daniel asks Marta what R.P. is. She says the payments were his father's instructions and will say no more.",
+    "participants": {
+     "ch_daniel": "actor",
+     "ch_marta": "actor"
+    },
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "event",
+    "id": "E01c",
+    "scene": "sc_01",
+    "story_key": 10.3,
+    "summary": "Daniel concludes that Marta has been taking the money.",
+    "participants": {
+     "ch_daniel": "actor"
+    },
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "event",
+    "id": "E02a",
+    "scene": "sc_02",
+    "story_key": 15.1,
+    "summary": "Alone in the kitchen, Sarah takes a sealed envelope from the lining of her suitcase and hides it in the old tea tin.",
+    "participants": {
+     "ch_sarah": "actor"
+    },
+    "quote": "She laid the envelope in the tea tin",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "event",
+    "id": "E02b",
+    "scene": "sc_02",
+    "story_key": 15.2,
+    "summary": "Over supper Daniel tells Sarah that money is missing from the books, that he means to sell, and when Hallam's offer lapses.",
+    "participants": {
+     "ch_daniel": "actor",
+     "ch_sarah": "addressee"
+    },
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "event",
+    "id": "E03a",
+    "scene": "sc_03",
+    "story_key": 20.1,
+    "summary": "Prompted by the solicitor, Daniel asks Sarah what was in their father's desk. She says there was nothing but invoices. Tom, in the doorway, hears it.",
+    "participants": {
+     "ch_daniel": "actor",
+     "ch_sarah": "actor",
+     "ch_tom": "witness"
+    },
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "event",
+    "id": "E03b",
+    "scene": "sc_03",
+    "story_key": 20.2,
+    "summary": "Daniel tells Sarah that Marta has been robbing them and shows her the R.P. entries. Sarah says she does not believe it.",
+    "participants": {
+     "ch_daniel": "actor",
+     "ch_sarah": "actor"
+    },
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "event",
+    "id": "E04a",
+    "scene": "sc_04",
+    "story_key": 25.1,
+    "summary": "A man in a grey coat comes into the office asking for Edmund Kessler. Marta, visibly shaken, tells him Edmund died in April. He leaves without giving a name.",
+    "participants": {
+     "ch_greycoat": "actor",
+     "ch_marta": "actor",
+     "ch_tom": "witness"
+    },
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "event",
+    "id": "E04b",
+    "scene": "sc_04",
+    "story_key": 25.2,
+    "summary": "Tom asks who the man was. Marta says he was a traveller who wanted the ferry times, and tells Tom not to trouble Daniel with it.",
+    "participants": {
+     "ch_tom": "actor",
+     "ch_marta": "actor"
+    },
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "event",
+    "id": "E05a",
+    "scene": "sc_05",
+    "story_key": 28.1,
+    "summary": "At home Marta goes through thirty years of payment stubs, thinks over who the visitor was, and resolves to say nothing yet.",
+    "participants": {
+     "ch_marta": "actor"
+    },
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "event",
+    "id": "E06a",
+    "scene": "sc_06",
+    "story_key": 30.1,
+    "summary": "Sarah takes the envelope from the tea tin and carries it in her coat pocket to the post office, meaning to post it. She does not.",
+    "participants": {
+     "ch_sarah": "actor"
+    },
+    "quote": "She did not post it.",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "event",
+    "id": "E06b",
+    "scene": "sc_06",
+    "story_key": 30.2,
+    "summary": "From the north quay Sarah sees a man in a grey coat watching the harbour office. They look at each other from a distance; he goes into the Ship Hotel.",
+    "participants": {
+     "ch_sarah": "witness",
+     "ch_greycoat": "actor"
+    },
+    "quote": "A man in a grey coat",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "event",
+    "id": "E07a",
+    "scene": "sc_07",
+    "story_key": 45.1,
+    "summary": "Sarah tells Daniel she has had a letter of their father's for months and lays the sealed envelope on the table. Daniel reads the name on it.",
+    "participants": {
+     "ch_sarah": "actor",
+     "ch_daniel": "addressee"
+    },
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "event",
+    "id": "E07b",
+    "scene": "sc_07",
+    "story_key": 45.2,
+    "summary": "Sarah will not say where she got it. Daniel assumes their father gave it to her, and she lets that stand. He wants to open it; she refuses and keeps it.",
+    "participants": {
+     "ch_daniel": "actor",
+     "ch_sarah": "actor"
+    },
+    "quote": "She did not answer that.",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "event",
+    "id": "E09a",
+    "scene": "sc_09",
+    "story_key": 50.1,
+    "summary": "As agreed overnight, Daniel locks the letter unopened in the office safe until Monday. Marta sees the envelope and reads the name on it.",
+    "participants": {
+     "ch_daniel": "actor",
+     "ch_sarah": "actor",
+     "ch_marta": "witness"
+    },
+    "quote": "He shut the safe and turned the key",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "event",
+    "id": "E09b",
+    "scene": "sc_09",
+    "story_key": 50.2,
+    "summary": "Daniel tells Marta that Sarah has been carrying the letter since April.",
+    "participants": {
+     "ch_daniel": "actor",
+     "ch_marta": "addressee",
+     "ch_sarah": "witness"
+    },
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "event",
+    "id": "E09c",
+    "scene": "sc_09",
+    "story_key": 50.3,
+    "summary": "Daniel tells Marta that auditors are coming on Monday, making his suspicion of her plain, and leaves. Sarah asks Marta whether she knows who the man on the envelope is; Marta says to ask her on Monday.",
+    "participants": {
+     "ch_daniel": "actor",
+     "ch_marta": "addressee",
+     "ch_sarah": "witness"
+    },
+    "quote": "The auditors are coming on Monday.",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "event",
+    "id": "E10a",
+    "scene": "sc_10",
+    "story_key": 55.1,
+    "summary": "Alone with Daniel, Marta shows him thirty years of payment stubs and tells him who Rose Pike was and that Jonas is his father's son. Daniel sees she took nothing.",
+    "participants": {
+     "ch_marta": "actor",
+     "ch_daniel": "addressee"
+    },
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "event",
+    "id": "E11a",
+    "scene": "sc_11",
+    "story_key": 60.1,
+    "summary": "At her father's grave Sarah finds the man in the grey coat. He tells her his name is Jonas Pike.",
+    "participants": {
+     "ch_greycoat": "actor",
+     "ch_sarah": "addressee"
+    },
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "event",
+    "id": "E11b",
+    "scene": "sc_11",
+    "story_key": 60.2,
+    "summary": "Jonas tells Sarah what his mother told him before she died, and that he came to the office on Tuesday and learned Edmund was dead.",
+    "participants": {
+     "ch_jonas": "actor",
+     "ch_sarah": "addressee"
+    },
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "event",
+    "id": "E11c",
+    "scene": "sc_11",
+    "story_key": 60.3,
+    "summary": "Sarah tells Jonas that her father left a letter for him that was never posted, and asks him to come to the office on Monday.",
+    "participants": {
+     "ch_sarah": "actor",
+     "ch_jonas": "addressee"
+    },
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "event",
+    "id": "E12a",
+    "scene": "sc_12",
+    "story_key": 80.1,
+    "summary": "Sarah brings Jonas into the office and introduces him as their father's son. Tom recognises him as Tuesday's visitor. Daniel says Marta already told him.",
+    "participants": {
+     "ch_sarah": "actor",
+     "ch_jonas": "actor",
+     "ch_daniel": "addressee",
+     "ch_marta": "witness",
+     "ch_tom": "witness"
+    },
+    "quote": "That's the fellow who wanted the ferry times",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "event",
+    "id": "E12b",
+    "scene": "sc_12",
+    "story_key": 80.2,
+    "summary": "Daniel sends Tom out, opens the safe and hands the letter to Jonas.",
+    "participants": {
+     "ch_daniel": "actor",
+     "ch_jonas": "addressee",
+     "ch_sarah": "witness",
+     "ch_marta": "witness"
+    },
+    "quote": "Daniel sent Tom out to the yard and shut the door.",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "event",
+    "id": "E12c",
+    "scene": "sc_12",
+    "story_key": 80.3,
+    "summary": "Jonas opens the letter and reads it aloud: Edmund acknowledges him and gives him a half share in the harbour office.",
+    "participants": {
+     "ch_jonas": "actor",
+     "ch_daniel": "witness",
+     "ch_sarah": "witness",
+     "ch_marta": "witness"
+    },
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "event",
+    "id": "E12d",
+    "scene": "sc_12",
+    "story_key": 80.4,
+    "summary": "Marta says Edmund stamped it and meant it to go. Sarah says he never posted it and nobody will ever know what he meant.",
+    "participants": {
+     "ch_marta": "actor",
+     "ch_sarah": "actor",
+     "ch_daniel": "witness",
+     "ch_jonas": "witness"
+    },
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "assertion",
+    "id": "A01",
+    "scene": "sc_01",
+    "story_key": 10.2,
+    "type": "dialogue",
+    "speaker": "ch_marta",
+    "addressees": [
+     "ch_daniel"
+    ],
+    "overhearers": [],
+    "prop": "P04",
+    "polarity": true,
+    "sincerity": "sincere",
+    "quote": "Those were your father's instructions.",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "assertion",
+    "id": "A02",
+    "scene": "sc_01",
+    "story_key": 10.3,
+    "type": "narration",
+    "speaker": "nar_third",
+    "focalizer": "ch_daniel",
+    "addressees": [],
+    "overhearers": [],
+    "prop": "P03",
+    "polarity": true,
+    "sincerity": "not_applicable",
+    "quote": "Marta had been taking money for years.",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "assertion",
+    "id": "A03",
+    "scene": "sc_02",
+    "story_key": 15.2,
+    "type": "dialogue",
+    "speaker": "ch_daniel",
+    "addressees": [
+     "ch_sarah"
+    ],
+    "overhearers": [],
+    "prop": "P02",
+    "polarity": true,
+    "sincerity": "sincere",
+    "quote": "There is money missing from the books.",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "assertion",
+    "id": "A04",
+    "scene": "sc_02",
+    "story_key": 15.2,
+    "type": "dialogue",
+    "speaker": "ch_daniel",
+    "addressees": [
+     "ch_sarah"
+    ],
+    "overhearers": [],
+    "prop": "P26",
+    "polarity": true,
+    "sincerity": "sincere",
+    "quote": "I mean to sell the office.",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "assertion",
+    "id": "A05",
+    "scene": "sc_02",
+    "story_key": 15.2,
+    "type": "dialogue",
+    "speaker": "ch_daniel",
+    "addressees": [
+     "ch_sarah"
+    ],
+    "overhearers": [],
+    "prop": "P25",
+    "polarity": true,
+    "sincerity": "sincere",
+    "quote": "Hallam's offer lapses on Friday the twenty-third.",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "assertion",
+    "id": "A06",
+    "scene": "sc_03",
+    "story_key": 20.1,
+    "type": "dialogue",
+    "speaker": "ch_sarah",
+    "addressees": [
+     "ch_daniel"
+    ],
+    "overhearers": [
+     "ch_tom"
+    ],
+    "prop": "P12",
+    "polarity": true,
+    "sincerity": "insincere",
+    "quote": "Nothing but invoices.",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "assertion",
+    "id": "A07",
+    "scene": "sc_03",
+    "story_key": 20.2,
+    "type": "dialogue",
+    "speaker": "ch_daniel",
+    "addressees": [
+     "ch_sarah"
+    ],
+    "overhearers": [],
+    "prop": "P03",
+    "polarity": true,
+    "sincerity": "sincere",
+    "quote": "Marta has been robbing us for years.",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "assertion",
+    "id": "A08",
+    "scene": "sc_03",
+    "story_key": 20.2,
+    "type": "dialogue",
+    "speaker": "ch_sarah",
+    "addressees": [
+     "ch_daniel"
+    ],
+    "overhearers": [],
+    "prop": "P03",
+    "polarity": false,
+    "sincerity": "sincere",
+    "quote": "I don't believe that of Marta",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "assertion",
+    "id": "A09",
+    "scene": "sc_04",
+    "story_key": 25.1,
+    "type": "dialogue",
+    "speaker": "ch_marta",
+    "addressees": [
+     "ch_greycoat"
+    ],
+    "overhearers": [
+     "ch_tom"
+    ],
+    "prop": "P01",
+    "polarity": true,
+    "sincerity": "sincere",
+    "quote": "Mr Kessler died in April",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "assertion",
+    "id": "A10",
+    "scene": "sc_04",
+    "story_key": 25.2,
+    "type": "dialogue",
+    "speaker": "ch_marta",
+    "addressees": [
+     "ch_tom"
+    ],
+    "overhearers": [],
+    "prop": "P17",
+    "polarity": true,
+    "sincerity": "insincere",
+    "quote": "A traveller. He wanted the ferry times.",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "assertion",
+    "id": "A11",
+    "scene": "sc_07",
+    "story_key": 45.1,
+    "type": "dialogue",
+    "speaker": "ch_sarah",
+    "addressees": [
+     "ch_daniel"
+    ],
+    "overhearers": [],
+    "prop": "P11",
+    "polarity": true,
+    "sincerity": "sincere",
+    "quote": "I have had the letter for months.",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "assertion",
+    "id": "A12",
+    "scene": "sc_07",
+    "story_key": 45.1,
+    "type": "dialogue",
+    "speaker": "ch_sarah",
+    "addressees": [
+     "ch_daniel"
+    ],
+    "overhearers": [],
+    "prop": "P13",
+    "polarity": true,
+    "sincerity": "sincere",
+    "quote": "I have never opened it.",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "assertion",
+    "id": "A13",
+    "scene": "sc_07",
+    "story_key": 45.2,
+    "type": "dialogue",
+    "speaker": "ch_daniel",
+    "addressees": [
+     "ch_sarah"
+    ],
+    "overhearers": [],
+    "prop": "P18",
+    "polarity": true,
+    "sincerity": "sincere",
+    "quote": "He gave it to you. He trusted you with it.",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "assertion",
+    "id": "A14",
+    "scene": "sc_07",
+    "story_key": 45.2,
+    "type": "dialogue",
+    "speaker": "ch_daniel",
+    "addressees": [
+     "ch_sarah"
+    ],
+    "overhearers": [],
+    "prop": "P19",
+    "polarity": true,
+    "sincerity": "sincere",
+    "quote": "If he had wanted it sent, he would have sent it.",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "assertion",
+    "id": "A15",
+    "scene": "sc_09",
+    "story_key": 50.2,
+    "type": "dialogue",
+    "speaker": "ch_daniel",
+    "addressees": [
+     "ch_marta"
+    ],
+    "overhearers": [
+     "ch_sarah"
+    ],
+    "prop": "P11",
+    "polarity": true,
+    "sincerity": "sincere",
+    "quote": "My sister has been carrying it since April.",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "assertion",
+    "id": "A17",
+    "scene": "sc_10",
+    "story_key": 55.1,
+    "type": "dialogue",
+    "speaker": "ch_marta",
+    "addressees": [
+     "ch_daniel"
+    ],
+    "overhearers": [],
+    "prop": "P05",
+    "polarity": true,
+    "sincerity": "sincere",
+    "quote": "R.P. is Rose Pike. Your father paid her every month for thirty years.",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "assertion",
+    "id": "A18",
+    "scene": "sc_10",
+    "story_key": 55.1,
+    "type": "dialogue",
+    "speaker": "ch_marta",
+    "addressees": [
+     "ch_daniel"
+    ],
+    "overhearers": [],
+    "prop": "P07",
+    "polarity": true,
+    "sincerity": "sincere",
+    "quote": "Jonas is your father's son.",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "assertion",
+    "id": "A19",
+    "scene": "sc_10",
+    "story_key": 55.1,
+    "type": "dialogue",
+    "speaker": "ch_marta",
+    "addressees": [
+     "ch_daniel"
+    ],
+    "overhearers": [],
+    "prop": "P06",
+    "polarity": true,
+    "sincerity": "sincere",
+    "quote": "Rose died in January.",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "assertion",
+    "id": "A20",
+    "scene": "sc_11",
+    "story_key": 60.1,
+    "type": "dialogue",
+    "speaker": "ch_greycoat",
+    "addressees": [
+     "ch_sarah"
+    ],
+    "overhearers": [],
+    "prop": "P15",
+    "polarity": true,
+    "sincerity": "sincere",
+    "quote": "My name is Jonas Pike.",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "assertion",
+    "id": "A21",
+    "scene": "sc_11",
+    "story_key": 60.2,
+    "type": "dialogue",
+    "speaker": "ch_jonas",
+    "addressees": [
+     "ch_sarah"
+    ],
+    "overhearers": [],
+    "prop": "P28",
+    "polarity": true,
+    "sincerity": "sincere",
+    "quote": "My mother told me, before she died, that Edmund Kessler was my father.",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "assertion",
+    "id": "A21b",
+    "scene": "sc_11",
+    "story_key": 60.2,
+    "type": "dialogue",
+    "speaker": "ch_jonas",
+    "addressees": [
+     "ch_sarah"
+    ],
+    "overhearers": [],
+    "prop": "P06",
+    "polarity": true,
+    "sincerity": "sincere",
+    "quote": "She died in January",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "assertion",
+    "id": "A22",
+    "scene": "sc_11",
+    "story_key": 60.2,
+    "type": "dialogue",
+    "speaker": "ch_jonas",
+    "addressees": [
+     "ch_sarah"
+    ],
+    "overhearers": [],
+    "prop": "P22",
+    "polarity": true,
+    "sincerity": "sincere",
+    "quote": "I came to the office on Tuesday. A woman told me he had died.",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "assertion",
+    "id": "A23",
+    "scene": "sc_11",
+    "story_key": 60.3,
+    "type": "dialogue",
+    "speaker": "ch_sarah",
+    "addressees": [
+     "ch_jonas"
+    ],
+    "overhearers": [],
+    "prop": "P08",
+    "polarity": true,
+    "sincerity": "sincere",
+    "quote": "My father left a letter for you. It was never posted.",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "assertion",
+    "id": "A23b",
+    "scene": "sc_11",
+    "story_key": 60.3,
+    "type": "dialogue",
+    "speaker": "ch_sarah",
+    "addressees": [
+     "ch_jonas"
+    ],
+    "overhearers": [],
+    "prop": "P11",
+    "polarity": true,
+    "sincerity": "sincere",
+    "quote": "I've had it since he died.",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "assertion",
+    "id": "A23c",
+    "scene": "sc_11",
+    "story_key": 60.3,
+    "type": "dialogue",
+    "speaker": "ch_sarah",
+    "addressees": [
+     "ch_jonas"
+    ],
+    "overhearers": [],
+    "prop": "P13",
+    "polarity": true,
+    "sincerity": "sincere",
+    "quote": "Nobody has opened it.",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "assertion",
+    "id": "A24",
+    "scene": "sc_12",
+    "story_key": 80.1,
+    "type": "dialogue",
+    "speaker": "ch_sarah",
+    "addressees": [
+     "ch_daniel",
+     "ch_marta",
+     "ch_tom"
+    ],
+    "overhearers": [],
+    "prop": "P07",
+    "polarity": true,
+    "sincerity": "sincere",
+    "quote": "He is our father's son.",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "assertion",
+    "id": "A24b",
+    "scene": "sc_12",
+    "story_key": 80.1,
+    "type": "dialogue",
+    "speaker": "ch_sarah",
+    "addressees": [
+     "ch_daniel",
+     "ch_marta",
+     "ch_tom"
+    ],
+    "overhearers": [],
+    "prop": "P15",
+    "polarity": true,
+    "sincerity": "sincere",
+    "quote": "This is Jonas Pike.",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "assertion",
+    "id": "A26",
+    "scene": "sc_12",
+    "story_key": 80.3,
+    "type": "document",
+    "speaker": "ch_edmund",
+    "addressees": [
+     "ch_daniel",
+     "ch_sarah",
+     "ch_marta"
+    ],
+    "overhearers": [],
+    "read_by": "ch_jonas",
+    "prop": "P14",
+    "polarity": true,
+    "sincerity": "sincere",
+    "quote": "I acknowledge you as my son, and I give you a half share in the harbour office.",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "assertion",
+    "id": "A27",
+    "scene": "sc_12",
+    "story_key": 80.4,
+    "type": "dialogue",
+    "speaker": "ch_marta",
+    "addressees": [
+     "ch_daniel",
+     "ch_sarah",
+     "ch_jonas"
+    ],
+    "overhearers": [],
+    "prop": "P19",
+    "polarity": false,
+    "sincerity": "sincere",
+    "quote": "He stamped it. He meant it to go.",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "assertion",
+    "id": "A28",
+    "scene": "sc_12",
+    "story_key": 80.4,
+    "type": "dialogue",
+    "speaker": "ch_sarah",
+    "addressees": [
+     "ch_daniel",
+     "ch_marta",
+     "ch_jonas"
+    ],
+    "overhearers": [],
+    "prop": "P08",
+    "polarity": true,
+    "sincerity": "sincere",
+    "quote": "He never posted it",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  }
+ ]
+}

@@ -1,0 +1,400 @@
+{
+ "format": 1,
+ "seq": 15,
+ "id": "cs_2cafd756d8",
+ "parent": "e1fff87201951b809b3f77c2ccbf3753b3373ab0b8dcb035323ec5a5f8be2aa7",
+ "actor": "import:harbour-letter",
+ "note": "Scene 11, The Churchyard",
+ "manuscript": "d22347c950696d67bf251bdcd2a94ed3eba53fc87cab65e33fc2d4297ab1c9b7",
+ "ops": [
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bs23",
+    "holder": "ch_sarah",
+    "prop": "P15",
+    "stance": "holds_true",
+    "strength": "certain",
+    "story_key": 60.1,
+    "scene": "sc_11",
+    "channel": "told",
+    "via": "A20",
+    "directness": "stated",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bs24",
+    "holder": "ch_sarah",
+    "prop": "P24",
+    "stance": "holds_true",
+    "strength": "certain",
+    "story_key": 60.1,
+    "scene": "sc_11",
+    "channel": "witnessed",
+    "via": "E11a",
+    "directness": "entailed",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bs25",
+    "holder": "ch_sarah",
+    "prop": "P28",
+    "stance": "holds_true",
+    "strength": "believes",
+    "story_key": 60.2,
+    "scene": "sc_11",
+    "channel": "told",
+    "via": "A21",
+    "directness": "stated",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bs26",
+    "holder": "ch_sarah",
+    "prop": "P07",
+    "stance": "holds_true",
+    "strength": "believes",
+    "story_key": 60.2,
+    "scene": "sc_11",
+    "channel": "told",
+    "via": "A21",
+    "directness": "entailed",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bs26b",
+    "holder": "ch_sarah",
+    "prop": "P33",
+    "stance": "holds_true",
+    "strength": "believes",
+    "story_key": 60.2,
+    "scene": "sc_11",
+    "channel": "told",
+    "via": "A21",
+    "directness": "entailed",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bs26c",
+    "holder": "ch_sarah",
+    "prop": "P34",
+    "stance": "holds_true",
+    "strength": "believes",
+    "story_key": 60.2,
+    "scene": "sc_11",
+    "channel": "told",
+    "via": "A21",
+    "directness": "entailed",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bs37",
+    "holder": "ch_sarah",
+    "prop": "P21",
+    "stance": "holds_false",
+    "strength": "certain",
+    "story_key": 60.2,
+    "scene": "sc_11",
+    "channel": "inferred",
+    "via": "E11b",
+    "directness": "entailed",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bs38",
+    "holder": "ch_sarah",
+    "prop": "P16",
+    "stance": "holds_true",
+    "strength": "certain",
+    "story_key": 60.2,
+    "scene": "sc_11",
+    "channel": "inferred",
+    "via": "E11b",
+    "directness": "entailed",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bs39",
+    "holder": "ch_sarah",
+    "prop": "P27",
+    "stance": "holds_true",
+    "strength": "believes",
+    "story_key": 60.2,
+    "scene": "sc_11",
+    "channel": "inferred",
+    "via": "E11b",
+    "directness": "entailed",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bs41",
+    "holder": "ch_sarah",
+    "prop": "P17",
+    "stance": "holds_false",
+    "strength": "believes",
+    "story_key": 60.2,
+    "scene": "sc_11",
+    "channel": "told",
+    "via": "A22",
+    "directness": "entailed",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bs44",
+    "holder": "ch_sarah",
+    "prop": "P03",
+    "stance": "holds_false",
+    "strength": "certain",
+    "story_key": 60.2,
+    "scene": "sc_11",
+    "channel": "inferred",
+    "via": "E11b",
+    "directness": "stated",
+    "quote": "Not theft. She had been right about that",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bs27",
+    "holder": "ch_sarah",
+    "prop": "P06",
+    "stance": "holds_true",
+    "strength": "believes",
+    "story_key": 60.2,
+    "scene": "sc_11",
+    "channel": "told",
+    "via": "A21b",
+    "directness": "stated",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bs28",
+    "holder": "ch_sarah",
+    "prop": "P22",
+    "stance": "holds_true",
+    "strength": "believes",
+    "story_key": 60.2,
+    "scene": "sc_11",
+    "channel": "told",
+    "via": "A22",
+    "directness": "stated",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bs29",
+    "holder": "ch_sarah",
+    "prop": "P05",
+    "stance": "holds_true",
+    "strength": "believes",
+    "story_key": 60.2,
+    "scene": "sc_11",
+    "channel": "inferred",
+    "via": "E11b",
+    "directness": "stated",
+    "quote": "R.P., she thought",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bj15",
+    "holder": "ch_jonas",
+    "prop": "P21",
+    "stance": "holds_false",
+    "strength": "believes",
+    "story_key": 60.3,
+    "scene": "sc_11",
+    "channel": "told",
+    "via": "A23",
+    "directness": "entailed",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bj16",
+    "holder": "ch_jonas",
+    "prop": "P11",
+    "stance": "holds_true",
+    "strength": "believes",
+    "story_key": 60.3,
+    "scene": "sc_11",
+    "channel": "told",
+    "via": "A23b",
+    "directness": "stated",
+    "quote": "I've had it since he died.",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bj17",
+    "holder": "ch_jonas",
+    "prop": "P13",
+    "stance": "holds_true",
+    "strength": "believes",
+    "story_key": 60.3,
+    "scene": "sc_11",
+    "channel": "told",
+    "via": "A23c",
+    "directness": "stated",
+    "quote": "Nobody has opened it.",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bj06",
+    "holder": "ch_jonas",
+    "prop": "P08",
+    "stance": "holds_true",
+    "strength": "believes",
+    "story_key": 60.3,
+    "scene": "sc_11",
+    "channel": "told",
+    "via": "A23",
+    "directness": "stated",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bj07",
+    "holder": "ch_jonas",
+    "prop": "P09",
+    "stance": "holds_true",
+    "strength": "believes",
+    "story_key": 60.3,
+    "scene": "sc_11",
+    "channel": "told",
+    "via": "A23",
+    "directness": "entailed",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "disclosure",
+    "id": "D40",
+    "scene": "sc_11",
+    "prop": "P15",
+    "mode": "stated",
+    "reader_stance": "holds_true",
+    "strength": "certain",
+    "quote": "My name is Jonas Pike.",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "disclosure",
+    "id": "D41",
+    "scene": "sc_11",
+    "prop": "P28",
+    "mode": "stated",
+    "reader_stance": "holds_true",
+    "strength": "certain",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "disclosure",
+    "id": "D42",
+    "scene": "sc_11",
+    "prop": "P24",
+    "mode": "stated",
+    "reader_stance": "holds_true",
+    "strength": "certain",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  }
+ ]
+}

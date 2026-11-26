@@ -1,0 +1,696 @@
+{
+ "format": 1,
+ "seq": 1,
+ "id": "cs_03ae3b241c",
+ "actor": "import:harbour-letter",
+ "note": "People, places, objects and scenes",
+ "manuscript": "d22347c950696d67bf251bdcd2a94ed3eba53fc87cab65e33fc2d4297ab1c9b7",
+ "ops": [
+  {
+   "op": "put",
+   "record": {
+    "kind": "entity",
+    "id": "ch_daniel",
+    "type": "character",
+    "name": "Daniel Kessler",
+    "aliases": [
+     "Daniel",
+     "Dan",
+     "Mr Daniel"
+    ],
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "entity",
+    "id": "ch_sarah",
+    "type": "character",
+    "name": "Sarah Kessler",
+    "aliases": [
+     "Sarah",
+     "Miss Kessler"
+    ],
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "entity",
+    "id": "ch_marta",
+    "type": "character",
+    "name": "Marta Oyelaran",
+    "aliases": [
+     "Marta"
+    ],
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "entity",
+    "id": "ch_tom",
+    "type": "character",
+    "name": "Tom Brandt",
+    "aliases": [
+     "Tom"
+    ],
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "entity",
+    "id": "ch_jonas",
+    "type": "character",
+    "name": "Jonas Pike",
+    "aliases": [
+     "Jonas",
+     "Mr Jonas Pike",
+     "Mr Pike"
+    ],
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "entity",
+    "id": "ch_greycoat",
+    "type": "character",
+    "name": "the man in the grey coat",
+    "aliases": [
+     "the stranger"
+    ],
+    "persona_of": "ch_jonas",
+    "origin": "import",
+    "note": "How Jonas appears to anyone who does not know who he is. Kept as a separate entity so that records about 'the stranger' cannot leak his name."
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "entity",
+    "id": "ch_edmund",
+    "type": "character",
+    "name": "Edmund Kessler",
+    "aliases": [
+     "Edmund",
+     "Mr Kessler",
+     "Dad"
+    ],
+    "origin": "import",
+    "note": "Dead before the story opens."
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "entity",
+    "id": "ch_rose",
+    "type": "character",
+    "name": "Rose Pike",
+    "aliases": [
+     "Rose"
+    ],
+    "origin": "import",
+    "note": "Dead before the story opens."
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "entity",
+    "id": "ch_aldous",
+    "type": "character",
+    "name": "Mr Aldous",
+    "aliases": [
+     "Aldous"
+    ],
+    "origin": "import",
+    "note": "Solicitor. Never on the page."
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "entity",
+    "id": "nar_third",
+    "type": "narrator",
+    "name": "the close third-person narrator",
+    "aliases": [],
+    "origin": "import",
+    "note": "Narration is filtered through each scene's POV character and is not authoritative."
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "entity",
+    "id": "org_hallam",
+    "type": "group",
+    "name": "Hallam Marine",
+    "aliases": [],
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "entity",
+    "id": "obj_letter",
+    "type": "object",
+    "name": "the letter",
+    "aliases": [
+     "the envelope"
+    ],
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "entity",
+    "id": "obj_ledgers",
+    "type": "object",
+    "name": "the harbour office ledgers",
+    "aliases": [],
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "entity",
+    "id": "obj_stubs",
+    "type": "object",
+    "name": "Marta's payment stubs",
+    "aliases": [],
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "entity",
+    "id": "loc_office",
+    "type": "place",
+    "name": "the harbour office",
+    "aliases": [],
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "entity",
+    "id": "loc_kitchen",
+    "type": "place",
+    "name": "the Kessler kitchen",
+    "aliases": [],
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "entity",
+    "id": "loc_quay",
+    "type": "place",
+    "name": "the quay",
+    "aliases": [],
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "entity",
+    "id": "loc_marta_house",
+    "type": "place",
+    "name": "Marta's house",
+    "aliases": [],
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "entity",
+    "id": "loc_churchyard",
+    "type": "place",
+    "name": "the churchyard",
+    "aliases": [],
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "entity",
+    "id": "loc_desk_drawer",
+    "type": "place",
+    "name": "Edmund's desk drawer",
+    "aliases": [],
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "entity",
+    "id": "loc_sarah_coat",
+    "type": "place",
+    "name": "Sarah's coat",
+    "aliases": [],
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "entity",
+    "id": "loc_sarah_suitcase",
+    "type": "place",
+    "name": "the lining of Sarah's suitcase",
+    "aliases": [],
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "entity",
+    "id": "loc_tea_tin",
+    "type": "place",
+    "name": "the tea tin in the Kessler kitchen",
+    "aliases": [],
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "entity",
+    "id": "loc_office_safe",
+    "type": "place",
+    "name": "the office safe",
+    "aliases": [],
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "entity",
+    "id": "loc_jonas_hands",
+    "type": "place",
+    "name": "Jonas Pike's hands",
+    "aliases": [],
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "scene",
+    "id": "sc_01",
+    "title": "The Valuation",
+    "pov": "ch_daniel",
+    "cast": [
+     "ch_daniel",
+     "ch_marta",
+     "ch_tom"
+    ],
+    "place": "loc_office",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "scene_time",
+    "id": "st_sc_01",
+    "scene": "sc_01",
+    "story_key": 10,
+    "label": "Monday morning, October",
+    "basis": "follows_telling",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "scene",
+    "id": "sc_02",
+    "title": "The Tea Tin",
+    "pov": "ch_sarah",
+    "cast": [
+     "ch_sarah",
+     "ch_daniel"
+    ],
+    "place": "loc_kitchen",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "scene_time",
+    "id": "st_sc_02",
+    "scene": "sc_02",
+    "story_key": 15,
+    "label": "Monday evening",
+    "basis": "follows_telling",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "scene",
+    "id": "sc_03",
+    "title": "Nothing but Invoices",
+    "pov": "ch_daniel",
+    "cast": [
+     "ch_daniel",
+     "ch_sarah",
+     "ch_tom"
+    ],
+    "place": "loc_office",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "scene_time",
+    "id": "st_sc_03",
+    "scene": "sc_03",
+    "story_key": 20,
+    "label": "Tuesday morning",
+    "basis": "follows_telling",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "scene",
+    "id": "sc_04",
+    "title": "The Man in the Grey Coat",
+    "pov": "ch_tom",
+    "cast": [
+     "ch_tom",
+     "ch_marta",
+     "ch_greycoat"
+    ],
+    "place": "loc_office",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "scene_time",
+    "id": "st_sc_04",
+    "scene": "sc_04",
+    "story_key": 25,
+    "label": "Tuesday afternoon",
+    "basis": "follows_telling",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "scene",
+    "id": "sc_05",
+    "title": "Rose",
+    "pov": "ch_marta",
+    "cast": [
+     "ch_marta"
+    ],
+    "place": "loc_marta_house",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "scene_time",
+    "id": "st_sc_05",
+    "scene": "sc_05",
+    "story_key": 28,
+    "label": "Tuesday evening",
+    "basis": "follows_telling",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "scene",
+    "id": "sc_06",
+    "title": "Low Water",
+    "pov": "ch_sarah",
+    "cast": [
+     "ch_sarah",
+     "ch_greycoat"
+    ],
+    "place": "loc_quay",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "scene_time",
+    "id": "st_sc_06",
+    "scene": "sc_06",
+    "story_key": 30,
+    "label": "Wednesday midday",
+    "basis": "follows_telling",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "scene",
+    "id": "sc_07",
+    "title": "The Kitchen",
+    "pov": "ch_daniel",
+    "cast": [
+     "ch_daniel",
+     "ch_sarah"
+    ],
+    "place": "loc_kitchen",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "scene_time",
+    "id": "st_sc_07",
+    "scene": "sc_07",
+    "story_key": 45,
+    "label": "Thursday evening",
+    "basis": "follows_telling",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "scene",
+    "id": "sc_08",
+    "title": "April",
+    "pov": "ch_sarah",
+    "cast": [
+     "ch_sarah"
+    ],
+    "place": "loc_office",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "scene_time",
+    "id": "st_sc_08",
+    "scene": "sc_08",
+    "story_key": -160,
+    "label": "The night of 30 April, six months earlier (flashback)",
+    "basis": "asserted",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "scene",
+    "id": "sc_09",
+    "title": "The Safe",
+    "pov": "ch_sarah",
+    "cast": [
+     "ch_sarah",
+     "ch_daniel",
+     "ch_marta"
+    ],
+    "place": "loc_office",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "scene_time",
+    "id": "st_sc_09",
+    "scene": "sc_09",
+    "story_key": 50,
+    "label": "Friday morning",
+    "basis": "follows_telling",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "scene",
+    "id": "sc_10",
+    "title": "Stubs",
+    "pov": "ch_daniel",
+    "cast": [
+     "ch_daniel",
+     "ch_marta"
+    ],
+    "place": "loc_office",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "scene_time",
+    "id": "st_sc_10",
+    "scene": "sc_10",
+    "story_key": 55,
+    "label": "Friday afternoon",
+    "basis": "follows_telling",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "scene",
+    "id": "sc_11",
+    "title": "The Churchyard",
+    "pov": "ch_sarah",
+    "cast": [
+     "ch_sarah",
+     "ch_greycoat"
+    ],
+    "place": "loc_churchyard",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "scene_time",
+    "id": "st_sc_11",
+    "scene": "sc_11",
+    "story_key": 60,
+    "label": "Saturday morning",
+    "basis": "follows_telling",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "scene",
+    "id": "sc_12",
+    "title": "Opened",
+    "pov": "ch_daniel",
+    "cast": [
+     "ch_daniel",
+     "ch_sarah",
+     "ch_jonas",
+     "ch_marta",
+     "ch_tom"
+    ],
+    "place": "loc_office",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "scene_time",
+    "id": "st_sc_12",
+    "scene": "sc_12",
+    "story_key": 80,
+    "label": "Monday morning, a week on",
+    "basis": "follows_telling",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  }
+ ]
+}

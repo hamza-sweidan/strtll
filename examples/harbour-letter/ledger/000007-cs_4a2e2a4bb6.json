@@ -1,0 +1,159 @@
+{
+ "format": 1,
+ "seq": 7,
+ "id": "cs_4a2e2a4bb6",
+ "parent": "617e2f05c1c235c682f43ac95427c7b807ad9fa20205d6d4f529c6e53853a15b",
+ "actor": "import:harbour-letter",
+ "note": "Scene 3, Nothing but Invoices",
+ "manuscript": "d22347c950696d67bf251bdcd2a94ed3eba53fc87cab65e33fc2d4297ab1c9b7",
+ "ops": [
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bd06",
+    "holder": "ch_daniel",
+    "prop": "P12",
+    "stance": "holds_true",
+    "strength": "believes",
+    "story_key": 20.1,
+    "scene": "sc_03",
+    "channel": "told",
+    "via": "A06",
+    "directness": "stated",
+    "quote": "He believed her.",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bs17",
+    "holder": "ch_sarah",
+    "prop": "P30",
+    "stance": "holds_true",
+    "strength": "certain",
+    "story_key": 20.2,
+    "scene": "sc_03",
+    "channel": "told",
+    "via": "A07",
+    "directness": "entailed",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bs18",
+    "holder": "ch_sarah",
+    "prop": "P03",
+    "stance": "holds_false",
+    "strength": "believes",
+    "story_key": 20.2,
+    "scene": "sc_03",
+    "channel": "inferred",
+    "via": "E03b",
+    "directness": "stated",
+    "quote": "I don't believe that of Marta",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bs19",
+    "holder": "ch_sarah",
+    "prop": "P27",
+    "stance": "holds_true",
+    "strength": "suspects",
+    "story_key": 20.2,
+    "scene": "sc_03",
+    "channel": "inferred",
+    "via": "E03b",
+    "directness": "stated",
+    "quote": "The second initial in Daniel's ledgers was the first letter of the surname on the envelope.",
+    "quote_scene": "sc_06",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bs40",
+    "holder": "ch_sarah",
+    "prop": "P04",
+    "stance": "holds_true",
+    "strength": "believes",
+    "story_key": 20.2,
+    "scene": "sc_03",
+    "channel": "inferred",
+    "via": "E03b",
+    "directness": "entailed",
+    "quote": "But it isn't theft. I'd know.",
+    "origin": "import",
+    "note": "It follows from two beliefs already recorded for her (Marta is not a thief; the money is tied to the name on the envelope)."
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bs42",
+    "holder": "ch_sarah",
+    "prop": "P02",
+    "stance": "holds_true",
+    "strength": "certain",
+    "story_key": 20.2,
+    "scene": "sc_03",
+    "channel": "witnessed",
+    "via": "E03b",
+    "directness": "stated",
+    "quote": "He turned the ledger towards her and put his finger on the line.",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bt02",
+    "holder": "ch_tom",
+    "prop": "P12",
+    "stance": "holds_true",
+    "strength": "believes",
+    "story_key": 20.1,
+    "scene": "sc_03",
+    "channel": "overheard",
+    "via": "A06",
+    "directness": "entailed",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "disclosure",
+    "id": "D13",
+    "scene": "sc_03",
+    "prop": "P12",
+    "mode": "asserted_by_character",
+    "reader_stance": "holds_false",
+    "strength": "suspects",
+    "quote": "Nothing but invoices.",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  }
+ ]
+}

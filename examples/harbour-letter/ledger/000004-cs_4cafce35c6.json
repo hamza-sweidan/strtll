@@ -1,0 +1,461 @@
+{
+ "format": 1,
+ "seq": 4,
+ "id": "cs_4cafce35c6",
+ "parent": "b836e805e93796387f24fbb69c07925620cd5aeb213d0a6e70e6ea98b8d53bac",
+ "actor": "import:harbour-letter",
+ "note": "Before the story opens",
+ "manuscript": "d22347c950696d67bf251bdcd2a94ed3eba53fc87cab65e33fc2d4297ab1c9b7",
+ "ops": [
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bd01",
+    "holder": "ch_daniel",
+    "prop": "P32",
+    "stance": "holds_true",
+    "strength": "certain",
+    "story_key": -170,
+    "channel": "took_part",
+    "via": "Eb5",
+    "directness": "entailed",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bd02",
+    "holder": "ch_daniel",
+    "prop": "P01",
+    "stance": "holds_true",
+    "strength": "certain",
+    "story_key": -159,
+    "channel": "told",
+    "via": "Eb7",
+    "directness": "entailed",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bs01",
+    "holder": "ch_sarah",
+    "prop": "P32",
+    "stance": "holds_true",
+    "strength": "believes",
+    "story_key": -165,
+    "channel": "background",
+    "directness": "entailed",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bs13",
+    "holder": "ch_sarah",
+    "prop": "P19",
+    "stance": "holds_true",
+    "strength": "believes",
+    "story_key": -150,
+    "channel": "inferred",
+    "directness": "stated",
+    "quote": "He had decided against it; she had told herself so for months.",
+    "quote_scene": "sc_06",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bm01",
+    "holder": "ch_marta",
+    "prop": "P02",
+    "stance": "holds_true",
+    "strength": "certain",
+    "story_key": -10000,
+    "channel": "took_part",
+    "via": "Eb1",
+    "directness": "entailed",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bm02",
+    "holder": "ch_marta",
+    "prop": "P04",
+    "stance": "holds_true",
+    "strength": "certain",
+    "story_key": -10000,
+    "channel": "took_part",
+    "via": "Eb1",
+    "directness": "entailed",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bm03",
+    "holder": "ch_marta",
+    "prop": "P05",
+    "stance": "holds_true",
+    "strength": "certain",
+    "story_key": -10000,
+    "channel": "took_part",
+    "via": "Eb1",
+    "directness": "entailed",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bm04",
+    "holder": "ch_marta",
+    "prop": "P07",
+    "stance": "holds_true",
+    "strength": "certain",
+    "story_key": -10000,
+    "channel": "told",
+    "via": "Eb1",
+    "directness": "entailed",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bm04b",
+    "holder": "ch_marta",
+    "prop": "P33",
+    "stance": "holds_true",
+    "strength": "certain",
+    "story_key": -10000,
+    "channel": "told",
+    "via": "Eb1",
+    "directness": "entailed",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bm04c",
+    "holder": "ch_marta",
+    "prop": "P34",
+    "stance": "holds_true",
+    "strength": "certain",
+    "story_key": -10000,
+    "channel": "told",
+    "via": "Eb1",
+    "directness": "entailed",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bm23",
+    "holder": "ch_marta",
+    "prop": "P03",
+    "stance": "holds_false",
+    "strength": "certain",
+    "story_key": -10000,
+    "channel": "background",
+    "directness": "entailed",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bm28",
+    "holder": "ch_marta",
+    "prop": "P26",
+    "stance": "holds_true",
+    "strength": "believes",
+    "story_key": 10,
+    "channel": "background",
+    "directness": "entailed",
+    "quote": "Daniel would sell to Hallam",
+    "quote_scene": "sc_05",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bm05",
+    "holder": "ch_marta",
+    "prop": "P06",
+    "stance": "holds_true",
+    "strength": "certain",
+    "story_key": -300,
+    "channel": "witnessed",
+    "via": "Eb3",
+    "directness": "entailed",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bm06",
+    "holder": "ch_marta",
+    "prop": "P01",
+    "stance": "holds_true",
+    "strength": "certain",
+    "story_key": -159,
+    "channel": "told",
+    "via": "Eb7",
+    "directness": "entailed",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bm07",
+    "holder": "ch_marta",
+    "prop": "P21",
+    "stance": "holds_true",
+    "strength": "believes",
+    "story_key": -150,
+    "channel": "inferred",
+    "directness": "stated",
+    "quote": "If Edmund had ever meant to put it right, he had left no word of it.",
+    "quote_scene": "sc_05",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bt01",
+    "holder": "ch_tom",
+    "prop": "P01",
+    "stance": "holds_true",
+    "strength": "certain",
+    "story_key": -159,
+    "channel": "told",
+    "via": "Eb7",
+    "directness": "entailed",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bj01",
+    "holder": "ch_jonas",
+    "prop": "P28",
+    "stance": "holds_true",
+    "strength": "certain",
+    "story_key": -310,
+    "channel": "took_part",
+    "via": "Eb2",
+    "directness": "entailed",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bj02",
+    "holder": "ch_jonas",
+    "prop": "P07",
+    "stance": "holds_true",
+    "strength": "believes",
+    "story_key": -310,
+    "channel": "told",
+    "via": "Eb2",
+    "directness": "entailed",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bj02b",
+    "holder": "ch_jonas",
+    "prop": "P33",
+    "stance": "holds_true",
+    "strength": "believes",
+    "story_key": -310,
+    "channel": "told",
+    "via": "Eb2",
+    "directness": "entailed",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bj02c",
+    "holder": "ch_jonas",
+    "prop": "P34",
+    "stance": "holds_true",
+    "strength": "certain",
+    "story_key": -10000,
+    "channel": "background",
+    "directness": "entailed",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bj10",
+    "holder": "ch_jonas",
+    "prop": "P15",
+    "stance": "holds_true",
+    "strength": "certain",
+    "story_key": -10000,
+    "channel": "background",
+    "directness": "entailed",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bj11",
+    "holder": "ch_jonas",
+    "prop": "P16",
+    "stance": "holds_true",
+    "strength": "certain",
+    "story_key": -10000,
+    "channel": "background",
+    "directness": "entailed",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bj12",
+    "holder": "ch_jonas",
+    "prop": "P24",
+    "stance": "holds_true",
+    "strength": "certain",
+    "story_key": 25,
+    "channel": "background",
+    "directness": "entailed",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bj03",
+    "holder": "ch_jonas",
+    "prop": "P06",
+    "stance": "holds_true",
+    "strength": "certain",
+    "story_key": -300,
+    "channel": "witnessed",
+    "via": "Eb3",
+    "directness": "entailed",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "belief_change",
+    "id": "Bj04",
+    "holder": "ch_jonas",
+    "prop": "P01",
+    "stance": "unaware",
+    "story_key": -159,
+    "channel": "explicit",
+    "directness": "entailed",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "placement",
+    "id": "L1",
+    "object": "obj_letter",
+    "place": "loc_desk_drawer",
+    "story_key": -170,
+    "cause": "Eb4",
+    "quote": "pulled open the desk drawer",
+    "quote_scene": "sc_08",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  },
+  {
+   "op": "put",
+   "record": {
+    "kind": "placement",
+    "id": "L3",
+    "object": "obj_letter",
+    "place": "loc_sarah_suitcase",
+    "story_key": -150,
+    "cause": "Eb8",
+    "quote": "under the lining",
+    "quote_scene": "sc_02",
+    "origin": "import"
+   },
+   "approval": "ratified"
+  }
+ ]
+}
