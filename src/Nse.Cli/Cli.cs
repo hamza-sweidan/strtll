@@ -97,7 +97,8 @@ public static class Cli
                                                     the brief for an auditor with a fresh context: where the scene's
                                                     text is, what it must not give away, the scan's hits, and the form
                                                     of the report. --completeness asks instead what the scene does of
-                                                    weight that no record says
+                                                    weight that no record says. An audit is another model session:
+                                                    it is run when the author asks for one, never as a routine step
           nse brief [--head N] [--task SCENE] [--dir DIR]
                                                     the map a session starts from, and any work in progress.
                                                     With --task, that scene's open task in full
@@ -113,11 +114,13 @@ public static class Cli
                                                     out the author's decision. Pass it only for a client that asks
                                                     the user before every call of a tool marked
                                                     anthropic/requiresUserInteraction, as Claude Code does
-          nse setup-claude [--engine PATH] [--dotnet PATH] [--force] [--dir DIR]
+          nse setup-claude [--engine PATH] [--dotnet PATH] [--with-auditor] [--force] [--dir DIR]
                                                     write what Claude Code needs into the story folder: the MCP
                                                     server (.mcp.json), the hooks (.claude/settings.local.json),
                                                     the permission rules (.claude/settings.json), the scene-work
-                                                    skill and CLAUDE.md. Files already there are kept without --force
+                                                    skill and CLAUDE.md. Files already there are kept without --force.
+                                                    --with-auditor also writes the scene-auditor agent, for an author
+                                                    who wants scenes audited by a fresh session
           nse hook EVENT [--dir DIR]                what Claude Code's hooks run: EVENT is pre-edit, post-edit, stop,
                                                     session-start or pre-compact. Reads the event's JSON on standard
                                                     input and answers as the harness expects. Never exits with 2
@@ -595,8 +598,9 @@ public static class Cli
         var engine = a.Value("engine");
         var dotnet = a.Value("dotnet");
         var force = a.Flag("force");
+        var auditor = a.Flag("with-auditor");
         a.Done();
-        return ClaudeSetup.Run(story, engine, dotnet, force, output);
+        return ClaudeSetup.Run(story, engine, dotnet, force, output, auditor);
     }
 }
 
@@ -647,7 +651,7 @@ public sealed class Arguments
     private readonly HashSet<string> _read = new(StringComparer.Ordinal);
     private int _positionalRead;
 
-    private static readonly HashSet<string> Flags = new(StringComparer.Ordinal) { "end", "reader", "json", "history", "brief", "with-ratify", "no-task", "take", "force", "all", "completeness", "truth", "plain" };
+    private static readonly HashSet<string> Flags = new(StringComparer.Ordinal) { "end", "reader", "json", "history", "brief", "with-ratify", "with-auditor", "no-task", "take", "force", "all", "completeness", "truth", "plain" };
 
     public static Arguments Parse(string[] args)
     {

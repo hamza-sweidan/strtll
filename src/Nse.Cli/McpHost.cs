@@ -70,9 +70,9 @@ public static class McpHost
         8. Refused means nothing was written, and each finding says what to change. STALE_CONTEXT means
            the state moved under your draft: take the context again and check the draft against the lines
            listed.
-        9. Applied means provisional. Have the scene audited: give audit_brief to a reviewer with a fresh
-           context. Tell the author what you recorded, what the audit found, and every note "for the
-           author to settle".
+        9. Applied means provisional. Tell the author what you recorded and every note "for the author
+           to settle". An audit (audit_brief, read by a fresh reviewer) is theirs to ask for: do not
+           start one unasked.
            The scene's task is put away once they have decided. A task_note made after you
            submit must say whether more of the scene is still to be written: more true or false.
 
@@ -215,7 +215,7 @@ public sealed class NseTools(Story story, ServerOptions options)
         Guarded(() => DraftScan.Text(story.Scan(scene, text: text)));
 
     [McpServerTool(Name = "audit_brief", Title = "Brief for auditing one scene", ReadOnly = true, Idempotent = true, OpenWorld = false)]
-    [Description("What an auditor of one scene needs and nothing more: where its text is, what it must not give away to the reader, what each person present does not know, the passages the word scan points at, and the exact form of the report. Give it to a reviewer with a fresh context, such as the scene-auditor agent, after a scene is submitted and before the author ratifies it. With completeness true it asks instead what the scene does of weight that no record says.")]
+    [Description("What an auditor of one scene needs and nothing more: where its text is, what it must not give away to the reader, what each person present does not know, the passages the word scan points at, and the exact form of the report. Give it to a reviewer with a fresh context when the author asks for an audit of a scene. That is another model session, so it is never a routine step after a submission. With completeness true it asks instead what the scene does of weight that no record says.")]
     public string AuditBrief(
         [Description("Scene id, for example sc_07.")] string scene,
         [Description("True to check the records against the text, taking the text as right, instead of checking the text for leaks.")] bool completeness = false) =>

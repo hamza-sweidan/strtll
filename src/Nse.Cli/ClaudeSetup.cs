@@ -7,6 +7,8 @@ namespace Nse.Cli;
 /// <summary>
 /// <c>nse setup-claude</c>: writes into a story folder what Claude Code needs to work with the engine. That is
 /// the MCP server, the hooks, the permission rules, a skill for the scene workflow, and a short CLAUDE.md.
+/// With <c>--with-auditor</c> it also writes the agent that audits a scene. That one is asked for, because
+/// every audit is another model session: nothing here starts one unless the author wants it.
 /// </summary>
 /// <remarks>
 /// <para>The server and the hooks name this machine's paths to the engine, so they go where machine-specific
@@ -21,27 +23,32 @@ public static class ClaudeSetup
     public static readonly string[] AllowedTools =
         ["story_brief", "scene_context", "state_at", "review_queue", "task_note", "submit_scene", "propose_changes", "scan_draft", "audit_brief", "what_if", "recap", "lint", "ripple", "pulse"];
 
-    /// <summary>The subagent that audits a scene. It reads the scene's text and its brief, and nothing else.</summary>
+    /// <summary>
+    /// The subagent that audits a scene. It reads the scene's text and its brief, and nothing else. It is
+    /// written only when asked for, and used only when the author asks for an audit.
+    /// </summary>
     public const string AuditorName = "scene-auditor";
 
     /// <summary>What the hooks are matched on: the tools that edit files.</summary>
     public const string EditTools = "Edit|Write|MultiEdit|NotebookEdit";
 
-    public static int Run(Story story, string? engine, string? dotnet, bool force, TextWriter output)
+    /// <param name="auditor">Also write the agent that audits a scene with a fresh context.</param>
+    public static int Run(Story story, string? engine, string? dotnet, bool force, TextWriter output, bool auditor = false)
     {
         ArgumentNullException.ThrowIfNull(story);
         ArgumentNullException.ThrowIfNull(output);
         var (command, prefix) = Launcher(engine, dotnet);
         var root = story.Root;
-        var files = new (string Path, string Text)[]
+        var files = new List<(string Path, string Text)>
         {
             (Path.Combine(root, ".mcp.json"), McpJson(command, prefix, root)),
             (Path.Combine(root, ".claude", "settings.local.json"), HookSettings(command, prefix, root)),
             (Path.Combine(root, ".claude", "settings.json"), PermissionSettings()),
             (Path.Combine(root, ".claude", "skills", "scene-work", "SKILL.md"), Skill),
-            (Path.Combine(root, ".claude", "agents", AuditorName + ".md"), Auditor),
             (Path.Combine(root, "CLAUDE.md"), ClaudeMd),
         };
+        if (auditor)
+            files.Insert(files.Count - 1, (Path.Combine(root, ".claude", "agents", AuditorName + ".md"), Auditor));
         output.WriteLine($"Setting up {root} for Claude Code, with the engine at: {string.Join(" ", new[] { command }.Concat(prefix))}");
         foreach (var (path, text) in files)
         {
@@ -55,6 +62,8 @@ public static class ClaudeSetup
             File.WriteAllText(path, text, new UTF8Encoding(encoderShouldEmitUTF8Identifier: false));
             output.WriteLine($"  written   {shown}");
         }
+        if (!auditor)
+            output.WriteLine($"  left out  .claude/agents/{AuditorName}.md (an audit is another model session, so it is opt-in: --with-auditor writes the agent)");
         if (KeepOutOfGit(root))
             output.WriteLine("  .gitignore now leaves out .mcp.json and .claude/settings.local.json, which name this machine's paths");
         output.WriteLine("""
@@ -183,11 +192,14 @@ public static class ClaudeSetup
            separate propositions when someone could learn them at different times.
         7. **After a submission**, note whether more of the scene is still to be written: `more` true or false.
            A hook asks for this before you stop if you have not said.
-        8. **Have the scene audited.** Ask the `scene-auditor` agent to audit the scene by its id. It reads the
-           text with a fresh context against what must not be given away, and reports each leak with the words
-           that give it. Any `TRIPWIRE` note on the submission is a passage it should look at.
-        9. **Tell the author** what you recorded, what the audit found, and anything left for them to settle.
-           Only they decide. Do not rewrite the scene to answer the audit unless they ask.
+        8. **Tell the author** what you recorded and every note left for them to settle, a `TRIPWIRE` note with
+           the passage it points at. Only they decide.
+
+        **An audit is the author's to ask for.** It is a second reading of one scene by a reviewer with a fresh
+        context, against what must not be given away, and it starts another model session. Do not start one
+        on your own. When the author asks for an audit, give `audit_brief` for the scene to such a reviewer:
+        the `scene-auditor` agent, if this folder has one. Report what it finds, and do not rewrite the scene
+        to answer it unless the author asks.
 
         Never edit files under `ledger/` or `work/`: the engine writes them, and the permission rules refuse it.
         Rules, embargoes, secrets and anything else that is the author's go through `propose_changes`.
@@ -201,7 +213,7 @@ public static class ClaudeSetup
     public const string Auditor = """
         ---
         name: scene-auditor
-        description: Audits one scene of this story for leaks, reading its text against what the reader must not be given yet and what each person present does not know. Use after a scene is submitted and before the author ratifies it. Give it the scene id, and say "completeness" to have it check the records against the text instead.
+        description: Audits one scene of this story for leaks, reading its text against what the reader must not be given yet and what each person present does not know. Use only when the author asks for an audit of a scene; never as a routine step after a submission. Give it the scene id, and say "completeness" to have it check the records against the text instead.
         tools: Read, mcp__nse__audit_brief
         ---
 
@@ -225,7 +237,8 @@ public static class ClaudeSetup
 
         - **Begin with `story_brief`.** The session-start hook prints it for you, and prints it again after a compaction.
         - **The engine's answers outrank your memory of the conversation.** They are computed from the files and the ledger each time.
-        - **To write or change a scene, follow the `scene-work` skill.** In short: `scene_context`, then `task_note` with your plan, then the prose, then `task_note` again, then `submit_scene`, then the `scene-auditor` agent.
+        - **To write or change a scene, follow the `scene-work` skill.** In short: `scene_context`, then `task_note` with your plan, then the prose, then `task_note` again, then `submit_scene`.
+        - **An audit of a scene by a fresh reviewer is opt-in.** It is another model session: run one when the author asks, not after every submission.
         - **The engine writes `ledger/` and `work/`.** Never edit them yourself.
         - **The author decides what becomes canon.** Propose; do not assume.
         """;

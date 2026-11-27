@@ -206,7 +206,9 @@ public sealed class ScanTests : IDisposable
         var note = Assert.Single(result.Notes, n => n.Code == "TRIPWIRE");
         Assert.Equal("em_hid", note.RecordId);
         Assert.Contains("line 4 of manuscript/02-two.md: \"his pocket\" matches a tripwire of em_hid, which holds p_hid back until s3", note.Message);
-        Assert.Contains("Have the scene audited before it is ratified", note.Message);
+        // The passage is put in front of the author. Starting another session to audit the scene is theirs to ask for.
+        Assert.Contains("A hint is allowed. Show the author the passage; an audit of the scene is theirs to ask for", note.Message);
+        Assert.DoesNotContain("Have the scene audited", SubmitReport.Text(result));
         Assert.Contains("TRIPWIRE em_hid: line 4", SubmitReport.Text(result));
     }
 
@@ -372,15 +374,36 @@ public sealed class ScanTests : IDisposable
     }
 
     [Fact]
-    public void Setup_writes_the_auditor_with_read_only_tools_and_allows_the_two_new_tools()
+    public void Setup_leaves_the_auditor_out_unless_it_is_asked_for_and_nothing_tells_a_session_to_start_one()
     {
-        Assert.Equal(0, Cli.Cli.Run(["setup-claude", "--engine", "C:/engine/nse.dll", "--dir", _tiny.Root], new StringWriter(), new StringWriter()));
-        var auditor = File.ReadAllText(Path.Combine(_tiny.Root, ".claude", "agents", "scene-auditor.md")).Replace("\r\n", "\n");
-        Assert.StartsWith("---\nname: scene-auditor\n", auditor);
-        Assert.Contains("\ntools: Read, mcp__nse__audit_brief\n", auditor);
+        var output = new StringWriter();
+        Assert.Equal(0, Cli.Cli.Run(["setup-claude", "--engine", "C:/engine/nse.dll", "--dir", _tiny.Root], output, new StringWriter()));
+        // An audit is another model session. Nothing a story folder is given starts one by default.
+        var agent = Path.Combine(_tiny.Root, ".claude", "agents", "scene-auditor.md");
+        Assert.False(File.Exists(agent));
+        Assert.Contains("  left out  .claude/agents/scene-auditor.md (an audit is another model session, so it is opt-in: --with-auditor writes the agent)", output.ToString());
         var settings = File.ReadAllText(Path.Combine(_tiny.Root, ".claude", "settings.json"));
         Assert.Contains("mcp__nse__scan_draft", settings);
         Assert.Contains("mcp__nse__audit_brief", settings);
-        Assert.Contains("scene-auditor", File.ReadAllText(Path.Combine(_tiny.Root, ".claude", "skills", "scene-work", "SKILL.md")));
+        var skill = File.ReadAllText(Path.Combine(_tiny.Root, ".claude", "skills", "scene-work", "SKILL.md")).Replace("\r\n", "\n");
+        Assert.DoesNotContain("Have the scene audited", skill);
+        Assert.Contains("**An audit is the author's to ask for.**", skill);
+        Assert.Contains("Do not start one\non your own.", skill);
+        var claude = File.ReadAllText(Path.Combine(_tiny.Root, "CLAUDE.md")).Replace("\r\n", "\n");
+        Assert.Contains("then `submit_scene`.\n", claude);
+        Assert.Contains("- **An audit of a scene by a fresh reviewer is opt-in.**", claude);
+        foreach (var ratify in new[] { false, true })
+        {
+            var told = Cli.McpHost.Instructions(ratify);
+            Assert.DoesNotContain("Have the scene audited", told);
+            Assert.Contains("An audit (audit_brief, read by a fresh reviewer) is theirs to ask for: do not\n   start one unasked.", told);
+        }
+
+        // Asked for, the agent is written: it reads and reports and can do nothing else, and it says when it is to be used.
+        Assert.Equal(0, Cli.Cli.Run(["setup-claude", "--engine", "C:/engine/nse.dll", "--with-auditor", "--dir", _tiny.Root], new StringWriter(), new StringWriter()));
+        var auditor = File.ReadAllText(agent).Replace("\r\n", "\n");
+        Assert.StartsWith("---\nname: scene-auditor\n", auditor);
+        Assert.Contains("\ntools: Read, mcp__nse__audit_brief\n", auditor);
+        Assert.Contains("Use only when the author asks for an audit of a scene; never as a routine step after a submission.", auditor);
     }
 }

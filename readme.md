@@ -78,7 +78,7 @@ If the SDK was unpacked into the user profile instead of installed system-wide, 
 | `nse state-at --prop ID --history` | Every change to one fact: when the fact itself holds, who learned it when, how and from whom, and when the reader was given it |
 | `nse state-at --object ID --history` | Every move of one object in story order: where it was kept from when, and the event and people that moved it |
 | `nse mcp [--with-ratify]` | Serves `story_brief`, `scene_context`, `state_at`, `review_queue`, `recap`, `what_if`, `lint`, `ripple`, `pulse`, `scan_draft`, `audit_brief`, `submit_scene`, `propose_changes` and `task_note` over MCP, and with `--with-ratify` also `ratify`. The tools print what the commands print |
-| `nse setup-claude` | Writes what Claude Code needs into the story folder: the MCP server, the hooks, the permission rules, the `scene-work` skill, the `scene-auditor` agent and `CLAUDE.md`. Files already there are kept unless `--force` is given |
+| `nse setup-claude` | Writes what Claude Code needs into the story folder: the MCP server, the hooks, the permission rules, the `scene-work` skill and `CLAUDE.md`. Files already there are kept unless `--force` is given. With `--with-auditor` also the `scene-auditor` agent: an audit is another model session, so nothing starts one unless the author asks |
 | `nse hook EVENT` | What Claude Code's hooks run: `pre-edit`, `post-edit`, `stop`, `session-start` or `pre-compact`. Reads the event's JSON on standard input and answers in the form Claude Code reads. Never exits with 2 |
 | `nse dump` | Every point-in-time answer as one deterministic JSON document |
 | `nse rebuild` | Throws the index away and builds it again. Also how a ledger that is shorter than this folder has seen it is accepted as it stands; that is asked about first and done only at a terminal |
@@ -95,7 +95,7 @@ Publish the engine, then set the story folder up from it:
 dotnet C:/path/to/nse/nse.dll setup-claude --dir C:/path/to/story
 ```
 
-It writes the MCP server entry, the hooks, the permission rules, a `scene-work` skill, a `scene-auditor` agent and `CLAUDE.md`, with this machine's paths to the engine. Open Claude Code in the story folder and say yes when it asks whether to use the `nse` server. Run it again after moving the engine, and on each machine.
+It writes the MCP server entry, the hooks, the permission rules, a `scene-work` skill and `CLAUDE.md`, with this machine's paths to the engine. An audit of a scene by a fresh session is opt-in: `--with-auditor` writes the `scene-auditor` agent, and it is used when the author asks for an audit. Open Claude Code in the story folder and say yes when it asks whether to use the `nse` server. Run it again after moving the engine, and on each machine.
 
 `--with-ratify`, which the written `.mcp.json` passes, adds the tool that carries out your decisions. Claude Code asks you before every call of it. Leave the flag out for any other client unless you know it does the same; without the flag an agent can still show you the queue, and you decide with `nse ratify` in your own terminal.
 

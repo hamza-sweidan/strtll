@@ -536,13 +536,13 @@ public sealed partial class Story
             .Select(told => new Finding(told.Code, told.RecordId, told.Message)));
         // What the records declare is checked above. What the text gives away and nobody declared is not, so the
         // text itself is scanned for the tripwires of the embargoes in force. A hit stops nothing: a hint is
-        // allowed, and a pattern of words is not a meaning. It is put in front of the author, with the advice
-        // to have the scene audited.
+        // allowed, and a pattern of words is not a meaning. It is put in front of the author with the passage.
+        // Whether to have the scene audited by a fresh reader is theirs to say: that is another model session.
         if (outcome.Manuscript!.Find(scene) is { } prose)
         {
             var scan = DraftScan.Run(after, scene, DraftScan.Paragraphs(prose), $"manuscript/{prose.File}");
             notes.AddRange(scan.Hits.Select(h => new Finding("TRIPWIRE", h.Embargo,
-                $"line {h.Line} of manuscript/{prose.File}: \"{h.Matched}\" matches a tripwire of {h.Embargo}, which holds {h.Prop} back until {h.UntilScene}, in: {h.Excerpt}. A hint is allowed. Have the scene audited before it is ratified")));
+                $"line {h.Line} of manuscript/{prose.File}: \"{h.Matched}\" matches a tripwire of {h.Embargo}, which holds {h.Prop} back until {h.UntilScene}, in: {h.Excerpt}. A hint is allowed. Show the author the passage; an audit of the scene is theirs to ask for")));
             notes.AddRange(scan.Problems.Select(p => new Finding("TRIPWIRE_NOT_RUN", null, p)));
         }
         return new SubmitResult(outcome.Result.ChangeSet, [], notes, outcome.Basis);
