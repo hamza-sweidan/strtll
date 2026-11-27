@@ -1,0 +1,9 @@
+{
+ "actor": "author",
+ "note": "Friday, as written",
+ "ops": [
+  {"op": "put", "approval": "ratified", "record": {"kind": "event", "id": "e_handoff", "scene": "s_fri", "story_key": 50.1, "summary": "Mara gives Oskar a key.", "participants": {"mara": "actor", "oskar": "addressee"}, "quote": "Mara pressed a key into Oskar's hand"}},
+  {"op": "put", "approval": "ratified", "record": {"kind": "fact_change", "id": "f_gave", "prop": "p_mara_gave_key", "value": true, "story_key": 50.1}},
+  {"op": "put", "approval": "ratified", "record": {"kind": "belief_change", "id": "b_gave", "holder": "oskar", "prop": "p_mara_gave_key", "stance": "holds_true", "strength": "certain", "story_key": 50.1, "scene": "s_fri", "channel": "took_part", "via": "e_handoff"}}
+ ]
+}

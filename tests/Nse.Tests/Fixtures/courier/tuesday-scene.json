@@ -1,0 +1,11 @@
+{
+ "scene": "s_tue",
+ "manifest": "MANIFEST",
+ "actor": "agent",
+ "note": "the Tuesday scene, as drafted",
+ "records": [
+  {"kind": "event", "id": "e_tue", "scene": "s_tue", "story_key": 20.1, "summary": "Mara gives Oskar a key off her ring.", "participants": {"mara": "actor", "oskar": "addressee"}, "quote": "gave it to Oskar"},
+  {"kind": "fact_change", "id": "f_gave_tue", "prop": "p_mara_gave_key", "value": true, "story_key": 20.1},
+  {"kind": "belief_change", "id": "b_tue", "holder": "oskar", "prop": "p_mara_gave_key", "stance": "holds_true", "strength": "certain", "story_key": 20.1, "scene": "s_tue", "channel": "took_part", "via": "e_tue"}
+ ]
+}

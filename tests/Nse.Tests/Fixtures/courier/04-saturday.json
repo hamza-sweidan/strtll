@@ -1,0 +1,9 @@
+{
+ "actor": "author",
+ "note": "Saturday, as written",
+ "ops": [
+  {"op": "put", "approval": "ratified", "record": {"kind": "event", "id": "e_entry", "scene": "s_sat", "story_key": 60.1, "summary": "Oskar lets himself into the Calder building.", "participants": {"oskar": "actor", "porter": "witness"}, "needs": ["p_has_key"], "quote": "Oskar let himself in at the side door with a key"}},
+  {"op": "put", "approval": "ratified", "record": {"kind": "assertion", "id": "a_claim", "scene": "s_sat", "story_key": 60.2, "type": "dialogue", "speaker": "oskar", "addressees": ["porter"], "prop": "p_mara_gave_key", "quote": "Mara gave me a key herself"}},
+  {"op": "put", "approval": "ratified", "record": {"kind": "belief_change", "id": "b_porter", "holder": "porter", "prop": "p_mara_gave_key", "stance": "holds_true", "strength": "believes", "story_key": 60.3, "scene": "s_sat", "channel": "told", "via": "a_claim", "quote": "The porter nodded"}}
+ ]
+}

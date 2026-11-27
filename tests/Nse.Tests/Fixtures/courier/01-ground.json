@@ -1,0 +1,19 @@
+{
+ "actor": "author",
+ "note": "the people, the scenes and what the author already knows will happen",
+ "ops": [
+  {"op": "put", "approval": "ratified", "record": {"kind": "entity", "id": "mara", "type": "character", "name": "Mara"}},
+  {"op": "put", "approval": "ratified", "record": {"kind": "entity", "id": "oskar", "type": "character", "name": "Oskar"}},
+  {"op": "put", "approval": "ratified", "record": {"kind": "entity", "id": "porter", "type": "character", "name": "the porter"}},
+  {"op": "put", "approval": "ratified", "record": {"kind": "scene", "id": "s_mon", "pov": "oskar", "cast": ["oskar"]}},
+  {"op": "put", "approval": "ratified", "record": {"kind": "scene_time", "id": "t_mon", "scene": "s_mon", "story_key": 10, "label": "Monday"}},
+  {"op": "put", "approval": "ratified", "record": {"kind": "scene", "id": "s_fri", "pov": "oskar", "cast": ["oskar", "mara"]}},
+  {"op": "put", "approval": "ratified", "record": {"kind": "scene_time", "id": "t_fri", "scene": "s_fri", "story_key": 50, "label": "Friday"}},
+  {"op": "put", "approval": "ratified", "record": {"kind": "scene", "id": "s_sat", "pov": "oskar", "cast": ["oskar", "porter"]}},
+  {"op": "put", "approval": "ratified", "record": {"kind": "scene_time", "id": "t_sat", "scene": "s_sat", "story_key": 60, "label": "Saturday"}},
+  {"op": "put", "approval": "ratified", "record": {"kind": "proposition", "id": "p_mara_dead", "text": "Mara is dead.", "about": ["mara"], "ends": ["mara"]}},
+  {"op": "put", "approval": "ratified", "record": {"kind": "fact_change", "id": "f_dead_sun", "prop": "p_mara_dead", "value": true, "story_key": 70}},
+  {"op": "put", "approval": "ratified", "record": {"kind": "proposition", "id": "p_has_key", "text": "Oskar has a key that opens the Calder building.", "about": ["oskar"]}},
+  {"op": "put", "approval": "ratified", "record": {"kind": "proposition", "id": "p_mara_gave_key", "text": "Mara gave Oskar a key herself.", "about": ["mara", "oskar"]}}
+ ]
+}

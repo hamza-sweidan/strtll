@@ -299,6 +299,11 @@ public static class StateReport
         }
         else if (record.Quote is null)
             sb.Append(CultureInfo.InvariantCulture, $"      passage: none cited. The record gives how it is known as {Names.Of(record.Channel).Replace('_', ' ')}.\n");
+        // A view whose source no longer stands is still what the records hold, and whoever asked has to be told
+        // that it is in doubt before they write from it.
+        var standing = Standing.Of(s);
+        if (standing.Of(record.Id) is { } doubt)
+            sb.Append(CultureInfo.InvariantCulture, $"      {Plain.OneLine(standing.Reason(doubt))} Build nothing on it.\n");
     }
 
     /// <summary>A statement in words: its kind, who makes it, of what, and to whom.</summary>

@@ -215,6 +215,12 @@ public static partial class Validator
 
             case Proposition p:
                 NotBlank(p.Text, "text");
+                // A fact ends the part of people. A persona is a way of presenting one, and a place or a thing has no part to end.
+                foreach (var who in p.Ends ?? [])
+                    if (model.Entity(who) is { PersonaOf: { } behind })
+                        add("PERSONA_HOLDER", id, $"it ends the part of the persona {who}. A fact ends a person's part: use {behind}");
+                    else if (model.Entity(who) is { Type: not EntityKind.Character })
+                        add("BAD_VALUE", id, $"it ends the part of {who}, which is not a person. Only a person takes part in what happens");
                 break;
 
             case Rule r:
@@ -452,6 +458,7 @@ public static partial class Validator
                     yield return (p.Nested.Holder, "entity");
                     yield return (p.Nested.Prop, "proposition");
                 }
+                foreach (var who in p.Ends ?? []) yield return (who, "entity");
                 break;
             case FactChange f:
                 yield return (f.Prop, "proposition");
@@ -460,6 +467,7 @@ public static partial class Validator
                 if (e.Scene is not null) yield return (e.Scene, "scene");
                 if (e.QuoteScene is not null) yield return (e.QuoteScene, "scene");
                 foreach (var who in e.Participants.Keys) yield return (who, "entity");
+                foreach (var need in e.Needs ?? []) yield return (need, "proposition");
                 break;
             case Assertion a:
                 yield return (a.Scene, "scene");

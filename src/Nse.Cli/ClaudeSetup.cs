@@ -191,7 +191,8 @@ public static class ClaudeSetup
            got. A hook reminds you when the prose has moved on since your last note.
         6. **Submit** with `submit_scene`: the scene id, the manifest id from the end of the context, and the
            records the text supports, each quoting the text word for word. A fact is one detail: two details are
-           separate propositions when someone could learn them at different times.
+           separate propositions when someone could learn them at different times. An event that could not
+           happen without some fact names it under `needs`, so that a later change to the fact finds the passage.
         7. **After a submission**, note whether more of the scene is still to be written: `more` true or false.
            A hook asks for this before you stop if you have not said.
         8. **Tell the author** what you recorded and every note left for them to settle, a `TRIPWIRE` note with

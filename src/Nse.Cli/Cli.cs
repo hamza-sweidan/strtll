@@ -88,12 +88,15 @@ public static class Cli
           nse attention [--scene ID] [--head N] [--dir DIR]
                                                     what no longer stands as it was recorded: a statement whose
                                                     speaker has lost what they had it from, a belief whose source
-                                                    is in doubt. Each with its passage and the reason. Worked out
-                                                    from the records; nothing has to be linked by hand
+                                                    is in doubt, an event that needs a fact no longer so, someone
+                                                    acting after their part in the story has ended. Each with its
+                                                    passage and the reason, and what in the same scenes is still
+                                                    borne out. Worked out from the records; nothing is linked by hand
           nse what-if FILE [--dir DIR]              what a change set would do, worked out in memory: whether it
                                                     passes the checks, every answer that would change, scene by
-                                                    scene, and which drafting contexts would. Nothing is written.
-                                                    Exit 1 when it would be refused
+                                                    scene, which passages already written it would leave in doubt
+                                                    and which would still stand, and which drafting contexts would
+                                                    change. Nothing is written. Exit 1 when it would be refused
           nse scan (--scene ID [--file PATH] | --all) [--dir DIR]
                                                     look for the tripwires of the embargoes in force in a scene: in
                                                     the scene as it stands, in a draft file, or in every scene. A hit

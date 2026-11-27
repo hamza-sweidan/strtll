@@ -109,6 +109,14 @@ public sealed record Proposition : LedgerRecord
     public IReadOnlyList<string> About { get; init; } = [];
     public Resolution Resolution { get; init; } = Resolution.Decided;
     public NestedBelief? Nested { get; init; }
+
+    /// <summary>
+    /// The people whose part in the story this ends once it is so: the dead, and those gone for good. From then
+    /// on none of them acts, speaks, is spoken to or comes to believe anything. Left out for every other fact.
+    /// It is what lets a moved death be followed through: a record that has one of them in it after this is so
+    /// cannot stand as recorded, and neither can what rests on it.
+    /// </summary>
+    public IReadOnlyList<string>? Ends { get; init; }
 }
 
 /// <summary>A proposition becomes true or false in the story world. A null story key means "from the outset".</summary>
@@ -128,6 +136,13 @@ public sealed record Event : LedgerRecord
         new Dictionary<string, ParticipantRole>();
     public string? Quote { get; init; }
     public string? QuoteScene { get; init; }
+
+    /// <summary>
+    /// The facts this could not happen without: each has to be so at the moment it happens. Left out when the
+    /// event depends on nothing that might change. When one of them stops being so, the event is put in front of
+    /// the author; while they hold, it can be shown to stand and on what.
+    /// </summary>
+    public IReadOnlyList<string>? Needs { get; init; }
 }
 
 /// <summary>The text has someone claim a proposition. This says nothing about whether it is true.</summary>

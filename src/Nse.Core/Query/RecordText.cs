@@ -54,12 +54,14 @@ public static class RecordText
                 return string.Create(CultureInfo.InvariantCulture, $"scene time: {t.Scene} at story time {t.StoryKey}")
                        + (t.Label is null ? "" : $" ({t.Label})") + (t.Basis == TimeBasis.FollowsTelling ? ", following the telling" : ", asserted");
             case Proposition p:
-                return $"proposition: {p.Text}" + (p.Resolution == Resolution.Decided ? "" : $" [{Names.Of(p.Resolution)}]");
+                return $"proposition: {p.Text}" + (p.Resolution == Resolution.Decided ? "" : $" [{Names.Of(p.Resolution)}]")
+                       + (p.Ends is { Count: > 0 } ends ? $" [ends the part of {string.Join(", ", ends.Select(Who))}]" : "");
             case FactChange f:
                 return $"fact: {f.Prop} becomes {(f.Value ? "true" : "false")} {At(f.StoryKey)}";
             case Event e:
                 return $"event {At(e.StoryKey)}{In(e.Scene)}: {e.Summary}"
                        + (e.Participants.Count == 0 ? "" : " [" + string.Join(", ", e.Participants.Select(x => $"{Who(x.Key)} {Names.Of(x.Value)}")) + "]")
+                       + (e.Needs is { Count: > 0 } needs ? $" · needs {string.Join(", ", needs)}" : "")
                        + Quoted(e.Quote);
             case Assertion a:
                 return $"{Names.Of(a.Type)} {At(a.StoryKey)} in {a.Scene}: {Who(a.Speaker)} {(a.Polarity ? "asserts" : "denies")} {a.Prop}"

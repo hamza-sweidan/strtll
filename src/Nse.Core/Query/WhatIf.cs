@@ -19,6 +19,13 @@ public sealed record WhatIfResult(
     IReadOnlyList<ContextChange> Contexts)
 {
     public bool WouldApply => Findings.Count == 0;
+
+    /// <summary>
+    /// What it would do to what is already written, in words: the records it would leave in doubt, each with its
+    /// passage and the reason, what in the same scenes would still be borne out, the records in doubt that it
+    /// would settle, and what it may do that the records cannot say. Empty when it would do none of that.
+    /// </summary>
+    public IReadOnlyList<string> Written { get; init; } = [];
 }
 
 /// <summary>
@@ -373,6 +380,16 @@ public static class WhatIf
             sb.Append(CultureInfo.InvariantCulture, $"Answers that would change ({r.Changes.Count(l => l.StartsWith("  ", StringComparison.Ordinal))}):\n");
             foreach (var line in r.Changes)
                 sb.Append("  ").Append(line).Append('\n');
+        }
+        // The answer a writer is after: not which answers move, but which passages already written are left
+        // standing on nothing, which still stand, and on what.
+        if (r.Written.Count == 0)
+            sb.Append("Nothing already written would be left in doubt.\n");
+        else
+        {
+            sb.Append("For what is already written, it\n");
+            foreach (var line in r.Written)
+                sb.Append(line).Append('\n');
         }
         if (r.Contexts.Count == 0)
             sb.Append("No scene's drafting context would change.\n");

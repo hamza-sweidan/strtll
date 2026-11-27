@@ -97,6 +97,7 @@ public sealed class Weave
         ["assertion.focalizer"] = (0.4, 0.2),
         ["assertion.scene"] = (0.6, 0.3),
         ["event.participant"] = (0.5, 0.4),
+        ["event.need"] = (0.9, 0.3),
         ["event.scene"] = (0.7, 0.4),
         ["disclosure.prop"] = (0.9, 0.5),
         ["disclosure.scene"] = (0.7, 0.4),
@@ -107,6 +108,7 @@ public sealed class Weave
         ["proposition.about"] = (0.4, 0.3),
         ["proposition.nested_holder"] = (0.6, 0.3),
         ["proposition.nested_prop"] = (0.7, 0.4),
+        ["proposition.ends"] = (0.4, 0.9),
         ["embargo.prop"] = (0.8, 0.6),
         ["embargo.until"] = (0.6, 0.4),
         ["secret.prop"] = (0.8, 0.6),
@@ -166,6 +168,8 @@ public sealed class Weave
                 case Event e:
                     foreach (var p in e.Participants.Keys)
                         Link(r.Id, p, "event.participant");
+                    foreach (var need in e.Needs ?? [])
+                        Link(r.Id, need, "event.need");
                     if (e.Scene is { } es) Link(r.Id, es, "event.scene");
                     break;
                 case Disclosure d:
@@ -186,6 +190,8 @@ public sealed class Weave
                         Link(r.Id, n.Holder, "proposition.nested_holder");
                         Link(r.Id, n.Prop, "proposition.nested_prop");
                     }
+                    foreach (var who in p.Ends ?? [])
+                        Link(r.Id, who, "proposition.ends");
                     break;
                 case Embargo em:
                     Link(r.Id, em.Prop, "embargo.prop");

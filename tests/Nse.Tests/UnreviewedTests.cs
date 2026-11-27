@@ -150,29 +150,33 @@ public sealed class UnreviewedTests : IDisposable
             plan => { asked = ReviewReport.Plan(plan); return true; });
         Assert.True(decided.Done, string.Join("; ", decided.Findings));
         var head = _tiny.Story.State().Model.Head;
-        var expected =
-            "    leaves 3 record(s) of what is already written without what they rested on. Each passage needs a look:\n"
-            + "      a_ben_tells · s4, manuscript/04-four.md line 6\n"
-            + "        dialogue at 40.2 in s4: Ben asserts p_hid to Dora · \"It was under the mat all along\"\n"
-            + "        the fact: p_hid: Ann hid the key under the mat.\n"
-            + $"        LOST ITS SUPPORT: Ben had p_hid from b_ben_told (told via a_says), rejected in change set {head}. Nothing else on record gives it to Ben by story time 40.2.\n"
-            + "      a_cara_repeats · s4, manuscript/04-four.md line 8\n"
-            + "        dialogue at 40.3 in s4: Cara asserts p_hid to Dora · \"She said so herself\"\n"
-            + "        the fact: p_hid: Ann hid the key under the mat.\n"
-            + $"        LOST ITS SUPPORT: Cara had p_hid from a_says (said by Ann in s3), rejected in change set {head}. Nothing else on record gives it to Cara by story time 40.3.\n"
-            + "      b_dora_told · s4, manuscript/04-four.md line 10\n"
-            + "        belief at 40.4 in s4: Dora comes to take p_hid as true, believes · told via a_ben_tells · stated · \"Dora stared at the pair of them.\"\n"
-            + "        the fact: p_hid: Ann hid the key under the mat.\n"
-            + $"        IN QUESTION: it rests on a_ben_tells (the source it came from). That traces back through a_ben_tells, where the trouble starts: lost its support: Ben had p_hid from b_ben_told (told via a_says), rejected in change set {head}. Nothing else on record gives it to Ben by story time 40.2.\n";
-        Assert.Contains("  and all of it together:\n" + expected, asked);
+        // The trouble starts at two of the three: Ben and Cara each had it from what is rejected. Dora had it from Ben.
+        var told = $$"""
+              leaves 3 record(s) of what is already written in doubt. The trouble starts at 2. Each passage needs a look:
+                a_ben_tells · s4, manuscript/04-four.md line 6
+                  dialogue at 40.2 in s4: Ben asserts p_hid to Dora · "It was under the mat all along"
+                  the fact: p_hid: Ann hid the key under the mat.
+                  LOST ITS SUPPORT: Ben had p_hid from b_ben_told (told via a_says), rejected in change set {{head}}. Nothing else on record gives it to Ben by story time 40.2.
+                  and resting on it:
+                    b_dora_told · s4, manuscript/04-four.md line 10
+                      belief at 40.4 in s4: Dora comes to take p_hid as true, believes · told via a_ben_tells · stated · "Dora stared at the pair of them."
+                      it rests on a_ben_tells (the source it came from).
+                a_cara_repeats · s4, manuscript/04-four.md line 8
+                  dialogue at 40.3 in s4: Cara asserts p_hid to Dora · "She said so herself"
+                  the fact: p_hid: Ann hid the key under the mat.
+                  LOST ITS SUPPORT: Cara had p_hid from a_says (said by Ann in s3), rejected in change set {{head}}. Nothing else on record gives it to Cara by story time 40.3.
+
+            """.ReplaceLineEndings("\n");
+        Assert.Equal(told, string.Concat(decided.Plan!.Consequences.Select(line => line + "\n")));
+        Assert.Contains("  and all of it together:\n" + string.Concat(told.Split('\n', StringSplitOptions.RemoveEmptyEntries).Select(line => "  " + line + "\n")), asked);
         // It is said again once it is done, for whoever carried the decision out without seeing the question.
-        Assert.Contains("This decision\n" + expected.Replace("\n      ", "\n    ").Replace("\n        ", "\n      ")[2..], ReviewReport.Decided(decided));
+        Assert.Contains("This decision\n" + told + "The attention report lists what is in question at any time.\n", ReviewReport.Decided(decided));
 
         // And it can be asked for at any time afterwards, for the story or for the scene.
         var state = _tiny.Story.State();
         var report = Standing.Text(state);
         Assert.Contains("ATTENTION · ledger head " + head, report);
-        Assert.Contains("\nScene 4, s4 (3):\n  a_ben_tells · s4, manuscript/04-four.md line 6\n", report);
+        Assert.Contains("\nIn doubt (3), by the record the trouble starts at:\n  a_ben_tells · s4, manuscript/04-four.md line 6\n", report);
         Assert.Equal(report.Replace("ledger head " + head, "ledger head " + head + " · s4 alone"), Standing.Text(state, "s4"));
         Assert.Contains("Nothing in s3 needs attention", Standing.Text(state, "s3"));
         Assert.Contains("In question: 3 record(s) in s4 no longer have what they rested on.", ContextCompiler.Brief(state));

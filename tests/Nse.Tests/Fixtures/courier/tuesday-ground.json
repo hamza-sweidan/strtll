@@ -1,0 +1,8 @@
+{
+ "actor": "author",
+ "note": "a Tuesday scene in the print-shop thread",
+ "ops": [
+  {"op": "put", "approval": "ratified", "record": {"kind": "scene", "id": "s_tue", "pov": "mara", "cast": ["mara", "oskar"]}},
+  {"op": "put", "approval": "ratified", "record": {"kind": "scene_time", "id": "t_tue", "scene": "s_tue", "story_key": 20, "label": "Tuesday"}}
+ ]
+}

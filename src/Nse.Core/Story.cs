@@ -587,6 +587,21 @@ public sealed partial class Story
                 : new Finding("PUT_IN_QUESTION", doubt.Id,
                     $"this submission leaves a record of {Standing.SceneOf(record) ?? "no scene"} without what it rested on ({Standing.Where(after, record)}): {RecordText.Line(after, record)}. {standing.Reason(doubt)} The passage needs the author's review"));
         }
+        // And the other way: a record that was in doubt and now has something to rest on, because this scene
+        // gives a speaker the fact again or makes so what an event needed. Nobody pointed the one at the other.
+        foreach (var id in doubtedBefore.Where(id => after.Model.ById.ContainsKey(id) && standing.Of(id) is null).Order(StringComparer.Ordinal))
+        {
+            var record = after.Model.ById[id].Record;
+            var grounds = standing.RestsOn(id).Where(g => standing.Of(g.Id) is null).Select(g => $"{g.Id} ({g.How})").ToList();
+            notes.Add(new Finding("STANDS_AGAIN", id,
+                $"a record of {Standing.SceneOf(record) ?? "no scene"} that was in doubt has something to rest on again ({Standing.Where(after, record)}): {RecordText.Line(after, record)}. "
+                + (grounds.Count == 0 ? "What put it in doubt is gone" : $"It now rests on {string.Join("; ", grounds)}")));
+        }
+        // Or it may: this scene gives a speaker a fact about the same people as one they state elsewhere with
+        // nothing to rest on. Whether the two are one fact is the author's to say, so it is offered as that.
+        foreach (var doubt in standing.All)
+            foreach (var (_, text) in standing.Possible(after.Model.ById[doubt.Id].Record).Where(x => submitted.Contains(x.View)))
+                notes.Add(new Finding("POSSIBLE_SUPPORT", doubt.Id, $"{RecordText.Line(after, after.Model.ById[doubt.Id].Record)} is in doubt, and this scene may give it something to rest on. {text}"));
         notes.AddRange(records.OfType<BeliefChange>().Where(b => b.Directness is Directness.Inferred or Directness.Speculative)
             .Select(b => new Finding("FLAGGED", b.Id, $"marked {Names.Of(b.Directness)}: applied as provisional and flagged for the author's review")));
         // A belief that leaves its holder where an earlier record put them is how a fact that joins two details

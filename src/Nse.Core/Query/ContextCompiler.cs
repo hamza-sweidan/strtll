@@ -338,6 +338,7 @@ public static partial class ContextCompiler
         var text = s.Telling.First(t => t.Id == sceneId);
         var cast = s.CastHolders(sceneId);
         var sections = new List<Section>();
+        var standing = Standing.Of(s);
 
         var end = s.SceneEnd(sceneId);
         // A state the checks would refuse can name a record that is not there, and what-if compiles such states on
@@ -417,7 +418,10 @@ public static partial class ContextCompiler
         foreach (var happened in s.Model.EventsIn(sceneId).OrderBy(x => x.StoryKey).ThenBy(x => x.Id, StringComparer.Ordinal))
         {
             var who = happened.Participants.Count == 0 ? "" : " [" + string.Join(", ", happened.Participants.Select(x => $"{s.Short(x.Key)} {Names.Of(x.Value)}")) + "]";
-            recorded.Line(string.Create(CultureInfo.InvariantCulture, $"  {happened.Id} at {happened.StoryKey}, event: {happened.Summary}{who}{Provisional(happened.Id)}"));
+            // What it could not happen without is part of what a new draft keeps or withdraws.
+            var needs = happened.Needs is { Count: > 0 } needed ? $"; needs {string.Join(", ", needed)}" : "";
+            recorded.Line(string.Create(CultureInfo.InvariantCulture, $"  {happened.Id} at {happened.StoryKey}, event: {happened.Summary}{who}{needs}{Provisional(happened.Id)}"));
+            done.AddRange((happened.Needs ?? []).Where(need => s.Model.Proposition(need) is not null));
             recorded.Records.Add(happened.Id);
         }
         foreach (var said in s.Model.AssertionsIn(sceneId).OrderBy(x => x.StoryKey).ThenBy(x => x.Id, StringComparer.Ordinal))
@@ -707,8 +711,11 @@ public static partial class ContextCompiler
                 foreach (var (prop, b) in group)
                 {
                     var unconfirmed = b.Stance is Stance.HoldsTrue or Stance.HoldsFalse ? s.UnconfirmedMark(prop, key) : "";
-                    held.Fact("    ", prop, Prop(prop) + unconfirmed, $" ({b.Id}{Provisional(b.Id)})",
-                        $"  {prop} [{earned}] {way}: {Prop(prop)} ({b.Id}{Provisional(b.Id)}){unconfirmed}", joins: true, byId: Provisional(b.Id));
+                    // A view whose every source is in doubt is still what the records hold, and is marked where it
+                    // is listed: the label beside it is earned against the truth, not against where it came from.
+                    var doubted = standing.Held(person, prop, key) is null ? "" : " [IN QUESTION]";
+                    held.Fact("    ", prop, Prop(prop) + unconfirmed, $" ({b.Id}{Provisional(b.Id)}){doubted}",
+                        $"  {prop} [{earned}] {way}: {Prop(prop)} ({b.Id}{Provisional(b.Id)}){unconfirmed}{doubted}", joins: true, byId: Provisional(b.Id) + doubted);
                 }
             }
             // Being in the room when a thing is said is not believing it, and it is not nothing either. Someone who
@@ -811,7 +818,6 @@ public static partial class ContextCompiler
         // borne out when it was recorded and whose footing has gone since: the author rejected it, an earlier
         // scene was rewritten and no longer says it, or it rests on something that is in doubt itself. A draft
         // that builds on one builds on nothing, and a new draft of this scene has to deal with its own.
-        var standing = Standing.Of(s);
         var mine = standing.In(sceneId);
         var listedHere = sections.SelectMany(x => x.Records).ToHashSet(StringComparer.Ordinal);
         var theirs = standing.All.Where(d => listedHere.Contains(d.Id) && Standing.SceneOf(s.Model.ById[d.Id].Record) != sceneId).ToList();
@@ -837,6 +843,15 @@ public static partial class ContextCompiler
                 doubted.Heading("  among the records the lines of this context rest on. They are still listed where they were; tell the author:");
                 foreach (var doubt in theirs)
                     Show(doubt);
+            }
+            // The other half of what a revision needs: what in this scene is borne out all the same, and by what.
+            // A new draft keeps those passages and changes the ones above.
+            var sound = standing.BorneOut(sceneId);
+            if (mine.Count > 0 && sound.Count > 0)
+            {
+                doubted.Heading("  still borne out in this scene. A new draft can keep these:");
+                foreach (var line in sound)
+                    doubted.Line("    " + line);
             }
             var inDoubt = mine.Concat(theirs).Select(d => Standing.FactOf(s.Model.ById[d.Id].Record)).OfType<string>()
                 .Distinct(StringComparer.Ordinal).Where(prop => s.Model.Proposition(prop) is not null).ToList();

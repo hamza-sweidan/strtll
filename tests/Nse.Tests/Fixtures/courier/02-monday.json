@@ -1,0 +1,9 @@
+{
+ "actor": "author",
+ "note": "Monday, as written",
+ "ops": [
+  {"op": "put", "approval": "ratified", "record": {"kind": "event", "id": "e_issue", "scene": "s_mon", "story_key": 10.1, "summary": "The firm issues Oskar a spare key.", "participants": {"oskar": "actor"}, "quote": "The firm issued Oskar a spare key"}},
+  {"op": "put", "approval": "ratified", "record": {"kind": "fact_change", "id": "f_spare", "prop": "p_has_key", "value": true, "story_key": 10.1}},
+  {"op": "put", "approval": "ratified", "record": {"kind": "belief_change", "id": "b_has_key", "holder": "oskar", "prop": "p_has_key", "stance": "holds_true", "strength": "certain", "story_key": 10.1, "scene": "s_mon", "channel": "took_part", "via": "e_issue"}}
+ ]
+}

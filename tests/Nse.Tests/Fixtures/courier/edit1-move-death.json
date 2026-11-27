@@ -1,0 +1,8 @@
+{
+ "actor": "author",
+ "note": "Mara dies on Wednesday, not on Sunday",
+ "ops": [
+  {"op": "retire", "id": "f_dead_sun", "reason": "retcon: she dies on Wednesday"},
+  {"op": "put", "approval": "ratified", "record": {"kind": "fact_change", "id": "f_dead_wed", "prop": "p_mara_dead", "value": true, "story_key": 30}}
+ ]
+}

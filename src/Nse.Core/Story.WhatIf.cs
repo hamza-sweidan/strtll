@@ -53,7 +53,16 @@ public sealed partial class Story
             // record that is not there. The checks have said why; the comparison says it could not be made.
             changes = [$"the answers could not be worked out with this change set laid on: {e.Message}"];
         }
-        return new WhatIfResult(draft.Actor, draft.Ops.Count, before.Head, findings, changes, Query.WhatIf.Contexts(was, now));
+        IReadOnlyList<string> written = [];
+        try
+        {
+            written = Consequences.Between(was, now).Lines(now);
+        }
+        catch (KeyNotFoundException)
+        {
+            // As above: a state the checks refuse may not be able to answer. The findings say why.
+        }
+        return new WhatIfResult(draft.Actor, draft.Ops.Count, before.Head, findings, changes, Query.WhatIf.Contexts(was, now)) { Written = written };
     }
 
     private static IReadOnlyList<string> WhatIf(StoryState was, StoryState now) => Query.WhatIf.Differences(was, now);

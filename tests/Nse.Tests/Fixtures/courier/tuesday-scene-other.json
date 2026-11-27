@@ -1,0 +1,12 @@
+{
+ "scene": "s_tue",
+ "manifest": "MANIFEST",
+ "actor": "agent",
+ "note": "the Tuesday scene, as drafted by a session that worded the fact for itself",
+ "records": [
+  {"kind": "proposition", "id": "p_tue_key", "text": "Mara gave Oskar the side-door key off her own ring.", "about": ["mara", "oskar"]},
+  {"kind": "event", "id": "e_tue", "scene": "s_tue", "story_key": 20.1, "summary": "Mara gives Oskar a key off her ring.", "participants": {"mara": "actor", "oskar": "addressee"}, "quote": "gave it to Oskar"},
+  {"kind": "fact_change", "id": "f_tue_key", "prop": "p_tue_key", "value": true, "story_key": 20.1},
+  {"kind": "belief_change", "id": "b_tue", "holder": "oskar", "prop": "p_tue_key", "stance": "holds_true", "strength": "certain", "story_key": 20.1, "scene": "s_tue", "channel": "took_part", "via": "e_tue"}
+ ]
+}
