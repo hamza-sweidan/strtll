@@ -829,8 +829,18 @@ public static partial class ContextCompiler
                 var record = s.Model.ById[doubt.Id].Record;
                 var about = Standing.FactOf(record);
                 doubted.Line($"    {doubt.Id} · {Standing.Where(s, record)} · {RecordText.Line(s, record)}", about);
-                doubted.Line($"      {Plain.OneLine(standing.Reason(doubt))}", about);
+                doubted.Line($"      {Plain.OneLine(Standing.Short(doubt))}", about);
                 doubted.Records.Add(doubt.Id);
+            }
+            // Many records can trace back to one. Where that one is neither of this scene nor listed below, it is
+            // shown first and once: it is the reason for all of them, and the thing the author has to settle.
+            var shown = mine.Concat(theirs).Select(d => d.Id).ToHashSet(StringComparer.Ordinal);
+            var starts = mine.Concat(theirs).Select(standing.Root).Where(root => !shown.Contains(root.Id)).DistinctBy(root => root.Id).ToList();
+            if (starts.Count > 0)
+            {
+                doubted.Heading("  where the trouble starts. This is for the author to settle:");
+                foreach (var root in starts)
+                    Show(root);
             }
             if (mine.Count > 0)
             {

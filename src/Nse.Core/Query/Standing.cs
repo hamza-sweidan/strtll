@@ -492,6 +492,18 @@ public sealed class Standing
         return $"{Label(doubt.Code)}: {doubt.Why}. That traces back through {string.Join(" -> ", doubt.Through)}, where the trouble starts: {Label(root.Code).ToLowerInvariant()}: {root.Why}.";
     }
 
+    /// <summary>
+    /// The same reason where the far end is said elsewhere on the page: the record's own, and the records the
+    /// doubt comes through. A list of many records that all trace back to one says that one's reason once.
+    /// </summary>
+    public static string Short(Doubt doubt)
+    {
+        ArgumentNullException.ThrowIfNull(doubt);
+        return doubt.Through.Count == 0
+            ? $"{Label(doubt.Code)}: {doubt.Why}."
+            : $"{Label(doubt.Code)}: {doubt.Why}. It traces back through {string.Join(" -> ", doubt.Through)}.";
+    }
+
     /// <summary>Where a record's words stand in the manuscript now, in a few words.</summary>
     public static string Where(StoryState s, LedgerRecord record)
     {

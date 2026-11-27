@@ -129,21 +129,25 @@ public sealed class ChangeDiscoveryTests : IDisposable
         Written();
         Put("edit1-move-death");
         var context = ContextCompiler.Compile(_story.State(), "s_sat").Text;
-        const string trace = "where the trouble starts: cannot happen as recorded: Mara acts in it in s_fri, at story time 50.1, and p_mara_dead (\"Mara is dead.\"), which ends Mara's part in the story, is so from story time 30.";
+        // The reason is said once, at the record the trouble starts at, and each record that traces back to it says by what way.
         Assert.Contains(
             "IN QUESTION (each of these was borne out when it was recorded. What it rested on has since been rejected, retired or withdrawn, or is in doubt itself. Build nothing on them)\n"
+            + "  where the trouble starts. This is for the author to settle:\n"
+            + "    e_handoff · s_fri, manuscript/03-friday.md line 4 · event at 50.1 in s_fri: Mara gives Oskar a key. [Mara actor, Oskar addressee] · \"Mara pressed a key into Oskar's hand\"\n"
+            + "      CANNOT HAPPEN AS RECORDED: Mara acts in it in s_fri, at story time 50.1, and p_mara_dead (\"Mara is dead.\"), which ends Mara's part in the story, is so from story time 30.\n"
             + "  in this scene as it is recorded. Rewrite the passage, or withdraw the record when you submit:\n"
             + "    a_claim · s_sat, manuscript/04-saturday.md line 6 · dialogue at 60.2 in s_sat: Oskar asserts p_mara_gave_key to the porter · \"Mara gave me a key herself\"\n"
-            + $"      IN QUESTION: all Oskar has for p_mara_gave_key is b_gave (took part via e_handoff). That traces back through b_gave -> e_handoff, {trace}\n"
+            + "      IN QUESTION: all Oskar has for p_mara_gave_key is b_gave (took part via e_handoff). It traces back through b_gave -> e_handoff.\n"
             + "    b_porter · s_sat, manuscript/04-saturday.md line 8 · belief at 60.3 in s_sat: the porter comes to take p_mara_gave_key as true, believes · told via a_claim · stated · \"The porter nodded\"\n"
-            + $"      IN QUESTION: it rests on a_claim (the source it came from). That traces back through a_claim -> b_gave -> e_handoff, {trace}\n"
+            + "      IN QUESTION: it rests on a_claim (the source it came from). It traces back through a_claim -> b_gave -> e_handoff.\n"
             + "  among the records the lines of this context rest on. They are still listed where they were; tell the author:\n"
             + "    b_gave · s_fri, manuscript/03-friday.md line 4 · belief at 50.1 in s_fri: Oskar comes to take p_mara_gave_key as true, certain · took_part via e_handoff · stated\n"
-            + $"      IN QUESTION: it rests on e_handoff (the source it came from). That traces back through e_handoff, {trace}\n"
+            + "      IN QUESTION: it rests on e_handoff (the source it came from). It traces back through e_handoff.\n"
             + "  still borne out in this scene. A new draft can keep these:\n"
             + "    e_entry · s_sat, manuscript/04-saturday.md line 4 · event at 60.1 in s_sat: Oskar lets himself into the Calder building. [Oskar actor, the porter witness] · needs p_has_key · \"Oskar let himself in at the side door with a key\"\n"
             + "      BORNE OUT: what it needs is so: f_spare makes p_has_key so from story time 10.1, by e_issue: \"The firm issued Oskar a spare key\" (s_mon, manuscript/01-monday.md line 4).\n",
             context);
+        const string trace = "where the trouble starts: cannot happen as recorded: Mara acts in it in s_fri, at story time 50.1, and p_mara_dead (\"Mara is dead.\"), which ends Mara's part in the story, is so from story time 30.";
         // What he holds on entry is marked where it is listed, and what the scene is recorded as doing says what the entry needs.
         Assert.Contains("Oskar (point of view): beliefs on entry\n  [knows] takes it as true, certain:\n    p_has_key; p_mara_gave_key [IN QUESTION]\n", context);
         Assert.Contains("  e_entry at 60.1, event: Oskar lets himself into the Calder building. [Oskar actor, the porter witness]; needs p_has_key\n", context);
@@ -152,7 +156,10 @@ public sealed class ChangeDiscoveryTests : IDisposable
         var pair = StateReport.Text(_story.State(), new StateQuery(Scene: "s_sat", Holder: "oskar", Prop: "p_mara_gave_key"));
         Assert.Contains($"      IN QUESTION: it rests on e_handoff (the source it came from). That traces back through e_handoff, {trace} Build nothing on it.\n", pair);
         // The scene the trouble starts in is told its own part.
-        Assert.Contains("    e_handoff · s_fri, manuscript/03-friday.md line 4 · event at 50.1 in s_fri: Mara gives Oskar a key.", ContextCompiler.Compile(_story.State(), "s_fri").Text);
+        var friday = ContextCompiler.Compile(_story.State(), "s_fri").Text;
+        Assert.Contains("  in this scene as it is recorded. Rewrite the passage, or withdraw the record when you submit:\n    b_gave · s_fri, manuscript/03-friday.md line 4 · ", friday);
+        Assert.Contains("    e_handoff · s_fri, manuscript/03-friday.md line 4 · event at 50.1 in s_fri: Mara gives Oskar a key. [Mara actor, Oskar addressee] · \"Mara pressed a key into Oskar's hand\"\n      CANNOT HAPPEN AS RECORDED: Mara acts in it in s_fri", friday);
+        Assert.DoesNotContain("where the trouble starts. This is for the author to settle", friday);
     }
 
     [Fact]
