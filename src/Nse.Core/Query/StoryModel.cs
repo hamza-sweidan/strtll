@@ -47,6 +47,8 @@ public sealed class StoryModel
     private readonly Dictionary<string, Counted<Secret>> _secrets;
     private readonly Dictionary<string, Counted<Event>> _eventsIn;
     private readonly Dictionary<string, Counted<Assertion>> _assertionsIn;
+    private readonly Dictionary<string, Counted<Assertion>> _assertionsOf;
+    private readonly Dictionary<string, Counted<Assertion>> _heardBy;
     private readonly Dictionary<string, Counted<BeliefChange>> _beliefsIn;
     private readonly Dictionary<string, Counted<Disclosure>> _disclosuresIn;
     private readonly Dictionary<string, Counted<Placement>> _placementsIn;
@@ -70,8 +72,13 @@ public sealed class StoryModel
         _facts = Grouped(all.OfType<FactChange>(), f => f.Prop, StringComparer.Ordinal);
         Events = Counting(all.OfType<Event>().ToDictionary(e => e.Id, StringComparer.Ordinal));
         _eventsIn = Grouped(all.OfType<Event>().Where(e => e.Scene is not null), e => e.Scene!, StringComparer.Ordinal);
-        Assertions = Counting(all.OfType<Assertion>().ToDictionary(a => a.Id, StringComparer.Ordinal));
-        _assertionsIn = Grouped(all.OfType<Assertion>(), a => a.Scene, StringComparer.Ordinal);
+        var assertions = all.OfType<Assertion>().ToList();
+        Assertions = Counting(assertions.ToDictionary(a => a.Id, StringComparer.Ordinal));
+        _assertionsIn = Grouped(assertions, a => a.Scene, StringComparer.Ordinal);
+        _assertionsOf = Grouped(assertions, a => a.Prop, StringComparer.Ordinal);
+        _heardBy = assertions.SelectMany(a => Hearers(a).Select(h => (Hearer: h, Said: a)))
+            .GroupBy(x => x.Hearer, x => x.Said, StringComparer.Ordinal)
+            .ToDictionary(g => g.Key, g => Counting(g.ToList()), StringComparer.Ordinal);
         var beliefs = all.OfType<BeliefChange>().ToList();
         Beliefs = Counting(beliefs);
         _beliefsOfHolder = Grouped(beliefs, b => b.Holder, StringComparer.Ordinal);
@@ -145,6 +152,31 @@ public sealed class StoryModel
 
     /// <summary>What is recorded as said, written or thought in one scene.</summary>
     public IReadOnlyList<Assertion> AssertionsIn(string sceneId) => Group(_assertionsIn, sceneId);
+
+    /// <summary>What is recorded as said, written or thought about one fact, in any scene.</summary>
+    public IReadOnlyList<Assertion> AssertionsOf(string propId) => Group(_assertionsOf, propId);
+
+    /// <summary>
+    /// What was said or written with one person there to take it in: said to them, overheard by them or read by
+    /// them. Never what they said themselves. Being there for the words is not believing them, and is recorded
+    /// by nothing else: a belief change is what says what someone made of it.
+    /// </summary>
+    public IReadOnlyList<Assertion> HeardBy(string person) => Group(_heardBy, person);
+
+    /// <summary>
+    /// The people who were there for something said or written, each as the person behind any persona, and
+    /// never the one who said it. Narration and thought are said to nobody.
+    /// </summary>
+    public IReadOnlyList<string> Hearers(Assertion said)
+    {
+        ArgumentNullException.ThrowIfNull(said);
+        if (said.Type is not (AssertionKind.Dialogue or AssertionKind.Document))
+            return [];
+        string Person(string id) => _entity.GetValueOrDefault(id)?.PersonaOf ?? id;
+        var speaker = Person(said.Speaker);
+        return said.Addressees.Concat(said.Overhearers).Concat(said.ReadBy is null ? [] : [said.ReadBy])
+            .Select(Person).Where(h => h != speaker).Distinct(StringComparer.Ordinal).ToList();
+    }
 
     /// <summary>The belief changes recorded as happening in one scene.</summary>
     public IReadOnlyList<BeliefChange> BeliefsIn(string sceneId) => Group(_beliefsIn, sceneId);

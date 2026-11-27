@@ -72,7 +72,7 @@ public static class StateReport
             var canon = s.Canon(q.Prop);
             var now = canon is not ("true" or "false") ? ""
                 : s.FactTie(q.Prop, key, before: true) is { } tie ? $"; not settled at this point: fact changes {string.Join(" and ", tie)} share a story time and disagree"
-                : s.TruthBefore(q.Prop, key) == true ? "; the case at this point" : "; not the case at this point";
+                : s.TruthBefore(q.Prop, key) == true ? "; the case at this point" : "; not the case at this point" + Turns(s, q, key);
             sb.Append(CultureInfo.InvariantCulture, $"{q.Prop}: {s.Model.Proposition(q.Prop)!.Text} Canon: {canon}{now}.{s.UnconfirmedMark(q.Prop, key)}\n");
         }
         // One person and one fact: the question is what they have to go on, so the passages are shown.
@@ -109,6 +109,11 @@ public static class StateReport
                     sb.Append(q.Prop is not null
                         ? $"  {q.Prop}  no record. That is not the same as \"does not know\": nothing has been recorded either way.\n"
                         : $"  no record either way for: {string.Join(", ", silent)}\n");
+                // No record is not the whole of it either. They may have been in the room when it was said, and
+                // then they have the words, whatever they made of them. Or it was said where they were not, and
+                // then they need it from someone before they can speak of it.
+                if (pair && silent.Count > 0)
+                    Hearings(s, sb, h, q.Prop!, key);
                 // Asked about one person and one fact, silence at this point is half an answer. The other half
                 // is whether the story has them come by it later, and from what.
                 if (pair && silent.Count > 0 && FirstFrom(s, h, q.Prop!, key) is { } later)
@@ -288,13 +293,55 @@ public static class StateReport
         if (record.Via is { } via)
         {
             var what = s.Model.Events.TryGetValue(via, out var happened) ? $"event: {Plain.OneLine(happened.Summary)}"
-                : s.Model.Assertions.TryGetValue(via, out var said)
-                    ? $"{Names.Of(said.Type)}: {s.Short(s.Model.Base(said.Speaker))} {(said.Polarity ? "asserts" : "denies")} {said.Prop}{(said.Addressees.Count == 0 ? "" : " to " + string.Join(", ", said.Addressees.Select(s.Short)))}."
+                : s.Model.Assertions.TryGetValue(via, out var said) ? Said(s, said)
                 : "a record that is not in force.";
             sb.Append(CultureInfo.InvariantCulture, $"      source: {via}, {what} {(Evidence.OfSource(s, via) is { } from ? from.ToString() : "It cites no passage.")}\n");
         }
         else if (record.Quote is null)
             sb.Append(CultureInfo.InvariantCulture, $"      passage: none cited. The record gives how it is known as {Names.Of(record.Channel).Replace('_', ' ')}.\n");
+    }
+
+    /// <summary>A statement in words: its kind, who makes it, of what, and to whom.</summary>
+    /// <summary>
+    /// For a fact that is not so at the point asked about: when it becomes so, if the records say. A scene is
+    /// asked about on entry, and a fact that turns at the scene's own story time has not turned yet. That reads
+    /// as plain "not so" unless the turn is named, and whether it is so when someone speaks is what a draft needs.
+    /// </summary>
+    private static string Turns(StoryState s, StateQuery q, double key)
+    {
+        if (q.Prop is null || s.Model.Facts(q.Prop).Where(f => f.StoryKey >= key).OrderBy(f => f.StoryKey).ThenBy(f => f.Id, StringComparer.Ordinal).FirstOrDefault() is not { Value: true } next)
+            return "";
+        var within = q.Scene is { } scene && s.Model.SceneTimes.ContainsKey(scene) && next.StoryKey < s.SceneEnd(scene) ? ", which is within this scene" : "";
+        return string.Create(CultureInfo.InvariantCulture, $": it becomes so at story time {next.StoryKey}{within}");
+    }
+
+    private static string Said(StoryState s, Assertion said) =>
+        $"{Names.Of(said.Type)}: {s.Short(s.Model.Base(said.Speaker))} {(said.Polarity ? "asserts" : "denies")} {said.Prop}{(said.Addressees.Count == 0 ? "" : " to " + string.Join(", ", said.Addressees.Select(s.Short)))}.";
+
+    /// <summary>
+    /// For someone with no record on a fact: each time it was said aloud or in writing before the point asked
+    /// about, and whether they were there. Being there gives them the words, to repeat or to doubt. Not being
+    /// there leaves them needing another source. The last three times are shown; a fact said more often than
+    /// that says how many more.
+    /// </summary>
+    private static void Hearings(StoryState s, StringBuilder sb, string holder, string prop, double key)
+    {
+        // Something said to nobody reached nobody, and is no one's source.
+        var times = s.Model.AssertionsOf(prop)
+            .Where(a => a.StoryKey < key && s.Model.Base(a.Speaker) != holder && s.Model.Hearers(a).Count > 0)
+            .OrderBy(a => a.StoryKey).ThenBy(a => a.Id, StringComparer.Ordinal).ToList();
+        const int shown = 3;
+        if (times.Count > shown)
+            sb.Append(CultureInfo.InvariantCulture, $"      it was spoken of {times.Count} times before this point; the last {shown} follow\n");
+        foreach (var said in times.TakeLast(shown))
+        {
+            var how = said.Polarity ? "said" : "denied";
+            if (s.Model.Hearers(said).Contains(holder))
+                sb.Append(CultureInfo.InvariantCulture, $"      heard it {how}: {said.Id}, {Said(s, said)} {Evidence.OfSource(s, said.Id)}\n");
+            else
+                sb.Append(CultureInfo.InvariantCulture,
+                    $"      was not there when it was {how}: {said.Id}, in {said.Scene}, by {s.Short(s.Model.Base(said.Speaker))}{(said.Addressees.Count == 0 ? "" : " to " + string.Join(", ", said.Addressees.Select(s.Short)))}\n");
+        }
     }
 
     /// <summary>How and where a belief was acquired, and from whom when it came from something said or written.</summary>

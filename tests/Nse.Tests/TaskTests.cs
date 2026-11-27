@@ -114,6 +114,13 @@ public sealed class TaskTests : IDisposable
         Assert.True(taken.EstimatedTokens > plain.EstimatedTokens);
         // and when the budget is too small for everything it is something else that gives way: never these
         // words, and never the budget.
+        // (A few facts about someone who is not in the scene, so that there is a part worth more than the line
+        // that names it when it is left out. In a story this small no part is, otherwise.)
+        Assert.True(_tiny.Put(Enumerable.Range(1, 6).SelectMany(n => new LedgerRecord[]
+        {
+            new Proposition { Id = $"p_far{n}", Text = $"Ben keeps spare key number {n} where nobody in the house has looked.", About = ["ben"] },
+            new FactChange { Id = $"f_far{n}", Prop = $"p_far{n}", Value = true, StoryKey = 1 },
+        }).ToArray()).Applied);
         var again = NewSession();
         var full = again.TakeContext("s1");
         Assert.Empty(full.Omitted);

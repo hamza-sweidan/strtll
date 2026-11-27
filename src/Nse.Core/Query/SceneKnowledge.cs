@@ -173,6 +173,29 @@ public static class SceneKnowledge
         return result;
     }
 
+    /// <summary>
+    /// Statements on the page of a fact an embargo holds back, in a scene told before the embargo lifts, with no
+    /// record in that scene of what the reader is given. The words are in the text, so the reader has read
+    /// them. What the reader takes from them is a judgement, and nobody has made it, so the embargo has nothing
+    /// to be checked against: <see cref="EmbargoBreaches"/> looks at disclosures and there is none. A statement
+    /// that goes the other way from canon is misdirection, and is not listed.
+    /// </summary>
+    public static IReadOnlyList<(Embargo Embargo, Assertion Said)> SaidUnderEmbargo(this StoryState s)
+    {
+        var result = new List<(Embargo, Assertion)>();
+        foreach (var e in s.Model.Embargoes)
+        {
+            var until = s.Tell(e.UntilScene);
+            var canon = s.Model.Proposition(e.Prop) is null ? null : s.Canon(e.Prop);
+            bool? way = canon switch { "true" => true, "false" => false, _ => null };
+            foreach (var said in s.Model.AssertionsOf(e.Prop))
+                if ((way is null || said.Polarity == way) && s.Tell(said.Scene) is int at && (until is null || at < until)
+                    && !s.Model.DisclosuresIn(said.Scene).Any(d => d.Prop == e.Prop))
+                    result.Add((e, said));
+        }
+        return result.OrderBy(x => x.Item2.StoryKey).ThenBy(x => x.Item2.Id, StringComparer.Ordinal).ThenBy(x => x.Item1.Id, StringComparer.Ordinal).ToList();
+    }
+
     /// <summary>Whether a rule is one that keeps a question open for the whole book, which is checked and shown on its own.</summary>
     public static bool NeverSettle(Rule r) => r.Type is "never_resolve" or "never_establish";
 
@@ -311,6 +334,42 @@ public static class SceneKnowledge
             }
         }
         return (gaps, learns);
+    }
+
+    /// <summary>
+    /// What a person has heard said and has no record of their own on: for each such fact, the latest statement
+    /// of it they were there for before a story time. Hearing is not believing. Someone who was in the room can
+    /// repeat the words and say who spoke them; whether they took them as so is for a belief record to say, and
+    /// here there is none.
+    /// </summary>
+    public static IReadOnlyList<Assertion> HeardOnly(this StoryState s, string person, double key)
+    {
+        var latest = new Dictionary<string, Assertion>(StringComparer.Ordinal);
+        foreach (var said in s.Model.HeardBy(person))
+        {
+            if (!(said.StoryKey < key))
+                continue;
+            if (latest.TryGetValue(said.Prop, out var seen)
+                && (seen.StoryKey > said.StoryKey || (seen.StoryKey == said.StoryKey && string.CompareOrdinal(seen.Id, said.Id) >= 0)))
+                continue;
+            latest[said.Prop] = said;
+        }
+        return latest.Values.Where(said => s.BeliefBefore(person, said.Prop, key) is null)
+            .OrderBy(said => said.Prop, StringComparer.Ordinal).ToList();
+    }
+
+    /// <summary>
+    /// The last scene a person was in before a scene, in story time. A scene set at the very same story time is
+    /// not an earlier one. Null when they were on stage in none.
+    /// </summary>
+    public static SceneRecord? LastOnStage(this StoryState s, string person, string sceneId)
+    {
+        var key = s.Key(sceneId);
+        return s.Model.Scenes.Values
+            .Where(x => x.Id != sceneId && s.Model.SceneTimes.TryGetValue(x.Id, out var t) && t.StoryKey < key
+                        && x.Cast.Select(s.Model.Base).Contains(person))
+            .OrderByDescending(x => s.Model.SceneTimes[x.Id].StoryKey).ThenByDescending(x => s.Tell(x.Id) ?? -1).ThenBy(x => x.Id, StringComparer.Ordinal)
+            .FirstOrDefault();
     }
 
     /// <summary>

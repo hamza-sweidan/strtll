@@ -269,7 +269,9 @@ public sealed class EngineRegressionTests : IDisposable
         Assert.Equal("knows it is false", s.Classify(s.BeliefsBefore("ann", key)["p_pocket"], key));
         Assert.Equal("FALSE BELIEF", s.Classify(s.BeliefsBefore("ann", StoryState.End)["p_pocket"], StoryState.End));
         var text = StateReport.Text(s, new StateQuery(Scene: "s2", Holder: "ann", Prop: "p_pocket"));
-        Assert.Contains("Canon: true; not the case at this point.", text);
+        // The answer on entry also says when it turns: "not so" alone would leave a draft to guess whether it is so
+        // by the time someone in the scene speaks.
+        Assert.Contains("Canon: true; not the case at this point: it becomes so at story time 20, which is within this scene.", text);
         Assert.Contains("[knows it is false]", text);
         Assert.False(StateDump.Build(s)["points"]!["s2"]!["truth"]!["p_pocket"]!.GetValue<bool>());
         Assert.True(StateDump.Build(s)["points"]!["end"]!["truth"]!["p_pocket"]!.GetValue<bool>());
@@ -385,7 +387,7 @@ public sealed class EngineRegressionTests : IDisposable
         Assert.DoesNotContain("never learns it", text);
         // Two contexts are compared by the line in full, as it was always written.
         Assert.Contains("  p_hid: Ann hid the key under the mat. [UNCONFIRMED: rests on provisional p_hid, f_hid] (learns it later, off the page, at story time 25; currently believes the opposite)",
-            ContextCompiler.Compile(s, "s2").Sections.Single(x => x.Title.StartsWith("Ben (point of view): does NOT know", StringComparison.Ordinal)).Lines);
+            ContextCompiler.Compile(s, "s2").Sections.Single(x => x.Title.StartsWith("Ben (point of view): NOT theirs on entry", StringComparison.Ordinal)).Lines);
     }
 
     // ---- 12. Whether a statement was true was judged against whether the fact was ever true, not when it was said.
@@ -506,10 +508,10 @@ public sealed class EngineRegressionTests : IDisposable
         Assert.Equal(KnowledgeStatus.Unsettled, s.Status("ben", "p_hid", "s2"));
 
         var text = ContextCompiler.Compile(s, "s2").Text;
-        var gaps = text.Split("Ben (point of view): does NOT know, and must not say it, be told it or act on it in this scene\n")[1].Split("\n\n")[0];
+        var gaps = text.Split("Ben (point of view): NOT theirs on entry. They do not say it or act on it until the scene gives it to them\n")[1].Split("\n\n")[0];
         Assert.Equal(
             "  NOT SETTLED what they make of it:\n" +
-            "    p_hid: Ann hid the key under the mat. [UNCONFIRMED] (recorded as undecided; treat as not knowing)\n" +
+            "    p_hid: Ann hid the key under the mat. [UNCONFIRMED] (recorded as undecided; they have not made up their mind, and the scene may move them)\n" +
             "    p_tie: The door is locked. [NOT SETTLED whether this is so by the end of the scene: fact changes fa and fb share a story time and disagree] [UNCONFIRMED] (holds a view, but whether the fact is so is not settled, so the view cannot be judged; treat as not knowing)",
             gaps);
         Assert.DoesNotContain("NO RECORD", gaps);
@@ -596,9 +598,14 @@ public sealed class EngineRegressionTests : IDisposable
         var text = ContextCompiler.Compile(s, "s3").Text;
         Assert.Contains("\nCast: Ann (ann, point of view); Cara (cara, no belief records); under the mat (mat, not a person, so nothing is tracked for it).\n", text);
         // She has no record on anything, and the story shows nothing of what she does not know. That is silence,
-        // which is said once for everyone, so there is no list of it under her name; she is still there.
+        // which is said once for everyone, so nothing lists every fact she lacks; she is still there.
         Assert.Contains("  Not listed means NO RECORD: where a fact is not under someone's name, nothing has been recorded either way.", text);
-        Assert.DoesNotContain("Cara: does NOT know", text);
+        Assert.DoesNotContain("UNAWARE", text.Split("\nCara: ")[1]);
+        // One thing is said of her: the scene is told through Ann, who came by the fact in a scene Cara was not in.
+        Assert.Contains(
+            "Cara: NOT theirs on entry. They do not say it or act on it until the scene gives it to them\n"
+            + "  WAS NOT THERE in scene 1, s1, where Ann came by these, and has no record on them:\n"
+            + "    p_hid\n", text);
         Assert.Contains("Cara: beliefs on entry\n  no recorded beliefs yet", text);
         // The guarded fact is under the name of the one who has it. Nothing in this small story has been ratified,
         // so it is marked as unconfirmed.
@@ -622,19 +629,19 @@ public sealed class EngineRegressionTests : IDisposable
         // shown it to keep from contradicting it.
         var text = ThirdSceneThroughCara(_tiny, "cara");
         Assert.Contains(
-            "SO, AND NOBODY IN THIS SCENE HAS ANY RECORD ON IT (the author's alone: nobody here says it or acts on it, and nothing in the scene may contradict it)\n"
+            "SO, AND NOBODY IN THIS SCENE HAS ANY RECORD ON IT (the author's alone. Nobody here speaks or acts from knowing it; a guess at it, right or wrong, is the guesser's own. Nothing the narration gives as so may contradict it)\n"
             + "  p_hid: Ann hid the key under the mat. [UNCONFIRMED]\n", text);
-        Assert.DoesNotContain("Cara (point of view): does NOT know", text);
+        Assert.DoesNotContain("Cara (point of view): NOT theirs on entry", text);
 
         // With Ann there too, it is under her name, and Cara, through whom the scene is told, is named as having nothing on it.
         using var two = new TinyStory();
         var both = ThirdSceneThroughCara(two, "cara", "ann");
         Assert.DoesNotContain("SO, AND NOBODY IN THIS SCENE", both);
         Assert.Contains(
-            "Cara (point of view): does NOT know, and must not say it, be told it or act on it in this scene\n"
-            + "  NO RECORD EITHER WAY, where someone else here holds a view. Nothing says they have it, so they do not say it or act on it:\n"
-            + "    p_hid\n", both);
-        Assert.Contains("  Not known to Cara, so not said, told or acted on: p_hid\n", both);
+            "Cara (point of view): NOT theirs on entry. They do not say it or act on it until the scene gives it to them\n"
+            + "  NO RECORD ON ENTRY, and someone else here has it:\n"
+            + "    p_hid (Ann)\n", both);
+        Assert.Contains("  Cara lacks on entry: p_hid\n", both);
     }
 
     /// <summary>A scene that is still to be written is a marker with nothing under it, and its context says that and not a span of lines that runs backwards.</summary>
@@ -677,7 +684,7 @@ public sealed class EngineRegressionTests : IDisposable
         Assert.Empty(whole.Omitted);
         // About her, about the place she is in, or about nobody in particular: those touch the scene.
         Assert.Contains(
-            "SO, AND NOBODY IN THIS SCENE HAS ANY RECORD ON IT (the author's alone: nobody here says it or acts on it, and nothing in the scene may contradict it)\n"
+            "SO, AND NOBODY IN THIS SCENE HAS ANY RECORD ON IT (the author's alone. Nobody here speaks or acts from knowing it; a guess at it, right or wrong, is the guesser's own. Nothing the narration gives as so may contradict it)\n"
             + "  p_hid: Ann hid the key under the mat. [UNCONFIRMED]\n"
             + "  p_cara_kin: Cara is Ann's sister. [UNCONFIRMED]\n"
             + "  p_loose: The mat hides a loose board. [UNCONFIRMED]\n\n", whole.Text);

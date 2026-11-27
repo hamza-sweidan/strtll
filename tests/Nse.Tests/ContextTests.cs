@@ -76,11 +76,25 @@ public sealed class ContextTests(HarbourStory harbour) : IClassFixture<HarbourSt
         var full = ContextCompiler.Compile(_state, "sc_09");
         var must = ContextCompiler.Compile(_state, "sc_09", budget: full.EstimatedTokens - 400);
         Assert.NotEmpty(must.Omitted);
-        Assert.Contains("OMITTED TO FIT THE BUDGET, available through state_at:", must.Text);
+        Assert.Contains("OMITTED TO FIT THE BUDGET. To read one in full: scene_context with part set to the start of its title\n", must.Text);
+        // A part that was left out is read by its title, however it is cased: that part alone, in full, and nothing
+        // else. Before this the note said "available through state_at", and the only call that had it gave the
+        // whole state on entry.
+        var listed = must.Omitted[0];
+        var title = listed[..listed.LastIndexOf(" (~", StringComparison.Ordinal)];
+        var alone = ContextCompiler.PartText(_state, "sc_09", title.ToLowerInvariant());
+        Assert.StartsWith("FROM THE CONTEXT FOR sc_09, in full · the state on entry, as of ledger head ", alone);
+        Assert.Contains("\n\n" + title + "\n", alone);
+        Assert.DoesNotContain("MUST NOT BE STATED TO THE READER", alone);
+        Assert.True(ContextCompiler.EstimateTokens(alone) < full.EstimatedTokens / 2, "one part is a small share of the whole");
+        // A title that nothing starts with is refused, and the answer names the parts there are.
+        var none = Assert.Throws<KeyNotFoundException>(() => ContextCompiler.PartText(_state, "sc_09", "no such part"));
+        Assert.Contains("has no part whose title starts \"no such part\". Its parts: ", none.Message);
+        Assert.Contains(title, none.Message);
         Assert.True(must.EstimatedTokens <= must.Budget, "the note about what was left out counts towards the budget too");
         // What must be there is all still there.
-        Assert.Contains("MUST NOT BE REVEALED TO THE READER IN THIS SCENE", must.Text);
-        Assert.Contains("does NOT know, and must not say it", must.Text);
+        Assert.Contains("MUST NOT BE STATED TO THE READER IN THIS SCENE", must.Text);
+        Assert.Contains("NOT theirs on entry. They do not say it or act on it until the scene gives it to them", must.Text);
         // The manifest names the state the context shows, not how much of it fitted: it is the same at any budget.
         Assert.Equal(full.ManifestId, must.ManifestId);
     }
@@ -157,15 +171,19 @@ public sealed class ContextTests(HarbourStory harbour) : IClassFixture<HarbourSt
     public void The_context_for_scene_nine_says_what_a_draft_of_it_needs_to_be_told()
     {
         var text = ContextCompiler.Compile(_state, "sc_09").Text;
-        var daniel = text.Split("\nDaniel Kessler: does NOT know, and must not say it, be told it or act on it in this scene\n")[1].Split("\n\n")[0];
+        var daniel = text.Split("\nDaniel Kessler: NOT theirs on entry. They do not say it or act on it until the scene gives it to them\n")[1].Split("\n\n")[0];
         // A draft is tempted to have Daniel say how Sarah got the letter. He never learns it: a secret keeps it to
         // her. That is the author's word and not something the story shows of him, so it is kept apart from what
         // the story does show him not to know; the fact itself is worded under Sarah, who has it.
-        Assert.Contains("  SHUT OUT BY A SECRET the author keeps to the people named. They never learn it:\n    P10 (SE1, kept to Sarah); P35 (SE1, kept to Sarah); P36 (SE1, kept to Sarah)\n", daniel);
+        Assert.Contains("  SHUT OUT BY A SECRET the author keeps to the people named. The scene cannot give it to them:\n    P10 (SE1, kept to Sarah); P35 (SE1, kept to Sarah); P36 (SE1, kept to Sarah)\n", daniel);
         Assert.Contains("    P10: Sarah took the letter from Edmund's desk drawer on the night he died. (Bs08)\n", text);
         Assert.Contains("  UNAWARE: the story shows that they do not know it:\n    P07: Jonas Pike is Edmund Kessler's son. (learns it in scene 10, sc_10)\n", daniel);
         // Holding the wrong view is another thing, and says what is so.
         Assert.Contains("  BELIEVES THE OPPOSITE of what is so, and acts on it:\n    P03: It is NOT true that: Marta has been taking money from the business. (learns it in scene 10, sc_10)", daniel);
+        // A wrong view that no later scene corrects is said as what the records hold. Worded as a forecast, "never
+        // learns it", it reads as a ruling, and a draft then keeps the person from being told what nothing forbids.
+        Assert.Contains("    P12: It is NOT true that: There was nothing in Edmund's desk but invoices. (nothing recorded later sets them right)\n", text);
+        Assert.DoesNotContain("never learns it in the story", text);
         // Silence in the records is a third thing. It is not passed off as ignorance, and it is not written out
         // fact by fact: the rule is said once, and a fact Daniel has no record on is simply not under his name.
         Assert.Contains("  Not listed means NO RECORD: where a fact is not under someone's name, nothing has been recorded either way. Do not write them as knowing it, and do not write that they do not.", text);
@@ -173,7 +191,7 @@ public sealed class ContextTests(HarbourStory harbour) : IClassFixture<HarbourSt
         Assert.DoesNotContain("P23", text.Split("\nDaniel Kessler: beliefs on entry\n")[1].Split("\n\n")[0]);
         Assert.DoesNotContain("nothing recorded either way; treat as not knowing", text);
         // What he has yet to learn is placed, by id: where it matters to someone here it is worded under their name.
-        Assert.Contains("  NO RECORD ON ENTRY, and they learn it later, so they must not have it yet:\n    P05 (scene 10, sc_10); P06 (scene 10, sc_10); P14 (scene 12, sc_12); ", daniel);
+        Assert.Contains("  NO RECORD ON ENTRY, and the story as recorded gives it to them later, in the scene named:\n    P05 (scene 10, sc_10); P06 (scene 10, sc_10); P14 (scene 12, sc_12); ", daniel);
         Assert.Contains("Sarah Kessler (point of view): beliefs on entry\n  [knows] takes it as true, certain:\n    P01: Edmund Kessler died on the night of 30 April. (Bs07)\n", text);
         // A fact is worded where it first comes up and named after that.
         Assert.Contains("Daniel Kessler: beliefs on entry\n  [knows] takes it as true, certain:\n    P01; P02; P08; P09; P32\n", text);

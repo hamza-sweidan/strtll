@@ -165,10 +165,13 @@ public static class ClaudeSetup
         The story's state lives in the engine, not in this conversation. Work through its tools in this order.
 
         1. **Start from the brief.** If it lists work in progress, pick that up before starting anything new.
-        2. **Take the scene's context** with `scene_context`. It says what must not be revealed, where each person
+        2. **Take the scene's context** with `scene_context`. It says what must not be stated to the reader, where each person
            present is shown not to know or believes the opposite, and what they believe on entry. A fact that is
            not under a person's name is one they have no record on: do not write them as knowing it, and do not
-           write that they do not. `state_at` with `holder` and `prop` shows any such pair, and the passage behind
+           write that they do not. That is the state on entry: someone present who has a fact can give it to them in the
+           scene, planned or not; anyone may work out a view of their own, right or wrong, written as their reasoning;
+           and a hint to the reader is not a statement. `state_at` with `holder` and `prop` shows
+           any such pair, who was there when a thing was said, and the passage behind
            any line. It opens a task for the scene.
         3. **Note your plan** with `task_note` before you write a word: what you have decided, the questions still
            open, the next step. A hook refuses edits to a scene's prose until its task holds a note.

@@ -88,6 +88,13 @@ public sealed class RuleScopeTests : IDisposable
     public void A_rule_in_scope_is_never_left_out_to_fit_a_budget()
     {
         Assert.True(_tiny.Put(Note("g_ben", "Ben distrusts anything that comes too easily.", new RuleScope { Holders = ["ben"] })).Applied);
+        // (A few facts about someone who is not in the scene, so that there is a part worth more than the line
+        // that names it when it is left out. In a story this small no part is, otherwise.)
+        Assert.True(_tiny.Put(Enumerable.Range(1, 6).SelectMany(n => new LedgerRecord[]
+        {
+            new Proposition { Id = $"p_far{n}", Text = $"Ann keeps spare key number {n} where nobody in the house has looked.", About = ["ann"] },
+            new FactChange { Id = $"f_far{n}", Prop = $"p_far{n}", Value = true, StoryKey = 1 },
+        }).ToArray()).Applied);
         var state = _tiny.Story.State();
         // The tightest budget the context compiles at: everything that may be left out has been.
         var budget = Enumerable.Range(1, ContextCompiler.Compile(state, "s2", int.MaxValue).EstimatedTokens).First(b =>
@@ -192,8 +199,8 @@ public sealed class RuleScopeTests : IDisposable
         var text = Context("s2");
         var recap = text[text.IndexOf("\n\nKEEP TO THESE (the parts above, by id)", StringComparison.Ordinal)..text.IndexOf("\n\nManifest ", StringComparison.Ordinal)];
         Assert.Equal(
-            "\n\nKEEP TO THESE (the parts above, by id)\n  Not to be given to the reader: p_hid\n"
-            + "  A fact that is not under someone's name: no record either way. They do not say it, are not told it and do not act on it, and the text does not say they do not know it.\n"
+            "\n\nKEEP TO THESE (the parts above, by id)\n  Not to be stated to the reader, though it may be hinted: p_hid\n"
+            + "  A fact that is not under someone's name: no record either way. They do not say it or act on it until the scene gives it to them, and the text does not say they do not know it.\n"
             + "  The author's rules and notes: g_ben", recap);
         // It comes after every part and before the manifest, and it is no part of what the manifest stands for.
         Assert.True(text.IndexOf("KEEP TO THESE", StringComparison.Ordinal) > text.IndexOf(ContextCompiler.ProseTitle, StringComparison.Ordinal));
@@ -201,7 +208,7 @@ public sealed class RuleScopeTests : IDisposable
 
         // With nothing withheld, it says so rather than leaving the line out.
         using var plain = new TinyStory();
-        Assert.Contains("\n  Not to be given to the reader: nothing at this point", ContextCompiler.Compile(plain.Story.State(), "s1").Text);
+        Assert.Contains("\n  Not to be stated to the reader, though it may be hinted: nothing at this point", ContextCompiler.Compile(plain.Story.State(), "s1").Text);
     }
 
     [Fact]

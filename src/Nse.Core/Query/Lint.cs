@@ -201,6 +201,29 @@ public static class Lint
             + "Two details are separate facts when someone could learn them at different times: give the new detail a proposition of its own");
     }
 
+    /// <summary>
+    /// A fact an embargo holds back is said on the page before the embargo lifts, and nothing records what the
+    /// reader is given by it. A scene submission that would bring this about is refused; what is listed here was
+    /// in the ledger already, or came about when an embargo was added or a scene was moved.
+    /// </summary>
+    public static IReadOnlyList<LintNote> SaidUnderEmbargo(StoryState s)
+    {
+        ArgumentNullException.ThrowIfNull(s);
+        return s.SaidUnderEmbargo().Select(x => new LintNote("EMBARGO_UNDECLARED", x.Said.Id, Undeclared(s, x.Embargo, x.Said))).ToList();
+    }
+
+    /// <summary>What is wrong with a statement of an embargoed fact that no disclosure goes with, and what to do about it.</summary>
+    public static string Undeclared(StoryState s, Embargo embargo, Assertion said)
+    {
+        ArgumentNullException.ThrowIfNull(s);
+        ArgumentNullException.ThrowIfNull(embargo);
+        ArgumentNullException.ThrowIfNull(said);
+        var until = embargo.UntilScene + (s.Tell(embargo.UntilScene) is null ? ", which is not in the manuscript yet" : "");
+        return $"{Who(s, said.Speaker)} {(said.Polarity ? "asserts" : "denies")} {said.Prop} on the page in {said.Scene} (\"{Plain.OneLine(said.Quote)}\"), embargo {embargo.Id} holds that back from the reader until {until}, "
+            + $"and no record says what the reader is given by those words. Add a disclosure for {said.Prop} in {said.Scene} that says how the reader takes them, so that the embargo is checked against it. "
+            + "A hint the reader may miss is allowed; if the words leave the reader sure, change the text";
+    }
+
     private static string Who(StoryState s, string id) => $"{Plain.OneLine(s.Model.Entity(id)?.Name ?? id)} ({id})";
 
     /// <summary>Every lint, in words, as both front ends print them.</summary>
@@ -227,6 +250,7 @@ public static class Lint
         Section(sb, "People who were told something and have no record on it", Addressees(s));
         Section(sb, "People who learn the same thing twice, which is how a fact that joins two details shows", LearnedTwice(s));
         Section(sb, "Statements that tell nobody anything new, where the passage may hold a detail the fact does not", ToldAgain(s));
+        Section(sb, "Embargoed facts said on the page with no record of what the reader was given", SaidUnderEmbargo(s));
         Section(sb, "Propositions that say nothing of whom they are about", EmptyAbout(s));
         return sb.ToString();
     }

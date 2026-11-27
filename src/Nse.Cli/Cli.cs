@@ -52,7 +52,7 @@ public static class Cli
                                                     every change to one fact: who learned it when and how, and when the reader was told
           nse state-at --object ID --history [--head N] [--dir DIR]
                                                     every move of one object: where it was kept from when, and what moved it
-          nse scene-context --scene ID [--budget N] [--head N] [--take | --no-task] [--dir DIR]
+          nse scene-context --scene ID [--budget N] [--head N] [--take | --no-task | --part TITLE] [--dir DIR]
                                                     the context for drafting or revising one scene. It lists
                                                     what is recorded and says the rule for silence once: a
                                                     fact that is not under a person's name is one they have
@@ -397,9 +397,16 @@ public static class Cli
         var head = a.Int("head");
         var look = a.Flag("no-task");
         var take = a.Flag("take");
+        var part = a.Value("part");
         a.Done();
-        if (take && (look || head is not null))
-            throw new UsageException("--take opens the scene's task, and cannot go with --no-task or --head, which make it a look");
+        if (take && (look || head is not null || part is not null))
+            throw new UsageException("--take opens the scene's task, and cannot go with --no-task, --head or --part, which make it a look");
+        // One part by itself, in full: how a part the budget left out is read. It is a look, and opens nothing.
+        if (part is not null)
+        {
+            output.WriteLine(ContextCompiler.PartText(story.State(head), scene, part));
+            return 0;
+        }
         // From an agent's shell a context for the story as it stands is taken to work from, and the scene's
         // task notes that it was. At a terminal it is the author reading, and reading is not work: a task
         // opened by every look would later be shown as a draft somebody had left.

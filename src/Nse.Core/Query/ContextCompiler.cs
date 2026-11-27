@@ -147,7 +147,7 @@ public static partial class ContextCompiler
         /// A fact named by id and no more, in a run with its neighbours. What it says follows from lines that are
         /// compared elsewhere, so it is not compared itself.
         /// </summary>
-        public void Mention(string lead, string fact) => Items.Add(new Item(lead, fact, "", "", true, true, null));
+        public void Mention(string lead, string fact, string tail = "") => Items.Add(new Item(lead, fact, "", tail, true, true, null));
 
         public void Fact(string lead, string fact, string wording, string tail, string compared, bool joins = false, bool bare = false,
             bool always = false, string? byId = null) =>
@@ -220,7 +220,7 @@ public static partial class ContextCompiler
             foreach (var section in sections.Where((_, i) => use[i]))
                 section.Print(body.Append("\n\n"), worded);
             if (omitted.Count > 0)
-                body.Append("\n\nOMITTED TO FIT THE BUDGET, available through state_at:\n").Append(string.Join("\n", omitted.Select(o => "  " + o)));
+                body.Append("\n\nOMITTED TO FIT THE BUDGET. To read one in full: scene_context with part set to the start of its title\n").Append(string.Join("\n", omitted.Select(o => "  " + o)));
             body.Append(recap);
             var records = sections.Where((_, i) => use[i]).SelectMany(x => x.Records).Distinct().OrderBy(r => r, StringComparer.Ordinal).ToList();
             var final = body.Append($"\n\nManifest {manifest} · manuscript {Short(s.ManuscriptHash)}\nGive this manifest id back when you submit the scene: it says which state the draft was written from.")
@@ -279,6 +279,24 @@ public static partial class ContextCompiler
     }
 
     /// <summary>
+    /// One part of a scene's context by itself and in full, every fact in it worded, whatever a budget would have
+    /// left out. It is asked for by the start of its title, and every part whose title starts so is given. This
+    /// is how a part named as omitted is read: the alternative was the whole state on entry, to find a few lines.
+    /// </summary>
+    public static string PartText(StoryState s, string sceneId, string title)
+    {
+        ArgumentNullException.ThrowIfNull(s);
+        ArgumentException.ThrowIfNullOrWhiteSpace(title);
+        var sections = Gather(s, sceneId).Sections;
+        var found = sections.Where(x => x.Title.StartsWith(title.Trim(), StringComparison.OrdinalIgnoreCase)).ToList();
+        if (found.Count == 0)
+            throw new KeyNotFoundException($"The context for {sceneId} has no part whose title starts \"{title.Trim()}\". Its parts: {string.Join("; ", sections.Select(x => x.Title))}");
+        var text = new StringBuilder().Append(CultureInfo.InvariantCulture, $"FROM THE CONTEXT FOR {sceneId}, in full · the state on entry, as of ledger head {s.Model.Head}\n\n")
+            .AppendJoin("\n\n", found.Select(x => x.Alone)).Replace(ProvisionalMark, ProvisionalSign).ToString();
+        return UnconfirmedBy().Replace(text, " [UNCONFIRMED]");
+    }
+
+    /// <summary>
     /// What a context for a scene says, part by part: everything in <see cref="ContextPackage.Sections"/>, with
     /// no text put together and no budget applied. Two contexts are compared by these parts alone, and a what-if
     /// compares two for every scene of the story and prints none of them.
@@ -292,10 +310,13 @@ public static partial class ContextCompiler
     /// </summary>
     public const string Reading = """
         HOW TO READ THIS
-          Whose knowledge it is: a fact is the author's until a line gives it to someone. A person says it, is told it or acts on it only as the lines under their own name allow. The point-of-view character tells the scene, so the reader is given nothing that is not under that name.
+          Whose knowledge it is: a fact is the author's until a line gives it to someone. On entry a person can say or act on a fact only as the lines under their own name allow. The point-of-view character tells the scene, so the reader is given nothing that character does not have by that moment of it.
           Not listed means NO RECORD: where a fact is not under someone's name, nothing has been recorded either way. Do not write them as knowing it, and do not write that they do not. If the scene needs it settled, look the pair up; if nothing is there, leave it open and tell the author.
-          Two things that are listed are different from that. UNAWARE: the story shows that they do not know. BELIEVES THE OPPOSITE: they hold the wrong view, and act on it. Each makes a different scene.
-          A fact is worded the first time it comes up, and again wherever someone has it wrong or is shown not to know it. Elsewhere it is named by its id.
+          Three things that are listed are different from that. UNAWARE: the story shows that they do not know. BELIEVES THE OPPOSITE: they hold the wrong view, and act on it. HEARD IT SAID: they were there for the words and can repeat them, and nothing records what they made of them. Each makes a different scene.
+          What the scene may change: someone here who has a fact can tell it or show it, and whoever takes it in has it from then on and can answer it. That needs no plan. When the scene is submitted, record who said what to whom and what each hearer made of it; it goes to the author to keep or reject.
+          What someone works out is theirs: anyone here may reason from what they have to a view of something they lack, and may be wrong. Write it as their reasoning, on the grounds they have. The narration does not confirm it. Record it as inferred or assumed.
+          What it may not: give a fact to someone a secret shuts out of it, or state to the reader a fact listed as not to be stated. A hint is not a statement: the reader may be left suspecting, and neither the narration nor anyone speaking may leave them sure.
+          A fact is worded the first time it comes up, and again where it must not be stated and wherever someone has it wrong or is shown not to know it. Elsewhere it is named by its id.
           * after an id: PROVISIONAL, the author has not confirmed the record behind it. UNCONFIRMED: whether the fact is so rests on such a record. Do not build on either.
           To see the passage behind a line, or what anyone has on any fact: state_at with the scene, the holder and the prop.
         """;
@@ -350,7 +371,16 @@ public static partial class ContextCompiler
 
         // ---- must: what the scene is for. The contract is the author's statement of what it should do and
         // what it relies on; each thing relied on is shown with whether the records bear it out on entry.
-        if (s.Contract(sceneId) is { } contract)
+        var planned = new HashSet<string>(StringComparer.Ordinal);
+        if (s.Contract(sceneId) is not { } contract)
+        {
+            // A scene nobody has planned is still one to write. What it turns out to do is found in the writing,
+            // and the author sees it afterwards: saying so keeps a drafter from reading the lists below as a fence.
+            var unplanned = new Section("NO CONTRACT FOR THIS SCENE", true);
+            unplanned.Line("  Nothing is planned for it. Whatever it changes in what people know, in what the reader is given or in where things are is recorded when the scene is submitted, and goes to the author to keep or reject.");
+            sections.Add(unplanned);
+        }
+        else
         {
             var agreed = new Section($"CONTRACT FOR THIS SCENE ({contract.Id}{Provisional(contract.Id)}): what it is meant to do", true);
             agreed.Records.Add(contract.Id);
@@ -370,7 +400,8 @@ public static partial class ContextCompiler
                 agreed.Heading("  the facts it names:");
             foreach (var prop in named)
                 agreed.Fact("    ", prop, TruthPhrase(prop), "", $"    {prop}: {TruthPhrase(prop)}");
-            agreed.Line("  Anything else of weight that the scene does to what people know, to what the reader is told or to where things are will be reported as unplanned.");
+            planned.UnionWith(named);
+            agreed.Line("  Anything else of weight that the scene does to what people know, to what the reader is told or to where things are is not forbidden. It is reported to the author as unplanned.");
             sections.Add(agreed);
         }
 
@@ -378,6 +409,7 @@ public static partial class ContextCompiler
         // submitted before has to know this: each of these it keeps, by leaving it alone, or withdraws. It is
         // also what makes a second draft stale once a first has been applied.
         var recorded = new Section("ALREADY RECORDED AS HAPPENING IN THIS SCENE (a new draft keeps each of these, or withdraws it)", true);
+        var done = new List<string>();
         foreach (var happened in s.Model.EventsIn(sceneId).OrderBy(x => x.StoryKey).ThenBy(x => x.Id, StringComparer.Ordinal))
         {
             var who = happened.Participants.Count == 0 ? "" : " [" + string.Join(", ", happened.Participants.Select(x => $"{s.Short(x.Key)} {Names.Of(x.Value)}")) + "]";
@@ -390,14 +422,29 @@ public static partial class ContextCompiler
             recorded.Line(string.Create(CultureInfo.InvariantCulture,
                 $"  {said.Id} at {said.StoryKey}, {Names.Of(said.Type)}: {s.Short(said.Speaker)} {(said.Polarity ? "asserts" : "denies")} {said.Prop}{to} [{s.ClassifyAssertion(said.Id)}]{Provisional(said.Id)}"));
             recorded.Records.Add(said.Id);
+            done.Add(said.Prop);
         }
         foreach (var change in s.RecordedChanges(sceneId))
         {
-            recorded.Line($"  {change.RecordId}: {change.Text}{Provisional(change.RecordId)}");
+            // A fact that begins or stops being so in the scene's span is dated: whether it is already so when
+            // someone speaks is exactly what a draft needs, and "in this scene" does not say.
+            var when = s.Model.ById.TryGetValue(change.RecordId, out var row) && row.Record is FactChange dated
+                ? string.Create(CultureInfo.InvariantCulture, $" at {dated.StoryKey}") : "";
+            recorded.Line($"  {change.RecordId}{when}: {change.Text}{Provisional(change.RecordId)}");
             recorded.Records.Add(change.RecordId);
+            if (change.Shape.Prop is { } changed)
+                done.Add(changed);
         }
         if (recorded.Items.Count == 0)
             recorded.Line("  nothing yet");
+        // These lines are written in ids, like the plan. The facts they name are this scene's own, so they are
+        // worded here and not left to be found wherever else they come up, or in a part the budget leaves out.
+        var own = done.Distinct(StringComparer.Ordinal).Where(prop => s.Model.Proposition(prop) is not null).ToList();
+        if (own.Count > 0)
+            recorded.Heading("  the facts these name:");
+        foreach (var prop in own)
+            recorded.Fact("    ", prop, TruthPhrase(prop), "", $"    {prop}: {TruthPhrase(prop)}");
+        planned.UnionWith(own);
         sections.Add(recorded);
 
         // ---- must: the author's word on this scene. A note is their understanding of a person or a stretch of
@@ -434,7 +481,7 @@ public static partial class ContextCompiler
 
         // ---- must: what may not be revealed. Two sources: what the records show the reader is first told
         // later, and what the author has embargoed, which holds even before the revealing scene is written.
-        var withheld = new Section("MUST NOT BE REVEALED TO THE READER IN THIS SCENE (the reader is first told later)", true);
+        var withheld = new Section("MUST NOT BE STATED TO THE READER IN THIS SCENE (the reader is first told later). A hint is allowed: the reader may be left suspecting it. Neither the narration nor anyone speaking may leave them sure of it", true);
         var embargoes = s.EmbargoesInForce(sceneId);
         var embargoesOn = embargoes.ToLookup(e => e.Prop, StringComparer.Ordinal);
         string Embargoed(string prop)
@@ -460,7 +507,9 @@ public static partial class ContextCompiler
         }
         void Withhold(string prop, string why)
         {
-            withheld.Fact("  ", prop, TruthPhrase(prop), why, $"  {prop}: {TruthPhrase(prop)}{why}");
+            // Worded here whatever has worded it before. This is the list a draft may least afford to misread,
+            // and a bare id in it sends the reader looking for the fact it is meant to keep them off.
+            withheld.Fact("  ", prop, TruthPhrase(prop), why, $"  {prop}: {TruthPhrase(prop)}{why}", always: true);
             withheld.Line(CastOnEntry(prop));
             SoFar(prop);
         }
@@ -513,36 +562,59 @@ public static partial class ContextCompiler
         foreach (var thing in s.TrackedObjects)
             if (s.Location(thing, key) is { Unresolved: false, Place: { } kept } && here.Contains(kept))
                 here.Add(thing);
+        // A fact that began or stopped being so since the teller was last on stage, or does within this scene, is
+        // news the scene stands on, whoever it is about: the people in it are likely to be asking about exactly
+        // that. It is kept with what must be there, and says from when.
+        var window = s.LastOnStage(s.Model.Base(scene.Pov), sceneId) is { } lately ? s.Key(lately.Id) : key;
+        string Lately(string prop) => s.Model.Facts(prop).Where(f => f.StoryKey >= window && f.StoryKey < end).OrderBy(f => f.StoryKey).LastOrDefault() is { } turned
+            ? string.Create(CultureInfo.InvariantCulture, $" ({(turned.Value ? "so" : "no longer so")} from story time {turned.StoryKey}{(turned.StoryKey >= key ? ", which is within this scene" : "")})")
+            : "";
         bool Touches(string prop) =>
-            s.Model.Proposition(prop) is not { } fact
+            planned.Contains(prop) || Lately(prop).Length > 0 || s.Model.Proposition(prop) is not { } fact
             || (fact.About.Count == 0 ? fact.Nested is not { } nested || here.Contains(s.Model.Base(nested.Holder))
                 : fact.About.Any(a => here.Contains(a) || here.Contains(s.Model.Base(a))));
         var elsewhere = new Section("ALSO SO, WITH NO RECORD HERE, AND ABOUT NOBODY AND NOTHING IN THIS SCENE (the author's alone)", false);
         if (nobodys.Count > 0)
         {
-            var authors = new Section("SO, AND NOBODY IN THIS SCENE HAS ANY RECORD ON IT (the author's alone: nobody here says it or acts on it, and nothing in the scene may contradict it)", true);
+            var authors = new Section("SO, AND NOBODY IN THIS SCENE HAS ANY RECORD ON IT (the author's alone. Nobody here speaks or acts from knowing it; a guess at it, right or wrong, is the guesser's own. Nothing the narration gives as so may contradict it)", true);
             foreach (var prop in nobodys)
-                (Touches(prop) ? authors : elsewhere).Fact("  ", prop, TruthPhrase(prop), "", $"  {prop}: {TruthPhrase(prop)}");
+                (Touches(prop) ? authors : elsewhere).Fact("  ", prop, TruthPhrase(prop), Lately(prop), $"  {prop}: {TruthPhrase(prop)}{Lately(prop)}", always: s.Canon(prop) == "false");
             if (authors.Items.Count > 0)
                 sections.Add(authors);
         }
 
-        // ---- must: where each cast member stands apart from what is so; and the point-of-view character's beliefs
-        var unknownTo = new List<(string Name, List<string> Props)>();
+        // ---- must: where each cast member stands apart from what is so; and the point-of-view character's beliefs.
+        // All of it is the state on entry. None of it says what the scene may not do: a person who does not have
+        // a fact when the scene opens is exactly the person a scene can give it to.
+        var unknownTo = new List<(string Name, List<string> Wrong, List<string> Open, List<string> NotTheirs)>();
+        // The scene the teller was last in, and what they came by there. Someone here who was not in that scene
+        // has had no chance to come by it with them, and it is the freshest thing a draft will reach for.
+        var teller = s.Model.Base(scene.Pov);
+        var before = s.LastOnStage(teller, sceneId);
+        var thereBefore = before?.Cast.Select(s.Model.Base).ToHashSet(StringComparer.Ordinal) ?? [];
+        var cameBy = before is null ? [] : s.Model.BeliefsIn(before.Id)
+            .Where(b => b.Holder == teller && b.Stance is Stance.HoldsTrue or Stance.HoldsFalse).Select(b => b.Prop).Distinct(StringComparer.Ordinal).ToList();
         foreach (var (entry, person, (personGaps, learns), beliefs) in minds)
         {
             var head = s.Model.Entity(entry)!.Name + (entry == scene.Pov ? " (point of view)" : "");
             if (entry != person)
                 head += $"  [AUTHOR ONLY: this is {s.Model.Entity(person)!.Name}. Do not reveal it.]";
-            var gaps = new Section($"{head}: does NOT know, and must not say it, be told it or act on it in this scene", true);
+            var gaps = new Section($"{head}: NOT theirs on entry. They do not say it or act on it until the scene gives it to them", true);
             var listed = new List<string>();
+            var heard = s.HeardOnly(person, key);
             string When(Gap gap) =>
                 gap.LearnsIn is { } later ? $"learns it in {InScene(later)}"
                 // Learned in no scene is still learned. Saying "never" here would be wrong.
                 : gap.LearnsAt is double at ? string.Create(CultureInfo.InvariantCulture, $"learns it later, off the page, at story time {at}")
-                : gap.Status == KnowledgeStatus.Unsettled ? "treat as not knowing"
+                // Someone recorded as undecided has the question in mind and has not answered it. "Treat as not
+                // knowing" kept a draft from letting them come down on a side, which is what a scene is for.
+                : gap.Status == KnowledgeStatus.Unsettled
+                    ? s.BeliefBefore(person, gap.Prop, end) is { Unresolved: false, Stance: Stance.Undecided } ? "they have not made up their mind, and the scene may move them" : "treat as not knowing"
                 : s.Sealed(person, gap.Prop) is { } secret ? $"never learns it: {secret.Id} keeps it to {string.Join(", ", secret.KnownOnlyTo.Select(s.Short))}"
-                : "never learns it in the story as recorded";
+                // What follows is what the records hold, not a ruling on the scene: said as a forecast ("never
+                // learns it") it reads as one, and a drafter keeps a person from being told what nothing forbids.
+                : gap.Status == KnowledgeStatus.Wrong ? "nothing recorded later sets them right"
+                : "nothing recorded later gives it to them";
             // The kinds are kept apart because each makes a different scene: someone who holds the wrong view
             // acts on it; someone the story shows not to know can be shown not knowing; someone who learns it
             // later must simply not have it yet. Silence that never ends is none of these and is not listed:
@@ -568,40 +640,58 @@ public static partial class ContextCompiler
             // A secret is the author's word, not something the text shows of this person, and it shuts out
             // everyone it does not name. It is one line for each of them, and the facts are worded once: under
             // whoever holds them, or as the author's alone.
-            Kind("  SHUT OUT BY A SECRET the author keeps to the people named. They never learn it:", g => ShutOut(person, g),
+            Kind("  SHUT OUT BY A SECRET the author keeps to the people named. The scene cannot give it to them:", g => ShutOut(person, g),
                 g => s.Sealed(person, g.Prop) is { } secret ? $"{secret.Id}, kept to {string.Join(", ", secret.KnownOnlyTo.Select(s.Short))}" : When(g), When, bare: true);
-            Kind("  NO RECORD ON ENTRY, and they learn it later, so they must not have it yet:",
+            Kind("  NO RECORD ON ENTRY, and the story as recorded gives it to them later, in the scene named:",
                 g => g is { Status: KnowledgeStatus.NoRecord, LearnsAt: not null },
                 g => g.LearnsIn is { } later ? InScene(later) : string.Create(CultureInfo.InvariantCulture, $"off the page, at story time {g.LearnsAt}"), When, bare: true);
             // The scene is told through one person, so that person's silences are the ones a draft trips on:
             // a fact someone else in the room holds, worded under their name, is one sentence away from being
-            // narrated. Those are named here. For everyone else the rule at the head of the text is enough,
-            // and naming theirs would bring back a line for every person and every fact.
+            // narrated. Those are named here, each with who has it: that is who can give it to them in the
+            // scene. For everyone else the rule at the head of the text is enough, and naming theirs would bring
+            // back a line for every person and every fact.
             if (entry == scene.Pov)
             {
-                var others = minds.Where(m => m.Person != person)
-                    .SelectMany(m => m.Beliefs.Where(kv => kv.Value.Stance is Stance.HoldsTrue or Stance.HoldsFalse).Select(kv => kv.Key))
-                    .ToHashSet(StringComparer.Ordinal);
-                var blind = personGaps.Where(g => g is { Status: KnowledgeStatus.NoRecord, LearnsAt: null } && others.Contains(g.Prop)).Select(g => g.Prop).ToList();
+                var holders = minds.Where(m => m.Person != person)
+                    .SelectMany(m => m.Beliefs.Where(kv => kv.Value.Stance is Stance.HoldsTrue or Stance.HoldsFalse).Select(kv => (Prop: kv.Key, m.Person)))
+                    .ToLookup(x => x.Prop, x => s.Short(x.Person), StringComparer.Ordinal);
+                var blind = personGaps.Where(g => g is { Status: KnowledgeStatus.NoRecord, LearnsAt: null } && holders.Contains(g.Prop) && heard.All(said => said.Prop != g.Prop))
+                    .Select(g => g.Prop).ToList();
                 if (blind.Count > 0)
                 {
-                    gaps.Heading("  NO RECORD EITHER WAY, where someone else here holds a view. Nothing says they have it, so they do not say it or act on it:");
+                    gaps.Heading("  NO RECORD ON ENTRY, and someone else here has it:");
                     foreach (var prop in blind)
-                        gaps.Mention("    ", prop);
+                        gaps.Mention("    ", prop, $" ({string.Join(", ", holders[prop])})");
                     listed.AddRange(blind);
+                }
+            }
+            // Someone here who was not in the scene the teller was last in, set against what the teller came by
+            // there. They were not there for it, so they need it from someone before they can speak of it.
+            else if (before is not null && !thereBefore.Contains(person))
+            {
+                var have = beliefs.Select(kv => kv.Key).Concat(heard.Select(a => a.Prop)).Concat(listed).ToHashSet(StringComparer.Ordinal);
+                var missed = cameBy.Where(prop => !have.Contains(prop)).ToList();
+                if (missed.Count > 0)
+                {
+                    gaps.Heading($"  WAS NOT THERE in {InScene(before.Id)}, where {s.Short(teller)} came by these, and has no record on them:");
+                    foreach (var prop in missed)
+                        gaps.Mention("    ", prop);
+                    listed.AddRange(missed);
                 }
             }
             if (gaps.Items.Count > 0)
             {
                 sections.Add(gaps);
-                unknownTo.Add((s.Model.Entity(entry)!.Name, listed));
+                var wrong = personGaps.Where(g => g.Status == KnowledgeStatus.Wrong).Select(g => g.Prop).ToList();
+                var unsettled = personGaps.Where(g => g.Status == KnowledgeStatus.Unsettled).Select(g => g.Prop).ToList();
+                unknownTo.Add((s.Model.Entity(entry)!.Name, wrong, unsettled, listed.Except(wrong, StringComparer.Ordinal).Except(unsettled, StringComparer.Ordinal).ToList()));
             }
 
             // What they hold on entry, under the label each view earns against what is so. A label such as "knows"
             // or "FALSE BELIEF" is a judgement against the truth, and is no firmer than it.
             var held = new Section($"{head}: beliefs on entry", entry == scene.Pov);
             held.Records.AddRange(beliefs.Select(kv => kv.Value.Id));
-            if (beliefs.Count == 0)
+            if (beliefs.Count == 0 && heard.Count == 0)
                 held.Line("  no recorded beliefs yet");
             foreach (var group in beliefs.GroupBy(kv => (Label: s.Classify(kv.Value, key), Way: Stand(kv.Value.Stance, kv.Value.Strength)))
                          .OrderBy(g => LabelOrder(g.Key.Label)).ThenBy(g => g.Key.Label, StringComparer.Ordinal).ThenBy(g => g.Key.Way, StringComparer.Ordinal))
@@ -613,6 +703,20 @@ public static partial class ContextCompiler
                     var unconfirmed = b.Stance is Stance.HoldsTrue or Stance.HoldsFalse ? s.UnconfirmedMark(prop, key) : "";
                     held.Fact("    ", prop, Prop(prop) + unconfirmed, $" ({b.Id}{Provisional(b.Id)})",
                         $"  {prop} [{earned}] {way}: {Prop(prop)} ({b.Id}{Provisional(b.Id)}){unconfirmed}", joins: true, byId: Provisional(b.Id));
+                }
+            }
+            // Being in the room when a thing is said is not believing it, and it is not nothing either. Someone who
+            // heard the words can repeat them and say whose they were; what they made of them, no record says.
+            if (heard.Count > 0)
+            {
+                held.Heading("  [heard it said] with no record of what they made of it. They can repeat the words, not vouch for them:");
+                foreach (var said in heard)
+                {
+                    var how = $"{(said.Polarity ? "said" : "denied")} by {s.Short(said.Speaker)} in {said.Scene}";
+                    held.Fact("    ", said.Prop, TruthPhrase(said.Prop),
+                        $" ({how}: \"{Plain.OneLine(QuoteMatcher.Normalize(said.Quote))}\", {said.Id}{Provisional(said.Id)})",
+                        $"  {said.Prop} [heard it said] {how} ({said.Id}{Provisional(said.Id)})");
+                    held.Records.Add(said.Id);
                 }
             }
             if (learns.Count > 0)
@@ -633,11 +737,7 @@ public static partial class ContextCompiler
         foreach (var (entry, person) in cast)
         {
             var name = s.Model.Entity(entry)!.Name;
-            var last = s.Model.Scenes.Values
-                .Where(x => x.Id != sceneId && s.Model.SceneTimes.TryGetValue(x.Id, out var t) && t.StoryKey < key
-                            && x.Cast.Select(s.Model.Base).Contains(person))
-                .OrderByDescending(x => s.Model.SceneTimes[x.Id].StoryKey).ThenByDescending(x => s.Tell(x.Id) ?? -1).ThenBy(x => x.Id, StringComparer.Ordinal)
-                .FirstOrDefault();
+            var last = s.LastOnStage(person, sceneId);
             if (last is null)
             {
                 since.Line($"  {name}: on stage in no scene before this one in story time");
@@ -717,10 +817,19 @@ public static partial class ContextCompiler
         // last it keeps best, so the strongest instructions go there. That it helps here is not measured. It is
         // drawn from the parts above and adds nothing to them, so it is no part of what the manifest id stands for.
         var recap = new StringBuilder("\n\nKEEP TO THESE (the parts above, by id)");
-        recap.Append("\n  Not to be given to the reader: ").Append(notToReader.Count == 0 ? "nothing at this point" : string.Join(", ", notToReader));
-        foreach (var (name, props) in unknownTo)
-            recap.Append(CultureInfo.InvariantCulture, $"\n  Not known to {name}, so not said, told or acted on: {string.Join(", ", props)}");
-        recap.Append("\n  A fact that is not under someone's name: no record either way. They do not say it, are not told it and do not act on it, and the text does not say they do not know it.");
+        recap.Append("\n  Not to be stated to the reader, though it may be hinted: ").Append(notToReader.Count == 0 ? "nothing at this point" : string.Join(", ", notToReader));
+        foreach (var (name, wrong, unsettled, notTheirs) in unknownTo)
+        {
+            // Holding the wrong view and not having the fact are kept apart here too: the first is acted on.
+            if (wrong.Count > 0)
+                recap.Append(CultureInfo.InvariantCulture, $"\n  {name} has these wrong, and acts on that: {string.Join(", ", wrong)}");
+            // So is a question someone has in mind and has not settled: that is not a thing they lack.
+            if (unsettled.Count > 0)
+                recap.Append(CultureInfo.InvariantCulture, $"\n  {name} has not settled: {string.Join(", ", unsettled)}");
+            if (notTheirs.Count > 0)
+                recap.Append(CultureInfo.InvariantCulture, $"\n  {name} lacks on entry: {string.Join(", ", notTheirs)}");
+        }
+        recap.Append("\n  A fact that is not under someone's name: no record either way. They do not say it or act on it until the scene gives it to them, and the text does not say they do not know it.");
         if (open.Count > 0)
             recap.Append("\n  Never settle: ").Append(string.Join(", ", open.Select(r => r.Prop ?? r.Id)));
         if (rules.Count > 0)

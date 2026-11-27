@@ -47,14 +47,15 @@ public static class McpHost
            reading order for the reader. A flashback is late in the telling and early in story time.
         4. "no record" means nothing has been recorded either way. It does not mean the person does not
            know. A context lists only what is recorded: a fact not under someone's name is one they have
-           no record on. Labels in square brackets (knows, FALSE BELIEF, OUTDATED BELIEF, unaware, ORDER
-           NOT ESTABLISHED) are computed: trust them over your reading of the prose. PROVISIONAL (a * in
-           a context) is not confirmed by the author, and UNCONFIRMED rests on such a record: do not
-           build on either. Use ids (sc_07, ch_daniel, P12) exactly as given.
+           no record on. Labels in square brackets (knows, FALSE BELIEF, unaware, heard it said) are
+           computed: trust them over your reading of the prose. PROVISIONAL (a * in a context) is not
+           confirmed by the author, and UNCONFIRMED rests on such a record: do not build on either. Use
+           ids (sc_07, ch_daniel, P12) exactly as given.
 
         Drafting or revising a scene:
-        5. Call scene_context for the scene and follow it: what must not be revealed, what each cast member
-           does not know, what they believe on entry. This opens a task for the scene.
+        5. Call scene_context for the scene and follow it: what must not be stated to the reader, what
+           each cast member lacks or has wrong on entry, what they believe. A scene may give someone a
+           fact they lacked, planned or not; a hint to the reader is not a statement. This opens a task.
         6. Before you write or change any prose, call task_note with your plan: what you have decided,
            the questions still open, the next step. Call it again each time you decide something more,
            and say how far the draft has got. A session can end at any moment without warning, and a
@@ -139,15 +140,17 @@ public sealed class NseTools(Story story, ServerOptions options)
     // Not marked read-only: taken to work from, it writes the scene's task under work/tasks. It changes nothing
     // of the story, and asked twice with nothing moved it writes once.
     [McpServerTool(Name = "scene_context", Title = "Context for one scene", ReadOnly = false, Destructive = false, Idempotent = true, OpenWorld = false)]
-    [Description("Everything needed to draft or revise one scene, as the state on entry to it: what must not be revealed to the reader, with the hints already given; open questions that must stay open; what is so that nobody present has any record on; where each cast member is shown not to know, or believes the opposite; what each believes; what the reader has been told; where tracked objects are; and which manuscript passages to read. Silence is not listed: a fact that is not under a person's name is one they have no record on, and state_at with holder and prop shows any such pair. Taking it opens a task for the scene, or adds to the one already open, so that a later session can see work had begun and from what; its last lines say what to note before you write. If you only want to read it, to answer a question, set look. Fails with BUDGET_INSUFFICIENT rather than cutting anything that must be there.")]
+    [Description("Everything needed to draft or revise one scene, as the state on entry to it: what must not be stated to the reader, with the hints already given (a hint is allowed); open questions that must stay open; what is so that nobody present has any record on; where each cast member is shown not to know, believes the opposite, or was not there for what the teller last came by; what each believes, and what each has only heard said; what the reader has been told; where tracked objects are; and which manuscript passages to read. Silence is not listed: a fact that is not under a person's name is one they have no record on, and state_at with holder and prop shows any such pair. All of it is the state on entry: a scene may give someone a fact they lacked, planned or not. Taking it opens a task for the scene, or adds to the one already open, so that a later session can see work had begun and from what; its last lines say what to note before you write. If you only want to read it, to answer a question, set look. Fails with BUDGET_INSUFFICIENT rather than cutting anything that must be there.")]
     public string SceneContext(
         [Description("Scene id, for example sc_07. story_brief lists them.")] string scene,
         [Description("Size limit in rough tokens. Default 10000.")] int? budget = null,
         [Description("Answer as of an older ledger head. Leave out for the current state.")] int? head = null,
-        [Description("True to read the context without opening a task: you are answering a question and will not draft or revise from it.")] bool look = false) =>
+        [Description("True to read the context without opening a task: you are answering a question and will not draft or revise from it.")] bool look = false,
+        [Description("The start of one part's title, to read that part by itself and in full. This is how a part the context lists as omitted is read. It opens no task.")] string? part = null) =>
         // A context for the story as it stands is taken to work from, and the scene's task notes that it was.
         // One for an older head is a look at the past, and one asked for as a look is a look: they open nothing.
-        Guarded(() => head is null && !look
+        Guarded(() => part is not null ? ContextCompiler.PartText(story.State(head), scene, part)
+            : head is null && !look
             ? story.TakeContext(scene, budget ?? ContextCompiler.DefaultBudget).Text
             : ContextCompiler.Compile(story.State(head), scene, budget ?? ContextCompiler.DefaultBudget).Text);
 

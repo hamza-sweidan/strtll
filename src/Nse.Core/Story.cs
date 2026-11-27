@@ -493,6 +493,21 @@ public sealed partial class Story
             if (outside.Count > 0)
                 return Stop([.. outside]);
 
+            // A fact an embargo holds back, said on the page, with nothing recorded about what the reader is
+            // given by it. An embargo is checked against disclosures, so an account of the scene that records
+            // the words and leaves the reader out would pass every check and give the fact away. Who said what
+            // is something the account has to get right in any case; what the reader takes from it is asked for
+            // here, and the embargo then holds against the answer.
+            var declared = records.OfType<Disclosure>().Select(d => d.Prop)
+                .Concat(now.Model.DisclosuresIn(scene).Where(d => !withdraws.Contains(d.Id)).Select(d => d.Prop)).ToHashSet(StringComparer.Ordinal);
+            var undeclared = new List<Finding>();
+            foreach (var said in records.OfType<Assertion>().Where(a => !declared.Contains(a.Prop)))
+                foreach (var embargo in now.EmbargoesInForce(scene).Where(e => e.Prop == said.Prop))
+                    if (now.Canon(said.Prop) switch { "true" => said.Polarity, "false" => !said.Polarity, _ => true })
+                        undeclared.Add(new Finding("EMBARGO_UNDECLARED", said.Id, Lint.Undeclared(now, embargo, said)));
+            if (undeclared.Count > 0)
+                return Stop([.. undeclared]);
+
             return new Gate([], new ChangeBasis(scene, report.Manifest, manifest.Head, Rebased: manifest.Head != ledger.Count));
         });
         if (!outcome.Result.Applied)
