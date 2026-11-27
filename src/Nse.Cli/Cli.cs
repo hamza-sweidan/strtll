@@ -110,6 +110,11 @@ public static class Cli
           nse brief [--head N] [--task SCENE] [--dir DIR]
                                                     the map a session starts from, and any work in progress.
                                                     With --task, that scene's open task in full
+          nse feed [--dir DIR]                      where taking a manuscript in stands: each scene's text as it is
+                                                    now against what was submitted for it, and the first scene still
+                                                    to submit. Read from the ledger alone, so it is the same after a
+                                                    session was cut short or its context compacted. The brief
+                                                    carries the short form of it
           nse dump [--head N] [--dir DIR]           every point-in-time answer as one JSON document
           nse rebuild [--dir DIR]                   throw the index away and build it again; also accepts a ledger
                                                     that is shorter than this folder has seen it, which is asked
@@ -179,6 +184,7 @@ public static class Cli
                 "scene-context" => SceneContext(Story.Open(dir), a, output, at),
                 "task-note" => TaskNote(Story.Open(dir), a, output),
                 "brief" => Brief(Story.Open(dir), a, output),
+                "feed" => Feed(Story.Open(dir), a, output),
                 "scan" => Scan(Story.Open(dir), a, output),
                 "what-if" => WhatIf(Story.Open(dir), a, output),
                 "recap" => RecapOf(Story.Open(dir), a, output),
@@ -452,7 +458,14 @@ public static class Cli
         a.Done();
         if (task is not null && head is not null)
             throw new UsageException("--task shows work as it stands now, and cannot go with --head");
-        output.Write(ContextCompiler.Brief(story.State(head), story.HeldProposals(), head is null ? TaskReport.Text(story.Work(), task) : ""));
+        output.Write(ContextCompiler.Brief(story.State(head), story.HeldProposals(), head is null ? TaskReport.Text(story.Work(), task) + FeedReport.Brief(story.Feed()) : ""));
+        return 0;
+    }
+
+    private static int Feed(Story story, Arguments a, TextWriter output)
+    {
+        a.Done();
+        output.Write(FeedReport.Text(story.Feed()));
         return 0;
     }
 

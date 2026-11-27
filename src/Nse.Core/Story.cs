@@ -556,7 +556,7 @@ public sealed partial class Story
             if (undeclared.Count > 0)
                 return Stop([.. undeclared]);
 
-            return new Gate([], new ChangeBasis(scene, report.Manifest, manifest.Head, Rebased: manifest.Head != ledger.Count));
+            return new Gate([], new ChangeBasis(scene, report.Manifest, manifest.Head, Rebased: manifest.Head != ledger.Count, Text: manuscript.Find(scene)?.Hash));
         });
         if (!outcome.Result.Applied)
             return new SubmitResult(null, outcome.Result.Findings, [], null);

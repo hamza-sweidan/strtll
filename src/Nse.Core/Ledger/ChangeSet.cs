@@ -56,7 +56,12 @@ public sealed record ChangeSetDraft
 /// True when the ledger had moved on since then and the change was applied all the same, because nothing the
 /// context said about the story had changed. A rebase is always recorded, never silent.
 /// </param>
-public sealed record ChangeBasis(string Scene, string Manifest, int BaseHead, bool Rebased);
+/// <param name="Text">
+/// A hash of the scene's text as it stood when it was submitted: which revision of the scene these records are
+/// an account of. It is what lets the ledger say, with nothing else to go on, which scenes have been taken in at
+/// their present text and which have changed since. Absent from change sets written before it was kept.
+/// </param>
+public sealed record ChangeBasis(string Scene, string Manifest, int BaseHead, bool Rebased, string? Text = null);
 
 /// <summary>
 /// The proposal a change set was, before the author accepted it: who proposed it, why, and the ledger head

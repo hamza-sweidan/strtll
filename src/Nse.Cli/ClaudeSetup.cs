@@ -174,6 +174,9 @@ public static class ClaudeSetup
         The story's state lives in the engine, not in this conversation. Work through its tools in this order.
 
         1. **Start from the brief.** If it lists work in progress, pick that up before starting anything new.
+           When a manuscript is being taken in, it says which scenes are already submitted at their present
+           text and where to pick up: leave the first alone, and start at the second. That is kept in the
+           ledger, so it holds after a restart.
         2. **Take the scene's context** with `scene_context`. It says what must not be stated to the reader, where each person
            present is shown not to know or believes the opposite, and what they believe on entry. A fact that is
            not under a person's name is one they have no record on: do not write them as knowing it, and do not

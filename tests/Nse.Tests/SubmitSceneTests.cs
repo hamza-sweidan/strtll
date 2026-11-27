@@ -65,7 +65,7 @@ public sealed class SubmitSceneTests : IDisposable
 
         var result = Submit(_tiny, manifest, Finds, Pockets, BenWorksItOut);
         Assert.True(result.Applied, Codes(result));
-        Assert.Equal(new ChangeBasis("s2", manifest, head, Rebased: false), result.Basis);
+        Assert.Equal(new ChangeBasis("s2", manifest, head, Rebased: false, Text: _tiny.Story.ReadManuscript().Find("s2")!.Hash), result.Basis);
 
         // The basis is in the file, written by the engine, and the records are provisional and the agent's.
         var stored = _tiny.Story.ReadLedger()[^1].ChangeSet;

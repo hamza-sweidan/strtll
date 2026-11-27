@@ -156,6 +156,6 @@ public static class HookCommand
             ? "The conversation was just compacted. What survives of the work is in the files and in the tasks below. Before going on with a " +
               "scene, take its context again with scene_context, and call task_note with anything decided or still open that its task does not hold yet.\n\n"
             : "This folder is a story kept by the Narrative State Engine. Its brief follows; use the nse tools as the server's instructions say.\n\n";
-        return head + ContextCompiler.Brief(story.State(), story.HeldProposals(), TaskReport.Text(story.Work()));
+        return head + ContextCompiler.Brief(story.State(), story.HeldProposals(), TaskReport.Text(story.Work()) + FeedReport.Brief(story.Feed()));
     }
 }

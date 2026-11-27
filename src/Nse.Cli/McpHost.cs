@@ -129,13 +129,13 @@ public static class McpHost
 public sealed class NseTools(Story story, ServerOptions options)
 {
     [McpServerTool(Name = "story_brief", Title = "Story brief", ReadOnly = true, Idempotent = true, OpenWorld = false)]
-    [Description("The map of the story: scenes in the order they are told with their ids, points of view and story times, any work in progress that an earlier session left, how much state is recorded, what awaits review, and standing rules. Call once at the start of a session, and again after your context has been cut down.")]
+    [Description("The map of the story: scenes in the order they are told with their ids, points of view and story times, any work in progress that an earlier session left, how much state is recorded, what awaits review, and standing rules. While a manuscript is being taken in it also says which scenes are already submitted at their present text, which are not to be read or submitted again, and the scene to pick up at: that is kept in the ledger, so it is right after a restart. Call once at the start of a session, and again after your context has been cut down.")]
     public string StoryBrief(
         [Description("Answer as of an older ledger head. Leave out for the current state.")] int? head = null,
         [Description("A scene id, to show that scene's open task in full. Use it when the brief names a task without its notes.")] string? task = null) =>
         Guarded(() => task is not null && head is not null
             ? throw new ArgumentException("task shows work as it stands now, and cannot go with head")
-            : ContextCompiler.Brief(story.State(head), story.HeldProposals(), head is null ? TaskReport.Text(story.Work(), task) : ""));
+            : ContextCompiler.Brief(story.State(head), story.HeldProposals(), head is null ? TaskReport.Text(story.Work(), task) + FeedReport.Brief(story.Feed()) : ""));
 
     // Not marked read-only: taken to work from, it writes the scene's task under work/tasks. It changes nothing
     // of the story, and asked twice with nothing moved it writes once.
