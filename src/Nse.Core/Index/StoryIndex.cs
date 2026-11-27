@@ -262,13 +262,14 @@ public static class StoryIndex
             return null;
         var at = head ?? ledger.Count;
         var live = new List<Tracked>();
+        var gone = new List<Tracked>();
         using (var cmd = c.CreateCommand())
         {
             cmd.Transaction = tx;
             cmd.CommandText = """
                 SELECT json, ord, created_seq, retired_seq, retire_reason, initial_approval, decided_approval, decided_seq
                 FROM record
-                WHERE created_seq <= @head AND (retired_seq IS NULL OR retired_seq > @head)
+                WHERE created_seq <= @head
                 ORDER BY ord
                 """;
             cmd.Parameters.AddWithValue("@head", at);
@@ -279,15 +280,16 @@ public static class StoryIndex
                 var t = new Tracked(record, r.GetInt32(1), r.GetInt32(2), ParseName<Approval>(r.GetString(5)),
                     r.IsDBNull(3) ? null : r.GetInt32(3), r.IsDBNull(4) ? null : r.GetString(4),
                     r.IsDBNull(6) ? null : ParseName<Approval>(r.GetString(6)), r.IsDBNull(7) ? null : r.GetInt32(7));
-                if (t.LiveAt(at))
-                    live.Add(t);
+                // What was retired or rejected by this head counts for nothing, and is kept apart to say what
+                // a record still in force once rested on.
+                (t.LiveAt(at) ? live : gone).Add(t);
             }
         }
         // The telling is the manuscript as just read. The index holds the same scenes and paragraphs, which
         // the hashes above have confirmed, so there is nothing to gain by reading them back.
         return new StoryState(new StoryModel(live, at), manuscript.Scenes)
         {
-            ManuscriptHash = manuscript.Hash, FromIndex = true, LedgerHead = ledger.Count,
+            ManuscriptHash = manuscript.Hash, FromIndex = true, LedgerHead = ledger.Count, Gone = gone,
             SeenHead = int.TryParse(meta.GetValueOrDefault("seen_head"), NumberStyles.None, CultureInfo.InvariantCulture, out var seen) ? seen : 0,
         };
     }
@@ -299,6 +301,7 @@ public static class StoryIndex
         return new StoryState(new StoryModel(projection.LiveAt(at), at), manuscript.Scenes)
         {
             ManuscriptHash = manuscript.Hash, LedgerHead = projection.Head, SeenHead = seenHead,
+            Gone = projection.All.Where(t => t.CreatedSeq <= at && !t.LiveAt(at)).OrderBy(t => t.Order).ToList(),
         };
     }
 

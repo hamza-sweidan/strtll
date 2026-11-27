@@ -60,6 +60,24 @@ public static class Evidence
         return d.Quote is { } quote ? At(s, quote, d.Scene, d.Id) : null;
     }
 
+    /// <summary>
+    /// The passage behind any record of what happens: the words it quotes, or for a belief that quotes none the
+    /// words of what it came from. Null for a record that cites no words, and for one of a kind that never does.
+    /// </summary>
+    public static Passage? Of(StoryState s, LedgerRecord record)
+    {
+        ArgumentNullException.ThrowIfNull(s);
+        return record switch
+        {
+            BeliefChange b => Of(s, b),
+            Disclosure d => Of(s, d),
+            Assertion a => At(s, a.Quote, a.Scene, a.Id),
+            Event { Quote: { } quote } e => At(s, quote, e.QuoteScene ?? e.Scene, e.Id),
+            Placement { Quote: { } quote } p => At(s, quote, p.QuoteScene ?? p.Scene, p.Id),
+            _ => null,
+        };
+    }
+
     private static Passage At(StoryState s, string quote, string? scene, string record)
     {
         if (scene is not null && s.Telling.FirstOrDefault(t => t.Id == scene) is { } text)

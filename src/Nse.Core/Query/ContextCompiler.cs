@@ -11,7 +11,8 @@ namespace Nse.Query;
 public sealed class BudgetException(string message) : Exception(message);
 
 /// <summary>One titled part of a context. <see cref="Must"/> parts are never left out to fit a budget.</summary>
-public sealed record ContextSection(string Title, bool Must, IReadOnlyList<string> Lines);
+/// <param name="Facts">For each line, the fact it is about, or null when it is about none. Left out when nobody said.</param>
+public sealed record ContextSection(string Title, bool Must, IReadOnlyList<string> Lines, IReadOnlyList<string?>? Facts = null);
 
 /// <summary>
 /// The id a context is known by, in three parts the engine can check when it is handed back: the ledger head
@@ -67,10 +68,10 @@ public static partial class ContextCompiler
     public const string ProseTitle = "PROSE TO READ";
 
     /// <summary>
-    /// What marks a record the author has not confirmed, in the lines two contexts are compared by. It is left
+    /// What marks a record the author has not reviewed, in the lines two contexts are compared by. It is left
     /// out of the comparison, since ratifying a record changes nothing a draft relied on.
     /// </summary>
-    public const string ProvisionalMark = ", PROVISIONAL: do not build on this";
+    public const string ProvisionalMark = ", PROVISIONAL: not yet reviewed";
 
     /// <summary>
     /// The same mark as it is printed: one character after the record's id, explained once at the head of the
@@ -122,8 +123,10 @@ public static partial class ContextCompiler
     /// record's id is worth giving where the fact is worded; in a list of forty ids it is forty more ids, and
     /// state_at shows the record for any pair that is asked about.
     /// </param>
+    /// <param name="About">For a line that is printed as it is: the fact it is about, if it is about one.</param>
     private sealed record Item(
-        string Lead, string? Fact, string Wording, string Tail, bool Joins, bool Bare, string? Compared, bool Always = false, string? ById = null);
+        string Lead, string? Fact, string Wording, string Tail, bool Joins, bool Bare, string? Compared, bool Always = false, string? ById = null,
+        string? About = null);
 
     private sealed class Section(string title, bool must)
     {
@@ -137,8 +140,8 @@ public static partial class ContextCompiler
 
         private string? _alone;
 
-        /// <summary>A line that is about no fact, printed and compared as it is.</summary>
-        public void Line(string text) => Items.Add(new Item(text, null, "", "", false, false, text));
+        /// <summary>A line printed and compared as it is. It may still be about a fact, and then says which.</summary>
+        public void Line(string text, string? about = null) => Items.Add(new Item(text, null, "", "", false, false, text, About: about));
 
         /// <summary>A heading over the lines that follow. It arranges them and says nothing of its own, so it is not compared.</summary>
         public void Heading(string text) => Items.Add(new Item(text, null, "", "", false, false, null));
@@ -156,8 +159,9 @@ public static partial class ContextCompiler
         /// <summary>The part as it reads on its own, every fact worded. This is its size when it is left out, and when the largest parts are named.</summary>
         public string Alone => _alone ??= Print(new StringBuilder(), new HashSet<string>(StringComparer.Ordinal)).ToString();
 
-        /// <summary>The lines two contexts are compared by.</summary>
-        public ContextSection Part => new(Title, Must, Items.Where(i => i.Compared is not null).Select(i => i.Compared!).ToList());
+        /// <summary>The lines two contexts are compared by, each with the fact it is about.</summary>
+        public ContextSection Part => new(Title, Must, Items.Where(i => i.Compared is not null).Select(i => i.Compared!).ToList(),
+            Items.Where(i => i.Compared is not null).Select(i => i.Fact ?? i.About).ToList());
 
         /// <summary>
         /// Print the part after whatever has been printed already: a fact that has been worded is named by id.
@@ -317,7 +321,7 @@ public static partial class ContextCompiler
           What someone works out is theirs: anyone here may reason from what they have to a view of something they lack, and may be wrong. Write it as their reasoning, on the grounds they have. The narration does not confirm it. Record it as inferred or assumed.
           What it may not: give a fact to someone a secret shuts out of it, or state to the reader a fact listed as not to be stated. A hint is not a statement: the reader may be left suspecting, and neither the narration nor anyone speaking may leave them sure.
           A fact is worded the first time it comes up, and again where it must not be stated and wherever someone has it wrong or is shown not to know it. Elsewhere it is named by its id.
-          * after an id: PROVISIONAL, the author has not confirmed the record behind it. UNCONFIRMED: whether the fact is so rests on such a record. Do not build on either.
+          * after an id: PROVISIONAL, a record the author has not reviewed yet. UNCONFIRMED: whether the fact is so rests on such a record. Both are the story as it stands: write on from them. What a later scene takes from one is tracked, and if the author rejects it they are shown the passages that rested on it.
           To see the passage behind a line, or what anyone has on any fact: state_at with the scene, the holder and the prop.
         """;
 
@@ -446,6 +450,8 @@ public static partial class ContextCompiler
             recorded.Fact("    ", prop, TruthPhrase(prop), "", $"    {prop}: {TruthPhrase(prop)}");
         planned.UnionWith(own);
         sections.Add(recorded);
+        // Where the part on what is in question goes, once the parts after this one have said which records they list.
+        var doubtAt = sections.Count;
 
         // ---- must: the author's word on this scene. A note is their understanding of a person or a stretch of
         // the story, in prose, scoped to where it holds. Notes like these, with their stages marked, are what a
@@ -801,6 +807,47 @@ public static partial class ContextCompiler
         if (elsewhere.Items.Count > 0)
             sections.Add(elsewhere);
 
+        // ---- must: what no longer stands. A record of this scene, or one that the state above lists, which was
+        // borne out when it was recorded and whose footing has gone since: the author rejected it, an earlier
+        // scene was rewritten and no longer says it, or it rests on something that is in doubt itself. A draft
+        // that builds on one builds on nothing, and a new draft of this scene has to deal with its own.
+        var standing = Standing.Of(s);
+        var mine = standing.In(sceneId);
+        var listedHere = sections.SelectMany(x => x.Records).ToHashSet(StringComparer.Ordinal);
+        var theirs = standing.All.Where(d => listedHere.Contains(d.Id) && Standing.SceneOf(s.Model.ById[d.Id].Record) != sceneId).ToList();
+        if (mine.Count + theirs.Count > 0)
+        {
+            var doubted = new Section("IN QUESTION (each of these was borne out when it was recorded. What it rested on has since been rejected, retired or withdrawn, or is in doubt itself. Build nothing on them)", true);
+            void Show(Doubt doubt)
+            {
+                var record = s.Model.ById[doubt.Id].Record;
+                var about = Standing.FactOf(record);
+                doubted.Line($"    {doubt.Id} · {Standing.Where(s, record)} · {RecordText.Line(s, record)}", about);
+                doubted.Line($"      {Plain.OneLine(standing.Reason(doubt))}", about);
+                doubted.Records.Add(doubt.Id);
+            }
+            if (mine.Count > 0)
+            {
+                doubted.Heading("  in this scene as it is recorded. Rewrite the passage, or withdraw the record when you submit:");
+                foreach (var doubt in mine)
+                    Show(doubt);
+            }
+            if (theirs.Count > 0)
+            {
+                doubted.Heading("  among the records the lines of this context rest on. They are still listed where they were; tell the author:");
+                foreach (var doubt in theirs)
+                    Show(doubt);
+            }
+            var inDoubt = mine.Concat(theirs).Select(d => Standing.FactOf(s.Model.ById[d.Id].Record)).OfType<string>()
+                .Distinct(StringComparer.Ordinal).Where(prop => s.Model.Proposition(prop) is not null).ToList();
+            if (inDoubt.Count > 0)
+                doubted.Heading("  the facts these name:");
+            foreach (var prop in inDoubt)
+                doubted.Fact("    ", prop, TruthPhrase(prop), "", $"    {prop}: {TruthPhrase(prop)}");
+            sections.Insert(doubtAt, doubted);
+        }
+        var questioned = mine.Concat(theirs).Select(d => d.Id).ToList();
+
         var prose = new Section(ProseTitle + " (open these files; the text is not copied here)", true);
         // A scene that is still to be written has a marker and nothing under it.
         prose.Line(text.LineEnd < text.LineStart
@@ -829,6 +876,8 @@ public static partial class ContextCompiler
             if (notTheirs.Count > 0)
                 recap.Append(CultureInfo.InvariantCulture, $"\n  {name} lacks on entry: {string.Join(", ", notTheirs)}");
         }
+        if (questioned.Count > 0)
+            recap.Append("\n  In question, build nothing on: ").Append(string.Join(", ", questioned));
         recap.Append("\n  A fact that is not under someone's name: no record either way. They do not say it or act on it until the scene gives it to them, and the text does not say they do not know it.");
         if (open.Count > 0)
             recap.Append("\n  Never settle: ").Append(string.Join(", ", open.Select(r => r.Prop ?? r.Id)));
@@ -924,10 +973,20 @@ public static partial class ContextCompiler
         {
             sb.Append("Awaiting review:");
             if (provisional > 0)
-                sb.Append(CultureInfo.InvariantCulture, $" {provisional} provisional record(s). Treat them as unconfirmed.");
+                sb.Append(CultureInfo.InvariantCulture, $" {provisional} provisional record(s). They are the story as it stands until the author decides: write on from them.");
             if (heldProposals > 0)
                 sb.Append(CultureInfo.InvariantCulture, $" {heldProposals} proposal(s) held for the author's decision. They are not part of the story unless the author accepts them.");
             sb.Append(" The review queue lists them. Only the author decides.\n");
+        }
+        // A change to the story can leave a passage written earlier resting on nothing. A session has to hear of
+        // that before it builds on the passage, and the author before they forget what they changed.
+        var doubts = Standing.Of(s).All;
+        if (doubts.Count > 0)
+        {
+            var where = doubts.Select(d => Standing.SceneOf(s.Model.ById[d.Id].Record)).OfType<string>().Distinct(StringComparer.Ordinal)
+                .OrderBy(id => s.Tell(id) ?? int.MaxValue).ThenBy(id => id, StringComparer.Ordinal).ToList();
+            sb.Append(CultureInfo.InvariantCulture,
+                $"In question: {doubts.Count} record(s){(where.Count == 0 ? "" : $" in {string.Join(", ", where)}")} no longer have what they rested on. The attention report lists each with its passage and the reason.\n");
         }
         foreach (var r in s.Model.Rules.Where(r => r.Type is "never_resolve" or "never_establish"))
             sb.Append(CultureInfo.InvariantCulture, $"Never settle {r.Prop}: {r.Text}\n");

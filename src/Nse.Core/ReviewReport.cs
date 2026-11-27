@@ -163,7 +163,8 @@ public static class ReviewReport
     /// </summary>
     public static IReadOnlyList<string> PlanLines(
         IReadOnlyList<PendingRecord> ratify, IReadOnlyList<PendingRecord> reject,
-        IReadOnlyList<HeldProposal> accept, IReadOnlyList<Proposal> decline, IReadOnlyList<string> leftFlagged)
+        IReadOnlyList<HeldProposal> accept, IReadOnlyList<Proposal> decline, IReadOnlyList<string> leftFlagged,
+        IReadOnlyList<string>? consequences = null)
     {
         var lines = new List<string>();
         var width = Width([.. ratify, .. reject]);
@@ -188,6 +189,11 @@ public static class ReviewReport
             lines.Add(string.Create(CultureInfo.InvariantCulture, $"  decline proposal {S(p.Id)}, from {S(p.Actor)} ({p.Ops.Count} operation(s)): {S(p.Note)}"));
         if (leftFlagged.Count > 0)
             lines.Add("  left alone because they are flagged: " + string.Join(", ", leftFlagged.Select(S)));
+        if (consequences is { Count: > 0 })
+        {
+            lines.Add("  and all of it together:");
+            lines.AddRange(consequences.Select(line => "  " + line));
+        }
         return lines;
     }
 
@@ -223,6 +229,15 @@ public static class ReviewReport
             sb.Append(CultureInfo.InvariantCulture, $"  Left provisional because they are flagged: {string.Join(", ", plan.LeftFlagged.Select(S))}. Each is ratified by naming it.\n");
         foreach (var f in result.Findings)
             sb.Append("  ").Append(S(f.ToString())).Append('\n');
+        // Said again now that it is done: the prompt that showed it is gone, and an agent that carried the
+        // decision out never saw one.
+        if (result.Plan is { Consequences.Count: > 0 } told && result.Applied.Count > 0 && result.Findings.Count == 0)
+        {
+            sb.Append("This decision\n");
+            foreach (var line in told.Consequences)
+                sb.Append(line).Append('\n');
+            sb.Append("The attention report lists what is in question at any time.\n");
+        }
         if (result.Applied.Count > 0)
             sb.Append(CultureInfo.InvariantCulture, $"Ledger head {result.Applied[^1].ChangeSet.Seq}.\n");
         return sb.ToString();

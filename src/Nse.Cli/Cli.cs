@@ -85,6 +85,11 @@ public static class Cli
                                                     record, people who learn a thing twice and statements that
                                                     tell nobody anything new (how a fact that joins two details
                                                     shows), propositions that name nobody they are about
+          nse attention [--scene ID] [--head N] [--dir DIR]
+                                                    what no longer stands as it was recorded: a statement whose
+                                                    speaker has lost what they had it from, a belief whose source
+                                                    is in doubt. Each with its passage and the reason. Worked out
+                                                    from the records; nothing has to be linked by hand
           nse what-if FILE [--dir DIR]              what a change set would do, worked out in memory: whether it
                                                     passes the checks, every answer that would change, scene by
                                                     scene, and which drafting contexts would. Nothing is written.
@@ -175,6 +180,7 @@ public static class Cli
                 "what-if" => WhatIf(Story.Open(dir), a, output),
                 "recap" => RecapOf(Story.Open(dir), a, output),
                 "lint" => LintOf(Story.Open(dir), a, output),
+                "attention" => Attention(Story.Open(dir), a, output),
                 "diagram" => Diagram(Story.Open(dir), a, output),
                 "ripple" => RippleOf(Story.Open(dir), a, output),
                 "pulse" => PulseOf(Story.Open(dir), a, output),
@@ -241,6 +247,12 @@ public static class Cli
         if (result.ChangeSet is { } stored)
         {
             output.WriteLine($"Applied as {stored.File}: {draft.Ops.Count} operation(s), ledger head {stored.ChangeSet.Seq}.");
+            if (result.Consequences.Count > 0)
+            {
+                output.WriteLine("This change");
+                foreach (var line in result.Consequences)
+                    output.WriteLine(line);
+            }
             return 0;
         }
         if (result.Findings is [{ Code: Story.NotConfirmed }])
@@ -500,6 +512,16 @@ public static class Cli
         var head = a.Int("head");
         a.Done();
         output.Write(Lint.Text(story.State(head)));
+        return 0;
+    }
+
+    /// <summary>What is in doubt is for a person to settle, and a story may rightly have some for a while: the exit code is 0.</summary>
+    private static int Attention(Story story, Arguments a, TextWriter output)
+    {
+        var scene = a.Value("scene");
+        var head = a.Int("head");
+        a.Done();
+        output.Write(Standing.Text(story.State(head), scene));
         return 0;
     }
 

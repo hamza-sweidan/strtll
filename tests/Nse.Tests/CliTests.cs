@@ -276,7 +276,7 @@ public sealed class CliTests : IDisposable
         var (missing, _, why) = Run("review", "b_ann");
         Assert.Equal(1, missing);
         Assert.Contains("Nothing in the review queue has the id b_ann", why);
-        Assert.Contains("16 provisional record(s). Treat them as unconfirmed. 1 proposal(s) held for the author's decision.", Run("brief").Out);
+        Assert.Contains("16 provisional record(s). They are the story as it stands until the author decides: write on from them. 1 proposal(s) held for the author's decision.", Run("brief").Out);
 
         // The author is shown what the decision comes to, says no, and nothing happens.
         _answer = false;

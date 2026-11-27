@@ -21,7 +21,7 @@ public static class ClaudeSetup
 {
     /// <summary>The engine's tools an agent may call without being asked each time. Deciding is not among them.</summary>
     public static readonly string[] AllowedTools =
-        ["story_brief", "scene_context", "state_at", "review_queue", "task_note", "submit_scene", "propose_changes", "scan_draft", "audit_brief", "what_if", "recap", "lint", "ripple", "pulse"];
+        ["story_brief", "scene_context", "state_at", "review_queue", "task_note", "submit_scene", "propose_changes", "scan_draft", "audit_brief", "what_if", "recap", "lint", "attention", "ripple", "pulse"];
 
     /// <summary>
     /// The subagent that audits a scene. It reads the scene's text and its brief, and nothing else. It is
@@ -181,7 +181,9 @@ public static class ClaudeSetup
            scene, planned or not; anyone may work out a view of their own, right or wrong, written as their reasoning;
            and a hint to the reader is not a statement. `state_at` with `holder` and `prop` shows
            any such pair, who was there when a thing was said, and the passage behind
-           any line. It opens a task for the scene.
+           any line. A `*` marks a record the author has not reviewed yet: it is the story as it stands, so
+           write on from it. `IN QUESTION` lists records whose footing has gone: build nothing on those, and
+           tell the author. It opens a task for the scene.
         3. **Note your plan** with `task_note` before you write a word: what you have decided, the questions still
            open, the next step. A hook refuses edits to a scene's prose until its task holds a note.
         4. **Write the prose** in the scene's manuscript file.

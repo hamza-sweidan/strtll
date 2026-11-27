@@ -127,12 +127,12 @@ public sealed class McpTests(HarbourStory harbour) : IClassFixture<HarbourStory>
     }
 
     [Fact]
-    public async Task It_offers_ten_tools_that_only_read_and_four_that_write_something()
+    public async Task It_offers_eleven_tools_that_only_read_and_four_that_write_something()
     {
         await using var client = await Connect();
         var tools = (await client.Request("tools/list"))["result"]!["tools"]!.AsArray();
         // No tool that decides: the server offers that one only when it is started to.
-        Assert.Equal(["audit_brief", "lint", "propose_changes", "pulse", "recap", "review_queue", "ripple", "scan_draft", "scene_context", "state_at", "story_brief", "submit_scene", "task_note", "what_if"],
+        Assert.Equal(["attention", "audit_brief", "lint", "propose_changes", "pulse", "recap", "review_queue", "ripple", "scan_draft", "scene_context", "state_at", "story_brief", "submit_scene", "task_note", "what_if"],
             tools.Select(t => t!["name"]!.GetValue<string>()).Order());
         // scene_context is among those that write: taken to work from, it writes the scene's task. It is not
         // marked as read-only, because a client is entitled to believe the mark.
@@ -292,7 +292,7 @@ public sealed class McpTests(HarbourStory harbour) : IClassFixture<HarbourStory>
 
         await using var client = await ConnectTo(harbour.Root, ratifyTool: true);
         var tools = (await client.Request("tools/list"))["result"]!["tools"]!.AsArray();
-        Assert.Equal(["audit_brief", "lint", "propose_changes", "pulse", "ratify", "recap", "review_queue", "ripple", "scan_draft", "scene_context", "state_at", "story_brief", "submit_scene", "task_note", "what_if"],
+        Assert.Equal(["attention", "audit_brief", "lint", "propose_changes", "pulse", "ratify", "recap", "review_queue", "ripple", "scan_draft", "scene_context", "state_at", "story_brief", "submit_scene", "task_note", "what_if"],
             tools.Select(t => t!["name"]!.GetValue<string>()).Order());
         var ratify = tools.Single(t => t!["name"]!.GetValue<string>() == "ratify")!;
         Assert.False(ratify["annotations"]!["readOnlyHint"]!.GetValue<bool>());

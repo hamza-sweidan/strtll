@@ -49,8 +49,8 @@ public static class McpHost
            know. A context lists only what is recorded: a fact not under someone's name is one they have
            no record on. Labels in square brackets (knows, FALSE BELIEF, unaware, heard it said) are
            computed: trust them over your reading of the prose. PROVISIONAL (a * in a context) is not
-           confirmed by the author, and UNCONFIRMED rests on such a record: do not build on either. Use
-           ids (sc_07, ch_daniel, P12) exactly as given.
+           yet reviewed by the author, and UNCONFIRMED rests on such a record: write on from both.
+           IN QUESTION: what the record rested on is gone, so build nothing on it. Use ids as given.
 
         Drafting or revising a scene:
         5. Call scene_context for the scene and follow it: what must not be stated to the reader, what
@@ -84,7 +84,7 @@ public static class McpHost
         11. Only the author decides. review_queue lists what waits. {DECIDING}
 
         Do not edit files under ledger/, and do not run nse put, nse ratify or nse reject: those are the
-        author's own. The ledger changes only through these tools.
+        author's own.
         """;
 
     /// <summary>Serve until the client closes the streams. With no streams given, uses standard input and output.</summary>
@@ -206,6 +206,13 @@ public sealed class NseTools(Story story, ServerOptions options)
     public string LintOf(
         [Description("Answer as of an older ledger head. Leave out for the current state.")] int? head = null) =>
         Guarded(() => Lint.Text(story.State(head)));
+
+    [McpServerTool(Name = "attention", Title = "What no longer stands as recorded", ReadOnly = true, Idempotent = true, OpenWorld = false)]
+    [Description("The records that no longer stand as they were recorded, each with the passage it quotes and the reason: a statement whose speaker has lost what they had the fact from, a belief whose source is in doubt, what the reader was given by words that are gone. It comes of the author rejecting a record, of a scene being rewritten, of a fact being changed. Worked out from the records each time; nobody links a later passage to an earlier one. Show it to the author after a decision or a change, and read it for a scene before you revise that scene. It decides nothing.")]
+    public string Attention(
+        [Description("A scene id, to list only that scene's records. Leave out for the whole story.")] string? scene = null,
+        [Description("Answer as of an older ledger head. Leave out for the current state.")] int? head = null) =>
+        Guarded(() => Standing.Text(story.State(head), scene));
 
     [McpServerTool(Name = "scan_draft", Title = "Scan a draft for tripwires", ReadOnly = true, Idempotent = true, OpenWorld = false)]
     [Description("Look through a draft of one scene for the tripwires of every embargo in force in it: patterns of words the author expects a passage giving a withheld fact away to use. With no text, the scene is scanned as it stands in the manuscript. A hit is a passage to read again, not a verdict: a hint the reader may miss is allowed. No hit is not a clearance either.")]

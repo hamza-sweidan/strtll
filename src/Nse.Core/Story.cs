@@ -15,6 +15,12 @@ namespace Nse;
 public sealed record PutResult(StoredChangeSet? ChangeSet, IReadOnlyList<Finding> Findings)
 {
     public bool Applied => ChangeSet is not null;
+
+    /// <summary>
+    /// What a change set that was applied did to what was already written, in words: the records it left
+    /// without what they rested on, and the records in doubt that it settled. Empty when it did neither.
+    /// </summary>
+    public IReadOnlyList<string> Consequences { get; init; } = [];
 }
 
 /// <summary>
@@ -145,11 +151,33 @@ public sealed partial class Story
     public PutResult Put(ChangeSetDraft draft, Func<ChangeSetDraft, bool>? confirm = null)
     {
         if (confirm is null)
-            return Tidied(Apply(draft, gate: null).Result);
+            return Tidied(Told(Apply(draft, gate: null)));
         var sound = Apply(draft, gate: null, write: false).Result;
         if (sound.Findings.Count > 0)
             return sound;
-        return confirm(draft) ? Tidied(Apply(draft, gate: null).Result) : Refused(NotConfirmed, "it passed every check, and was not confirmed");
+        return confirm(draft) ? Tidied(Told(Apply(draft, gate: null))) : Refused(NotConfirmed, "it passed every check, and was not confirmed");
+    }
+
+    /// <summary>
+    /// A change set that was applied, with what it did to the records already there. A retirement or a moved
+    /// fact can leave a passage written long before resting on nothing, and whoever made the change is the
+    /// one who can say whether that was meant.
+    /// </summary>
+    private static PutResult Told(Outcome outcome)
+    {
+        if (!outcome.Result.Applied || outcome.Before is null)
+            return outcome.Result;
+        try
+        {
+            var after = StoryIndex.FromFiles(outcome.After!, null, outcome.Manuscript!);
+            var lines = Consequences.Between(StoryIndex.FromFiles(outcome.Before, null, outcome.Manuscript!), after).Lines(after);
+            return lines.Count == 0 ? outcome.Result : outcome.Result with { Consequences = lines };
+        }
+        catch (KeyNotFoundException)
+        {
+            // The change is written. What it did to the rest could not be worked out, and is not worth failing it over.
+            return outcome.Result;
+        }
     }
 
     /// <summary>
@@ -167,7 +195,8 @@ public sealed partial class Story
     /// <summary>What a check made under the write lock decided: reasons to refuse, or the basis to record.</summary>
     private sealed record Gate(IReadOnlyList<Finding> Findings, ChangeBasis? Basis);
 
-    private sealed record Outcome(PutResult Result, Projection? After = null, ManuscriptSnapshot? Manuscript = null, ChangeBasis? Basis = null);
+    private sealed record Outcome(
+        PutResult Result, Projection? After = null, ManuscriptSnapshot? Manuscript = null, ChangeBasis? Basis = null, Projection? Before = null);
 
     /// <summary>
     /// Check a draft and append it. The optional gate runs under the write lock, with the ledger and the
@@ -211,7 +240,7 @@ public sealed partial class Story
         }
         MarkSeen(writeLock, desk.Ledger.Count);
         RefreshIndex(desk, after);
-        return new Outcome(new PutResult(stored, []), after, desk.Manuscript, passed?.Basis);
+        return new Outcome(new PutResult(stored, []), after, desk.Manuscript, passed?.Basis, desk.Before);
     }
 
     /// <summary>
@@ -366,7 +395,9 @@ public sealed partial class Story
     /// id must be the one this engine issues for the scene at the ledger head it names, with the scenes in the
     /// order they are in now. The scene's context is then compiled at that head and at the current one, and if
     /// they differ the submission is refused with the lines that differ. If the ledger moved on and nothing the
-    /// context says has changed, the submission is applied and the rebase is recorded in the change set.
+    /// context says has changed, the submission is applied and the rebase is recorded in the change set. One
+    /// difference does not refuse it: a line about a fact the submission records nothing on, which changed
+    /// because the author rejected a record about that fact. That comes back as a note.
     /// Everything applied is provisional. Afterwards the scene is compared with its contract; the differences
     /// come back as notes and stop nothing.
     /// </summary>
@@ -419,6 +450,9 @@ public sealed partial class Story
                 .. records.Select(r => (Operation)new PutOp { Record = r }),
             ],
         };
+        // What the check under the lock finds that does not stop the submission, kept for the notes it comes back with.
+        IReadOnlyList<LineChange> passedOver = [];
+        var doubtedBefore = new HashSet<string>(StringComparer.Ordinal);
         var outcome = Apply(draft, (ledger, before, manuscript) =>
         {
             static Gate Stop(params Finding[] findings) => new(findings, null);
@@ -456,8 +490,20 @@ public sealed partial class Story
             // recast under the draft, that is the thing to say, and the rest follows from it. The budget is left
             // open so that every part is compared, whatever a tighter budget would have left out of the text.
             var current = ContextCompiler.Compile(now, scene, int.MaxValue);
-            var changed = Freshness.Differences(then, current);
-            if (changed.Count > 0)
+            var changed = Freshness.Changes(then.Sections, current.Sections);
+            // One kind of change is let pass. A scene may be written on from records the author has not reviewed,
+            // and the author may then reject one of them. If the line that changed is about the fact of a record
+            // rejected since, and the draft records nothing on that fact, the draft did not lean on what was
+            // rejected, as far as its records show. It is applied, and the line is given back as a note. Every
+            // other change is one the draft has to be checked against: a secret, a new fact, a scene moved.
+            var touched = records.Select(Standing.FactOf).OfType<string>()
+                .Concat(records.OfType<Proposition>().Select(p => p.Id))
+                .Concat(withdraws.Select(id => before.Find(id)?.Record).OfType<LedgerRecord>().Select(Standing.FactOf).OfType<string>())
+                .ToHashSet(StringComparer.Ordinal);
+            var rejected = ledger.Skip(manifest.Head).SelectMany(c => c.ChangeSet.Ops.OfType<RejectOp>()).SelectMany(op => op.Ids)
+                .Select(id => before.Find(id)?.Record).OfType<LedgerRecord>().Select(Standing.FactOf).OfType<string>()
+                .ToHashSet(StringComparer.Ordinal);
+            if (changed.Any(c => c.Fact is null || touched.Contains(c.Fact) || !rejected.Contains(c.Fact)))
             {
                 // Every line that differs, up to a point: a scene that has had thousands of records added is
                 // better read afresh than listed.
@@ -466,9 +512,11 @@ public sealed partial class Story
                 return Stop([
                     new Finding("STALE_CONTEXT", null,
                         $"what the context for {scene} says has changed since ledger head {manifest.Head}, where this draft was written from; the ledger is now at {ledger.Count}. Nothing was written. Ask for the context again, check the draft against the {which}, and submit with the new manifest id"),
-                    .. changed.Take(shown).Select(line => new Finding("CHANGED", null, line)),
+                    .. changed.Take(shown).Select(line => new Finding("CHANGED", null, line.ToString())),
                 ]);
             }
+            passedOver = changed;
+            doubtedBefore.UnionWith(Standing.Of(now).All.Select(d => d.Id));
             // What a submission may touch: its own scene, in its own span of story time, with its own cast, and
             // the provisional records earlier submissions for this scene left.
             var outside = new List<Finding>();
@@ -518,6 +566,27 @@ public sealed partial class Story
         if (after.Contract(scene) is null)
             notes.Add(new Finding("NO_CONTRACT", null, $"{scene} has no contract, so what it does was not compared with what it was meant to do"));
         notes.AddRange(after.CheckContract(scene).Select(f => new Finding(f.Code, f.RecordId, f.Message)));
+        if (passedOver.Count > 0)
+        {
+            const int listed = 12;
+            notes.Add(new Finding("CONTEXT_MOVED", null,
+                $"{passedOver.Count} line(s) of the context for {scene} changed after ledger head {manifest.Head}, where this draft was written from, because the author rejected a record. None is about a fact this submission records, so it was applied on top of them. If the prose leans on one, revise it and submit again: "
+                + string.Join(" | ", passedOver.Take(listed).Select(c => c.ToString()))
+                + (passedOver.Count > listed ? $" | and {passedOver.Count - listed} more" : "")));
+        }
+        // What the submission leaves in doubt. Its own records, where what they rest on no longer stands: a scene
+        // may be written on from provisional records, and this is where it hears that one of them has gone. And
+        // records of other scenes, where this draft withdrew something a later passage rested on.
+        var standing = Standing.Of(after);
+        var submitted = records.Select(r => r.Id).ToHashSet(StringComparer.Ordinal);
+        foreach (var doubt in standing.All.Where(d => !doubtedBefore.Contains(d.Id)))
+        {
+            var record = after.Model.ById[doubt.Id].Record;
+            notes.Add(submitted.Contains(doubt.Id)
+                ? new Finding(doubt.Code, doubt.Id, $"{RecordText.Line(after, record)}. {standing.Reason(doubt)} Build nothing more on it until the author has settled that")
+                : new Finding("PUT_IN_QUESTION", doubt.Id,
+                    $"this submission leaves a record of {Standing.SceneOf(record) ?? "no scene"} without what it rested on ({Standing.Where(after, record)}): {RecordText.Line(after, record)}. {standing.Reason(doubt)} The passage needs the author's review"));
+        }
         notes.AddRange(records.OfType<BeliefChange>().Where(b => b.Directness is Directness.Inferred or Directness.Speculative)
             .Select(b => new Finding("FLAGGED", b.Id, $"marked {Names.Of(b.Directness)}: applied as provisional and flagged for the author's review")));
         // A belief that leaves its holder where an earlier record put them is how a fact that joins two details

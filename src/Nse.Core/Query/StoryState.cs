@@ -1,4 +1,5 @@
 using System.Collections.Concurrent;
+using Nse.Ledger;
 using Nse.Manuscript;
 using Nse.Model;
 
@@ -71,6 +72,16 @@ public sealed class StoryState
     public string? LedgerWarning => SeenHead > LedgerHead
         ? $"the ledger ends at change set {LedgerHead}, but this folder has seen it end at {SeenHead}. Either the newest change sets were removed or an older version was checked out. If that was not intended, restore the files under ledger/ from git. If it was, run 'nse rebuild' to accept the ledger as it stands"
         : null;
+
+    /// <summary>
+    /// Records that were in the ledger by this head and do not count at it: retired, or rejected. They take no
+    /// part in any answer about the story. They are kept for one question only: what a record that is still in
+    /// force rested on, once that is gone. Empty when whoever built the state had no history to give it.
+    /// </summary>
+    public IReadOnlyList<Tracked> Gone { get; init; } = [];
+
+    /// <summary>What rests on what, worked out the first time it is asked for. See <see cref="Standing"/>.</summary>
+    internal Standing? StandingOnce { get; set; }
 
     /// <summary>Scenes in the order the reader meets them, taken from the manuscript files.</summary>
     public IReadOnlyList<ManuscriptScene> Telling { get; }

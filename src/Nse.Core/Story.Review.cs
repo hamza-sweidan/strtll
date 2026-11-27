@@ -79,7 +79,15 @@ public sealed record Decision
 public sealed record DecisionPlan(
     IReadOnlyList<string> Ratify, IReadOnlyList<string> RejectRecords,
     IReadOnlyList<Proposal> AcceptProposals, IReadOnlyList<Proposal> DeclineProposals,
-    IReadOnlyList<string> LeftFlagged, IReadOnlyList<string> Shown);
+    IReadOnlyList<string> LeftFlagged, IReadOnlyList<string> Shown)
+{
+    /// <summary>
+    /// What the decision does to what is already written: the records of later scenes it leaves without what
+    /// they rested on, each with its passage and the reason. They are among the lines shown for confirmation,
+    /// and are kept apart here so that they can be said again once the decision is written.
+    /// </summary>
+    public IReadOnlyList<string> Consequences { get; init; } = [];
+}
 
 /// <summary>
 /// The outcome of a decision. With findings and nothing applied or declined, nothing was done. Findings
@@ -448,10 +456,26 @@ public sealed partial class Story
             var record = desk.Before.Find(id)!.Record;
             return new PendingRecord(id, Policy.Flagged(record), RecordText.Line(now, record));
         }
+        // A scene may be written on from records the author has not reviewed. So a rejection, or a proposal that
+        // retires something, can leave a later passage resting on nothing, and the author is told which and why
+        // before they confirm. Ratifying changes nothing anything rests on, and is not looked into.
+        IReadOnlyList<string> consequences = [];
+        if (rejectRecords.Count + acceptProposals.Count > 0)
+        {
+            try
+            {
+                var then = StoryIndex.FromFiles(projection, null, desk.Manuscript);
+                consequences = Consequences.Between(now, then).Lines(then);
+            }
+            catch (KeyNotFoundException)
+            {
+                // The decision passed every check. What it does to the rest could not be worked out, and it is not refused for that.
+            }
+        }
         var lines = ReviewReport.PlanLines(
             ratify.Select(Pending).ToList(), rejectRecords.Select(Pending).ToList(),
-            acceptProposals.Select(p => View(p, desk.Ledger, desk.Before, desk.Manuscript, now)).ToList(), declineProposals, leftFlagged);
-        return (new Prepared(new DecisionPlan(ratify, rejectRecords, acceptProposals, declineProposals, leftFlagged, lines), units, projection), findings);
+            acceptProposals.Select(p => View(p, desk.Ledger, desk.Before, desk.Manuscript, now)).ToList(), declineProposals, leftFlagged, consequences);
+        return (new Prepared(new DecisionPlan(ratify, rejectRecords, acceptProposals, declineProposals, leftFlagged, lines) { Consequences = consequences }, units, projection), findings);
     }
 
     /// <summary>Write a decision that was checked under this lock. Whatever happens, what was done is reported.</summary>
